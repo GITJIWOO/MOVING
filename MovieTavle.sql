@@ -30,3 +30,4 @@ CREATE TABLE review(
     rcontent VARCHAR(300) NOT NULL,
     FOREIGN KEY (uid) REFERENCES user(uid)
 );
+/* asfsadsagd*/
