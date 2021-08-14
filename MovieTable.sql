@@ -12,8 +12,10 @@ INSERT INTO user VALUES('adminid', 'adminpw', 'admin', 'admin@admin.com', 30, 1)
 
 CREATE TABLE movie(
 	mid INT AUTO_INCREMENT PRIMARY KEY,
-    mtitle VARCHAR(30) NOT NULL,
+    mtitle VARCHAR(100) NOT NULL,
     mgrade INT NOT NULL,
+    mcountry VARCHAR(30) NOT NULL,
+    mplot VARCHAR(1000) NOT NULL,
     FOREIGN KEY (mid) REFERENCES booking(mid)
 );
 
