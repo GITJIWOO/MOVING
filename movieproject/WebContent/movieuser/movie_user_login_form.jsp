@@ -23,5 +23,8 @@
 		<input type="password" name="pw" placeholder="비밀번호" required/><br/><br/>
 		<input type="submit" value="로그인" />
 	</form>
+	<form action="userjoin.do" method="post">
+		<input type="submit" value="회원가입" />
+	</form>
 </body>
 </html>
