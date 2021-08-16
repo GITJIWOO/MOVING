@@ -18,6 +18,7 @@ CREATE TABLE user (
 /* 관리자 계정 생성 */
 INSERT INTO user VALUES('adminid', 'adminpw', 'admin', 'admin@admin.com', 30, 1);
 
+
 /*  영화 정보 테이블
 	mid = 영화 식별 번호
     mtitle = 영화 제목
@@ -42,7 +43,7 @@ CREATE TABLE movie(
     rcontent = 리뷰 내용
 */
 CREATE TABLE review(
-    rnum INT PRIMARY KEY,
+    rnum INT PRIMARY KEY AUTO_INCREMENT,
 	uid VARCHAR(20) NOT NULL,
 	mtitle VARCHAR(30) NOT NULL,
     rrate INT(2) NOT NULL,
