@@ -31,6 +31,8 @@ CREATE TABLE movie(
     mtitle VARCHAR(100) NOT NULL,
     mgrade INT NOT NULL,
     mcountry VARCHAR(30) NOT NULL,
+    mdirector VARCHAR(30) NOT NULL,
+    mactor VARCHAR(30) NOT NULL,
     mplot VARCHAR(1000) NOT NULL,
     FOREIGN KEY (mid) REFERENCES booking(mid)
 );
@@ -48,8 +50,28 @@ CREATE TABLE review(
 	mtitle VARCHAR(30) NOT NULL,
     rrate INT(2) NOT NULL,
     rcontent VARCHAR(300) NOT NULL,
-    FOREIGN KEY (uid) REFERENCES user(uid)
+    rdate TIMESTAMP,
+    FOREIGN KEY (mid) REFERENCES movie(mid)
 );
+
+/*	영화 예매 정보 테이블
+	modeid = 영화 디테일 식별 번호
+	mid = 영화 식별 번호
+    mlimit = 영화관 인원제한
+    mtime = 영화 상영 시간
+*/
+CREATE TABLE moviedetail (
+	modeid INT AUTO_INCREMENT PRIMARY KEY,
+	mid INT,
+    mlimit INT(3) NOT NULL,
+    mtime DATETIME NOT NULL,
+    FOREIGN KEY (mid) REFERENCES movie(mid)
+);
+
+
+
+
+
 
 /*  영화 예약 테이블
 	uid = 유저 아이디
@@ -57,20 +79,12 @@ CREATE TABLE review(
     bprice = 영화 표 가격
 	ppers = 감상 인원
 */
+/*
 CREATE TABLE booking (
 	uid VARCHAR(20) PRIMARY KEY,
-    mid INT AUTO_INCREMENT,
+    mid INT,
     bprice INT NOT NULL,
-    bpers INT NOT NULL
+    bpers INT NOT NULL,
+    dtime TIMESTAMP
 );
-
-/*	영화 예매 정보 테이블
-	mid = 영화 식별 번호
-    mtitle = 영화 제목
-    mtime = 영화 상영 시간
 */
-CREATE TABLE moviedetail (
-	mid INT AUTO_INCREMENT PRIMARY KEY,
-    mlimit INT(3) NOT NULL,
-    mtime TIMESTAMP NOT NULL
-);
