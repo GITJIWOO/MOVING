@@ -4,9 +4,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입 페이지</title>
 </head>
 <body>
-	<h1>회원가입 페이지    </h1>
+	<h1>회원가입</h1>
+	<form action = "/MovieProject/userlogin.do" method = "post">
+		<input type = "text" name = "uId" placeholder = "ID" required /><br>
+		<input type = "password" name = "uPw" placeholder = "PASSWORD" required /><br>
+		<input type = "text" name = "uName" placeholder = "NAME" required /><br>
+		<input type = "email" name = "uEmail" placeholder = "E-MAIL" required /><br>
+		<input type = "number" name = "uAge" placeholder = "AGE" required /><br>
+		<input type = "submit" value = "회원가입" /><br>
+		<a href = "/MovieProject/userlogin.do">
+			<input type = "button" value = "로그인으로 이동" />
+		</a>
+	</form>
 </body>
 </html>
