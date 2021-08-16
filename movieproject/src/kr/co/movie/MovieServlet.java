@@ -91,6 +91,8 @@ public class MovieServlet extends HttpServlet {
 			
 		} else if(uri.equals("/MovieProject/moviereviewdelete.do")) {
 			
+		} else if(uri.equals("/MovieProject/moviereviewdetail.do")) {
+			
 		} else {
 			out.print("잘못된 패턴입니다.");
 		}

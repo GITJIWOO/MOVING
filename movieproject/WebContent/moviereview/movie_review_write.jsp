@@ -8,17 +8,22 @@
 </head>
 <body>
 	<h1>리뷰 남기기</h1>
-	<form action="/MovieProject/moviereviewselect.do" method="post">
+	<form action="/MovieProject/moviereviewupdate.do" method="post">
 		<table border="1">
-			<tr>
-				<td>글제목</td>
-				<td><input type="text" name="title" size="10"></td>
-				<td><select>
+		<tr>
+			<td>영화제목</td>
+			<td>제목</td>
+			<td><select>
 						<option>평점</option>
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
 				</select></td>
+		</tr>
+			<tr>
+				<td>글제목</td>
+				<td><input type="text" name="title" size="10"></td>
+				
 			</tr>
 			<tr>
 				<td>내용</td>
