@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<h1>영화 리뷰 쓰기 폼</h1>
 </body>
 </html>
