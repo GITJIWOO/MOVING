@@ -18,12 +18,12 @@
 </head>
 <body>
 	<h1 align="center">무비프로젝트</h1>
-	<form action="userlogin.do" method="post">
+	<form action="/MovieProject/userlogin.do" method="post">
 		<input type="text" name="id" placeholder="아이디" required/><br/>
 		<input type="password" name="pw" placeholder="비밀번호" required/><br/><br/>
 		<input type="submit" value="로그인" />
 	</form>
-	<form action="userjoin.do" method="post">
+	<form action="/MovieProject/userjoin.do" method="post">
 		<input type="submit" value="회원가입" />
 	</form>
 </body>
