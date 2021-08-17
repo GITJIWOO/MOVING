@@ -1,5 +1,6 @@
 package kr.co.movie.movie.model;
 
+import java.io.File;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -46,7 +47,7 @@ public class MovieDAO {
 		
 		List<MovieVO> movieList = new ArrayList<>();
 		
-		String sql = "SELECT * FOMR movie ORDER BY mid DESC";
+		String sql = "SELECT * FROM movie ORDER BY mid DESC";
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
@@ -56,13 +57,13 @@ public class MovieDAO {
 				MovieVO movie = new MovieVO();
 				
 				movie.setMid(rs.getInt("mid"));
-				movie.setMid(rs.getInt("mposter"));
-				movie.setMid(rs.getInt("mtitle"));
-				movie.setMid(rs.getInt("mgrade"));
-				movie.setMid(rs.getInt("mcountry"));
-				movie.setMid(rs.getInt("mpremiere"));
-				movie.setMid(rs.getInt("mdirector"));
-				movie.setMid(rs.getInt("mplot"));
+				movie.setMposter((File)rs.getBlob("mposter"));
+				movie.setMtitle(rs.getString("mtitle"));
+				movie.setMgrade(rs.getInt("mgrade"));
+				movie.setMcountry(rs.getString("mcountry"));
+				movie.setMpremiere(rs.getDate("mpremiere"));
+				movie.setMdirector(rs.getString("mdirector"));
+				movie.setMplot(rs.getString("mplot"));
 				
 				movieList.add(movie);
 			}
@@ -124,6 +125,54 @@ public class MovieDAO {
 		}
 		return FAIL;
 	} // end setMovie
+	
+	
+	// Get Movie Detail Method
+	public MovieVO MovieDetail(String mId) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		MovieVO movie = new MovieVO();
+		
+		String sql = "SELECT * FROM movie WHERE mid=?";
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mId);
+			rs = pstmt.executeQuery();
+			System.out.println(rs);
+			if(rs.next()) {
+				movie.setMid(rs.getInt("mid"));
+				movie.setMposter((File)rs.getBlob("mposter"));
+				movie.setMtitle(rs.getString("mtitle"));
+				movie.setMgrade(rs.getInt("mgrade"));
+				movie.setMcountry(rs.getString("mcountry"));
+				movie.setMpremiere(rs.getDate("mpremiere"));
+				movie.setMdirector(rs.getString("mdirector"));
+				movie.setMplot(rs.getString("mplot"));
+				
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+	 		try {
+	 			if(con != null && !con.isClosed()) {
+	 				con.close();
+	 			}
+	 			if(pstmt != null && !pstmt.isClosed()) {
+	 				pstmt.close();
+	 			}
+	 			if(rs != null && !rs.isClosed()) {
+	 				rs.close();
+	 			}
+	 			
+	 		} catch (Exception e){
+	 			e.printStackTrace();
+	 		}
+		}
+		return movie;
+	}
 	
 
 	// Update Movie Method
