@@ -39,8 +39,7 @@ CREATE TABLE movie(
     mpremiere DATETIME NOT NULL,
     mdirector VARCHAR(30) NOT NULL,
     mactor VARCHAR(30) NOT NULL,
-    mplot VARCHAR(1000) NOT NULL,
-    FOREIGN KEY (mid) REFERENCES booking(mid)
+    mplot VARCHAR(1000) NOT NULL
 );
 
 /*  리뷰 테이블
