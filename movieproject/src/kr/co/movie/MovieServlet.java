@@ -13,9 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.co.movie.info.service.IMovieInfoService;
+import kr.co.movie.info.service.MovieGetInfoService;
+import kr.co.movie.info.service.MovieInfoDetailService;
 import kr.co.movie.info.service.MovieSetInfoService;
+import kr.co.movie.info.service.MovieUpdateInfoService;
+import kr.co.movie.movie.model.MovieDAO;
+import kr.co.movie.movie.model.MovieVO;
 import kr.co.movie.review.service.IMovieReviewService;
 import kr.co.movie.user.service.IMovieUserService;
+import kr.co.movie.user.service.UserLoginService;
 
 @WebServlet("*.do")
 public class MovieServlet extends HttpServlet {
@@ -49,6 +55,11 @@ public class MovieServlet extends HttpServlet {
 		
 		String ui = null;
 		
+		MovieDAO dao = MovieDAO.getInstance();
+		MovieVO vo = new MovieVO();
+		
+		int resultSet = dao.setMovie(vo);
+		
 		// 세션 쓰는 법
 		HttpSession session = null;
 		session = request.getSession();
@@ -63,12 +74,13 @@ public class MovieServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		// user service
 		if(uri.equals("/MovieProject/userjoin.do")) {
-			mis = new MovieSetInfoService();
-			mis.execute(request, response);
 			
 			
 		} else if(uri.equals("/MovieProject/userlogin.do")) {
+			mus = new UserLoginService();
+			mus.execute(request, response);
 			
+			ui = "/moviemain/movie_main.jsp";
 		} else if(uri.equals("/MovieProject/userlogout.do")) {
 			
 		} else if(uri.equals("/MovieProject/userupdate.do")) {
@@ -80,11 +92,25 @@ public class MovieServlet extends HttpServlet {
 		} 
 		// movie info
 		else if(uri.equals("/MovieProject/movieinsert.do")) {
-			
+			mis = new MovieSetInfoService();
+			mis.execute(request, response);
+			if(resultSet == 0) {
+				ui = "/movieinfo/movie_insert_form.jsp";
+			} else if(resultSet == 1) {
+				ui = "/MovieProject/movieselect.do";
+			}
 		} else if(uri.equals("/MovieProject/movieselect.do")) {
-			
+			mis = new MovieGetInfoService();
+			mis.execute(request, response);
+			ui = "/MovieProject/movieselect.do";
 		} else if(uri.equals("/MovieProject/movieupdate.do")) {
-			
+			mis = new MovieUpdateInfoService();
+			mis.execute(request, response);
+			ui = "/MovieProject/movieselect.do";
+		} else if(uri.equals("/MovieProject/moviedetail.do")) {
+			mis = new MovieInfoDetailService();
+			mis.execute(request, response);
+			ui = "/MovieProject/movie_detail.jsp";
 		}
 		// movie review
 		else if(uri.equals("/MovieProject/moviereviewselect.do")) {
