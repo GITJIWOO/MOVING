@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>회원가입</h1>
-	<form action = "/MovieProject/userlogin.do" method = "post">
+	<form action = "/MovieProject/userjoin.do" method = "post">
 		<input type = "text" name = "uId" placeholder = "ID" required /><br>
 		<input type = "password" name = "uPw" placeholder = "PASSWORD" required /><br>
 		<input type = "text" name = "uName" placeholder = "NAME" required /><br>
