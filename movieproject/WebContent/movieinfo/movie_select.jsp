@@ -8,6 +8,10 @@
 </head>
 <body>
 	<h1>영화 정보</h1>
-	
+	<table border="1">
+		<tr>
+			
+		</tr>
+	</table>
 </body>
 </html>
