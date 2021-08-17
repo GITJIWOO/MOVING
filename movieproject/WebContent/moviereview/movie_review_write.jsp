@@ -11,14 +11,19 @@
 	<form action="/MovieProject/moviereviewselect.do" method="post">
 		<table border="1">
 			<tr>
-				<td>글제목</td>
-				<td><input type="text" name="title" size="10"></td>
+				<td>영화 제목</td>
+				<td>영화1</td>
 				<td><select>
 						<option>평점</option>
 						<option>1</option>
 						<option>2</option>
 						<option>3</option>
 				</select></td>
+			</tr>
+			<tr>
+				<td>글제목</td>
+				<td><input type="text" name="title" size="10"></td>
+
 			</tr>
 			<tr>
 				<td>내용</td>
@@ -30,15 +35,14 @@
 			</tr>
 			<tr>
 				<td>등록일</td>
-				<td>now()</td>
+				<td>now()))</td>
 			</tr>
 			<tr>
-				<td>
-					<input type="submit" value="등록"> 
-					<input type="reset" value="초기화">
-					<a href="/MovieProject/moviereview/movie_review_form.jsp">
-					<input type="button" value="목록으로"> </a>
-				</td>
+				<td><input type="submit" value="등록"> <input
+					type="reset" value="초기화"> <a
+					href="/MovieProject/moviereview/movie_review_form.jsp"> <input
+						type="button" value="목록으로">
+				</a></td>
 			</tr>
 		</table>
 	</form>
