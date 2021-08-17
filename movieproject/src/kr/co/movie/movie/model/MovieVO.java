@@ -1,7 +1,10 @@
 package kr.co.movie.movie.model;
 
+import java.io.File;
+
 public class MovieVO {
 	private int mid;
+	private File mposter;
 	private String mtitle;
 	private int mgrade;
 	private String mcountry;
@@ -18,6 +21,13 @@ public class MovieVO {
 	}
 	public void setMid(int mid) {
 		this.mid = mid;
+	}
+	
+	public File getMposter() {
+		return mposter;
+	}
+	public void setMposter(File mposter) {
+		this.mposter = mposter;
 	}
 	
 	public String getMtitle() {

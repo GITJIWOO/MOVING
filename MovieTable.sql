@@ -28,8 +28,9 @@ INSERT INTO user VALUES('adminid', 'adminpw', 'admin', 'admin@admin.com', 30, 1)
 */
 CREATE TABLE movie(
 	mid INT AUTO_INCREMENT PRIMARY KEY,
+	mposter MEDIUMBLOB NOT NULL,
     mtitle VARCHAR(100) NOT NULL,
-    mgrade INT NOT NULL,
+    mgrade INT(2) NOT NULL,
     mcountry VARCHAR(30) NOT NULL,
     mdirector VARCHAR(30) NOT NULL,
     mactor VARCHAR(30) NOT NULL,
