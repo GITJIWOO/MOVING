@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.co.movie.info.service.IMovieInfoService;
+import kr.co.movie.info.service.MovieSetInfoService;
 import kr.co.movie.review.service.IMovieReviewService;
 import kr.co.movie.user.service.IMovieUserService;
 
@@ -62,6 +63,9 @@ public class MovieServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		// user service
 		if(uri.equals("/MovieProject/userjoin.do")) {
+			mis = new MovieSetInfoService();
+			mis.execute(request, response);
+			
 			
 		} else if(uri.equals("/MovieProject/userlogin.do")) {
 			

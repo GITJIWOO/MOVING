@@ -12,6 +12,10 @@
 	<form action="/MovieProject/movieinsert.do" method="post">
 		<table border="1">
 			<tr>
+				<th>영화 포스터</th>
+				<td><input type="file" name="movieposter"/><br></td>
+			</tr>
+			<tr>
 				<th>영화 제목</th>
 				<td><input type="text" name="movietitle"/><br/></td>
 			</tr>
