@@ -10,7 +10,12 @@
 	<h1>영화 정보</h1>
 	<table border="1">
 		<tr>
-			
+			<th>영화 번호</th>
+			<th>영화 포스터</th>
+			<th>영화 제목</th>
+			<th>영화 </th>
+			<th>영화 번호</th>
+			<th>영화 번호</th>
 		</tr>
 	</table>
 </body>
