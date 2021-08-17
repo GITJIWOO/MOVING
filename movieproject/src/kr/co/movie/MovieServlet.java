@@ -21,6 +21,7 @@ import kr.co.movie.movie.model.MovieDAO;
 import kr.co.movie.movie.model.MovieVO;
 import kr.co.movie.review.service.IMovieReviewService;
 import kr.co.movie.user.service.IMovieUserService;
+import kr.co.movie.user.service.UserLoginService;
 
 @WebServlet("*.do")
 public class MovieServlet extends HttpServlet {
@@ -76,7 +77,10 @@ public class MovieServlet extends HttpServlet {
 			
 			
 		} else if(uri.equals("/MovieProject/userlogin.do")) {
+			mus = new UserLoginService();
+			mus.execute(request, response);
 			
+			ui = "/moviemain/movie_main.jsp";
 		} else if(uri.equals("/MovieProject/userlogout.do")) {
 			
 		} else if(uri.equals("/MovieProject/userupdate.do")) {
