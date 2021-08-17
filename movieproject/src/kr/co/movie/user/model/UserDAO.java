@@ -12,6 +12,10 @@ public class UserDAO {
 	private static final int SUCCESS = 1;
 	private static final int FAIL = 0;
 	
+	private static final int LOGINSUCCESS = 1;
+	private static final int LOGINFAILID = 0;
+	private static final int LOGINFAILPW = -1;
+	
 	private UserDAO() {
 		try {
 			Context ct = new InitialContext();
@@ -33,7 +37,7 @@ public class UserDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con = ds.getConnection();
-			String sql = "INSERT INTO user (uId, uPw, uName, uEmail, uAge)VALUES (?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO user (uId, uPw, uName, uEmail, uAge) VALUES (?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, user.getuId());
 			pstmt.setString(2, user.getuPw());
@@ -98,6 +102,51 @@ public class UserDAO {
 	}
 	
 	// 로그인
+	public int userLogin(UserVO user) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT * FROM user WHERE uid = ?";
+		
+		try {
+			con = ds.getConnection();
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, user.getuId());
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				if(rs.getString("uid").equals(user.getuId()) && rs.getString("upw").equals(user.getuPw())) {
+					return LOGINSUCCESS;
+				} else if ( !(rs.getString("uid").equals(user.getuId()))) {
+					return LOGINFAILID;
+				} else if ( !(rs.getString("upw").equals(user.getuPw()))) {
+					return LOGINFAILPW;
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if( con != null && !con.isClosed()) {
+					con.close();
+				}
+				if( pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+				if( rs != null && !rs.isClosed()) {
+					rs.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return LOGINFAILID;
+	}//userLogin END
 	
 	
 	// 회원 정보 조회(개인 - 회원정보 수정 시 사용)
