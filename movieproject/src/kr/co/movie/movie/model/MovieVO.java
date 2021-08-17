@@ -1,6 +1,7 @@
 package kr.co.movie.movie.model;
 
 import java.io.File;
+import java.sql.Date;
 
 public class MovieVO {
 	private int mid;
@@ -8,6 +9,7 @@ public class MovieVO {
 	private String mtitle;
 	private int mgrade;
 	private String mcountry;
+	private Date mpremiere;
 	private String mdirector;
 	private String mactor;
 	private String mplot;
@@ -49,6 +51,13 @@ public class MovieVO {
 	}
 	public void setMcountry(String mcountry) {
 		this.mcountry = mcountry;
+	}
+	
+	public Date getMpremiere() {
+		return mpremiere;
+	}
+	public void setMpremiere(Date mpremiere) {
+		this.mpremiere = mpremiere;
 	}
 	
 	public String getMdirector() {

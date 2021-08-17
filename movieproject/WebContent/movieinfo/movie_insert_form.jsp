@@ -10,7 +10,7 @@
 	<h1>영화 정보 기입</h1>
 
 	<form action="/MovieProject/movieinsert.do" method="post">
-		<table border="1">
+		<table border="1"> 
 			<tr>
 				<th>영화 포스터</th>
 				<td><input type="file" name="movieposter"/><br></td>
