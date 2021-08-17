@@ -1,6 +1,9 @@
 package kr.co.movie.info.service;
 
 import java.io.File;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -37,12 +40,27 @@ public class MovieSetInfoService implements IMovieInfoService{
 	        file = multi.getFilesystemName(str); // 업로드 된 파일 이름 가져옴
 	        originalFile = multi.getOriginalFileName(str); // 원래의 파일이름 가져옴
 	        
-	        String mTitle = 
+	        String mTitle = request.getParameter("movietitle");
+	    	String strmGrade = request.getParameter("moviegrade");
+	    	int mGrade = Integer.parseInt(strmGrade);
+	    	String mCountry = request.getParameter("moviecountry");
+	    	DateFormat df = new SimpleDateFormat();
+	    	Date mPremiere = (Date)df.parse("moviepremiere");
+	    	String mDirector = request.getParameter("movieditector");
+	    	String mActor = request.getParameter("movieactor");
+	    	String mPlot = request.getParameter("movieplot");
 			
 			// DAO생성
 			MovieDAO dao = MovieDAO.getInstance();
 			// VO생성
 			MovieVO movie = new MovieVO();
+			movie.setMtitle(mTitle);
+			movie.setMgrade(mGrade);
+			movie.setMcountry(mCountry);
+			movie.setMpremiere(mPremiere);
+			movie.setMdirector(mDirector);
+			movie.setMactor(mActor);
+			movie.setMplot(mPlot);
 			
 			int resultCode = dao.setMovie(movie);
 			
