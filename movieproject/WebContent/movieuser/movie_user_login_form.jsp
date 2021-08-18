@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인 창</title>
+<title>로그인</title>
 <style>
 	h1 {
 		background-color:grey;

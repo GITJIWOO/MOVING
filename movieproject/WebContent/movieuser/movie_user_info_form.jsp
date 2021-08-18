@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>사용자 정보 조회 페이지</title>
+<title>사용자 정보 조회</title>
 </head>
 <body>
 	<h1>사용자 정보 조회</h1>
