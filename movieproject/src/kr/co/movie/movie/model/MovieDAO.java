@@ -1,7 +1,5 @@
 package kr.co.movie.movie.model;
 
-import java.io.File;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -57,13 +55,16 @@ public class MovieDAO {
 				MovieVO movie = new MovieVO();
 				
 				movie.setMid(rs.getInt("mid"));
-				movie.setMposter(rs.getString("mposter"));
 				movie.setMtitle(rs.getString("mtitle"));
 				movie.setMgrade(rs.getInt("mgrade"));
-				movie.setMcountry(rs.getString("mcountry"));
+				movie.setMcountry(rs.getString("mcountry"));	
 				movie.setMpremiere(rs.getDate("mpremiere"));
 				movie.setMdirector(rs.getString("mdirector"));
+				movie.setMactor(rs.getString("mactor"));
 				movie.setMplot(rs.getString("mplot"));
+				
+				System.out.println("받은 영화 : " + movie);
+				
 				
 				movieList.add(movie);
 			}
@@ -88,24 +89,23 @@ public class MovieDAO {
 	
 	// Set Movie Method
 	public int setMovie(MovieVO movie) {
-		// https://jennylee4517.github.io/jsp/jsp-5%EC%9D%BC%EC%B0%A8-%ED%8C%8C%EC%9D%BC%EC%97%85%EB%A1%9C%EB%93%9C/
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
 		try {
 			con = ds.getConnection();
-			String sql = "INSERT INTO movie (mposter, mtitle, mgrade,"
+			String sql = "INSERT INTO movie (mtitle, mgrade,"
 					+ " mcountry, mpremiere, mdirector, mactor, mplot) "
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, movie.getMposter());
-			pstmt.setString(2, movie.getMtitle());
-			pstmt.setInt(3, movie.getMgrade());
-			pstmt.setString(4, movie.getMcountry());
-			pstmt.setDate(5, movie.getMpremiere());
-			pstmt.setString(6, movie.getMdirector());
-			pstmt.setString(7, movie.getMactor());
-			pstmt.setString(8, movie.getMplot());
+			pstmt.setString(1, movie.getMtitle());
+			pstmt.setInt(2, movie.getMgrade());
+			pstmt.setString(3, movie.getMcountry());
+			pstmt.setDate(4, movie.getMpremiere());
+			pstmt.setString(5, movie.getMdirector());
+			pstmt.setString(6, movie.getMactor());
+			pstmt.setString(7, movie.getMplot());
+			
 			
 			pstmt.executeUpdate();
 			
@@ -145,7 +145,6 @@ public class MovieDAO {
 			System.out.println(rs);
 			if(rs.next()) {
 				movie.setMid(rs.getInt("mid"));
-				movie.setMposter(rs.getString("mposter"));
 				movie.setMtitle(rs.getString("mtitle"));
 				movie.setMgrade(rs.getInt("mgrade"));
 				movie.setMcountry(rs.getString("mcountry"));

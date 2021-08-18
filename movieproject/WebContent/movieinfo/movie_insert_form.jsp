@@ -9,12 +9,8 @@
 <body>
 	<h1>영화 정보 기입</h1>
 
-	<form action="/MovieProject/movieinsert.do" method="post" enctype="multipart/form-data">
+	<form action="http://localhost:8181/MovieProject/movieinsert.do" method="post">
 		<table border="1"> 
-			<tr>
-				<th>영화 포스터</th>
-				<td><input type="file" name="movieposter"/><br></td>
-			</tr>
 			<tr>
 				<th>영화 제목</th>
 				<td><input type="text" name="movietitle"/><br/></td>
@@ -26,6 +22,10 @@
 			<tr>
 				<th>영화 제작 국가</th>
 				<td><input type="text" name="moviecountry"/><br/></td>
+			</tr>
+			<tr>
+				<th>영화 개봉일</th>
+				<td><input type="date" name="movieprimere"/><br/></td>
 			</tr>
 			<tr>
 				<th>영화 감독</th>
@@ -47,7 +47,7 @@
 	</form>
 	<form action="/MovieProject/movieselect.do" method="post">
 		<input type="hidden">
-		<input type="submit" value="돌아가기">
+		<input type="button" value="돌아가기">
 	</form>
 </body>
 </html>
