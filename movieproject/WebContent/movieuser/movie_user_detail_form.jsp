@@ -31,7 +31,7 @@
 		<input type = "hidden" name = "uId" value ="${user.uId }" />
 		<input type = "submit" value = "회원 정보 변경" />
 	</form>
-	<form action = "/MovieProject/">
+	<form action = "/MovieProject/userdelete.do" method = "post">
 		<input type = "hidden" name = "uId" value ="${user.uId }" />
 		<input type = "submit" value = "회원 탈퇴" />
 	</form>

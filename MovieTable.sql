@@ -21,7 +21,6 @@ INSERT INTO user VALUES('adminid', 'adminpw', 'admin', 'admin@admin.com', 30, 1)
 
 /*  영화 정보 테이블
 	mid = 영화 식별 번호
-    mposter = 영화 포스터
     mtitle = 영화 제목
     mgrade = 영화 등급
     mcountry = 영화 제작 국가
@@ -32,11 +31,10 @@ INSERT INTO user VALUES('adminid', 'adminpw', 'admin', 'admin@admin.com', 30, 1)
 */
 CREATE TABLE movie(
 	mid INT AUTO_INCREMENT PRIMARY KEY,
-	mposter MEDIUMBLOB NOT NULL,
     mtitle VARCHAR(100) NOT NULL,
     mgrade INT(2) NOT NULL,
     mcountry VARCHAR(30) NOT NULL,
-    mpremiere DATETIME NOT NULL,
+    mpremiere DATE NOT NULL,
     mdirector VARCHAR(30) NOT NULL,
     mactor VARCHAR(30) NOT NULL,
     mplot VARCHAR(1000) NOT NULL

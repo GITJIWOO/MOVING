@@ -4,7 +4,6 @@ import java.sql.Date;
 
 public class MovieVO {
 	private int mid;
-	private String mposter;
 	private String mtitle;
 	private int mgrade;
 	private String mcountry;
@@ -22,13 +21,6 @@ public class MovieVO {
 	}
 	public void setMid(int mid) {
 		this.mid = mid;
-	}
-	
-	public String getMposter() {
-		return mposter;
-	}
-	public void setMposter(String mPoster) {
-		this.mposter = mPoster;
 	}
 	
 	public String getMtitle() {

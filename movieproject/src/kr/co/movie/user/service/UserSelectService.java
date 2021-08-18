@@ -18,6 +18,7 @@ public class UserSelectService implements IMovieUserService{
 		if(strPage != null) {
 			currentPage = Integer.parseInt(strPage);
 		}
+		System.out.println("현재 페이지: " + currentPage);
 		UserDAO dao = UserDAO.getInstance();
 		List<UserVO> userList = dao.getUserList(currentPage);
 		int total = dao.getUserCount();
