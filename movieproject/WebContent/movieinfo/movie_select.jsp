@@ -11,18 +11,12 @@
 	<h1>영화 정보</h1>
 	<table border="1">
 		<tr>
-			<th>영화 포스터</th>
 			<th>영화 제목</th>
 			<th>영화 등급</th>
 			<th>영화 개봉일</th>
 		</tr>
 		<c:forEach var="movie" items="${movieList}">
 			<tr>
-				<td>
-					<a href="/MovieProject/moviedetail.do?mId=${movie.mId}">
-						${movie.mPoster }
-					</a>
-				</td>
 				<td><a href="/MovieProject/moviedetail.do?mId=${movie.mId}">
 						${movie.mTitle }
 					</a>

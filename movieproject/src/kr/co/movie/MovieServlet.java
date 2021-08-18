@@ -108,19 +108,14 @@ public class MovieServlet extends HttpServlet {
 		else if(uri.equals("/MovieProject/movieinsert.do")) {
 			mis = new MovieSetInfoService();
 			mis.execute(request, response);
-			if(resultSet == 0) {
-				ui = "/movieinfo/movie_insert_form.jsp";
-			} else if(resultSet == 1) {
-				ui = "/MovieProject/movieselect.do";
-			}
+			ui = "/movieselect.do";
 		} else if(uri.equals("/MovieProject/movieselect.do")) {
 			mis = new MovieGetInfoService();
 			mis.execute(request, response);
-			ui = "/MovieProject/movieselect.do";
 		} else if(uri.equals("/MovieProject/movieupdate.do")) {
 			mis = new MovieUpdateInfoService();
 			mis.execute(request, response);
-			ui = "/MovieProject/movieselect.do";
+			ui = "/movieselect.do";
 		} else if(uri.equals("/MovieProject/moviedetail.do")) {
 			mis = new MovieInfoDetailService();
 			mis.execute(request, response);
