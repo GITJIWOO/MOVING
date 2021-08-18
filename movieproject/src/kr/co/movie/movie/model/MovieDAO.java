@@ -60,6 +60,7 @@ public class MovieDAO {
 				movie.setMcountry(rs.getString("mcountry"));
 				movie.setMpremiere(rs.getDate("mpremiere"));
 				movie.setMdirector(rs.getString("mdirector"));
+				movie.setMactor(rs.getString("mactor"));
 				movie.setMplot(rs.getString("mplot"));
 				
 				movieList.add(movie);
@@ -85,7 +86,6 @@ public class MovieDAO {
 	
 	// Set Movie Method
 	public int setMovie(MovieVO movie) {
-		System.out.println("전달받은 VO : " + movie);
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
