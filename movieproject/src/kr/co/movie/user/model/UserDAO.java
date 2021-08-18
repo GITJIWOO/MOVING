@@ -17,6 +17,9 @@ public class UserDAO {
 	private static final int LOGINFAILID = 0;
 	private static final int LOGINFAILPW = -1;
 	
+	private static final int UPDATESUCCESS = 1;
+	private static final int UPDATEFAIL = 0;
+	
 	private UserDAO() {
 		try {
 			Context ct = new InitialContext();
@@ -148,9 +151,6 @@ public class UserDAO {
 		}
 		return LOGINFAILID;
 	}//userLogin END
-	
-	
-	// 회원정보 수정
 	
 	
 	// 회원 탈퇴
@@ -305,5 +305,46 @@ public class UserDAO {
 		}
 		return user;
 	}//getUser END
+	
+	// 회원정보 수정
+	public int userUpdate(UserVO user) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "UPDATE user SET upw = ?, uname = ?, uemail = ?, uage = ?, uadmin = ? WHERE uid = ?";
+		
+		try {
+			con = ds.getConnection();
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, user.getuPw());
+			pstmt.setString(2, user.getuName());
+			pstmt.setString(3, user.getuEmail());
+			pstmt.setInt(4, user.getuAge());
+			pstmt.setInt(5, user.getuAdmin());
+			pstmt.setString(6, user.getuId());
+			
+			pstmt.executeUpdate();
+			
+			
+			return UPDATESUCCESS;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if ( con != null && !con.isClosed()) {
+					con.close();
+				}
+				if ( pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return UPDATEFAIL;
+	}//userUpdate END
 }
 	
