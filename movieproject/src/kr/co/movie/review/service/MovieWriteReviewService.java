@@ -36,15 +36,16 @@ public class MovieWriteReviewService implements IMovieReviewService {
 			response.setCharacterEncoding("utf-8");
 
 			String rContent = request.getParameter("rContent");
-
+			String strRate = request.getParameter("rRate");
+			int rRate = Integer.parseInt(strRate);
 			// dao 생성
 			ReviewDAO dao = ReviewDAO.getInstance();
 
 			// VO 생성
 			ReviewVO review = new ReviewVO();
 			review.setrContent(rContent);
+			review.setrRate(rRate);
 
-//			board.setuId(uId);
 			int resultCode = dao.write(review);
 			if (resultCode == 1) {
 				System.out.println("DB테이블에 리뷰이 입력되었습니다");

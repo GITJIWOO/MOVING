@@ -41,16 +41,16 @@
 			</tr>
 		</thead>
 		<tbody>
-<%-- 			<c:forEach var="review" items="${review:ist }"> --%>
-<!-- 			<tr> -->
-<%-- 				<td>${review.rNum }</td> --%>
-<%-- 				<td>${review.uId }</td> --%>
-<%-- 				<td>${review.mTitle }</td> --%>
-<%-- 				<td>${review.rRate }</td> --%>
-<%-- 				<td>${review.rContent }</td> --%>
-<%-- 				<td>${review.rDate }</td> --%>
-<!-- 			</tr>	 -->
-<%-- 			</c:forEach> --%>
+			<c:forEach var="review" items="${reviewList}">
+			<tr>
+				<td>${review.rNum}</td>
+				<td>${review.uId}</td>
+				<td>${review.mTitle}</td>
+				<td>${review.rRate}</td>
+				<td>${review.rContent}</td>
+				<td>${review.rDate}</td>
+			</tr>	
+			</c:forEach>
 		</tbody>
 	</table>
 
