@@ -31,11 +31,12 @@ public class UserLoginService implements IMovieUserService{
 		
 		int result = dao.userLogin(user);
 		
-		//HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 		
 		if(result == 1) {
 			System.out.println("로그인 성공");
 			request.setAttribute("session_id", uid);
+			session.setAttribute("session_id", uid);
 		} else if (result == 0) {
 			System.out.println("아이디가 일치하지 않습니다.");
 			request.setAttribute("login_fail", 0);

@@ -150,9 +150,6 @@ public class UserDAO {
 	}//userLogin END
 	
 	
-	// 회원 정보 조회(개인 - 회원정보 수정 시 사용)
-	
-	
 	// 회원정보 수정
 	
 	
@@ -259,5 +256,54 @@ public class UserDAO {
 		}
 		return userList;
 	}
+	
+	// 회원 정보 조회(개인 - 회원정보 수정 시 사용)
+	public UserVO getUser(String uid) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		UserVO user = new UserVO();
+		
+		String sql = "SELECT * FROM user WHERE uid = ?";
+		
+		try {
+			con = ds.getConnection();
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, uid);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				user.setuId(rs.getString("uid"));
+				user.setuPw(rs.getString("upw"));
+				user.setuName(rs.getString("uname"));
+				user.setuEmail(rs.getString("uemail"));
+				user.setuAge(rs.getInt("uage"));
+				user.setuAdmin(rs.getInt("uadmin"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			user = null;
+		} finally {
+			try {
+				if( con != null && !con.isClosed()) {
+					con.close();
+				}
+				if( pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+				if( rs != null && !rs.isClosed()) {
+					rs.close();
+				}
+			} catch(Exception e ) {
+				e.printStackTrace();
+			}
+		}
+		return user;
+	}//getUser END
 }
 	
