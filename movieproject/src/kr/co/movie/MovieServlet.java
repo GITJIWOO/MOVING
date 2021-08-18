@@ -84,6 +84,8 @@ public class MovieServlet extends HttpServlet {
 			mus.execute(request, response);
 			ui = "/movieuser/movie_user_login_form.jsp";
 			
+		} else if(uri.equals("/MovieProject/getuser.do")) {
+			
 		} else if(uri.equals("/MovieProject/userlogin.do")) {
 			mus = new UserLoginService();
 			mus.execute(request, response);
