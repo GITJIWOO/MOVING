@@ -17,6 +17,9 @@ public class UserDAO {
 	private static final int LOGINFAILID = 0;
 	private static final int LOGINFAILPW = -1;
 	
+	private static final int UPDATESUCCESS = 1;
+	private static final int UPDATEFAIL = 0;
+	
 	private UserDAO() {
 		try {
 			Context ct = new InitialContext();
@@ -150,12 +153,6 @@ public class UserDAO {
 	}//userLogin END
 	
 	
-	// 회원 정보 조회(개인 - 회원정보 수정 시 사용)
-	
-	
-	// 회원정보 수정
-	
-	
 	// 회원 탈퇴
 	public int userDelete(String uId) {
 		Connection con = null;
@@ -259,5 +256,95 @@ public class UserDAO {
 		}
 		return userList;
 	}
+	
+	// 회원 정보 조회(개인 - 회원정보 수정 시 사용)
+	public UserVO getUser(String uid) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		UserVO user = new UserVO();
+		
+		String sql = "SELECT * FROM user WHERE uid = ?";
+		
+		try {
+			con = ds.getConnection();
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, uid);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				user.setuId(rs.getString("uid"));
+				user.setuPw(rs.getString("upw"));
+				user.setuName(rs.getString("uname"));
+				user.setuEmail(rs.getString("uemail"));
+				user.setuAge(rs.getInt("uage"));
+				user.setuAdmin(rs.getInt("uadmin"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			user = null;
+		} finally {
+			try {
+				if( con != null && !con.isClosed()) {
+					con.close();
+				}
+				if( pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+				if( rs != null && !rs.isClosed()) {
+					rs.close();
+				}
+			} catch(Exception e ) {
+				e.printStackTrace();
+			}
+		}
+		return user;
+	}//getUser END
+	
+	// 회원정보 수정
+	public int userUpdate(UserVO user) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "UPDATE user SET upw = ?, uname = ?, uemail = ?, uage = ?, uadmin = ? WHERE uid = ?";
+		
+		try {
+			con = ds.getConnection();
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, user.getuPw());
+			pstmt.setString(2, user.getuName());
+			pstmt.setString(3, user.getuEmail());
+			pstmt.setInt(4, user.getuAge());
+			pstmt.setInt(5, user.getuAdmin());
+			pstmt.setString(6, user.getuId());
+			
+			pstmt.executeUpdate();
+			
+			
+			return UPDATESUCCESS;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if ( con != null && !con.isClosed()) {
+					con.close();
+				}
+				if ( pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return UPDATEFAIL;
+	}//userUpdate END
 }
 	

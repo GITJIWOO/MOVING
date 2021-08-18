@@ -29,7 +29,7 @@ public class ReviewPageDTO {
 		} else {
 			// 게시글 총 개수를 이용해 전체 페이지 개수부터 구하기
 			this.totalPages = this.total / 5;
-			if(this.total % 10 > 0) {
+			if(this.total % 5 > 0) {
 				// 만약 나눴을때 10개로 딱떨어지지 않으면
 				// 마지막에 페이지를 하나 더 추가해야함
 				this.totalPages += 1;

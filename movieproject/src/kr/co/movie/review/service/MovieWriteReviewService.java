@@ -21,7 +21,7 @@ public class MovieWriteReviewService implements IMovieReviewService {
 			try {
 				// 서비스 내부에서 포워딩을 시키면
 				// 리다이렉트가 아니기 문에 실행됨
-				String ui = "users/user_login.jsp";
+				String ui = "movieuser/movie_user_login_form.jsp";
 				RequestDispatcher dp = request.getRequestDispatcher(ui);
 				dp.forward(request, response);
 			} catch (Exception e) {
@@ -36,15 +36,16 @@ public class MovieWriteReviewService implements IMovieReviewService {
 			response.setCharacterEncoding("utf-8");
 
 			String rContent = request.getParameter("rContent");
-
+			String strRate = request.getParameter("rRate");
+			int rRate = Integer.parseInt(strRate);
 			// dao 생성
 			ReviewDAO dao = ReviewDAO.getInstance();
 
 			// VO 생성
 			ReviewVO review = new ReviewVO();
 			review.setrContent(rContent);
+			review.setrRate(rRate);
 
-//			board.setuId(uId);
 			int resultCode = dao.write(review);
 			if (resultCode == 1) {
 				System.out.println("DB테이블에 리뷰이 입력되었습니다");

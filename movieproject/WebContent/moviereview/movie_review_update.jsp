@@ -8,12 +8,16 @@
 </head>
 <body>
 	<h3>¸®ºä ¼öÁ¤Æû</h3>
+<<<<<<< HEAD
 	<form action="/MovieProject/moviereviewupdate.do" method="post">
 	
 	<input type="hidden" name="uId" value="${reviewDetail.uId }">
 	<input type="hidden" name="uId" value="${reviewDetail.uId }">
 	<input type="hidden" name="uId" value="${reviewDetail.uId }">
 	<input type="hidden" name="uId" value="${reviewDetail.uId }">
+=======
+	<form action="/MovieProject/moviereviewselect.do" method="post">
+>>>>>>> 5444de73ed763cf939cd9b965a0d3a249c04e4da
 		<table border="1">
 			<tr>
 				<td>${reviewDetail.uId }</td>
