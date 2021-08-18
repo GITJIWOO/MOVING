@@ -41,11 +41,11 @@ public class UserDTO {
 	}
 	
 	public boolean hasUser() {
-		return (total > 0);
+		return total > 0;
 	}
 	
 	public boolean noHasUser() {
-		return (total == 0);
+		return total == 0;
 	}
 	
 	public List<UserVO> getUserList(){
@@ -60,7 +60,7 @@ public class UserDTO {
 		return startPage;
 	}
 	
-	public int getEndPages() {
+	public int getEndPage() {
 		return endPage;
 	}
 
