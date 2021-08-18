@@ -57,7 +57,7 @@ public class MovieDAO {
 				movie.setMid(rs.getInt("mid"));
 				movie.setMtitle(rs.getString("mtitle"));
 				movie.setMgrade(rs.getInt("mgrade"));
-				movie.setMcountry(rs.getString("mcountry"));
+				movie.setMcountry(rs.getString("mcountry"));	
 				movie.setMpremiere(rs.getDate("mpremiere"));
 				movie.setMdirector(rs.getString("mdirector"));
 				movie.setMactor(rs.getString("mactor"));
