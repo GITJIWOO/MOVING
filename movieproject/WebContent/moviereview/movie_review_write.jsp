@@ -8,41 +8,45 @@
 </head>
 <body>
 	<h1>리뷰 남기기</h1>
-	<form action="/MovieProject/moviereviewselect.do" method="post">
+	<form action="/MovieProject/moviereviewinsert.do" method="post">
 		<table border="1">
 			<tr>
 				<td>영화 제목</td>
-				<td>영화1</td>
+				<td></td>
 				<td><select>
 						<option>평점</option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
+						<option></option>
+						<option></option>
+						<option></option>
+						<option></option>
+						<option></option>
 				</select></td>
 			</tr>
 			<tr>
-				<td>글제목</td>
-				<td><input type="text" name="title" size="10"></td>
+				<td>리뷰번호</td>
+				<td></td>
 
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><textarea rows="20" cols="20" name="content"></textarea></td>
+				<td><textarea rows="10" cols="10"></textarea> </td>
 			</tr>
 			<tr>
 				<td>글쓴이</td>
-				<td><input type="text" name="writer" size="10"></td>
+				<td></td>
 			</tr>
 			<tr>
 				<td>등록일</td>
-				<td>now()))</td>
+				<td></td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="등록"> <input
-					type="reset" value="초기화"> <a
-					href="/MovieProject/moviereview/movie_review_form.jsp"> <input
+				<td>
+				<input type="submit" value="등록"> 
+				<input type="reset" value="초기화"> 
+				<a href="/MovieProject/moviereview/movie_review_form.jsp"> <input
 						type="button" value="목록으로">
-				</a></td>
+				</a>
+				</td>
 			</tr>
 		</table>
 	</form>

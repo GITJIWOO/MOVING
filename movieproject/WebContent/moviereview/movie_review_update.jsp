@@ -8,10 +8,15 @@
 </head>
 <body>
 	<h3>리뷰 수정폼</h3>
-	<form action="/MovieProject/reviewupdateok.do" method="post">
+	<form action="/MovieProject/moviereviewupdate.do" method="post">
+	
+	<input type="hidden" name="uId" value="${reviewDetail.uId }">
+	<input type="hidden" name="uId" value="${reviewDetail.uId }">
+	<input type="hidden" name="uId" value="${reviewDetail.uId }">
+	<input type="hidden" name="uId" value="${reviewDetail.uId }">
 		<table border="1">
 			<tr>
-				<td>id</td>
+				<td>${reviewDetail.uId }</td>
 			</tr>
 			<tr>
 				<td><select>
@@ -22,12 +27,12 @@
 				</select></td>
 			</tr>
 			<tr>
-				<td><textarea rows="10" cols="30">내용</textarea></td>
+				<td><textarea rows="10" cols="30" name="rContent">${reviewDetail.bContent}</textarea></td>
 				<td><select
 					onchange="if(this.value) location.href=(this.value);">
 						<option value=""></option>
 						<option value="/MovieProject/moviereview/movie_review_ipdate.jsp">수정</option>
-						<option value="삭제">삭제</option>
+						<option value="/MovieProject/moviereviewdelete.do">삭제</option>
 				</select></td>
 
 			</tr>

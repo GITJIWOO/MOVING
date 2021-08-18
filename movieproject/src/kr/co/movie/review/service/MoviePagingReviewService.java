@@ -28,7 +28,7 @@ public class MoviePagingReviewService implements IMovieReviewService {
 
 		// 현재 보고 있는 페이지의 전체 글 가져오기
 		// 페이지를 그냥 넘기지 않고, 시작번호를 계산해서 넘김.
-		List<ReviewVO> reviewList = dao.getPageList((page - 1) * 10);
+		List<ReviewVO> reviewList = dao.getPageList((page - 1) * 5);
 		System.out.println("페이징 글들 : " + reviewList);
 		// 얻어온 글 전체 개수와 현재 조회중인 페이지 정보를 DTO에 넘겨줌.
 		int countNum = dao.getReviewCount();

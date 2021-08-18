@@ -9,13 +9,13 @@ public class ReviewVO {
 	private int rRate;
 	private String rContent;
 	private Timestamp rDate;
+	private int mId;
 
-	
 	public ReviewVO() {
 		super();
 	}
 
-	public ReviewVO(int rNum, String uId, String mTitle, int rRate, String rContent, Timestamp rDate) {
+	public ReviewVO(int rNum, String uId, String mTitle, int rRate, String rContent, Timestamp rDate, int mId) {
 		super();
 		this.rNum = rNum;
 		this.uId = uId;
@@ -23,6 +23,7 @@ public class ReviewVO {
 		this.rRate = rRate;
 		this.rContent = rContent;
 		this.rDate = rDate;
+		this.mId = mId;
 	}
 
 	public int getrNum() {
@@ -73,9 +74,18 @@ public class ReviewVO {
 		this.rDate = rDate;
 	}
 
+	public int getmId() {
+		return mId;
+	}
+
+	public void setmId(int mId) {
+		this.mId = mId;
+	}
+
 	@Override
 	public String toString() {
 		return "ReviewVO [rNum=" + rNum + ", uId=" + uId + ", mTitle=" + mTitle + ", rRate=" + rRate + ", rContent="
-				+ rContent + ", rDate=" + rDate + "]";
+				+ rContent + ", rDate=" + rDate + ", mId=" + mId + "]";
 	}
+
 }
