@@ -132,7 +132,7 @@ public class MovieServlet extends HttpServlet {
 		} else if(uri.equals("/MovieProject/moviedetail.do")) {
 			mis = new MovieInfoDetailService();
 			mis.execute(request, response);
-			ui = "/MovieProject/movie_detail.jsp";
+			ui = "/movieinfo/movie_detail.jsp";
 		}
 		// movie review
 		else if(uri.equals("/MovieProject/moviereviewselect.do")) {

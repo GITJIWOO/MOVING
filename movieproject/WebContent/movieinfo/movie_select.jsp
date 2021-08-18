@@ -8,6 +8,10 @@
 <title>영화 정보</title>
 </head>
 <body>
+	<form action="http://localhost:8181/MovieProject/moviemain/movie_main.jsp" method="post">
+		<input type="hidden" name="moviemain">
+		<input type="submit" value="메인으로">
+	</form>
 	<h1>영화 정보</h1>
 	<table border="1">
 		<tr>
