@@ -40,6 +40,7 @@ public class MovieSetInfoService implements IMovieInfoService{
 	        file = multi.getFilesystemName(str); // 업로드 된 파일 이름 가져옴
 	        originalFile = multi.getOriginalFileName(str); // 원래의 파일이름 가져옴
 	        
+	        String mPoster = request.getParameter("movieposter");
 	        String mTitle = request.getParameter("movietitle");
 	    	String strmGrade = request.getParameter("moviegrade");
 	    	int mGrade = Integer.parseInt(strmGrade);
@@ -54,6 +55,7 @@ public class MovieSetInfoService implements IMovieInfoService{
 			MovieDAO dao = MovieDAO.getInstance();
 			// VO생성
 			MovieVO movie = new MovieVO();
+			movie.setMposter(mPoster);
 			movie.setMtitle(mTitle);
 			movie.setMgrade(mGrade);
 			movie.setMcountry(mCountry);
