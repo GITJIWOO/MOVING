@@ -1,5 +1,7 @@
 package kr.co.movie.review.service;
 
+import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,7 +10,7 @@ import javax.servlet.http.HttpSession;
 import kr.co.movie.review.model.ReviewDAO;
 import kr.co.movie.review.model.ReviewVO;
 
-public class MovieWriteReviewService implements IMovieReviewService {
+public class MovieListReviewService implements IMovieReviewService {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
@@ -28,33 +30,17 @@ public class MovieWriteReviewService implements IMovieReviewService {
 				e.printStackTrace();
 			}
 		}
-
-		try {
-
-			/// post방식 한글깨짐 방지 인코딩
-			request.setCharacterEncoding("utf-8");
-			response.setCharacterEncoding("utf-8");
-
-			String rContent = request.getParameter("rContent");
-
-			// dao 생성
-			ReviewDAO dao = ReviewDAO.getInstance();
-
-			// VO 생성
-			ReviewVO review = new ReviewVO();
-			review.setrContent(rContent);
-
-//			board.setuId(uId);
-			int resultCode = dao.write(review);
-			if (resultCode == 1) {
-				System.out.println("DB테이블에 리뷰이 입력되었습니다");
-			} else if (resultCode == 0) {
-				System.out.println("에러 발생으로 리뷰가 입력되지 않았습니다");
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
+		ReviewDAO dao = ReviewDAO.getInstance();
+		
+		List<ReviewVO> reviewList = dao.getReviewList();
+		
+		request.setAttribute("reviewList", reviewList);
+		System.out.println("service 게시물 데이터: " + reviewList);
+		
+		
+		
+		
 
 	}// end execute()
 

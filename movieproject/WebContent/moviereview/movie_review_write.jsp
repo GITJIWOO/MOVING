@@ -10,10 +10,17 @@
 	<h1>리뷰 남기기</h1>
 	<form action="/MovieProject/moviereviewupdate.do" method="post">
 		<table border="1">
+<<<<<<< HEAD
 		<tr>
 			<td>영화제목</td>
 			<td>제목</td>
 			<td><select>
+=======
+			<tr>
+				<td>영화 제목</td>
+				<td>영화1</td>
+				<td><select>
+>>>>>>> fed5fbaca67a2b5548d47caedabd6f6554085ba5
 						<option>평점</option>
 						<option>1</option>
 						<option>2</option>
@@ -26,6 +33,11 @@
 				
 			</tr>
 			<tr>
+				<td>글제목</td>
+				<td><input type="text" name="title" size="10"></td>
+
+			</tr>
+			<tr>
 				<td>내용</td>
 				<td><textarea rows="20" cols="20" name="content"></textarea></td>
 			</tr>
@@ -35,15 +47,14 @@
 			</tr>
 			<tr>
 				<td>등록일</td>
-				<td>now()</td>
+				<td>now()))</td>
 			</tr>
 			<tr>
-				<td>
-					<input type="submit" value="등록"> 
-					<input type="reset" value="초기화">
-					<a href="/MovieProject/moviereview/movie_review_form.jsp">
-					<input type="button" value="목록으로"> </a>
-				</td>
+				<td><input type="submit" value="등록"> <input
+					type="reset" value="초기화"> <a
+					href="/MovieProject/moviereview/movie_review_form.jsp"> <input
+						type="button" value="목록으로">
+				</a></td>
 			</tr>
 		</table>
 	</form>
