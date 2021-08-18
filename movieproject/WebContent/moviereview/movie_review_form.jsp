@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,35 +26,32 @@
 	<br>
 	<br>
 
-	
+	<h1>리뷰 목록</h1>
 	<a href="/MovieProject/moviereview/movie_review_detail.jsp"><input
 		type="button" value="더보기"></a>
 	<table border="1">
-		<tr>
-			<td>id</td>
-			<td><select>
-					<option>평점</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
-			</select></td>
-		</tr>
-		<tr>
-			<td><textarea rows="10" cols="30">내용</textarea></td>
-			<!-- <td>
-			<select
-				onchange="if(this.value) location.href=(this.value);">
-					<option value=""></option>
-					<option value="/MovieProject/moviereview/movie_review_ipdate.jsp">수정</option>
-					<option value="삭제">삭제</option>
-			</select>
-			</td> -->
-		</tr>
-		<tr>
-			<td>작성날짜</td>
-		</tr>
-
+		<thead>
+			<tr>
+				<th>리뷰번호</th>
+				<th>회원아이디</th>
+				<th>영화 제목</th>
+				<th>평점</th>
+				<th>리뷰내용</th>
+				<th>작성일</th>
+			</tr>
+		</thead>
+		<tbody>
+<%-- 			<c:forEach var="review" items="${review:ist }"> --%>
+<!-- 			<tr> -->
+<%-- 				<td>${review.rNum }</td> --%>
+<%-- 				<td>${review.uId }</td> --%>
+<%-- 				<td>${review.mTitle }</td> --%>
+<%-- 				<td>${review.rRate }</td> --%>
+<%-- 				<td>${review.rContent }</td> --%>
+<%-- 				<td>${review.rDate }</td> --%>
+<!-- 			</tr>	 -->
+<%-- 			</c:forEach> --%>
+		</tbody>
 	</table>
 
 

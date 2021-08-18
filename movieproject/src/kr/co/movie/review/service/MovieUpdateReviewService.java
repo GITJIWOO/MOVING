@@ -21,7 +21,7 @@ public class MovieUpdateReviewService implements IMovieReviewService {
 			try {
 				// 서비스 내부에서 포워딩을 시키면
 				// 리다이렉트가 아니기 문에 실행됨
-				String ui = "users/user_login.jsp";
+				String ui = "movieuser/movie_user_login_form.jsp";
 				RequestDispatcher dp = request.getRequestDispatcher(ui);
 				dp.forward(request, response);
 			} catch (Exception e) {

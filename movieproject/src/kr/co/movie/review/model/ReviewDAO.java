@@ -39,12 +39,14 @@ public class ReviewDAO {
 		// connection, preparedStatement 객체 선언
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO review (uid, ) VALUES()";
+		String sql = "INSERT INTO review (mTitle, rRate, rContent,rDate ) +" + " VALUES(?, ?, ?, now()";
 
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, "");
+			pstmt.setString(1, review.getmTitle());
+			pstmt.setInt(2, review.getrRate());
+			pstmt.setString(3, review.getrContent());
 
 			pstmt.executeUpdate();
 			return WRITE_SUCCESS;
@@ -69,7 +71,7 @@ public class ReviewDAO {
 	}// end write()
 
 	// 삭제
-	public int delete(String rnum) {
+	public int delete(String rNum) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		int resultCode;
@@ -81,11 +83,11 @@ public class ReviewDAO {
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, rnum);
+			pstmt.setString(1, rNum);
 
 			pstmt.executeUpdate();
 
-			System.out.println("삭제 리뷰번호: " + rnum);
+			System.out.println("삭제 리뷰번호: " + rNum);
 			resultCode = 1;
 
 		} catch (Exception e) {
@@ -116,7 +118,7 @@ public class ReviewDAO {
 		int result;
 		// 구문작성
 
-		String sql = "UPDATE review SET mTitle = ?, rContent = ?, rDate = ?, bHit = ? " + "WHERE rnum = ?";
+		String sql = "UPDATE review SET mTitle = ?, rContent = ?, rRate = ? WHERE rNum = ?";
 
 		try {
 			// 커넥션 생성 및 pstmt에 쿼리문 넣고 완성시켜서 실행까지 하고
@@ -124,7 +126,10 @@ public class ReviewDAO {
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, "");
+			pstmt.setString(1, review.getmTitle());
+			pstmt.setString(2, review.getrContent());
+			pstmt.setTimestamp(3, review.getrDate());
+			pstmt.setInt(4, review.getrNum());
 
 			pstmt.executeUpdate();
 			result = 1;
@@ -160,7 +165,7 @@ public class ReviewDAO {
 		ResultSet rs = null;
 
 		// 쿼리문(SELECT구문, 역순)
-		String sql = "SELECT * FROM review ORDER BY rnum DESC";
+		String sql = "SELECT * FROM review ORDER BY rnum DESC" + "LIMIT ?, 5";
 		try {
 			// 연결구문을 다 작성해주세요. 리턴구문까지.
 			con = ds.getConnection();
@@ -170,12 +175,12 @@ public class ReviewDAO {
 			while (rs.next()) {
 				ReviewVO review = new ReviewVO();
 
-//					review.setbId(rs.getInt("bId"));
-//					review.setbName(rs.getString("bName"));
-//					review.setbTitle(rs.getString("bTitle"));
-//					review.setbContent(rs.getString("bContent"));
-//					review.setbDate(rs.getTimestamp("bDate"));
-//					review.setbHit(rs.getInt("bHit"));
+				review.setrNum(rs.getInt("rNUm"));
+				review.setuId(rs.getString("uId"));
+				review.setmTitle(rs.getString("mTitle"));
+				review.setrRate(rs.getInt("rRate"));
+				review.setrContent(rs.getString("rContent"));
+				review.setrDate(rs.getTimestamp("rDate"));
 
 				reviewList.add(review);
 			}
@@ -219,12 +224,12 @@ public class ReviewDAO {
 			while (rs.next()) {
 				ReviewVO review = new ReviewVO();
 
-//					review.setbId(rs.getInt("bId"));
-//					review.setbName(rs.getString("bName"));
-//					review.setbTitle(rs.getString("bTitle"));
-//					review.setbContent(rs.getString("bContent"));
-//					review.setbDate(rs.getTimestamp("bDate"));
-//					review.setbHit(rs.getInt("bHit"));
+				review.setrNum(rs.getInt("rNUm"));
+				review.setuId(rs.getString("uId"));
+				review.setmTitle(rs.getString("mTitle"));
+				review.setrRate(rs.getInt("rRate"));
+				review.setrContent(rs.getString("rContent"));
+				review.setrDate(rs.getTimestamp("rDate"));
 
 				reviewList.add(review);
 			}

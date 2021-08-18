@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h3>¸®ºä ¼öÁ¤Æû</h3>
-	<form action="/MovieProject/reviewupdateok.do" method="post">
+	<form action="/MovieProject/moviereviewselect.do" method="post">
 		<table border="1">
 			<tr>
 				<td>id</td>

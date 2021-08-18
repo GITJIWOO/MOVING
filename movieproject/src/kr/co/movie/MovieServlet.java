@@ -113,8 +113,10 @@ public class MovieServlet extends HttpServlet {
 		} else if(uri.equals("/MovieProject/userupdate.do")) {
 			mus = new UserUpdateService();
 			mus.execute(request, response);
-			
 			ui = "/moviemain/movie_main.jsp";
+			// 유저 디테일로 수정
+		} else if(uri.equals("/MovieProject/requserdelete.do")) {
+			ui = "/movieuser/movie_user_delete_form.jsp";
 		} else if(uri.equals("/MovieProject/userdelete.do")) {
 			mus = new UserDeleteService();
 			mus.execute(request, response);
@@ -152,6 +154,8 @@ public class MovieServlet extends HttpServlet {
 		} else if(uri.equals("/MovieProject/moviereviewupdate.do")) {
 			
 		} else if(uri.equals("/MovieProject/moviereviewdelete.do")) {
+			
+		} else if(uri.equals("/MovieProject/moviereviewdetail.do")) {
 			
 		} else {
 			out.print("잘못된 패턴입니다.");
