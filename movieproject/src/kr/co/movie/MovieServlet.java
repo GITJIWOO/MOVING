@@ -27,6 +27,7 @@ import kr.co.movie.user.service.UserGetUserService;
 import kr.co.movie.user.service.UserJoinService;
 import kr.co.movie.user.service.UserLoginService;
 import kr.co.movie.user.service.UserSelectService;
+import kr.co.movie.user.service.UserUpdateService;
 
 @WebServlet("*.do")
 public class MovieServlet extends HttpServlet {
@@ -104,7 +105,10 @@ public class MovieServlet extends HttpServlet {
 		} else if(uri.equals("/MovieProject/userlogout.do")) {
 			
 		} else if(uri.equals("/MovieProject/userupdate.do")) {
+			mus = new UserUpdateService();
+			mus.execute(request, response);
 			
+			ui = "/moviemain/movie_main.jsp";
 		} else if(uri.equals("/MovieProject/userdelete.do")) {
 			mus = new UserDeleteService();
 			mus.execute(request, response);
