@@ -1,5 +1,6 @@
 package kr.co.movie.movie.model;
 
+import java.io.File;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -46,7 +47,7 @@ public class MovieDAO {
 		
 		List<MovieVO> movieList = new ArrayList<>();
 		
-		String sql = "SELECT * FOMR movie ORDER BY mid DESC";
+		String sql = "SELECT * FROM movie ORDER BY mid DESC";
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
@@ -56,13 +57,13 @@ public class MovieDAO {
 				MovieVO movie = new MovieVO();
 				
 				movie.setMid(rs.getInt("mid"));
-				movie.setMid(rs.getInt("mposter"));
-				movie.setMid(rs.getInt("mtitle"));
-				movie.setMid(rs.getInt("mgrade"));
-				movie.setMid(rs.getInt("mcountry"));
-				movie.setMid(rs.getInt("mpremiere"));
-				movie.setMid(rs.getInt("mdirector"));
-				movie.setMid(rs.getInt("mplot"));
+				movie.setMposter(rs.getString("mposter"));
+				movie.setMtitle(rs.getString("mtitle"));
+				movie.setMgrade(rs.getInt("mgrade"));
+				movie.setMcountry(rs.getString("mcountry"));
+				movie.setMpremiere(rs.getDate("mpremiere"));
+				movie.setMdirector(rs.getString("mdirector"));
+				movie.setMplot(rs.getString("mplot"));
 				
 				movieList.add(movie);
 			}
@@ -87,6 +88,7 @@ public class MovieDAO {
 	
 	// Set Movie Method
 	public int setMovie(MovieVO movie) {
+		// https://jennylee4517.github.io/jsp/jsp-5%EC%9D%BC%EC%B0%A8-%ED%8C%8C%EC%9D%BC%EC%97%85%EB%A1%9C%EB%93%9C/
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
@@ -96,7 +98,7 @@ public class MovieDAO {
 					+ " mcountry, mpremiere, mdirector, mactor, mplot) "
 					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setBlob(1, (Blob)movie.getMposter());
+			pstmt.setString(1, movie.getMposter());
 			pstmt.setString(2, movie.getMtitle());
 			pstmt.setInt(3, movie.getMgrade());
 			pstmt.setString(4, movie.getMcountry());
@@ -125,29 +127,56 @@ public class MovieDAO {
 		return FAIL;
 	} // end setMovie
 	
+	
+	// Get Movie Detail Method
+	public MovieVO MovieDetail(String mId) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		MovieVO movie = new MovieVO();
+		
+		String sql = "SELECT * FROM movie WHERE mid=?";
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mId);
+			rs = pstmt.executeQuery();
+			System.out.println(rs);
+			if(rs.next()) {
+				movie.setMid(rs.getInt("mid"));
+				movie.setMposter(rs.getString("mposter"));
+				movie.setMtitle(rs.getString("mtitle"));
+				movie.setMgrade(rs.getInt("mgrade"));
+				movie.setMcountry(rs.getString("mcountry"));
+				movie.setMpremiere(rs.getDate("mpremiere"));
+				movie.setMdirector(rs.getString("mdirector"));
+				movie.setMplot(rs.getString("mplot"));
+				
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+	 		try {
+	 			if(con != null && !con.isClosed()) {
+	 				con.close();
+	 			}
+	 			if(pstmt != null && !pstmt.isClosed()) {
+	 				pstmt.close();
+	 			}
+	 			if(rs != null && !rs.isClosed()) {
+	 				rs.close();
+	 			}
+	 			
+	 		} catch (Exception e){
+	 			e.printStackTrace();
+	 		}
+		}
+		return movie;
+	}
+	
 
 	// Update Movie Method
-	
-
-	
-	// Get Movie Review Method
-	
-	
-	
-	// Write Movie Review Method
-	
-	
-	
-	// Update Movie Review Method
-	
-	
-	
-	// Delete Movie Review Method
-	
-	
-	
-	
-	
 	
 	
 }
