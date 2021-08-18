@@ -1,11 +1,10 @@
 package kr.co.movie.movie.model;
 
-import java.io.File;
 import java.sql.Date;
 
 public class MovieVO {
 	private int mid;
-	private File mposter;
+	private String mposter;
 	private String mtitle;
 	private int mgrade;
 	private String mcountry;
@@ -25,11 +24,11 @@ public class MovieVO {
 		this.mid = mid;
 	}
 	
-	public File getMposter() {
+	public String getMposter() {
 		return mposter;
 	}
-	public void setMposter(File mposter) {
-		this.mposter = mposter;
+	public void setMposter(String mPoster) {
+		this.mposter = mPoster;
 	}
 	
 	public String getMtitle() {

@@ -9,7 +9,7 @@
 <body>
 	<h1>영화 정보 기입</h1>
 
-	<form action="/MovieProject/movieinsert.do" method="post">
+	<form action="/MovieProject/movieinsert.do" method="post" enctype="multipart/form-data">
 		<table border="1"> 
 			<tr>
 				<th>영화 포스터</th>

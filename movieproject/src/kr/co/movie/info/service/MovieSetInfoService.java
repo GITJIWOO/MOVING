@@ -1,13 +1,13 @@
 package kr.co.movie.info.service;
 
-import java.io.File;
-import java.util.List;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.ictedu.board.model.BoardDAO;
-import kr.co.ictedu.board.model.BoardVO;
+
 import kr.co.movie.movie.model.MovieDAO;
 import kr.co.movie.movie.model.MovieVO;
 
@@ -16,16 +16,32 @@ public class MovieSetInfoService implements IMovieInfoService{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		
+	    
 		try {
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
-			// file로 보낸 값을 받는 법을 모르겠습니다.
-			File mPoster = request.getParameter("movieposter");
+
+	        String mTitle = request.getParameter("movietitle");
+	    	String strmGrade = request.getParameter("moviegrade");
+	    	int mGrade = Integer.parseInt(strmGrade);
+	    	String mCountry = request.getParameter("moviecountry");
+	    	DateFormat df = new SimpleDateFormat();
+	    	Date mPremiere = (Date)df.parse("moviepremiere");
+	    	String mDirector = request.getParameter("movieditector");
+	    	String mActor = request.getParameter("movieactor");
+	    	String mPlot = request.getParameter("movieplot");
+			
 			// DAO생성
 			MovieDAO dao = MovieDAO.getInstance();
 			// VO생성
 			MovieVO movie = new MovieVO();
+			movie.setMtitle(mTitle);
+			movie.setMgrade(mGrade);
+			movie.setMcountry(mCountry);
+			movie.setMpremiere(mPremiere);
+			movie.setMdirector(mDirector);
+			movie.setMactor(mActor);
+			movie.setMplot(mPlot);
 			
 			int resultCode = dao.setMovie(movie);
 			

@@ -57,7 +57,7 @@ public class MovieDAO {
 				MovieVO movie = new MovieVO();
 				
 				movie.setMid(rs.getInt("mid"));
-				movie.setMposter((File)rs.getBlob("mposter"));
+				movie.setMposter(rs.getString("mposter"));
 				movie.setMtitle(rs.getString("mtitle"));
 				movie.setMgrade(rs.getInt("mgrade"));
 				movie.setMcountry(rs.getString("mcountry"));
@@ -88,6 +88,7 @@ public class MovieDAO {
 	
 	// Set Movie Method
 	public int setMovie(MovieVO movie) {
+		// https://jennylee4517.github.io/jsp/jsp-5%EC%9D%BC%EC%B0%A8-%ED%8C%8C%EC%9D%BC%EC%97%85%EB%A1%9C%EB%93%9C/
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
@@ -97,7 +98,7 @@ public class MovieDAO {
 					+ " mcountry, mpremiere, mdirector, mactor, mplot) "
 					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setBlob(1, (Blob)movie.getMposter());
+			pstmt.setString(1, movie.getMposter());
 			pstmt.setString(2, movie.getMtitle());
 			pstmt.setInt(3, movie.getMgrade());
 			pstmt.setString(4, movie.getMcountry());
@@ -144,7 +145,7 @@ public class MovieDAO {
 			System.out.println(rs);
 			if(rs.next()) {
 				movie.setMid(rs.getInt("mid"));
-				movie.setMposter((File)rs.getBlob("mposter"));
+				movie.setMposter(rs.getString("mposter"));
 				movie.setMtitle(rs.getString("mtitle"));
 				movie.setMgrade(rs.getInt("mgrade"));
 				movie.setMcountry(rs.getString("mcountry"));
@@ -176,27 +177,6 @@ public class MovieDAO {
 	
 
 	// Update Movie Method
-	
-
-	
-	// Get Movie Review Method
-	
-	
-	
-	// Write Movie Review Method
-	
-	
-	
-	// Update Movie Review Method
-	
-	
-	
-	// Delete Movie Review Method
-	
-	
-	
-	
-	
 	
 	
 }

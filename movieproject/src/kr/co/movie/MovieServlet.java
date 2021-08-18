@@ -21,7 +21,10 @@ import kr.co.movie.movie.model.MovieDAO;
 import kr.co.movie.movie.model.MovieVO;
 import kr.co.movie.review.service.IMovieReviewService;
 import kr.co.movie.user.service.IMovieUserService;
+import kr.co.movie.user.service.UserDeleteService;
+import kr.co.movie.user.service.UserJoinService;
 import kr.co.movie.user.service.UserLoginService;
+import kr.co.movie.user.service.UserSelectService;
 
 @WebServlet("*.do")
 public class MovieServlet extends HttpServlet {
@@ -73,21 +76,32 @@ public class MovieServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		// user service
-		if(uri.equals("/MovieProject/userjoin.do")) {
-			
+		if(uri.equals("/MovieProject/requserjoin.do")) {	// 회원가입 버튼 클릭시 a태그에 작성 
+			ui = "/movieuser/movie_join_form.jsp";
+				
+		}else if(uri.equals("/MovieProject/userjoin.do")) {
+			mus = new UserJoinService();
+			mus.execute(request, response);
+			ui = "/movieuser/movie_user_login_form.jsp";
 			
 		} else if(uri.equals("/MovieProject/userlogin.do")) {
 			mus = new UserLoginService();
 			mus.execute(request, response);
-			
 			ui = "/moviemain/movie_main.jsp";
+			
 		} else if(uri.equals("/MovieProject/userlogout.do")) {
 			
 		} else if(uri.equals("/MovieProject/userupdate.do")) {
 			
 		} else if(uri.equals("/MovieProject/userdelete.do")) {
-			
+			mus = new UserDeleteService();
+			mus.execute(request, response);
+			// 로그인 하기 전 메인화면으로 이동 - 세션은 만료 시킴 
+			ui = "/moviemain/movie_main.jsp";
 		} else if(uri.equals("/MovieProject/userselect.do")) {
+			mus = new UserSelectService();
+			mus.execute(request, response);
+			ui = "/movieuser/movie_user_info_form.jsp";
 			
 		} 
 		// movie info
