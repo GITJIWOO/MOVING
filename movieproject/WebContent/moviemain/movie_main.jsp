@@ -10,6 +10,10 @@
 <body>
 	<h1>메인 화면</h1>
 	<c:if test="${login_fail == null }">
+	<form action = "/MovieProject/userdetail.do" action = "post">
+		<input type = "hidden" name = "uId" value = "${session_id }" />
+		<input type = "submit" value = "내 정보" />
+	</form>
 		<h1>${session_id } 님 환영합니다!</h1>
 	</c:if>
 	<c:if test="${login_fail == 0 }">
