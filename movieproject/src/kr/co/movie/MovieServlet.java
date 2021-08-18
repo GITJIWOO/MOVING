@@ -22,6 +22,7 @@ import kr.co.movie.movie.model.MovieVO;
 import kr.co.movie.review.service.IMovieReviewService;
 import kr.co.movie.user.service.IMovieUserService;
 import kr.co.movie.user.service.UserDeleteService;
+import kr.co.movie.user.service.UserGetUserService;
 import kr.co.movie.user.service.UserJoinService;
 import kr.co.movie.user.service.UserLoginService;
 import kr.co.movie.user.service.UserSelectService;
@@ -85,7 +86,10 @@ public class MovieServlet extends HttpServlet {
 			ui = "/movieuser/movie_user_login_form.jsp";
 			
 		} else if(uri.equals("/MovieProject/getuser.do")) {
+			mus = new UserGetUserService();
+			mus.execute(request, response);
 			
+			ui = "/moviemain/movie_user_update_form.jsp";
 		} else if(uri.equals("/MovieProject/userlogin.do")) {
 			mus = new UserLoginService();
 			mus.execute(request, response);
