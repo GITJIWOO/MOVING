@@ -63,6 +63,9 @@ public class MovieDAO {
 				movie.setMactor(rs.getString("mactor"));
 				movie.setMplot(rs.getString("mplot"));
 				
+				System.out.println("받은 영화 : " + movie);
+				
+				
 				movieList.add(movie);
 			}
 		} catch(Exception e) {

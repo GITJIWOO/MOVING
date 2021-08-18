@@ -17,12 +17,12 @@
 		</tr>
 		<c:forEach var="movie" items="${movieList}">
 			<tr>
-				<td><a href="/MovieProject/moviedetail.do?mId=${movie.mId}">
-						${movie.mTitle }
+				<td><a href="/MovieProject/moviedetail.do?mid=${movie.mid}">
+						${movie.mtitle }
 					</a>
 				</td>
-				<td>${movie.mGrade }</td>
-				<td>${movie.mPremiere }</td>
+				<td>${movie.mgrade }</td>
+				<td>${movie.mpremiere }</td>
 			</tr>
 		</c:forEach>
 	</table>
