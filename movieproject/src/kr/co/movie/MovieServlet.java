@@ -105,6 +105,8 @@ public class MovieServlet extends HttpServlet {
 			
 		} else if(uri.equals("/MovieProject/userupdate.do")) {
 			
+		} else if(uri.equals("/MovieProject/requserdelete.do")) {
+			ui = "/movieuser/movie_user_delete_form.jsp";
 		} else if(uri.equals("/MovieProject/userdelete.do")) {
 			mus = new UserDeleteService();
 			mus.execute(request, response);
