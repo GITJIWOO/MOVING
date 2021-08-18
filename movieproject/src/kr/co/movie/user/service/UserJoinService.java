@@ -25,12 +25,11 @@ public class UserJoinService implements IMovieUserService{
 			int result = dao.userJoinDup(user);
 			if(result == 1) {
 				// alert - 회원가입이 완료되었습니다.
+				request.setAttribute("joinCheck", 1);
 				dao.userJoin(user);
-			}else {
-				// alert - 중복아이디 입니다.
-				String ui = "/movieuser/movie_user_join_form.jsp";
-				RequestDispatcher dp = request.getRequestDispatcher(ui);
-				dp.forward(request, response);
+			}else if(result == 0) {
+				// alert - 중복된 아이디 입니다.
+				request.setAttribute("joinCheck", 0);
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
