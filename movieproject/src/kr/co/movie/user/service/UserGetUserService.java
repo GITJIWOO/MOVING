@@ -19,7 +19,7 @@ public class UserGetUserService implements IMovieUserService{
 			e.printStackTrace();
 		}
 		
-		String uid = request.getParameter("uid");
+		String uid = request.getParameter("uId");
 		
 		UserDAO dao = UserDAO.getInstance();
 		
