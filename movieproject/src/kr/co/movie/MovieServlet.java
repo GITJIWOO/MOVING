@@ -26,6 +26,7 @@ import kr.co.movie.user.service.UserDetailService;
 import kr.co.movie.user.service.UserGetUserService;
 import kr.co.movie.user.service.UserJoinService;
 import kr.co.movie.user.service.UserLoginService;
+import kr.co.movie.user.service.UserMainService;
 import kr.co.movie.user.service.UserSelectService;
 import kr.co.movie.user.service.UserUpdateService;
 
@@ -79,7 +80,12 @@ public class MovieServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		// user service
-		if(uri.equals("/MovieProject/requserjoin.do")) {	// 회원가입 버튼 클릭시 a태그에 작성 
+		if(uri.equals("/MovieProject/moviemain.do")) {
+			
+//			mus = new UserMainService();
+//			mus.execute(request, response);
+			ui = "/moviemain/movie_main.jsp";
+		}else if(uri.equals("/MovieProject/requserjoin.do")) {	// 회원가입 버튼 클릭시 a태그에 작성 
 			ui = "/movieuser/movie_join_form.jsp";
 				
 		}else if(uri.equals("/MovieProject/userjoin.do")) {
@@ -107,8 +113,10 @@ public class MovieServlet extends HttpServlet {
 		} else if(uri.equals("/MovieProject/userupdate.do")) {
 			mus = new UserUpdateService();
 			mus.execute(request, response);
-			
 			ui = "/moviemain/movie_main.jsp";
+			// 유저 디테일로 수정
+		} else if(uri.equals("/MovieProject/requserdelete.do")) {
+			ui = "/movieuser/movie_user_delete_form.jsp";
 		} else if(uri.equals("/MovieProject/userdelete.do")) {
 			mus = new UserDeleteService();
 			mus.execute(request, response);
@@ -146,6 +154,8 @@ public class MovieServlet extends HttpServlet {
 		} else if(uri.equals("/MovieProject/moviereviewupdate.do")) {
 			
 		} else if(uri.equals("/MovieProject/moviereviewdelete.do")) {
+			
+		} else if(uri.equals("/MovieProject/moviereviewdetail.do")) {
 			
 		} else {
 			out.print("잘못된 패턴입니다.");
