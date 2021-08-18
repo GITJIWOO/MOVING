@@ -21,17 +21,34 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var = "board" items = "${boardList }">
+				<c:forEach var = "user" items = "${userList }">
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>${user.uId }</td>
+						<td>${user.uPw }</td>
+						<td>${user.uName }</td>
+						<td>${user.uEmail }</td>
+						<td>${user.uAge }</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+		<%-- 페이징 시작 --%>
+		<c:if test = "${userDTO.hasUser() }">
+		
+			<c:if test = "${userDTO.startPage > 10 }">
+				<a href = "/MovieProject/userselect.do?page=${userDTO.startPage - 10 }">[PREV]</a>
+			</c:if>
+			
+			<c:forEach var = "pageNum" begin = "${userDTO.startPage }" end = "${userDTO.endPage }">
+				<a href = "/MovieProject/userselect.do?page=${pageNum }">[${pageNum }]</a>
+			</c:forEach>
+			
+			<c:if test = "${userDTO.endPage < userDTO.totalPages }">
+				<a href = "/MovieProject/userselect.do?page=${userDTO.startPage + 10 }">[NEXT]</a>
+			</c:if>
+			
+		</c:if>
+		<%-- 페이징 끝 --%>
 	</form>
 </body>
 </html>
