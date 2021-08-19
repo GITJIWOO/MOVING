@@ -68,10 +68,6 @@ public class MovieServlet extends HttpServlet {
 		
 		String ui = null;
 		
-		MovieDAO dao = MovieDAO.getInstance();
-		MovieVO vo = new MovieVO();
-		
-		int resultSet = dao.setMovie(vo);
 		
 		// 세션 쓰는 법
 		HttpSession session = null;

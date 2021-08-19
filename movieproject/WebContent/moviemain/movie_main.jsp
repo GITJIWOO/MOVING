@@ -43,7 +43,7 @@
 		<script>alert('비밀번호가 일치하지 않습니다.'); history.back(); </script>
 	</c:if>
 	<form action="movieselect.do">
-		<input type="hidden" name="movielist">
+		<input type="hidden">
 		<input type="submit" value="영화">
 	</form>
 </body>
