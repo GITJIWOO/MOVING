@@ -32,7 +32,6 @@ import kr.co.movie.user.service.UserGetUserService;
 import kr.co.movie.user.service.UserJoinService;
 import kr.co.movie.user.service.UserLoginService;
 import kr.co.movie.user.service.UserLogoutService;
-import kr.co.movie.user.service.UserMainService;
 import kr.co.movie.user.service.UserSelectService;
 import kr.co.movie.user.service.UserUpdateService;
 
