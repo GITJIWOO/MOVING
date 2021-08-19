@@ -44,6 +44,17 @@ public class UserLoginService implements IMovieUserService{
 			System.out.println("비밀번호가 일치하지 않습니다.");
 			request.setAttribute("login_fail", -1);
 		}
+		
+		UserVO user2 = new UserVO();
+		
+		user2 = dao.getUser(uid);
+		
+		if(user2.getuAdmin() == 0) {
+			request.setAttribute("session_admin", 0);
+		}else if(user2.getuAdmin() == 1) {
+			request.setAttribute("session_admin", 1);
+		}
+		
 	}
 	
 	
