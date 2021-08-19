@@ -10,13 +10,20 @@ public class MovieInfoDetailService implements IMovieInfoService{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
+		
+		try {
+			request.setCharacterEncoding("utf-8");
+			response.setCharacterEncoding("utf-8");
 
-		String mId = request.getParameter("mId");
-		
-		MovieDAO dao = MovieDAO.getInstance();
-		
-		MovieVO movie = dao.MovieDetail(mId);
-		
-		request.setAttribute("movie", movie);
+			String mId = request.getParameter("mId");
+			
+			MovieDAO dao = MovieDAO.getInstance();
+			
+			MovieVO movie = dao.MovieDetail(mId);
+			
+			request.setAttribute("movie", movie);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

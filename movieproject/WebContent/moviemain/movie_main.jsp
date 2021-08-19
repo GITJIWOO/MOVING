@@ -31,10 +31,14 @@
 				document.write("아니오")
 			}
 		</script>
-		-->	
+		-->
 	</c:if>
 	<c:if test="${login_fail == -1 }">
 		<script>alert('비밀번호가 일치하지 않습니다.'); history.back(); </script>
 	</c:if>
+	<form action="movieselect.do">
+		<input type="hidden" name="movielist">
+		<input type="submit" value="영화">
+	</form>
 </body>
 </html>

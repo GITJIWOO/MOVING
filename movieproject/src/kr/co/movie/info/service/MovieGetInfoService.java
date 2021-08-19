@@ -20,7 +20,6 @@ public class MovieGetInfoService implements IMovieInfoService{
 			MovieDAO dao = MovieDAO.getInstance();
 			
 			List<MovieVO> movieList = dao.getMovieList();
-			System.out.println("받은 영화 : " + movieList);
 			request.setAttribute("movieList", movieList);
 		} catch (Exception e) {
 			e.printStackTrace();

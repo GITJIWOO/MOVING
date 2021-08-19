@@ -16,7 +16,7 @@ import kr.co.movie.info.service.IMovieInfoService;
 import kr.co.movie.info.service.MovieGetInfoService;
 import kr.co.movie.info.service.MovieInfoDetailService;
 import kr.co.movie.info.service.MovieSetInfoService;
-import kr.co.movie.info.service.MovieUpdateInfoService;
+import kr.co.movie.info.service.MovieUpdateOkService;
 import kr.co.movie.movie.model.MovieDAO;
 import kr.co.movie.movie.model.MovieVO;
 import kr.co.movie.review.service.IMovieReviewService;
@@ -138,18 +138,31 @@ public class MovieServlet extends HttpServlet {
 			mis = new MovieSetInfoService();
 			mis.execute(request, response);
 			ui = "/movieselect.do";
+		
+		// 영화 리스트
 		} else if(uri.equals("/MovieProject/movieselect.do")) {
 			mis = new MovieGetInfoService();
 			mis.execute(request, response);
 			ui = "/movieinfo/movie_select.jsp";
+			
+		// 영화 업데이트 정보 조회
 		} else if(uri.equals("/MovieProject/movieupdate.do")) {
-			mis = new MovieUpdateInfoService();
+			mis = new MovieInfoDetailService();
+			mis.execute(request, response);
+			ui = "/movieinfo/movie_update_form.jsp";
+			
+		// 영화 업데이트
+		} else if(uri.equals("/MovieProject/movieupdateok.do")) {
+			mis = new MovieUpdateOkService();
 			mis.execute(request, response);
 			ui = "/movieselect.do";
+			
+		// 영화 디테일 정보
 		} else if(uri.equals("/MovieProject/moviedetail.do")) {
 			mis = new MovieInfoDetailService();
 			mis.execute(request, response);
 			ui = "/movieinfo/movie_detail.jsp";
+			
 		}
 		// movie review
 		else if(uri.equals("/MovieProject/moviereviewselect.do")) {

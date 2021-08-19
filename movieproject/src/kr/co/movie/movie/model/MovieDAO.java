@@ -63,9 +63,6 @@ public class MovieDAO {
 				movie.setMactor(rs.getString("mactor"));
 				movie.setMplot(rs.getString("mplot"));
 				
-				System.out.println("받은 영화 : " + movie);
-				
-				
 				movieList.add(movie);
 			}
 		} catch(Exception e) {
@@ -150,8 +147,8 @@ public class MovieDAO {
 				movie.setMcountry(rs.getString("mcountry"));
 				movie.setMpremiere(rs.getDate("mpremiere"));
 				movie.setMdirector(rs.getString("mdirector"));
+				movie.setMactor(rs.getString("mactor"));
 				movie.setMplot(rs.getString("mplot"));
-				
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -176,6 +173,43 @@ public class MovieDAO {
 	
 
 	// Update Movie Method
-	
-	
+	public int movieUpdate(MovieVO movie) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = ds.getConnection();
+			String sql = "UPDATE movie SET mtitle=?, mrade=?, mcountry=?, "
+					+ "mpremiere=?, mdirector=?, mactor=?, mplot=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, movie.getMtitle());
+			pstmt.setInt(2, movie.getMgrade());
+			pstmt.setString(3, movie.getMcountry());
+			pstmt.setDate(4, movie.getMpremiere());
+			pstmt.setString(5, movie.getMdirector());
+			pstmt.setString(6, movie.getMactor());
+			pstmt.setString(7, movie.getMplot());
+			
+			System.out.println("수정한 영화 : " + movie);
+			
+			pstmt.executeUpdate();
+			
+			return SUCCESS;
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+	 		try {
+	 			if(con != null && !con.isClosed()) {
+	 				con.close();
+	 			}
+	 			if(pstmt != null && !pstmt.isClosed()) {
+	 				pstmt.close();
+	 			}
+	 		} catch (Exception e){
+	 			e.printStackTrace();
+	 		}
+		}
+		return FAIL;
+	} // end movieUpdate
 }

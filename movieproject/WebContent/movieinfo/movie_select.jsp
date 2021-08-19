@@ -21,7 +21,7 @@
 		</tr>
 		<c:forEach var="movie" items="${movieList}">
 			<tr>
-				<td><a href="/MovieProject/moviedetail.do?mid=${movie.mid}">
+				<td><a href="/MovieProject/moviedetail.do?mId=${movie.mid}">
 						${movie.mtitle }
 					</a>
 				</td>
