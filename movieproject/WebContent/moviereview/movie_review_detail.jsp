@@ -10,7 +10,7 @@
 <body>
 	<h2>리뷰 디테일</h2>
 
-	<a href="/MovieProject/moviereview/movie_review_write.jsp"><input
+	<a href="/MovieProject/moviereviewdetail.do"><input
 		type="button" value="리뷰작성"></a>
 	<table border="1">
 		<thead>
@@ -24,16 +24,16 @@
 			</tr>
 		</thead>
 		<tbody>
-			<%-- 			<c:forEach var="review" items="${review:ist }"> --%>
-			<!-- 				<tr> -->
-			<%-- 					<td>${review.rNum }</td> --%>
-			<%-- 					<td>${review.uId }</td> --%>
-			<%-- 					<td>${review.mTitle }</td> --%>
-			<%-- 					<td>${review.rRate }</td> --%>
-			<%-- 					<td>${review.rContent }</td> --%>
-			<%-- 					<td>${review.rDate }</td> --%>
-			<!-- 				</tr> -->
-			<%-- 			</c:forEach> --%>
+						<c:forEach var="review" items="${reviewList }">
+							<tr>
+								<td>${review.rNum }</td>
+								<td>${review.uId }</td>
+								<td>${review.mTitle }</td>
+								<td>${review.rRate }</td>
+								<td>${review.rContent }</td>
+								<td>${review.rDate }</td>
+							</tr>
+						</c:forEach>
 		</tbody>
 		<tr>
 			<td><select

@@ -165,12 +165,12 @@ public class ReviewDAO {
 		ResultSet rs = null;
 
 		// 쿼리문(SELECT구문, 역순)
-		String sql = "SELECT * FROM review ORDER BY rnum DESC"
-				+ "LIMIT ?, 5";
+		String sql = "SELECT * FROM review ORDER BY rnum DESC LIMIT 5";
 		try {
 			// 연결구문을 다 작성해주세요. 리턴구문까지.
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
+			// 여기 ?를 안채우는데요. 밑에 오류가 있는거같은데요
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -184,8 +184,9 @@ public class ReviewDAO {
 				review.setrDate(rs.getTimestamp("rdate"));
 
 				reviewList.add(review);
-				System.out.println("db 데이터: " + review);
+				
 			}
+			System.out.println("db 데이터: " + reviewList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -232,7 +233,6 @@ public class ReviewDAO {
 				review.setrRate(rs.getInt("rRate"));
 				review.setrContent(rs.getString("rContent"));
 				review.setrDate(rs.getTimestamp("rDate"));
-
 				reviewList.add(review);
 			}
 		} catch (Exception e) {
