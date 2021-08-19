@@ -18,6 +18,8 @@ public class MovieUpdateOkService implements IMovieInfoService{
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
 			
+			String strmId = request.getParameter("movieid");
+			int mId = Integer.parseInt(strmId);
 	        String mTitle = request.getParameter("movietitle");
 	    	String strmGrade = request.getParameter("moviegrade");
 	    	int mGrade = Integer.parseInt(strmGrade);
@@ -27,13 +29,14 @@ public class MovieUpdateOkService implements IMovieInfoService{
 	    	String mDirector = request.getParameter("moviedirector");
 	    	String mActor = request.getParameter("movieactor");
 	    	String mPlot = request.getParameter("movieplot");
-
+	    	
 			// DAO생성
 			MovieDAO dao = MovieDAO.getInstance();
 			
 	    	// VO생성
 	    	MovieVO movie = new MovieVO();
-	    				
+	    	
+	    	movie.setMid(mId);
 	    	movie.setMtitle(mTitle);
 	    	movie.setMgrade(mGrade);
 			movie.setMcountry(mCountry);
@@ -41,10 +44,8 @@ public class MovieUpdateOkService implements IMovieInfoService{
 			movie.setMdirector(mDirector);
 			movie.setMactor(mActor);
 			movie.setMplot(mPlot);
-	    	
-			int resultCode = dao.movieUpdate(movie);
 			
-			System.out.println(resultCode);
+			int resultCode = dao.movieUpdate(movie);
 			
 			if(resultCode == 0) {
 				System.out.println("수정 실패");
