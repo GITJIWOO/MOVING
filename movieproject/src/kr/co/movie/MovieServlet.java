@@ -31,6 +31,7 @@ import kr.co.movie.user.service.UserDetailService;
 import kr.co.movie.user.service.UserGetUserService;
 import kr.co.movie.user.service.UserJoinService;
 import kr.co.movie.user.service.UserLoginService;
+import kr.co.movie.user.service.UserLogoutService;
 import kr.co.movie.user.service.UserMainService;
 import kr.co.movie.user.service.UserSelectService;
 import kr.co.movie.user.service.UserUpdateService;
@@ -106,14 +107,30 @@ public class MovieServlet extends HttpServlet {
 		} else if(uri.equals("/MovieProject/userlogin.do")) {
 			mus = new UserLoginService();
 			mus.execute(request, response);
-			ui = "/moviemain/movie_main.jsp";
 			
+			int isAdmin = (int)request.getAttribute("session_admin");
+			
+			if(isAdmin == 0) {
+				ui = "/moviemain/movie_main.jsp";
+			} else if(isAdmin == 1) {
+				ui = "/moviemain/movie_main_admin.jsp";
+			}
 		} else if(uri.equals("/MovieProject/userdetail.do")) {
 			mus = new UserDetailService();
 			mus.execute(request, response);
 			ui = "/movieuser/movie_user_detail_form.jsp";
 			
 		} else if(uri.equals("/MovieProject/userlogout.do")) {
+			mus = new UserLogoutService();
+			mus.execute(request, response);
+			
+			String isAdmin = request.getParameter("session_admin");
+			
+			if(isAdmin != null) {
+				ui = "/movieuser/movie_user_login_form.jsp";
+			} else {
+				ui = "/moviemain/movie_main.jsp";
+			}
 			
 		} else if(uri.equals("/MovieProject/userupdate.do")) {
 			mus = new UserUpdateService();
