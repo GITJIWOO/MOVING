@@ -15,10 +15,16 @@
 	<c:if test="${update_status == 0 }">
 		<script>alert('업데이트에 실패하였습니다.'); history.back();</script>
 	</c:if>
-	<c:if test="${login_fail == null }">
+	<c:if test="${session_id == null }">
+		<h1>로그인을 해주세요.</h1>
+	</c:if>
+	<c:if test="${session_id != null && login_fail == null }">
 	<form action = "/MovieProject/userdetail.do" action = "post">
 		<input type = "hidden" name = "uId" value = "${session_id }" />
 		<input type = "submit" value = "내 정보" />
+	</form>
+	<form action="/MovieProject/userlogout.do" method="post">
+		<input type="submit" value="로그아웃" />
 	</form>
 		<h1>${session_id } 님 환영합니다!</h1>
 	</c:if>
