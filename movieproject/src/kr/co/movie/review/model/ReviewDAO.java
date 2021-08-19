@@ -39,14 +39,15 @@ public class ReviewDAO {
 		// connection, preparedStatement 객체 선언
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO review (mTitle, rRate, rContent,rDate ) +" + " VALUES(?, ?, ?, now()";
+		String sql = "INSERT INTO review (uId, rRate, rContent,rDate, mTitle) VALUES(?, ?, ?, now(), ?)";
 
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, review.getmTitle());
+			pstmt.setString(1, review.getuId());
 			pstmt.setInt(2, review.getrRate());
 			pstmt.setString(3, review.getrContent());
+			pstmt.setString(4, review.getmTitle());
 
 			pstmt.executeUpdate();
 			return WRITE_SUCCESS;
@@ -71,7 +72,7 @@ public class ReviewDAO {
 	}// end write()
 
 	// 삭제
-	public int delete(String rNum) {
+	public int delete(int rNum) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		int resultCode;
@@ -83,7 +84,7 @@ public class ReviewDAO {
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, rNum);
+			pstmt.setInt(1, rNum);
 
 			pstmt.executeUpdate();
 
@@ -118,7 +119,7 @@ public class ReviewDAO {
 		int result;
 		// 구문작성
 
-		String sql = "UPDATE review SET mTitle = ?, rContent = ?, rRate = ? WHERE rNum = ?";
+		String sql = "UPDATE review SET rContent = ?, rRate = ? WHERE rNum = ?";
 
 		try {
 			// 커넥션 생성 및 pstmt에 쿼리문 넣고 완성시켜서 실행까지 하고
@@ -126,10 +127,9 @@ public class ReviewDAO {
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, review.getmTitle());
-			pstmt.setString(2, review.getrContent());
-			pstmt.setTimestamp(3, review.getrDate());
-			pstmt.setInt(4, review.getrNum());
+			pstmt.setString(1, review.getrContent());
+			pstmt.setInt(2, review.getrRate());
+			pstmt.setInt(3, review.getrNum());
 
 			pstmt.executeUpdate();
 			result = 1;
@@ -293,4 +293,59 @@ public class ReviewDAO {
 		}
 		return countNum;
 	} // end getReviewCount()
+	
+	public ReviewVO selectOne(int rNum) {
+		System.out.println("rNum: " + rNum);
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		ReviewVO review = new ReviewVO();
+		
+		// 커넥션 연결 및 쿼리문 실행
+		String sql = "SELECT * FROM review WHERE rnum = ?";
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, rNum);
+
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				
+			
+			review.setrNum(rs.getInt("rnum"));
+			review.setuId(rs.getString("uid"));
+			review.setmTitle(rs.getString("mtitle"));
+			review.setrRate(rs.getInt("rrate"));
+			review.setrContent(rs.getString("rcontent"));
+			review.setrDate(rs.getTimestamp("rdate"));
+			
+			System.out.println("review" + review);
+			
+			return review;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			try {
+				if (con != null && !con.isClosed()) {
+					con.close();
+				}
+				if (pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+				if (rs != null && !rs.isClosed()) {
+					rs.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+		return review;
+		
+	}// end selectOne()
 }

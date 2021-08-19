@@ -41,7 +41,7 @@
 			</tr>
 			<tr>
 				<th>영화 줄거리</th>
-				<td><textarea rows="10" cols="50" name="plot">${movie.mplot }</textarea><br/></td>
+				<td><textarea rows="10" cols="50" name="movieplot">${movie.mplot }</textarea><br/></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="올리기"></td>

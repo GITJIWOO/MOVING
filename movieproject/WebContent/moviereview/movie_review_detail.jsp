@@ -10,8 +10,9 @@
 <body>
 	<h2>리뷰 디테일</h2>
 
-	<a href="/MovieProject/moviereviewdetail.do"><input type="button"
-		value="리뷰작성"></a>
+	<a href="/MovieProject/moviereview/movie_review_write.jsp"><input
+		type="button" value="리뷰작성"></a>
+		<a href="/MovieProject/moviereviewselect.do"><input type="button" value="목록으로"> </a>
 	<c:set var="review" value="${reviewDetail }"></c:set>
 	<table border="1">
 		<thead>
@@ -33,12 +34,15 @@
 					<td>${review.rRate }</td>
 					<td>${review.rContent }</td>
 					<td>${review.rDate }</td>
-					<td><select
-						onchange="if(this.value) location.href=(this.value);">
-							<option value=""></option>
-							<option value="/MovieProject/moviereview/movie_review_update.jsp">수정</option>
-							<option value="/MovieProject/moviereviewdelete.do">삭제</option>
-					</select></td>
+					<td><select onchange="ddd(this.value,'${review.rNum}')">
+                     <option value=""></option>
+                     <option value="/MovieProject/moviereviewupdateok.do">수정</option>
+                     <option value="/MovieProject/moviereviewdelete.do">삭제</option>
+               </select>
+
+
+
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -51,31 +55,45 @@
 	표현할 글이 있는 경우에만 버튼을 표시함--%>
 	<c:if test="${pageDTO.hasBoard()}">
 
+	<%-- 맨 처음 --%>
+		<c:if test="${pageDTO.startPage > 5}">
+			<a
+				href="/MovieProject/moviereviewdetail.do?page=1">
+				[first]</a>
+		</c:if>
+		
 		<%-- 뒤로가기 버튼을 표시할지 말지 결정하는 부분 --%>
-		<c:if test="${pageDTO.startPage > 5">
-			<a href="/MovieProject/moviereviewselect.do?page=${pageDTO.startPage - 5}"> [prev] </a>
+		<c:if test="${pageDTO.startPage > 5}">
+			<a
+				href="/MovieProject/moviereviewdetail.do?page=${pageDTO.startPage - 5}">
+				[prev] </a>
 		</c:if>
 
 		<%-- 페이지 번호 10개 묶음을 깔아주는 부분 --%>
 		<c:forEach var="pNo" begin="${pageDTO.startPage}"
 			end="${pageDTO.endPage}">
-			<a href="/MovieProject/moviereviewselect.do?page=${pNo}">[${pNo}]</a>
+			<a href="/MovieProject/moviereviewdetail.do?page=${pNo}">[${pNo}]</a>
 		</c:forEach>
 
 		<%-- 다음으로 가기 버튼을 표시할지 말지 결정하는 부분 --%>
 		<c:if test="${pageDTO.endPage < pageDTO.totalPages}">
-			<a href="/MovieProject/moviereviewselect.do?page=${pageDTO.startPage + 10}">
+			<a
+				href="/MovieProject/moviereviewdetail.do?page=${pageDTO.startPage + 5}">
 				[next] </a>
 		</c:if>
-
+		
+		<%-- 마지막 --%>
+		<c:if test="${pageDTO.endPage < pageDTO.totalPages}">
+			<a
+				href="/MovieProject/moviereviewdetail.do?page=${pageDTO.endPage}">
+				[last] </a>
+		</c:if>
 	</c:if>
 	<%-- 페이징 부분 끝 --%>
-
-	<br />
-
-
-	<br>
-
-
+<script type="text/javascript">
+function ddd(locationParam, rnum) {
+    location.href = locationParam + "?rNum="+rnum;
+}
+</script>
 </body>
 </html>
