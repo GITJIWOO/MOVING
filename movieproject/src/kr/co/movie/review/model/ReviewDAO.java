@@ -165,7 +165,8 @@ public class ReviewDAO {
 		ResultSet rs = null;
 
 		// 쿼리문(SELECT구문, 역순)
-		String sql = "SELECT * FROM review ORDER BY rnum DESC" + "LIMIT ?, 5";
+		String sql = "SELECT * FROM review ORDER BY rnum DESC"
+				+ "LIMIT ?, 5";
 		try {
 			// 연결구문을 다 작성해주세요. 리턴구문까지.
 			con = ds.getConnection();
@@ -175,14 +176,15 @@ public class ReviewDAO {
 			while (rs.next()) {
 				ReviewVO review = new ReviewVO();
 
-				review.setrNum(rs.getInt("rNUm"));
-				review.setuId(rs.getString("uId"));
-				review.setmTitle(rs.getString("mTitle"));
-				review.setrRate(rs.getInt("rRate"));
-				review.setrContent(rs.getString("rContent"));
-				review.setrDate(rs.getTimestamp("rDate"));
+				review.setrNum(rs.getInt("rnum"));
+				review.setuId(rs.getString("uid"));
+				review.setmTitle(rs.getString("mtitle"));
+				review.setrRate(rs.getInt("rrate"));
+				review.setrContent(rs.getString("rcontent"));
+				review.setrDate(rs.getTimestamp("rdate"));
 
 				reviewList.add(review);
+				System.out.println("db 데이터: " + review);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -26,6 +26,7 @@
 	<br>
 	<br>
 
+
 	<h1>리뷰 목록</h1>
 	<a href="/MovieProject/moviereview/movie_review_detail.jsp"><input
 		type="button" value="더보기"></a>
@@ -41,17 +42,18 @@
 			</tr>
 		</thead>
 		<tbody>
-<%-- 			<c:forEach var="review" items="${review:ist }"> --%>
-<!-- 			<tr> -->
-<%-- 				<td>${review.rNum }</td> --%>
-<%-- 				<td>${review.uId }</td> --%>
-<%-- 				<td>${review.mTitle }</td> --%>
-<%-- 				<td>${review.rRate }</td> --%>
-<%-- 				<td>${review.rContent }</td> --%>
-<%-- 				<td>${review.rDate }</td> --%>
-<!-- 			</tr>	 -->
-<%-- 			</c:forEach> --%>
+			<c:forEach var="review" items="${reviewList}">
+			<tr>
+				<td>${review.rNum}</td>
+				<td>${review.uId}</td>
+				<td>${review.mTitle}</td>
+				<td>${review.rRate}</td>
+				<td>${review.rContent}</td>
+				<td>${review.rDate}</td>
+			</tr>	
+			</c:forEach>
 		</tbody>
+
 	</table>
 
 

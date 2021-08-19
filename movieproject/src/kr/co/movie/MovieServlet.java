@@ -20,6 +20,11 @@ import kr.co.movie.info.service.MovieUpdateInfoService;
 import kr.co.movie.movie.model.MovieDAO;
 import kr.co.movie.movie.model.MovieVO;
 import kr.co.movie.review.service.IMovieReviewService;
+import kr.co.movie.review.service.MovieDeleteReviewService;
+import kr.co.movie.review.service.MovieListReviewService;
+import kr.co.movie.review.service.MoviePagingReviewService;
+import kr.co.movie.review.service.MovieUpdateReviewService;
+import kr.co.movie.review.service.MovieWriteReviewService;
 import kr.co.movie.user.service.IMovieUserService;
 import kr.co.movie.user.service.UserDeleteService;
 import kr.co.movie.user.service.UserDetailService;
@@ -148,15 +153,25 @@ public class MovieServlet extends HttpServlet {
 		}
 		// movie review
 		else if(uri.equals("/MovieProject/moviereviewselect.do")) {
-			
+			mrs = new MovieListReviewService();
+			mrs.execute(request, response);
+			ui = "/moviereview/movie_review_form.jsp";
 		} else if(uri.equals("/MovieProject/moviereviewinsert.do")) {
-			
+			mrs = new MovieWriteReviewService();
+			mrs.execute(request, response);
+			ui = "/moviereviewselect.do";
 		} else if(uri.equals("/MovieProject/moviereviewupdate.do")) {
-			
+			mrs = new MovieUpdateReviewService();
+			mrs.execute(request, response);
+			ui = "/moviereviewselect.do";
 		} else if(uri.equals("/MovieProject/moviereviewdelete.do")) {
-			
+			mrs = new MovieDeleteReviewService();
+			mrs.execute(request, response);
+			ui = "/moviereview/movie_review_form.jsp";
 		} else if(uri.equals("/MovieProject/moviereviewdetail.do")) {
-			
+			mrs = new MoviePagingReviewService();
+			mrs.execute(request, response);
+			ui = "/moviereview/movie_review_detail.jsp";
 		} else {
 			out.print("잘못된 패턴입니다.");
 		}
