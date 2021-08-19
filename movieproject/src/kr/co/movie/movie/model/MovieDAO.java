@@ -103,7 +103,6 @@ public class MovieDAO {
 			pstmt.setString(6, movie.getMactor());
 			pstmt.setString(7, movie.getMplot());
 			
-			
 			pstmt.executeUpdate();
 			
 			return SUCCESS;
