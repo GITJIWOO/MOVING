@@ -215,7 +215,7 @@ public class ReviewDAO {
 		ResultSet rs = null;
 
 		// 쿼리문(SELECT구문, 역순, 5개씩 pageNum에 맞춰서);
-		String sql = "SELECT * FROM review ORDER BY rnum DESC " + "LIMIT ?, 5";
+		String sql = "SELECT * FROM review ORDER BY rnum DESC LIMIT ?, 5";
 		try {
 			// 연결구문을 다 작성해주세요. 리턴구문까지.
 			con = ds.getConnection();
@@ -235,6 +235,7 @@ public class ReviewDAO {
 				review.setrDate(rs.getTimestamp("rDate"));
 				reviewList.add(review);
 			}
+			System.out.println("페이징" + reviewList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

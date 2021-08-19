@@ -28,7 +28,7 @@
 
 
 	<h1>리뷰 목록</h1>
-	<a href="/MovieProject/moviereview/movie_review_detail.jsp"><input
+	<a href="/MovieProject/moviereviewdetail.do"><input
 		type="button" value="더보기"></a>
 	<table border="1">
 		<thead>

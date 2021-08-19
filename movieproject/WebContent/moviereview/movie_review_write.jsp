@@ -8,38 +8,9 @@
 </head>
 <body>
 	<h1>리뷰 남기기</h1>
-<<<<<<< HEAD
-	<form action="/MovieProject/moviereviewinsert.do" method="post">
-		<table border="1">
-			<tr>
-				<td>영화 제목</td>
-				<td></td>
-				<td><select>
-						<option>평점</option>
-						<option></option>
-						<option></option>
-						<option></option>
-						<option></option>
-						<option></option>
-				</select></td>
-			</tr>
-			<tr>
-				<td>리뷰번호</td>
-				<td></td>
 
-			</tr>
-			<tr>
-				<td>내용</td>
-				<td><textarea rows="10" cols="10"></textarea> </td>
-			</tr>
-			<tr>
-				<td>글쓴이</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>등록일</td>
-				<td></td>
-=======
+	
+
 	<form action="/MovieProject/moviereviewupdate.do" method="post">
 		<table border="1">
 			<tr>
@@ -65,7 +36,7 @@
 						<option>4</option>
 						<option>5</option>
 				</select></td>
->>>>>>> 5444de73ed763cf939cd9b965a0d3a249c04e4da
+
 			</tr>
 			<tr>
 				<td>
