@@ -26,32 +26,7 @@
 	<br>
 	<br>
 
-<<<<<<< HEAD
 
-	<a href="/MovieProject/moviereview/movie_review_detail.jsp"><input
-		type="button" value="더보기"></a>
-	<table border="1">
-		<c:forEach var="review" items="${reviewList }">
-			<tr>
-				<td>${review.uId}</td>
-				<td></td>
-				<td><select>
-						<option>평점</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-				</select></td>
-			</tr>
-			<tr>
-				<td>${review.rContent }</td>
-
-			</tr>
-			<tr>
-				<td>${review.rDate }</td>
-			</tr>
-		</c:forEach>
-=======
 	<h1>리뷰 목록</h1>
 	<a href="/MovieProject/moviereview/movie_review_detail.jsp"><input
 		type="button" value="더보기"></a>
@@ -78,7 +53,7 @@
 			</tr>	
 			</c:forEach>
 		</tbody>
->>>>>>> 5444de73ed763cf939cd9b965a0d3a249c04e4da
+
 	</table>
 
 
