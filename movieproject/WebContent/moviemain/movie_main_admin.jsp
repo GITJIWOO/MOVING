@@ -6,17 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 페이지</title>
-<style>
-	#body {
-		/* border: 1px solid black; */
-	}
-	#bodydetail2 {
-		text-align:right;
-	}
-	h3 {display:inline-block;}
-	form { display:inline-block;}
-	
-</style>
+<link rel="stylesheet" href="../movieui/css/mstyles.css" />
 </head>
 <body>
 	<div id="body">
@@ -39,6 +29,10 @@
 	<div id="content">
 	</div>
 	<div id="footer">
+		<p><b>Creators</b>&nbsp;&nbsp;김지우 , 최재인 , 이한빈 , 김영훈</p>
+		<p><b>Contact </b>&nbsp;&nbsp;<a href="https://github.com/GITJIWOO">https://github.com/GITJIWOO</a></p>
+		<hr>
+		<p id="copyright"><b>ⓒ MOVING Corp.</b></p>
 	</div>
 </body>
 </html>
