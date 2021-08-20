@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <style></style>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <title>마이페이지 - 회원 정보조회</title>
+  </head>
+  <body>
+    <!--main 화면 header start-->
+    <div class="main-bar">
+      <div class="main-bar__column">
+        <span
+          ><a href="#"><img src="/css/screen/images/logo.png" /></a
+        ></span>
+      </div>
+      <div class="main-bar__column">
+        <span>
+          <a class="main-bar__movie" href="#">영화정보</a>
+          <a class="main-bar__movie" href="#">영화예매</a>
+        </span>
+      </div>
+      <div class="main-bar__column">
+        <span><a class="main-bar__btn" href="#">로그인</a></span>
+        <span>|</span>
+        <span><a class="main-bar__btn" href="#">회원가입</a></span>
+      </div>
+    </div>
+    <!-- main 화면 header end-->
+    <div class="detail-header">
+      <h1 class="detail-title">회원정보</h1>
+      <table class="detail-table" border="1">
+        <tr class="detail-table__row">
+          <th class="detail-table__item">ID</th>
+          <td class="detail-table__item">abc</td>
+        </tr>
+        <tr class="detail-table__row">
+          <th class="detail-table__item">NAME</th>
+          <td class="detail-table__item">abc</td>
+        </tr>
+        <tr class="detail-table__row">
+          <th class="detail-table__item">E-mail</th>
+          <td class="detail-table__item">abc</td>
+        </tr>
+        <tr class="detail-table__row">
+          <th class="detail-table__item">Age</th>
+          <td class="detail-table__item">abc</td>
+        </tr>
+      </table>
+      <div class="user-info__btn">
+        <form action="#" method="post">
+          <input type="hidden" name="uId" value="${user.uId }" />
+          <input type="submit" value="회원 정보 변경" />
+        </form>
+      </div>
+      <div class="user-info__btn">
+        <form action="#" method="post">
+          <input type="hidden" name="uId" value="${user.uId }" />
+          <input type="submit" value="회원 탈퇴" />
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
