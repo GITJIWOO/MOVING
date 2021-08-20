@@ -5,35 +5,63 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="../movieui/css/mstyles.css" />
+<link rel="stylesheet" href="../MovieProject/movieui/css/mstyles.css" />
 <title>Insert title here</title>
 </head>
 <body>
-<h1>내 정보 조회</h1>
-	<table border = "1">
-		<tr>
-			<th>ID</th>
-			<td>${user.uId }</td>
+<!--main 화면 header start-->
+    <div class="main-bar">
+      <div class="main-bar__column">
+        <span
+          ><a href="/MovieProject/moviemain.do"><img src="../movieui/css/screen/images/logo.png" /></a
+        ></span>
+      </div>
+      <div class="main-bar__column">
+        <span>
+          <a class="main-bar__movie" href="/MovieProject/moviedetail.do">영화정보</a>
+          <a class="main-bar__movie" href="#">영화예매</a>
+        </span>
+      </div>
+      <div class="main-bar__column">
+        <span><a class="main-bar__btn" href="/MovieProject/userjoin.do">로그인</a></span>
+        <span>|</span>
+        <span><a class="main-bar__btn" href="/MovieProject/requserjoin.do">회원가입</a></span>
+      </div>
+    </div>
+    <!-- main 화면 header end-->
+    <div class="detail-header">
+      <h1 class="detail-title">회원정보</h1>
+      <table class="detail-table" border="1">
+        <tr class="detail-table__row">
+          <th class="detail-table__item">ID</th>
+			<td class="detail-table__item">${user.uId }</td>
 		</tr>
-		<tr>
-			<th>NAME</th>
-			<td>${user.uName }</td>
+        <tr class="detail-table__row">
+			<th class="detail-table__item">NAME</th>
+			<td class="detail-table__item">${user.uName }</td>
 		</tr>
-		<tr>
-			<th>E-mail</th>
-			<td>${user.uEmail }</td>
+        <tr class="detail-table__row">
+			<th class="detail-table__item">E-mail</th>
+			<td class="detail-table__item">${user.uEmail }</td>
 		</tr>
-		<tr>
-			<th>Age</th>
-			<td>${user.uAge }</td>
+        <tr class="detail-table__row">
+			<th class="detail-table__item">Age</th>
+			<td class="detail-table__item">${user.uAge }</td>
 		</tr>
 	</table>
-	<form action = "/MovieProject/getuser.do" method = "post">
-		<input type = "hidden" name = "uId" value ="${user.uId }" />
-		<input type = "submit" value = "회원 정보 변경" />
-	</form>
-	<form action = "/MovieProject/requserdelete.do" method = "post">
-		<input type = "hidden" name = "uId" value ="${user.uId }" />
-		<input type = "submit" value = "회원 탈퇴" />
-	</form>
-</body>
+	<div class="user-info__btn">
+		<form action = "/MovieProject/getuser.do" method = "post">
+			<input type = "hidden" name = "uId" value ="${user.uId }" />
+			<input type = "submit" value = "회원 정보 변경" />
+		</form>
+	</div>
+	<div class="user-info__btn">
+		<form action = "/MovieProject/requserdelete.do" method = "post">
+			<input type = "hidden" name = "uId" value ="${user.uId }" />
+			<input type = "submit" value = "회원 탈퇴" />
+        </form>
+      </div>
+    </div>
+  </body>
 </html>
