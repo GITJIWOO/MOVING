@@ -196,7 +196,7 @@ public class MovieServlet extends HttpServlet {
 		} else if (uri.equals("/MovieProject/moviereviewdelete.do")) {
 			mrs = new MovieDeleteReviewService();
 			mrs.execute(request, response);
-			ui = "/moviereview/movie_review_form.jsp";
+			ui = "/moviereviewselect.do";
 		} else if (uri.equals("/MovieProject/moviereviewdetail.do")) {
 			mrs = new MoviePagingReviewService();
 			mrs.execute(request, response);
