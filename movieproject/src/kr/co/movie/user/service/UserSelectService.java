@@ -2,8 +2,10 @@ package kr.co.movie.user.service;
 
 import java.util.*;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.co.movie.user.model.UserDAO;
 import kr.co.movie.user.model.UserDTO;
@@ -13,6 +15,28 @@ public class UserSelectService implements IMovieUserService{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = null;
+		session = request.getSession();
+		String uId = (String)session.getAttribute("session_id");
+		if(uId == null) {
+			try {
+				String ui = "/movieuser/movie_user_login_form.jsp";
+				RequestDispatcher dp = request.getRequestDispatcher(ui);
+				dp.forward(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		String session_admin = (String)session.getAttribute("session_admin");
+		if(session_admin == null) {
+			try {
+				String ui = "/moviemain/movie_main.jsp";
+				RequestDispatcher dp = request.getRequestDispatcher(ui);
+				dp.forward(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 		String strPage = request.getParameter("page");
 		int currentPage = 1;
 		if(strPage != null) {
