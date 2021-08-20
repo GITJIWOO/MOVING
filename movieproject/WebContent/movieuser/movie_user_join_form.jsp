@@ -13,19 +13,19 @@
     <div class="main-bar">
       <div class="main-bar__column">
         <span
-          ><a href="#"><img src="../movieui/css/screen/images/logo.png" /></a
+          ><a href="/MovieProject/moviemain.do"><img src="../movieui/css/screen/images/logo.png" /></a
         ></span>
       </div>
       <div class="main-bar__column">
         <span>
-          <a class="main-bar__movie" href="#">영화정보</a>
-          <a class="main-bar__movie" href="#">영화예매</a>
+          <a class="main-bar__movie" href="/MovieProject/moviedetail.do">영화정보</a>
+          <a class="main-bar__movie" href="#">다운로드</a>
         </span>
       </div>
       <div class="main-bar__column">
-        <span><a class="main-bar__btn" href="#">로그인</a></span>
+        <span><a class="main-bar__btn" href="/MovieProject/userjoin.do">로그인</a></span>
         <span>|</span>
-        <span><a class="main-bar__btn" href="#">회원가입</a></span>
+        <span><a class="main-bar__btn" href="/MovieProject/requserjoin.do">회원가입</a></span>
       </div>
     </div>
     <!-- main 화면 header end-->
