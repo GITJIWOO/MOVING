@@ -10,6 +10,11 @@
 <meta charset="UTF-8">
 <title>로그인</title>
 <style>
+	.login-form{
+		display:flex;
+		justify-content: center;
+		padding-top: 120px;
+	}
 	h1 {
 		background-color:grey;
 		padding-top:30px;
@@ -49,6 +54,7 @@
 		<script>alert('중복된 아이디입니다.'); history.back();</script>
 	</c:if>
 <!-- dddd -->
+<div class="login-form">
 	<h1 align="center">무비프로젝트</h1>
 	<form action="/MovieProject/userlogin.do" method="post">
 		<input type="text" name="id" placeholder="아이디" required/><br/>
@@ -58,5 +64,6 @@
 	<form action="/MovieProject/userjoin.do" method="post">
 		<input type="submit" value="회원가입" />
 	</form>
+</div>
 </body>
 </html>

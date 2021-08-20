@@ -79,9 +79,11 @@
 		<input type="hidden" name="movielist">
 		<input type="submit" value="영화 리스트로">
 	</form>
+	<c:if test="${session_admin == 1}">
 	<form action="/MovieProject/movieupdate.do?mId=${movie.mid }" method="post">
 		<input type="hidden" name="movieupdate">
 		<input type="submit" value="영화 수정">
 	</form>
+	</c:if>
 </body>
 </html>
