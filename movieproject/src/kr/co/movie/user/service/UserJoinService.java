@@ -3,6 +3,7 @@ package kr.co.movie.user.service;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.co.movie.user.model.UserDAO;
 import kr.co.movie.user.model.UserVO;
@@ -11,6 +12,18 @@ public class UserJoinService implements IMovieUserService{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = null;
+		session = request.getSession();
+		String uId = (String)session.getAttribute("session_id");
+		if(uId == null) {
+			try {
+				String ui = "/movieuser/movie_user_login_form.jsp";
+				RequestDispatcher dp = request.getRequestDispatcher(ui);
+				dp.forward(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 		try {
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
