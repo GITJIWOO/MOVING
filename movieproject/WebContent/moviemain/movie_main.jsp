@@ -17,9 +17,17 @@
 	</c:if>
 	<c:if test="${session_id == null }">
 		<h1>로그인을 해주세요.</h1>
+		<form action="/MovieProject/movieuser/movie_user_login_form.jsp" method="post" >
+			<input type="submit" value="로그인창으로"/>
+		</form>
 	</c:if>
-	<c:if test="${session_id != null && login_fail == null }">
-	<form action = "/MovieProject/userdetail.do" action = "post">
+	<c:if test="${session_admin == 1 }">
+		<form action="/MovieProject/moviemain/movie_main_admin.jsp" method="post">
+			<input type="submit" value="관리자페이지로" />
+		</form>
+	</c:if>
+	<c:if test="${session_id != null && login_fail == null && session_admin == 0}">
+	<form action = "/MovieProject/userdetail.do" method = "post">
 		<input type = "hidden" name = "uId" value = "${session_id }" />
 		<input type = "submit" value = "내 정보" />
 	</form>

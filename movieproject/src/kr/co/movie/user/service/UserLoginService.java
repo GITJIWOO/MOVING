@@ -51,8 +51,10 @@ public class UserLoginService implements IMovieUserService{
 		
 		if(user2.getuAdmin() == 0) {
 			request.setAttribute("session_admin", 0);
+			session.setAttribute("session_admin", 0);
 		}else if(user2.getuAdmin() == 1) {
 			request.setAttribute("session_admin", 1);
+			session.setAttribute("session_admin", 1);
 		}
 		
 	}
