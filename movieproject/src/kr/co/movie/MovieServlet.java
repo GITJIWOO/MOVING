@@ -90,10 +90,10 @@ public class MovieServlet extends HttpServlet {
 //			mus = new UserMainService();
 //			mus.execute(request, response);
 			ui = "/moviemain/movie_main.jsp";
-		} else if (uri.equals("/MovieProject/requserjoin.do")) { // 회원가입 버튼 클릭시 a태그에 작성
-			ui = "/movieuser/movie_join_form.jsp";
-
-		} else if (uri.equals("/MovieProject/userjoin.do")) {
+		}else if(uri.equals("/MovieProject/requserjoin.do")) {	// 회원가입 버튼 클릭시 a태그에 작성 
+			ui = "/movieuser/movie_user_join_form.jsp";
+				
+		}else if(uri.equals("/MovieProject/userjoin.do")) {
 			mus = new UserJoinService();
 			mus.execute(request, response);
 			ui = "/movieuser/movie_user_login_form.jsp";
