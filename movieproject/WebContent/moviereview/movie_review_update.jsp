@@ -8,35 +8,35 @@
 </head>
 <body>
 	<h3>리뷰 수정폼</h3>
-	<input type="hidden" name="uId" value="${reviewDetail.uId }">
-	<input type="hidden" name="uId" value="${reviewDetail.uId }">
-	<input type="hidden" name="uId" value="${reviewDetail.uId }">
-	<input type="hidden" name="uId" value="${reviewDetail.uId }">
-	<form action="/MovieProject/moviereviewselect.do" method="post">
+
+	<form action="/MovieProject/moviereviewupdate.do" method="post">
+
+	<input type="hidden" name="rNum" value="${review.rNum }">
 		<table border="1">
 			<tr>
-				<td>${reviewDetail.uId }</td>
+			<td>글쓴이</td>
+				<td><input type="text" name="uId" value="${review.uId}" readonly></td>
 			</tr>
 			<tr>
-				<td><select>
-						<option>평점</option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
+			<td>평점</td>
+				<td><select name="rRate">
+						<option>${review.rRate}</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
 				</select></td>
 			</tr>
 			<tr>
-				<td><textarea rows="10" cols="30" name="rContent">${reviewDetail.bContent}</textarea></td>
-				<td><select
-					onchange="if(this.value) location.href=(this.value);">
-						<option value=""></option>
-						<option value="/MovieProject/moviereview/movie_review_ipdate.jsp">수정</option>
-						<option value="/MovieProject/moviereviewdelete.do">삭제</option>
-				</select></td>
+				<td>내용</td>
+				<td><textarea rows="10" cols="30" name="rContent">${review.rContent}</textarea></td>
+				
 
 			</tr>
 			<tr>
-				<td>작성날짜</td>
+			<td>등록날짜</td>
+				<td>${review.rDate }</td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="수정하기"> <input
