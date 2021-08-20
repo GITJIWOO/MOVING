@@ -21,6 +21,8 @@ public class MovieInfoDetailService implements IMovieInfoService{
 			
 			MovieVO movie = dao.MovieDetail(mId);
 			
+			System.out.println("받은 영화 아이디 : " + mId);
+			
 			request.setAttribute("movie", movie);
 		} catch(Exception e) {
 			e.printStackTrace();

@@ -71,6 +71,9 @@ public class MovieServlet extends HttpServlet {
 		IMovieReviewService mrs = null;
 
 		String ui = null;
+		
+		MovieDAO movieDAO = MovieDAO.getInstance();
+		
 
 		// 세션 쓰는 법
 		HttpSession session = null;
@@ -185,28 +188,38 @@ public class MovieServlet extends HttpServlet {
 		else if (uri.equals("/MovieProject/moviereviewselect.do")) {
 			mrs = new MovieListReviewService();
 			mrs.execute(request, response);
-			
 			ui = "/moviedetail.do";
+			
+		} else if (uri.equals("/MovieProject/moviereviewwrite.do")) {
+			mis = new MovieInfoDetailService();
+			mis.execute(request, response);
+			ui = "/moviereview/movie_review_write.jsp";
+			
 		} else if (uri.equals("/MovieProject/moviereviewinsert.do")) {
 			mrs = new MovieWriteReviewService();
 			mrs.execute(request, response);
 			ui = "/moviedetail.do";
+			
 		} else if (uri.equals("/MovieProject/moviereviewupdate.do")) {
 			mrs = new MovieUpdateReviewService();
 			mrs.execute(request, response);
 			ui = "/moviedetail.do";
+			
 		} else if (uri.equals("/MovieProject/moviereviewdelete.do")) {
 			mrs = new MovieDeleteReviewService();
 			mrs.execute(request, response);
 			ui = "/moviedetail.do";
+			
 		} else if (uri.equals("/MovieProject/moviereviewdetail.do")) {
 			mrs = new MoviePagingReviewService();
 			mrs.execute(request, response);
 			ui = "/moviereview/movie_review_detail.jsp";
+			
 		} else if (uri.equals("/MovieProject/moviereviewupdateok.do")) {
 			mrs = new MovieUpdateReviewFormService();
 			mrs.execute(request, response);
 			ui = "/moviereview/movie_review_update.jsp";
+			
 		} else {
 			out.print("잘못된 패턴입니다.");
 		}

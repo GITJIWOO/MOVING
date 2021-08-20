@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h2>리뷰 디테일</h2>
-	<form action="/MovieProject/moviereviewinsert.do" method="post">
+	<form action="/MovieProject/moviereviewwrite.do" method="post">
 		<input type="hidden" name="mId" value="${movie.mid }">
 		<input type="submit" value="리뷰작성">
 	</form>

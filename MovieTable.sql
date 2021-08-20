@@ -58,6 +58,7 @@ CREATE TABLE review(
     rrate INT(2) NOT NULL,
     rcontent VARCHAR(300) NOT NULL,
     rdate TIMESTAMP,
+    mid INT,
     FOREIGN KEY (mid) REFERENCES movie(mid)
 );
 
