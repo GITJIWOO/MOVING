@@ -23,6 +23,7 @@ import kr.co.movie.review.service.IMovieReviewService;
 import kr.co.movie.review.service.MovieDeleteReviewService;
 import kr.co.movie.review.service.MovieListReviewService;
 import kr.co.movie.review.service.MoviePagingReviewService;
+import kr.co.movie.review.service.MovieUpdateReviewFormService;
 import kr.co.movie.review.service.MovieUpdateReviewService;
 import kr.co.movie.review.service.MovieWriteReviewService;
 import kr.co.movie.user.service.IMovieUserService;
@@ -38,11 +39,11 @@ import kr.co.movie.user.service.UserUpdateService;
 @WebServlet("*.do")
 public class MovieServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public MovieServlet() {
-        super();
-        System.out.println("확장자 패턴 생성");
-    }
+
+	public MovieServlet() {
+		super();
+		System.out.println("확장자 패턴 생성");
+	}
 
 	public void init(ServletConfig config) throws ServletException {
 		System.out.println("확장자 패턴 연결");
@@ -52,37 +53,40 @@ public class MovieServlet extends HttpServlet {
 		System.out.println("확장자 패턴 소멸");
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doRequest(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doRequest(request, response);
 	}
-	protected void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+	protected void doRequest(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		IMovieInfoService mis = null;
 		IMovieUserService mus = null;
 		IMovieReviewService mrs = null;
-		
+
 		String ui = null;
-		
-		
+
 		// 세션 쓰는 법
 		HttpSession session = null;
 		session = request.getSession();
-		
+
 		String uri = request.getRequestURI();
 		System.out.println("uri패턴 : " + uri);
-		
+
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		
+
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		// user service
-		if(uri.equals("/MovieProject/moviemain.do")) {
-			
+		if (uri.equals("/MovieProject/moviemain.do")) {
+
 //			mus = new UserMainService();
 //			mus.execute(request, response);
 			ui = "/moviemain/movie_main.jsp";
@@ -93,114 +97,118 @@ public class MovieServlet extends HttpServlet {
 			mus = new UserJoinService();
 			mus.execute(request, response);
 			ui = "/movieuser/movie_user_login_form.jsp";
-			
-		} else if(uri.equals("/MovieProject/getuser.do")) {
+
+		} else if (uri.equals("/MovieProject/getuser.do")) {
 			mus = new UserGetUserService();
 			mus.execute(request, response);
-			
+
 			ui = "/movieuser/movie_user_update_form.jsp";
-		} else if(uri.equals("/MovieProject/userlogin.do")) {
+		} else if (uri.equals("/MovieProject/userlogin.do")) {
 			mus = new UserLoginService();
 			mus.execute(request, response);
-			
-			int isAdmin = (int)request.getAttribute("session_admin");
-			
-			if(isAdmin == 0) {
+
+			int isAdmin = (int) request.getAttribute("session_admin");
+
+			if (isAdmin == 0) {
 				ui = "/moviemain/movie_main.jsp";
-			} else if(isAdmin == 1) {
+			} else if (isAdmin == 1) {
 				ui = "/moviemain/movie_main_admin.jsp";
 			}
-		} else if(uri.equals("/MovieProject/userdetail.do")) {
+		} else if (uri.equals("/MovieProject/userdetail.do")) {
 			mus = new UserDetailService();
 			mus.execute(request, response);
 			ui = "/movieuser/movie_user_detail_form.jsp";
-			
-		} else if(uri.equals("/MovieProject/userlogout.do")) {
+
+		} else if (uri.equals("/MovieProject/userlogout.do")) {
 			mus = new UserLogoutService();
 			mus.execute(request, response);
-			
+
 			String isAdmin = request.getParameter("session_admin");
-			
-			if(isAdmin != null) {
+
+			if (isAdmin != null) {
 				ui = "/movieuser/movie_user_login_form.jsp";
 			} else {
 				ui = "/moviemain/movie_main.jsp";
 			}
-			
-		} else if(uri.equals("/MovieProject/userupdate.do")) {
+
+		} else if (uri.equals("/MovieProject/userupdate.do")) {
 			mus = new UserUpdateService();
 			mus.execute(request, response);
 			ui = "/moviemain/movie_main.jsp";
 			// 유저 디테일로 수정
-		} else if(uri.equals("/MovieProject/requserdelete.do")) {
+		} else if (uri.equals("/MovieProject/requserdelete.do")) {
 			ui = "/movieuser/movie_user_delete_form.jsp";
-		} else if(uri.equals("/MovieProject/userdelete.do")) {
+		} else if (uri.equals("/MovieProject/userdelete.do")) {
 			mus = new UserDeleteService();
 			mus.execute(request, response);
-			// 로그인 하기 전 메인화면으로 이동 - 세션은 만료 시킴 
+			// 로그인 하기 전 메인화면으로 이동 - 세션은 만료 시킴
 			ui = "/moviemain/movie_main.jsp";
-		} else if(uri.equals("/MovieProject/userselect.do")) {
+		} else if (uri.equals("/MovieProject/userselect.do")) {
 			mus = new UserSelectService();
 			mus.execute(request, response);
 			ui = "/movieuser/movie_user_info_form.jsp";
-			
 		} 
-		// 영화 정보 업로드
-		else if(uri.equals("/MovieProject/movieinsert.do")) {
+		
+			// 영화 정보 업로드
+		else if (uri.equals("/MovieProject/movieinsert.do")) {
 			mis = new MovieSetInfoService();
 			mis.execute(request, response);
 			ui = "/movieselect.do";
-		
-		// 영화 리스트
-		} else if(uri.equals("/MovieProject/movieselect.do")) {
+
+			// 영화 리스트
+		} else if (uri.equals("/MovieProject/movieselect.do")) {
 			mis = new MovieGetInfoService();
 			mis.execute(request, response);
 			ui = "/movieinfo/movie_select.jsp";
-			
-		// 영화 업데이트 정보 조회
-		} else if(uri.equals("/MovieProject/movieupdate.do")) {
+
+			// 영화 업데이트 정보 조회
+		} else if (uri.equals("/MovieProject/movieupdate.do")) {
 			mis = new MovieInfoDetailService();
 			mis.execute(request, response);
 			ui = "/movieinfo/movie_update_form.jsp";
-			
-		// 영화 업데이트
-		} else if(uri.equals("/MovieProject/movieupdateok.do")) {
+
+			// 영화 업데이트
+		} else if (uri.equals("/MovieProject/movieupdateok.do")) {
 			mis = new MovieUpdateOkService();
 			mis.execute(request, response);
 			ui = "/movieselect.do";
-			
-		// 영화 디테일 정보
-		} else if(uri.equals("/MovieProject/moviedetail.do")) {
+
+			// 영화 디테일 정보
+		} else if (uri.equals("/MovieProject/moviedetail.do")) {
 			mis = new MovieInfoDetailService();
 			mis.execute(request, response);
 			ui = "/movieinfo/movie_detail.jsp";
-			
+
 		}
 		// movie review
-		else if(uri.equals("/MovieProject/moviereviewselect.do")) {
+		else if (uri.equals("/MovieProject/moviereviewselect.do")) {
 			mrs = new MovieListReviewService();
 			mrs.execute(request, response);
 			ui = "/moviereview/movie_review_form.jsp";
-		} else if(uri.equals("/MovieProject/moviereviewinsert.do")) {
+		} else if (uri.equals("/MovieProject/moviereviewinsert.do")) {
 			mrs = new MovieWriteReviewService();
 			mrs.execute(request, response);
 			ui = "/moviereviewselect.do";
-		} else if(uri.equals("/MovieProject/moviereviewupdate.do")) {
+		} else if (uri.equals("/MovieProject/moviereviewupdate.do")) {
 			mrs = new MovieUpdateReviewService();
 			mrs.execute(request, response);
 			ui = "/moviereviewselect.do";
-		} else if(uri.equals("/MovieProject/moviereviewdelete.do")) {
+		} else if (uri.equals("/MovieProject/moviereviewdelete.do")) {
 			mrs = new MovieDeleteReviewService();
 			mrs.execute(request, response);
 			ui = "/moviereview/movie_review_form.jsp";
-		} else if(uri.equals("/MovieProject/moviereviewdetail.do")) {
+		} else if (uri.equals("/MovieProject/moviereviewdetail.do")) {
 			mrs = new MoviePagingReviewService();
 			mrs.execute(request, response);
 			ui = "/moviereview/movie_review_detail.jsp";
+		} else if (uri.equals("/MovieProject/moviereviewupdateok.do")) {
+			mrs = new MovieUpdateReviewFormService();
+			mrs.execute(request, response);
+			ui = "/moviereview/movie_review_update.jsp";
 		} else {
 			out.print("잘못된 패턴입니다.");
 		}
-		
+
 		RequestDispatcher dp = request.getRequestDispatcher(ui);
 		dp.forward(request, response);
 	}
