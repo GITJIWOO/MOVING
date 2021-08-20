@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,6 +43,38 @@
 			<td>${movie.mplot }</td>
 		</tr>
 	</table>
+		<h1>리뷰 목록</h1>
+	<form action="/MovieProject/moviereviewdetail.do" method="post">
+		<input type="hidden" name="mId" value="${movie.mid }">
+		<input type="submit" value="리뷰 더보기">
+	</form>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>리뷰번호</th>
+				<th>회원아이디</th>
+				<th>영화 제목</th>
+				<th>평점</th>
+				<th>리뷰내용</th>
+				<th>작성일</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="review" items="${reviewList}">
+			<tr>
+				<td>${review.rNum}</td>
+				<td>${review.uId}</td>
+				<td>${review.mTitle}</td>
+				<td>${review.rRate}</td>
+				<td>${review.rContent}</td>
+				<td>${review.rDate}</td>
+			</tr>	
+			</c:forEach>
+		</tbody>
+
+	</table>
+	
+	
 	<form action="/MovieProject/movieselect.do" method="post">
 		<input type="hidden" name="movielist">
 		<input type="submit" value="영화 리스트로">

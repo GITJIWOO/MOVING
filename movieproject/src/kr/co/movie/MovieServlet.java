@@ -176,6 +176,7 @@ public class MovieServlet extends HttpServlet {
 			// 영화 디테일 정보
 		} else if (uri.equals("/MovieProject/moviedetail.do")) {
 			mis = new MovieInfoDetailService();
+			mrs = new MovieListReviewService();
 			mis.execute(request, response);
 			ui = "/movieinfo/movie_detail.jsp";
 
@@ -184,19 +185,20 @@ public class MovieServlet extends HttpServlet {
 		else if (uri.equals("/MovieProject/moviereviewselect.do")) {
 			mrs = new MovieListReviewService();
 			mrs.execute(request, response);
-			ui = "/moviereview/movie_review_form.jsp";
+			
+			ui = "/moviedetail.do";
 		} else if (uri.equals("/MovieProject/moviereviewinsert.do")) {
 			mrs = new MovieWriteReviewService();
 			mrs.execute(request, response);
-			ui = "/moviereviewselect.do";
+			ui = "/moviedetail.do";
 		} else if (uri.equals("/MovieProject/moviereviewupdate.do")) {
 			mrs = new MovieUpdateReviewService();
 			mrs.execute(request, response);
-			ui = "/moviereviewselect.do";
+			ui = "/moviedetail.do";
 		} else if (uri.equals("/MovieProject/moviereviewdelete.do")) {
 			mrs = new MovieDeleteReviewService();
 			mrs.execute(request, response);
-			ui = "/moviereviewselect.do";
+			ui = "/moviedetail.do";
 		} else if (uri.equals("/MovieProject/moviereviewdetail.do")) {
 			mrs = new MoviePagingReviewService();
 			mrs.execute(request, response);

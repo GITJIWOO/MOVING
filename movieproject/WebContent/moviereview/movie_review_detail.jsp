@@ -9,10 +9,14 @@
 </head>
 <body>
 	<h2>리뷰 디테일</h2>
-
-	<a href="/MovieProject/moviereview/movie_review_write.jsp"><input
-		type="button" value="리뷰작성"></a>
-		<a href="/MovieProject/moviereviewselect.do"><input type="button" value="목록으로"> </a>
+	<form action="/MovieProject/moviereviewinsert.do" method="post">
+		<input type="hidden" name="mId" value="${movie.mid }">
+		<input type="submit" value="리뷰작성">
+	</form>
+	<form action="/MovieProject/moviedetail.do?mid=${movie.mid }" method="post">
+		<input type="submit" value="목록으로">
+	</form>
+	
 	<c:set var="review" value="${reviewDetail }"></c:set>
 	<table border="1">
 		<thead>
