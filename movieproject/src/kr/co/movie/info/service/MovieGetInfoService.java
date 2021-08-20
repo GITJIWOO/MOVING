@@ -14,29 +14,6 @@ public class MovieGetInfoService implements IMovieInfoService{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-
-		HttpSession session = null;
-		session = request.getSession();
-		String uId = (String)session.getAttribute("session_id");
-		if(uId == null) {
-			try {
-				String ui = "/movieuser/movie_user_login_form.jsp";
-				RequestDispatcher dp = request.getRequestDispatcher(ui);
-				dp.forward(request, response);
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-		String session_admin = (String)session.getAttribute("session_admin");
-		if(session_admin == null) {
-			try {
-				String ui = "/moviemain/movie_main.jsp";
-				RequestDispatcher dp = request.getRequestDispatcher(ui);
-				dp.forward(request, response);
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
 		try {
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
