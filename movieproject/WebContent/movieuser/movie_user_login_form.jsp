@@ -4,6 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<link rel="stylesheet" href="../movieui/css/mstyles.css" />
+
 <meta charset="UTF-8">
 <title>로그인</title>
 <style>
@@ -18,6 +21,27 @@
 </style>
 </head>
 <body>
+	<!-- CSS START -->
+	    <div class="main-bar">
+      <div class="main-bar__column">
+        <span
+          ><a href="/MovieProject/moviemain.do"><img src="../movieui/css/screen/images/logo.png" /></a
+        ></span>
+      </div>
+      <div class="main-bar__column">
+        <span>
+          <a class="main-bar__movie" href="/MovieProject/moviedetail.do">영화정보</a>
+          <a class="main-bar__movie" href="#">다운로드</a>
+        </span>
+      </div>
+      <div class="main-bar__column">
+        <span><a class="main-bar__btn" href="/MovieProject/userjoin.do">로그인</a></span>
+        <span>|</span>
+        <span><a class="main-bar__btn" href="/MovieProject/requserjoin.do">회원가입</a></span>
+      </div>
+    </div>
+	<!-- CSS END -->
+	
 	<c:if test = "${joinCheck == 1 }">
 		<script>alert('회원가입이 완료되었습니다.');</script>
 	</c:if>

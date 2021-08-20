@@ -8,11 +8,11 @@
 
 /* component */
 @import "./screen/components/main-bar.css";
+@import "./screen/components/main-footer.css";
 
 /* font */
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap");
 
 body {
   font-family: "IBM Plex Sans KR", sans-serif;
-  height: 1000vh;
 }

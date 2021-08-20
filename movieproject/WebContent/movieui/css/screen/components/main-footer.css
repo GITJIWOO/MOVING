@@ -1,0 +1,31 @@
+@charset "UTF-8";
+	#body {
+		/* border: 1px solid black; */
+		height:100px;
+	}
+	#content {
+		/* border: 1px solid black; */
+		height:700px;
+	}
+	#footer {
+		background-color: rgb(238, 232, 232);
+		/* border: 1px solid black; */
+		height:100px;
+	}
+	#bodydetail2 {
+		text-align:right;
+	}
+	h3 {display:inline-block;}
+	form { display:inline-block;}
+	#footer > p {
+		padding-left:50px;
+		padding-top:10px;
+		font-size:50%;
+	}
+	#copyright {
+		text-align:right;
+		padding-right:50px;
+		padding-bottom:10px;
+		font-size:50%;
+	}
+	hr { text-align:center; width:800px;}
