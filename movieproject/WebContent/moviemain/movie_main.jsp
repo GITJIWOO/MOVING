@@ -42,8 +42,8 @@
 	<c:if test="${login_fail == -1 }">
 		<script>alert('비밀번호가 일치하지 않습니다.'); history.back(); </script>
 	</c:if>
-	<form action="movieselect.do">
-		<input type="hidden">
+	<form action="/MovieProject/movieselect.do" method="post">
+		<input type="hidden" name="movieselect">
 		<input type="submit" value="영화">
 	</form>
 </body>

@@ -7,6 +7,7 @@
 <title>영화 정보 기입</title>
 </head>
 <body>
+	<c:if test="${a > b and c < d}">
 	<h1>영화 정보 기입</h1>
 
 	<form action="http://localhost:8181/MovieProject/movieinsert.do" method="post">

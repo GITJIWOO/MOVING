@@ -49,7 +49,7 @@
 			</tr>
 		</table>
 	</form>
-	<form action="/MovieProject/movieselect.do" method="post">
+	<form action="/MovieProject/moviedetail.do?mId=${movie.mid }" method="post">
 		<input type="hidden">
 		<input type="submit" value="돌아가기">
 	</form>
