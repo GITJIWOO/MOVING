@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <style></style>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <title>관리자페이지 - 회원 정보조회</title>
+  </head>
+  <body>
+    <!--main 화면 header start-->
+    <div class="main-bar">
+      <div class="main-bar__column">
+        <span
+          ><a href="#"><img src="/css/screen/images/logo.png" /></a
+        ></span>
+      </div>
+      <div class="main-bar__column">
+        <span>
+          <a class="main-bar__movie" href="#">영화정보</a>
+          <a class="main-bar__movie" href="#">영화예매</a>
+        </span>
+      </div>
+      <div class="main-bar__column">
+        <span><a class="main-bar__btn" href="#">로그인</a></span>
+        <span>|</span>
+        <span><a class="main-bar__btn" href="#">회원가입</a></span>
+      </div>
+    </div>
+    <!-- main 화면 header end-->
+    <div class="info-header">
+      <h1 class="info-header__title">사용자 정보 조회</h1>
+      <form class="info-form">
+        <table class="info-form__title" border="1">
+          <thead>
+            <tr>
+              <th class="info-form__content">ID</th>
+              <th class="info-form__content">Password</th>
+              <th class="info-form__content">Name</th>
+              <th class="info-form__content">Email</th>
+              <th class="info-form__content">Age</th>
+            </tr>
+          </thead>
+          <tbody>
+            <c:forEach var="user" items="${userList }">
+              <tr>
+                <td class="info-form__content">abcabc</td>
+                <td class="info-form__content">abcabc</td>
+                <td class="info-form__content">abcabc</td>
+                <td class="info-form__content">abcabc</td>
+                <td class="info-form__content">abcabc</td>
+              </tr>
+            </c:forEach>
+          </tbody>
+        </table>
+        <div class="info-page">
+          <c:if test="${userDTO.hasUser() }">
+            <div class="info-page__each">
+              <c:if test="${userDTO.startPage > 10 }">
+                <a
+                  href="/MovieProject/userselect.do?page=${userDTO.startPage - 10 }"
+                  >&#60;</a
+                >
+              </c:if>
+            </div>
+            <div class="info-page__each">
+              <c:forEach
+                var="pageNum"
+                begin="${userDTO.startPage }"
+                end="${userDTO.endPage }"
+              >
+                <a href="/MovieProject/userselect.do?page=${pageNum }"
+                  >3</a
+                >
+              </c:forEach>
+            </div>
+            <div class="info-page__each">
+              <c:if test="${userDTO.endPage < userDTO.totalPages }">
+                <a
+                  href="/MovieProject/userselect.do?page=${userDTO.startPage + 10 }"
+                  >&#62;</a
+                >
+              </c:if>
+            </div>
+          </c:if>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

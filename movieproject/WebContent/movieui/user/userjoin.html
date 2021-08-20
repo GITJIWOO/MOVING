@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>회원가입</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <!--main 화면 header start-->
+    <div class="main-bar">
+      <div class="main-bar__column">
+        <span
+          ><a href="#"><img src="/css/screen/images/logo.png" /></a
+        ></span>
+      </div>
+      <div class="main-bar__column">
+        <span>
+          <a class="main-bar__movie" href="#">영화정보</a>
+          <a class="main-bar__movie" href="#">영화예매</a>
+        </span>
+      </div>
+      <div class="main-bar__column">
+        <span><a class="main-bar__btn" href="#">로그인</a></span>
+        <span>|</span>
+        <span><a class="main-bar__btn" href="#">회원가입</a></span>
+      </div>
+    </div>
+    <!-- main 화면 header end-->
+    <header class="join-header">
+      <h1 class="join-header__title">회원가입</h1>
+    </header>
+    <form class="join-form" action="/MovieProject/userjoin.do" method="post">
+      <input type="text" name="uId" placeholder="ID" required /><br />
+      <input type="password" name="uPw" placeholder="PASSWORD" required /><br />
+      <input type="text" name="uName" placeholder="NAME" required /><br />
+      <input type="email" name="uEmail" placeholder="E-MAIL" required /><br />
+      <input type="number" name="uAge" placeholder="AGE" required /><br />
+      <input type="submit" value="회원가입" /><br />
+      <a href="#">
+        <!-- 이거 없어도됨 
+        <input type="button" value="로그인으로 이동" />
+      -->
+      </a>
+    </form>
+  </body>
+</html>
