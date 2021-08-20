@@ -13,21 +13,21 @@ public class MovieWriteReviewService implements IMovieReviewService {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// 세션 쓰는법
-		HttpSession session = null;
-		session = request.getSession();
-		String idSession = (String) session.getAttribute("i_s");
-
-		if (idSession == null) {
-			try {
-				// 서비스 내부에서 포워딩을 시키면
-				// 리다이렉트가 아니기 문에 실행됨
-				String ui = "movieuser/movie_user_login_form.jsp";
-				RequestDispatcher dp = request.getRequestDispatcher(ui);
-				dp.forward(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+//		HttpSession session = null;
+//		session = request.getSession();
+//		String idSession = (String) session.getAttribute("i_s");
+//
+//		if (idSession == null) {
+//			try {
+//				// 서비스 내부에서 포워딩을 시키면
+//				// 리다이렉트가 아니기 문에 실행됨
+//				String ui = "movieuser/movie_user_login_form.jsp";
+//				RequestDispatcher dp = request.getRequestDispatcher(ui);
+//				dp.forward(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
 
 		try {
 
@@ -35,16 +35,20 @@ public class MovieWriteReviewService implements IMovieReviewService {
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
 
+			String uId = request.getParameter("uId");
 			String rContent = request.getParameter("rContent");
 			String strRate = request.getParameter("rRate");
+			String mTitle = request.getParameter("mTitle");
 			int rRate = Integer.parseInt(strRate);
 			// dao 생성
 			ReviewDAO dao = ReviewDAO.getInstance();
 
 			// VO 생성
 			ReviewVO review = new ReviewVO();
+			review.setuId(uId);
 			review.setrContent(rContent);
 			review.setrRate(rRate);
+			review.setmTitle(mTitle);
 
 			int resultCode = dao.write(review);
 			if (resultCode == 1) {

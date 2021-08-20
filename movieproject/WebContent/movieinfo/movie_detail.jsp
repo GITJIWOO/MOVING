@@ -16,6 +16,8 @@
 		<tr>
 			<th>영화 제목</th>
 			<td>${movie.mtitle }</td>
+		</tr>
+		<tr>
 			<th>영화 등급</th>
 			<td>${movie.mgrade }</td>
 		</tr>

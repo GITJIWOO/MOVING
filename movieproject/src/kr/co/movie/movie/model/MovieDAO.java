@@ -189,8 +189,6 @@ public class MovieDAO {
 			pstmt.setString(7, movie.getMplot());
 			pstmt.setInt(8, movie.getMid());
 			
-			
-			
 			pstmt.executeUpdate();
 			
 			return SUCCESS;
