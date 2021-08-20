@@ -31,7 +31,6 @@ public class MovieUpdateReviewService implements IMovieReviewService {
 //			}
 //		}
 		
-		System.out.println("ㅅㅂ");
 		// 1. 파라미터 6개 받아오기
 		String strrNum = request.getParameter("rNum");
 		int rNum = Integer.parseInt(strrNum);
