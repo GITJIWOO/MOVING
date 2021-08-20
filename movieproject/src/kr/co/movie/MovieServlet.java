@@ -145,7 +145,7 @@ public class MovieServlet extends HttpServlet {
 			ui = "/movieuser/movie_user_info_form.jsp";
 			
 		} 
-		// movie info
+		// 영화 정보 업로드
 		else if(uri.equals("/MovieProject/movieinsert.do")) {
 			mis = new MovieSetInfoService();
 			mis.execute(request, response);

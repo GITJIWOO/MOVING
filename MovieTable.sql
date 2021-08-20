@@ -39,6 +39,10 @@ CREATE TABLE movie(
     mactor VARCHAR(30) NOT NULL,
     mplot VARCHAR(1000) NOT NULL
 );
+SELECT * FROM movie;
+
+DROP TABLE movie;
+
 
 /*  리뷰 테이블
 	rnum = 리뷰 식별 번호
