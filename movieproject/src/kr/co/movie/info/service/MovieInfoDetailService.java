@@ -1,10 +1,14 @@
 package kr.co.movie.info.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.movie.movie.model.MovieDAO;
 import kr.co.movie.movie.model.MovieVO;
+import kr.co.movie.review.model.ReviewDAO;
+import kr.co.movie.review.model.ReviewVO;
 
 public class MovieInfoDetailService implements IMovieInfoService{
 
@@ -21,9 +25,13 @@ public class MovieInfoDetailService implements IMovieInfoService{
 			
 			MovieVO movie = dao.MovieDetail(mId);
 			
+			ReviewDAO rdao = ReviewDAO.getInstance();
+			List<ReviewVO> reviewList = rdao.getReviewList();
+			
 			System.out.println("받은 영화 아이디 : " + mId);
 			
 			request.setAttribute("movie", movie);
+			request.setAttribute("reviewList", reviewList);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
