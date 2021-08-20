@@ -33,6 +33,7 @@ import kr.co.movie.user.service.UserGetUserService;
 import kr.co.movie.user.service.UserJoinService;
 import kr.co.movie.user.service.UserLoginService;
 import kr.co.movie.user.service.UserLogoutService;
+import kr.co.movie.user.service.UserReqJoinService;
 import kr.co.movie.user.service.UserSelectService;
 import kr.co.movie.user.service.UserUpdateService;
 
@@ -94,6 +95,8 @@ public class MovieServlet extends HttpServlet {
 //			mus.execute(request, response);
 			ui = "/moviemain/movie_main.jsp";
 		}else if(uri.equals("/MovieProject/requserjoin.do")) {	// 회원가입 버튼 클릭시 a태그에 작성 
+			mus = new UserReqJoinService();
+			mus.execute(request, response);
 			ui = "/movieuser/movie_user_join_form.jsp";
 				
 		}else if(uri.equals("/MovieProject/userjoin.do")) {

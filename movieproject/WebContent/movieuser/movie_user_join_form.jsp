@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-    <link rel="stylesheet" href="../movieui/css/mstyles.css" />
+<link rel="stylesheet" href="../movieui/css/mstyles.css" />
+<link rel="stylesheet" href="../MovieProject/movieui/css/mstyles.css" />
 <title>회원가입 페이지</title>
-
 </head>
 <body>
 	<!--main 화면 header start-->
@@ -29,17 +29,16 @@
       </div>
     </div>
     <!-- main 화면 header end-->
-	<h1>회원가입</h1>
-	<form action = "/MovieProject/userjoin.do" method = "post">
+    <header class="join-header">
+      <h1 class="join-header__title">회원가입</h1>
+    </header>
+	<form class="join-form" action = "/MovieProject/userjoin.do" method = "post">
 		<input type = "text" name = "uId" placeholder = "ID" required /><br>
 		<input type = "password" name = "uPw" placeholder = "PASSWORD" required /><br>
 		<input type = "text" name = "uName" placeholder = "NAME" required /><br>
 		<input type = "email" name = "uEmail" placeholder = "E-MAIL" required /><br>
 		<input type = "number" name = "uAge" placeholder = "AGE" min = "1" max = "100" required /><br>
 		<input type = "submit" value = "회원가입" /><br>
-		<a href = "/MovieProject/userlogin.do">
-			<input type = "button" value = "로그인으로 이동" />
-		</a>
 	</form>
 </body>
 </html>
