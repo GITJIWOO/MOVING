@@ -35,7 +35,7 @@
       </div>
       <div class="main-bar__column">
         <span>
-          <a class="main-bar__movie" href="/MovieProject/moviedetail.do">영화정보</a>
+          <a class="main-bar__movie" href="/MovieProject/movieselect.do">영화정보</a>
           <a class="main-bar__movie" href="#">다운로드</a>
         </span>
       </div>
@@ -61,7 +61,7 @@
 		<input type="password" name="pw" placeholder="비밀번호" required/><br/><br/>
 		<input type="submit" value="로그인" />
 	</form>
-	<form action="/MovieProject/userjoin.do" method="post">
+	<form action="/MovieProject/requserjoin.do" method="post">
 		<input type="submit" value="회원가입" />
 	</form>
 </div>

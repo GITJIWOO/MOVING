@@ -19,7 +19,7 @@
       </div>
       <div class="main-bar__column">
         <span>
-          <a class="main-bar__movie" href="/MovieProject/moviedetail.do">영화정보</a>
+          <a class="main-bar__movie" href="/MovieProject/movieselect.do">영화정보</a>
           <a class="main-bar__movie" href="#">영화예매</a>
         </span>
       </div>
