@@ -21,7 +21,7 @@
     <div class="main-bar">
       <div class="main-bar__column">
         <span
-          ><a href="/MovieProject/moviemain.do"><img src="../movieui/css/screen/images/logo2.png" /></a
+          ><a href="/MovieProject/moviemain.do"><img src="../movieui/css/screen/images/logo.png" /></a
         ></span>
       </div>
       <div class="main-bar__column">
