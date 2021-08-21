@@ -63,25 +63,62 @@
 			<div class="page">
 				<!-- 페이징 버튼 -->
 				<c:if test="${moviePageDTO.hasMovie()}">
-					<!-- 뒤로가기 버튼 여부 -->
-					<c:if test="${moviePageDTO.startPage > 10}">
-						<a href="/MovieProject/movieselect.do?page=${moviePageDTO.startPage - 10}">
-							[이전]
-						</a>
+					<c:if test="${keyword == null}">
+						<!-- 뒤로가기 버튼 여부 -->
+						<c:if test="${moviePageDTO.startPage > 10}">
+							<form action="/MovieProject/movieselect.do?page=${moviePageDTO.startPage - 10}">
+								<input type="hidden" name="page" value="${moviePageDTO.startPage - 10}">
+								<input type="submit" value="이전">
+							</form>
+						</c:if>
+						
+						<!-- 페이지 (10개 까지) -->
+						<c:forEach var="pNo" begin="${moviePageDTO.startPage}" end="${moviePageDTO.endPage}">
+							<form action="/MovieProject/movieselect.do?page=${pNo }">
+								<input type="hidden" name="page" value="${pNo}">
+								<input type="submit" value="${pNo }">
+							</form>
+						</c:forEach>
+						
+						<!-- 다음 페이지 여부-->
+						<c:if test="${moviePageDTO.endPage < moviePageDTO.totalPages}">
+							<form action="/MovieProject/movieselect.do?page=${moviePageDTO.startPage + 10}">
+								<input type="hidden" name="page" value="${moviePageDTO.startPage + 10}">
+								<input type="submit" value="다음">
+							</form>
+						</c:if>
 					</c:if>
 					
-					<!-- 페이지 10개 -->
-					<c:forEach var="pNo" begin="${moviePageDTO.startPage}" end="${moviePageDTO.endPage}">
-						<a href="/MovieProject/movieselect.do?page=${pNo}">
-							[${pNo}]
-						</a>
-					</c:forEach>
 					
-					<!-- 다음 페이지 여부-->
-					<c:if test="${moviePageDTO.endPage < moviePageDTO.totalPages}">
-						<a href="/MovieProject/movieselect.do?page=${moviePageDTO.startPage + 10}">
-							[다음]
-						</a>
+					
+					<!-- 검색 페이징 처리 하기 -->
+					<c:if test="${movieCount > 0 }">
+						<!-- 뒤로가기 버튼 여부 -->
+						<c:if test="${moviePageDTO.startPage > 10}">
+							<form action="/MovieProject/moviesearch.do?page=${pNo - 10}">
+								<input type="hidden" name="keyword" value="${keyword }">
+								<input type="hidden" name="page" value="${moviePageDTO.startPage - 10}">
+								<input type="submit" value="이전">
+							</form>
+						</c:if>
+						
+						<!-- 페이지 (10개 까지) -->
+						<c:forEach var="pNo" begin="${moviePageDTO.startPage}" end="${moviePageDTO.endPage}">
+							<form action="/MovieProject/moviesearch.do?page=${pNo }">
+								<input type="hidden" name="keyword" value="${keyword }">
+								<input type="hidden" name="page" value="${pNo}">
+								<input type="submit" value="${pNo }">
+							</form>
+						</c:forEach>
+						
+						<!-- 다음 페이지 여부-->
+						<c:if test="${moviePageDTO.endPage < moviePageDTO.totalPages}">
+							<form action="/MovieProject/moviesearch.do?page=${pNo + 10}">
+								<input type="hidden" name="keyword" value="${keyword }">
+								<input type="hidden" name="page" value="${moviePageDTO.startPage + 10}">
+								<input type="submit" value="다음">
+							</form>
+						</c:if>
 					</c:if>
 				</c:if>
 			</div>

@@ -21,6 +21,8 @@ public class MovieSearchService implements IMovieInfoService{
 			String keyword = request.getParameter("keyword");
 			String strPage = request.getParameter("page");
 			
+			System.out.println("받아온 키워드 : " + keyword);
+			
 			int page = 1;
 			if(strPage != null) {
 				page = Integer.parseInt(strPage);
@@ -30,12 +32,15 @@ public class MovieSearchService implements IMovieInfoService{
 			
 			List<MovieVO> movieList = dao.getSearchPages(keyword, (page - 1) * 10);
 			
-			int movieCount = dao.getMovieCount();
+			int movieCount = dao.getMoviePageCount(keyword);
 			
 			MoviePageDTO moviePageDTO = new MoviePageDTO(movieCount, page, movieList);
 			
 			request.setAttribute("movieList", movieList);
 			request.setAttribute("moviePageDTO", moviePageDTO);
+			request.setAttribute("movieCount", movieCount);
+			request.setAttribute("keyword", keyword);
+			request.setAttribute("page", page);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
