@@ -29,16 +29,24 @@
       </div>
     </div>
     <!-- main 화면 header end-->
-    <header class="join-header">
-      <h1 class="join-header__title">회원가입</h1>
-    </header>
-	<form class="join-form" action = "/MovieProject/userjoin.do" method = "post">
-		<input type = "text" name = "uId" placeholder = "ID" required /><br>
-		<input type = "password" name = "uPw" placeholder = "PASSWORD" required /><br>
-		<input type = "text" name = "uName" placeholder = "NAME" required /><br>
-		<input type = "email" name = "uEmail" placeholder = "E-MAIL" required /><br>
-		<input type = "number" name = "uAge" placeholder = "AGE" min = "1" max = "100" required /><br>
-		<input type = "submit" value = "회원가입" /><br>
-	</form>
+    <!-- main 화면 body start-->
+    <div class="main-body">
+      <div class="main-sidebar"></div>
+      <div class="main-contents">
+        <header class="join-header">
+          <h1 class="join-header__title">회원가입</h1>
+			<form class="join-form" action = "/MovieProject/userjoin.do" method = "post">
+				<input type = "text" name = "uId" placeholder = "ID" required /><br>
+				<input type = "password" name = "uPw" placeholder = "PASSWORD" required /><br>
+				<input type = "text" name = "uName" placeholder = "NAME" required /><br>
+				<input type = "email" name = "uEmail" placeholder = "E-MAIL" required /><br>
+				<input type = "number" name = "uAge" placeholder = "AGE" min = "1" max = "100" required /><br>
+				<input type = "submit" value = "회원가입" /><br>
+			</form>
+		</header>
+      </div>
+      <div class="main-sidebar"></div>
+    </div>
+    <!-- main 화면 body end-->
 </body>
 </html>
