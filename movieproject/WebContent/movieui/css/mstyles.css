@@ -8,6 +8,7 @@
 
 /* component */
 @import "./screen/components/main-bar.css";
+@import "./screen/components/main-body.css";
 @import "./screen/components/main-footer.css";
 
 /* font */
