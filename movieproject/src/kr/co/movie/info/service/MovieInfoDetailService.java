@@ -28,8 +28,6 @@ public class MovieInfoDetailService implements IMovieInfoService{
 			ReviewDAO rdao = ReviewDAO.getInstance();
 			List<ReviewVO> reviewList = rdao.getReviewList();
 			
-			System.out.println("받은 영화 아이디 : " + mId);
-			
 			request.setAttribute("movie", movie);
 			request.setAttribute("reviewList", reviewList);
 		} catch(Exception e) {
