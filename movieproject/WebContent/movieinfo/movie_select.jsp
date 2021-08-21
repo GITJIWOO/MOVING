@@ -10,7 +10,7 @@
 	    #content {
 	    	display: flex;
 	    	justify-content: center;
-	    	padding-top: 120px;
+	    	padding-top: 150px;
 	    }
     </style>
 <meta charset="UTF-8">
@@ -21,7 +21,7 @@
     <div class="main-bar">
       <div class="main-bar__column">
         <span
-          ><a href="/MovieProject/moviemain.do"><img src="../movieui/css/screen/images/logo.png" /></a
+          ><a href="/MovieProject/moviemain.do"><img src="../movieui/css/screen/images/logo2.png" /></a
         ></span>
       </div>
       <div class="main-bar__column">
@@ -37,25 +37,33 @@
       </div>
     </div>
     <!-- main 화면 header end-->
-	<div id="content">
-		<h1>영화 정보</h1>
-		<table border="1">
-			<tr>
-				<th>영화 제목</th>
-				<th>영화 등급</th>
-				<th>영화 개봉일</th>
-			</tr>
-			<c:forEach var="movie" items="${movieList}">
+    <!-- main 화면 body start-->
+    <div class="main-body">
+      <div class="main-sidebar"></div>
+      <div class="main-contents">
+		<div id="content">
+			<h1>영화 정보</h1>
+			<table border="1">
 				<tr>
-					<td><a href="/MovieProject/moviedetail.do?mId=${movie.mid}">
-							${movie.mtitle }
-						</a>
-					</td>
-					<td>${movie.mgrade }</td>
-					<td>${movie.mpremiere }</td>
+					<th>영화 제목</th>
+					<th>영화 등급</th>
+					<th>영화 개봉일</th>
 				</tr>
-			</c:forEach>
-		</table>
-	</div>
+				<c:forEach var="movie" items="${movieList}">
+					<tr>
+						<td><a href="/MovieProject/moviedetail.do?mId=${movie.mid}">
+								${movie.mtitle }
+							</a>
+						</td>
+						<td>${movie.mgrade }</td>
+						<td>${movie.mpremiere }</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
+      </div>
+      <div class="main-sidebar"></div>
+    </div>
+    <!-- main 화면 body end-->
 </body>
 </html>
