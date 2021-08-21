@@ -42,10 +42,10 @@ CREATE TABLE movie(
     mplot VARCHAR(1000) NOT NULL
 );
 SELECT * FROM movie;
-
+/*
 INSERT INTO movie (mtitle, mgrade, mcountry, mpremiere, mdirector, mactor, mplot)
 					VALUES ('영화영화', 1, '미국', '2021-06-12', '김지우', '윤지우', '자동자 경주');
-
+*/
 DROP TABLE movie;
 
 
