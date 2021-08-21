@@ -208,4 +208,148 @@ public class MovieDAO {
 		}
 		return FAIL;
 	} // end movieUpdate
+	
+	public List<MovieVO> getPageList(int pageNum) {
+		
+		List<MovieVO> movieList = new ArrayList<>();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;		
+		ResultSet rs = null;
+
+		String sql = "SELECT * FROM movie ORDER BY mid DESC LIMIT ?, 10";
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setInt(1, pageNum);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				MovieVO movie = new MovieVO();
+
+				movie.setMid(rs.getInt("mid"));
+				movie.setMtitle(rs.getString("mtitle"));
+				movie.setMgrade(rs.getInt("mgrade"));
+				movie.setMcountry(rs.getString("mcountry"));
+				movie.setMpremiere(rs.getDate("mpremiere"));
+				movie.setMdirector(rs.getString("mdirector"));
+				movie.setMactor(rs.getString("mactor"));
+				movie.setMplot(rs.getString("mplot"));
+				
+				movieList.add(movie);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+	 		try {
+	 			if(con != null && !con.isClosed()) {
+	 				con.close();
+	 			}
+	 			if(pstmt != null && !pstmt.isClosed()) {
+	 				pstmt.close();
+	 			}
+	 			if(rs != null && !rs.isClosed()) {
+	 				rs.close();
+	 			}
+	 			
+	 		} catch (Exception e){
+	 			e.printStackTrace();
+	 		}
+		}
+		return movieList;
+	} // end getPageList
+	
+	public int getMovieCount() {
+		
+		int movieCount = 0;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT COUNT(*) FROM movie";
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				movieCount = rs.getInt(1);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+	 		try {
+	 			if(con != null && !con.isClosed()) {
+	 				con.close();
+	 			}
+	 			if(pstmt != null && !pstmt.isClosed()) {
+	 				pstmt.close();
+	 			}
+	 			if(rs != null && !rs.isClosed()) {
+	 				rs.close();
+	 			}
+	 			
+	 		} catch (Exception e){
+	 			e.printStackTrace();
+	 		}
+		}
+		return movieCount;
+	} // end getMovieCount
+	
+	public List<MovieVO> getSearchPages(String keyword, int pageNum) {
+		
+		List<MovieVO> movieList = new ArrayList<>();
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT * FROM movie WHERE mtitle LIKE ? LIMIT ?, 10";
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, "%" + keyword + "%");
+			pstmt.setInt(2, pageNum);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				MovieVO movie = new MovieVO();
+
+				movie.setMid(rs.getInt("mid"));
+				movie.setMtitle(rs.getString("mtitle"));
+				movie.setMgrade(rs.getInt("mgrade"));
+				movie.setMcountry(rs.getString("mcountry"));
+				movie.setMpremiere(rs.getDate("mpremiere"));
+				movie.setMdirector(rs.getString("mdirector"));
+				movie.setMactor(rs.getString("mactor"));
+				movie.setMplot(rs.getString("mplot"));
+				
+				movieList.add(movie);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+	 		try {
+	 			if(con != null && !con.isClosed()) {
+	 				con.close();
+	 			}
+	 			if(pstmt != null && !pstmt.isClosed()) {
+	 				pstmt.close();
+	 			}
+	 			if(rs != null && !rs.isClosed()) {
+	 				rs.close();
+	 			}
+	 			
+	 		} catch (Exception e){
+	 			e.printStackTrace();
+	 		}
+		}
+		return movieList;
+	} // end getSearchPages
 }

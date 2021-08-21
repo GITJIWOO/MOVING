@@ -42,24 +42,49 @@
       <div class="main-sidebar"></div>
       <div class="main-contents">
 		<div id="content">
-			<h1>영화 정보</h1>
-			<table border="1">
-				<tr>
-					<th>영화 제목</th>
-					<th>영화 등급</th>
-					<th>영화 개봉일</th>
-				</tr>
+			<div class="search">
+				<form action="/MovieProject/moviesearch.do" method="post">
+					<input type="text" name="keyword" placeholder="검색어"/>
+					<input class="" type="submit" value="검색"/>
+				</form>
+			</div>
+			<br/>
+			<div class="movie">
 				<c:forEach var="movie" items="${movieList}">
-					<tr>
-						<td><a href="/MovieProject/moviedetail.do?mId=${movie.mid}">
-								${movie.mtitle }
-							</a>
-						</td>
-						<td>${movie.mgrade }</td>
-						<td>${movie.mpremiere }</td>
-					</tr>
+					<ul>
+						<li><a href="/MovieProject/moviedetail.do?mId=${movie.mid}">
+							${movie.mtitle }
+						</a></li>
+						<li>${movie.mgrade }</li>
+						<li>${movie.mpremiere }</li>
+					</ul>
 				</c:forEach>
-			</table>
+			</div>
+			<div class="page">
+				<!-- 페이징 버튼 -->
+				<c:if test="${moviePageDTO.hasMovie()}">
+					<!-- 뒤로가기 버튼 여부 -->
+					<c:if test="${moviePageDTO.startPage > 10}">
+						<a href="/MovieProject/movieselect.do?page=${moviePageDTO.startPage - 10}">
+							[이전]
+						</a>
+					</c:if>
+					
+					<!-- 페이지 10개 -->
+					<c:forEach var="pNo" begin="${moviePageDTO.startPage}" end="${moviePageDTO.endPage}">
+						<a href="/MovieProject/movieselect.do?page=${pNo}">
+							[${pNo}]
+						</a>
+					</c:forEach>
+					
+					<!-- 다음 페이지 여부-->
+					<c:if test="${moviePageDTO.endPage < moviePageDTO.totalPages}">
+						<a href="/MovieProject/movieselect.do?page=${moviePageDTO.startPage + 10}">
+							[다음]
+						</a>
+					</c:if>
+				</c:if>
+			</div>
 		</div>
       </div>
       <div class="main-sidebar"></div>

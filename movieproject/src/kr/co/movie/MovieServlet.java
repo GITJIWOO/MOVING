@@ -15,6 +15,8 @@ import javax.servlet.http.HttpSession;
 import kr.co.movie.info.service.IMovieInfoService;
 import kr.co.movie.info.service.MovieGetInfoService;
 import kr.co.movie.info.service.MovieInfoDetailService;
+import kr.co.movie.info.service.MoviePagingService;
+import kr.co.movie.info.service.MovieSearchService;
 import kr.co.movie.info.service.MovieSetInfoService;
 import kr.co.movie.info.service.MovieUpdateOkService;
 import kr.co.movie.movie.model.MovieDAO;
@@ -88,6 +90,8 @@ public class MovieServlet extends HttpServlet {
 
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
+		
+		
 		// 메인 화면
 		if (uri.equals("/MovieProject/moviemain.do")) {
 //			mus = new UserMainService();
@@ -164,7 +168,7 @@ public class MovieServlet extends HttpServlet {
 
 			// 영화 리스트
 		} else if (uri.equals("/MovieProject/movieselect.do")) {
-			mis = new MovieGetInfoService();
+			mis = new MoviePagingService();
 			mis.execute(request, response);
 			ui = "/movieinfo/movie_select.jsp";
 
@@ -185,7 +189,12 @@ public class MovieServlet extends HttpServlet {
 			mis = new MovieInfoDetailService();
 			mis.execute(request, response);
 			ui = "/movieinfo/movie_detail.jsp";
-
+			
+			// 영화 검색
+		} else if (uri.equals("/MovieProject/moviesearch.do")) {
+			mis = new MovieSearchService();
+			mis.execute(request, response);
+			ui = "/movieinfo/movie_select.jsp";
 		}
 		
 		

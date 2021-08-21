@@ -6,20 +6,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.co.movie.movie.model.MovieDAO;
+import kr.co.movie.movie.model.MoviePageDTO;
 import kr.co.movie.movie.model.MovieVO;
 
-public class MovieGetInfoService implements IMovieInfoService{
+public class MovieSearchService implements IMovieInfoService{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
+		
 		try {
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
 			
+			String keyword = request.getParameter("keyword");
+			String strPage = request.getParameter("page");
+			
+			int page = 1;
+			if(strPage != null) {
+				page = Integer.parseInt(strPage);
+			}
+			
 			MovieDAO dao = MovieDAO.getInstance();
 			
-			List<MovieVO> movieList = dao.getMovieList();
+			List<MovieVO> movieList = dao.getSearchPages(keyword, (page - 1) * 10);
+			
+			int movieCount = dao.getMovieCount();
+			
+			MoviePageDTO moviePageDTO = new MoviePageDTO(movieCount, page, movieList);
+			
 			request.setAttribute("movieList", movieList);
+			request.setAttribute("moviePageDTO", moviePageDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
