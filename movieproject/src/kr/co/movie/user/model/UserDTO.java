@@ -24,10 +24,9 @@ public class UserDTO {
 			if(this.total % 10 != 0) {
 				this.totalPages++;
 			}
-			if(this.currentPage % 10 != 0) {
-				this.startPage = ((this.currentPage / 10) * 10) + 1;
-			}else if(this.currentPage % 10 == 0) {
-				this.startPage = this.currentPage + (10 - 1);
+			this.startPage = (this.currentPage / 10) * 10 + 1;
+			if(this.currentPage % 10 == 0) {
+				this.startPage -= 10;
 			}
 			this.endPage = this.startPage + (10 - 1);
 			if(this.endPage > this.totalPages) {
