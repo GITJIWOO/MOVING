@@ -41,7 +41,7 @@
 			<tr>
 				<td><input type="submit" value="수정하기"> <input
 					type="reset" value="초기화"> <a
-					href="/MovieProject/moviereview/movie_review_form.jsp"> <input
+					href="/MovieProject/moviedetail.do?mId=${movie.mid }"> <input
 						type="button" value="게시글 목록"></a></td>
 			</tr>
 		</table>

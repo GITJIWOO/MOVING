@@ -15,20 +15,11 @@ public class MovieUpdateReviewService implements IMovieReviewService {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// 세션
-		HttpSession session = null;
-		session = request.getSession();
-
-		// 유저 세션
-		String uId = (String) session.getAttribute("session_id");
-		if (uId == null) {
-			try {
-				String ui = "/movieuser/movie_user_login_form.jsp";
-				RequestDispatcher dp = request.getRequestDispatcher(ui);
-				dp.forward(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+				HttpSession session = request.getSession();
+				// 유저 세션
+				Object uIdObj = session.getAttribute("session_id");
+				String uId = (String) uIdObj;
+				System.out.println("UID : " + uId);
 
 		// 1. 파라미터 6개 받아오기
 		String strrNum = request.getParameter("rNum");

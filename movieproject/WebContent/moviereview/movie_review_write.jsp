@@ -12,20 +12,22 @@
 	
 
 	<form action="/MovieProject/moviereviewinsert.do" method="post">
-		<input type="hidden" name="movieid" value="${movie.mid }">
+		<input type="hidden" name="mId" value="${movie.mid }">
+		<input type="hidden" name="uId" value="${uId}">
 		<table border="1">
 			
 			<tr>
-				<td>리뷰내용</td>
-				<td><input type="text" name="rContent" size="10"></td>
+				<td>영화제목</td>
+				<td><input type="text" name="mTitle" value="${movie.mtitle }" readonly></td>
 			</tr>
 			<tr>
 				<td>글쓴이</td>
-				<td><input type="text" name="uId" size="10"></td>
+				<td><input type="text" name="uId" value="${uId }" readonly></td>
+				
 			</tr>
 			<tr>
-				<td>영화제목</td>
-				<td><input type="text" name="mTitle" value="${movie.mtitle }" readonly></td>
+				<td>리뷰내용</td>
+				<td><textarea rows="10" cols="30" name="rContent">${review.rContent}</textarea> </td>
 			</tr>
 			<tr>
 				<td>평점</td>
@@ -45,8 +47,8 @@
 				<td>
 				<input type="submit" value="등록">
 				<input type="reset" value="초기화"> 
-				<a href="/MovieProject/moviedetail.do?mid=${movie.mid }"> <input
-						type="button" value="목록으로">
+				<a href="/MovieProject/moviedetail.do?mId=${movie.mid }"> 
+					<input type="button" value="목록으로">
 				</a>
 				</td>
 			</tr>
