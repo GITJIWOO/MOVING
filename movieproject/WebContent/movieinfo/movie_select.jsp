@@ -7,10 +7,29 @@
     <link rel="stylesheet" href="../movieui/css/mstyles.css" />
     <link rel="stylesheet" href="../MovieProject/movieui/css/mstyles.css" />
     <style>
-	    #content {
+	    .main-contents {
 	    	display: flex;
 	    	justify-content: center;
-	    	padding-top: 150px;
+	    	padding-top: 30px;
+	    }
+	    .movie{
+	    	position: relative;
+	    }
+	    .search {
+	    	margin-bottom: 30px;
+	    	margin-left: 370px;
+	    }
+	    .movieinfo {
+	    	border: 1px solid blue;
+	    	width: 530px;
+	    }
+	    .movieblock {
+	    	border: 1px solid black;
+	    	width: 250px;
+	    	height: 130px;
+	    }
+	    .page {
+	    	margin-top: 30px;
 	    }
     </style>
 <meta charset="UTF-8">
@@ -21,7 +40,7 @@
     <div class="main-bar">
       <div class="main-bar__column">
         <span
-          ><a href="/MovieProject/moviemain.do"><img src="../movieui/css/screen/images/logo.png" /></a
+          ><a href="/MovieProject/moviemain.do"><img src="<%=request.getContextPath() %>/movieui/css/screen/images/logo.png" /></a
         ></span>
       </div>
       <div class="main-bar__column">
@@ -41,23 +60,24 @@
     <div class="main-body">
       <div class="main-sidebar"></div>
       <div class="main-contents">
-		<div id="content">
+		<div class="movie">
 			<div class="search">
 				<form action="/MovieProject/moviesearch.do" method="post">
 					<input type="text" name="keyword" placeholder="검색어"/>
 					<input class="" type="submit" value="검색"/>
 				</form>
 			</div>
-			<br/>
-			<div class="movie">
+			<div class="movieinfo">
 				<c:forEach var="movie" items="${movieList}">
-					<ul>
-						<li><a href="/MovieProject/moviedetail.do?mId=${movie.mid}">
-							${movie.mtitle }
-						</a></li>
-						<li>${movie.mgrade }</li>
-						<li>${movie.mpremiere }</li>
-					</ul>
+					<div class="movieblock">	
+						<ul>
+							<li><a href="/MovieProject/moviedetail.do?mId=${movie.mid}">
+								${movie.mtitle }
+							</a></li>
+							<li>${movie.mcountry }</li>
+							<li>${movie.mpremiere }</li>
+						</ul>
+					</div>
 				</c:forEach>
 			</div>
 			<div class="page">
@@ -68,7 +88,7 @@
 						<c:if test="${moviePageDTO.startPage > 10}">
 							<form action="/MovieProject/movieselect.do?page=${moviePageDTO.startPage - 10}">
 								<input type="hidden" name="page" value="${moviePageDTO.startPage - 10}">
-								<input type="submit" value="이전">
+								<button type="submit" class="btn btn-primary">이전</button>
 							</form>
 						</c:if>
 						
@@ -76,7 +96,7 @@
 						<c:forEach var="pNo" begin="${moviePageDTO.startPage}" end="${moviePageDTO.endPage}">
 							<form action="/MovieProject/movieselect.do?page=${pNo }">
 								<input type="hidden" name="page" value="${pNo}">
-								<input type="submit" value="${pNo }">
+								<button type="submit" class="btn btn-info">${pNo }</button>
 							</form>
 						</c:forEach>
 						
@@ -84,7 +104,7 @@
 						<c:if test="${moviePageDTO.endPage < moviePageDTO.totalPages}">
 							<form action="/MovieProject/movieselect.do?page=${moviePageDTO.startPage + 10}">
 								<input type="hidden" name="page" value="${moviePageDTO.startPage + 10}">
-								<input type="submit" value="다음">
+								<button type="submit" class="btn btn-primary">다음</button>
 							</form>
 						</c:if>
 					</c:if>
@@ -98,7 +118,7 @@
 							<form action="/MovieProject/moviesearch.do?page=${pNo - 10}">
 								<input type="hidden" name="keyword" value="${keyword }">
 								<input type="hidden" name="page" value="${moviePageDTO.startPage - 10}">
-								<input type="submit" value="이전">
+								<button type="submit" class="btn btn-primary">이전</button>
 							</form>
 						</c:if>
 						
@@ -107,7 +127,7 @@
 							<form action="/MovieProject/moviesearch.do?page=${pNo }">
 								<input type="hidden" name="keyword" value="${keyword }">
 								<input type="hidden" name="page" value="${pNo}">
-								<input type="submit" value="${pNo }">
+								<button type="submit" class="btn btn-info">${pNo }</button>
 							</form>
 						</c:forEach>
 						
@@ -116,7 +136,7 @@
 							<form action="/MovieProject/moviesearch.do?page=${pNo + 10}">
 								<input type="hidden" name="keyword" value="${keyword }">
 								<input type="hidden" name="page" value="${moviePageDTO.startPage + 10}">
-								<input type="submit" value="다음">
+								<button type="submit" class="btn btn-primary">다음</button>
 							</form>
 						</c:if>
 					</c:if>
