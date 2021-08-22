@@ -2,10 +2,8 @@ package kr.co.movie.info.service;
 
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import kr.co.movie.movie.model.MovieDAO;
 import kr.co.movie.movie.model.MovieVO;

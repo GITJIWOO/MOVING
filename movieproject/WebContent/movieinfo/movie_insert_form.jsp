@@ -13,31 +13,31 @@
 		<table border="1"> 
 			<tr>
 				<th>영화 제목</th>
-				<td><input type="text" name="movietitle"/><br/></td>
+				<td><input type="text" name="movietitle" required="required"/><br/></td>
 			</tr>
 			<tr>
 				<th>영화 등급</th>
-				<td><input type="text" name="moviegrade"/><br/></td>
+				<td><input type="text" name="moviegrade" required="required"/><br/></td>
 			</tr>
 			<tr>
 				<th>영화 제작 국가</th>
-				<td><input type="text" name="moviecountry"/><br/></td>
+				<td><input type="text" name="moviecountry" required="required"/><br/></td>
 			</tr>
 			<tr>
 				<th>영화 개봉일</th>
-				<td><input type="date" name="movieprimere"/><br/></td>
+				<td><input type="date" name="movieprimere" required="required"/><br/></td>
 			</tr>
 			<tr>
 				<th>영화 감독</th>
-				<td><input type="text" name="moviedirector"/><br/></td>
+				<td><input type="text" name="moviedirector" required="required"/><br/></td>
 			</tr>
 			<tr>
 				<th>출연진</th>
-				<td><input type="text" name="movieactor"/><br/></td>
+				<td><input type="text" name="movieactor" required="required"/><br/></td>
 			</tr>
 			<tr>
 				<th>영화 줄거리</th>
-				<td><textarea rows="10" cols="50" name="movieplot"></textarea><br/></td>
+				<td><textarea rows="10" cols="50" name="movieplot" required="required"></textarea><br/></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="올리기"></td>

@@ -18,6 +18,8 @@ CREATE TABLE user (
 /* 관리자 계정 생성 */
 INSERT INTO user VALUES('adminid', 'adminpw', 'admin', 'admin@admin.com', 30, 1);
 
+SELECT * FROM user;
+
 
 /*  영화 정보 테이블
 	mid = 영화 식별 번호
@@ -40,6 +42,11 @@ CREATE TABLE movie(
     mplot VARCHAR(1000) NOT NULL
 );
 SELECT * FROM movie;
+
+INSERT INTO movie (mtitle, mgrade, mcountry, mpremiere, mdirector, mactor, mplot)
+					VALUES ('카34', 1, '미국', '2021-06-12', '김지우', '윤지우', '자동자 경주');
+                    
+                    
 
 DROP TABLE movie;
 

@@ -13,35 +13,35 @@
 		<table border="1">
 			<tr>
 				<th>영화 번호</th>
-				<td><input type="text" name="movieid" value="${movie.mid }" readonly /><br/></td>
+				<td><input type="text" name="movieid" value="${movie.mid }" readonly  required="required"/><br/></td>
 			</tr>
 			<tr>
 				<th>영화 제목</th>
-				<td><input type="text" name="movietitle" value="${movie.mtitle }"/><br/></td>
+				<td><input type="text" name="movietitle" value="${movie.mtitle }" required="required"/><br/></td>
 			</tr>
 			<tr>
 				<th>영화 등급</th>
-				<td><input type="text" name="moviegrade" value="${movie.mgrade }"/><br/></td>
+				<td><input type="text" name="moviegrade" value="${movie.mgrade }" required="required"/><br/></td>
 			</tr>
 			<tr>
 				<th>영화 제작 국가</th>
-				<td><input type="text" name="moviecountry" value="${movie.mcountry }"/><br/></td>
+				<td><input type="text" name="moviecountry" value="${movie.mcountry }" required="required"/><br/></td>
 			</tr>
 			<tr>
 				<th>영화 개봉일</th>
-				<td><input type="date" name="moviepremiere" value="${movie.mpremiere }"/><br/></td>
+				<td><input type="date" name="moviepremiere" value="${movie.mpremiere }" required="required"/><br/></td>
 			</tr>
 			<tr>
 				<th>영화 감독</th>
-				<td><input type="text" name="moviedirector" value="${movie.mdirector }"/><br/></td>
+				<td><input type="text" name="moviedirector" value="${movie.mdirector }" required="required"/><br/></td>
 			</tr>
 			<tr>
 				<th>출연진</th>
-				<td><input type="text" name="movieactor" value="${movie.mactor }"/><br/></td>
+				<td><input type="text" name="movieactor" value="${movie.mactor }" required="required"/><br/></td>
 			</tr>
 			<tr>
 				<th>영화 줄거리</th>
-				<td><textarea rows="10" cols="50" name="movieplot">${movie.mplot }</textarea><br/></td>
+				<td><textarea rows="10" cols="50" name="movieplot" required="required">${movie.mplot }</textarea><br/></td>
 			</tr>
 			<tr>
 				<td><input type="submit" value="올리기"></td>

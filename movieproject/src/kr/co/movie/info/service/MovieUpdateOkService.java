@@ -15,7 +15,7 @@ public class MovieUpdateOkService implements IMovieInfoService{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-
+		/*
 		HttpSession session = null;
 		session = request.getSession();
 		String uId = (String)session.getAttribute("session_id");
@@ -38,6 +38,7 @@ public class MovieUpdateOkService implements IMovieInfoService{
 				e.printStackTrace();
 			}
 		}
+		*/
 		try {
 
 			request.setCharacterEncoding("utf-8");
