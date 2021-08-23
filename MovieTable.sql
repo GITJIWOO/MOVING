@@ -38,11 +38,11 @@ CREATE TABLE movie(
     mtitle VARCHAR(100) NOT NULL,
     mgrade INT(2) NOT NULL,
     mcountry VARCHAR(30) NOT NULL,
-    mgenre VARCHAR(20) NOT NULL,
-    mtime VARCHAR(10) NOT NULL,
+    mgenre VARCHAR(30) NOT NULL,
+    mtime VARCHAR(30) NOT NULL,
     mpremiere DATE NOT NULL,
-    mdirector VARCHAR(30) NOT NULL,
-    mactor VARCHAR(30) NOT NULL,
+    mdirector VARCHAR(100) NOT NULL,
+    mactor VARCHAR(1000) NOT NULL,
     mplot VARCHAR(1000) NOT NULL
 );
 SELECT * FROM movie;

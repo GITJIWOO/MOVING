@@ -54,8 +54,8 @@
 		</table>
 	</form>
 	<form action="/MovieProject/movieselect.do" method="post">
-		<input type="hidden">
-		<input type="button" value="돌아가기">
+		<input type="hidden" name="movielist">
+		<input type="submit" value="돌아가기">
 	</form>
 </body>
 </html>

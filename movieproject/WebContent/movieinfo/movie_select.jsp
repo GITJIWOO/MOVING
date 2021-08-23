@@ -11,14 +11,14 @@
 	    .main-contents {
 	    	display: flex;
 	    	justify-content: center;
-	    	padding-top: 30px;
+	    	padding-top: 45px;
 	    }
 	    .movie{
 	    	position: relative;
 	    }
 	    .search {
-	    	margin-bottom: 30px;
-	    	margin-left: 370px;
+	    	margin-bottom: 45px;
+	    	margin-left: 330px;
 	    }
 	    .movieinfo {
 	    	border: 1px solid blue;
@@ -46,7 +46,7 @@
       </div>
       <div class="main-bar__column">
         <span>
-          <a class="main-bar__movie" href="/MovieProject/moviedetail.do">영화정보</a>
+          <a class="main-bar__movie" href="/MovieProject/movieselect.do">영화정보</a>
           <a class="main-bar__movie" href="#">다운로드</a>
         </span>
       </div>
@@ -64,8 +64,8 @@
 		<div class="movie">
 			<div class="search">
 				<form action="/MovieProject/moviesearch.do" method="post">
-					<input type="text" name="keyword" placeholder="검색어"/>
-					<input class="" type="submit" value="검색"/>
+					<input type="text" name="keyword" placeholder="검색어" class="form-control me-2">
+					<button type="submit" class="btn btn-secondary">검색</button>
 				</form>
 			</div>
 			<div class="movieinfo">
