@@ -43,16 +43,60 @@
       <div class="main-sidebar"></div>
       <div class="main-contents">
       <div id="contents">
-			<form action="/MovieProject/moviereviewwrite.do" method="post">
-				<input type="hidden" name="mId" value="${movie.mid }">
-				<input type="hidden" name="uId" value="${uId }">
-				 <input 
-					type="submit" value="리뷰작성">
-			</form>
+      
+      <form action="/MovieProject/moviereviewinsert.do" method="post">
+		<input type="hidden" name="mId" value="${movie.mid }">
+		<input type="hidden" name="uId" value="${uId}">
+		<table class="table table-striped table-hover" >
+			
+			<c:if test="${uId != null }">
+			<tr>
+				<td>영화제목</td>
+				<td><input type="text" name="mTitle" value="${movie.mtitle }" readonly>
+				<td>글쓴이</td>
+				<td><input type="text" name="uId" value="${uId }" readonly></td>
+			</tr>
+			<tr>
+				<td>리뷰내용</td>
+				<td><textarea rows="10" cols="30" name="rContent">${review.rContent}</textarea> </td>
+			</tr>
+			<tr>
+				<td>평점</td>
+				<td><select name="rRate">
+						<option>평점</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+				</select></td>
+
+			</tr>
+			
+			
+			<tr>
+				<td>
+				<input type="submit" value="등록">
+				<input type="reset" value="초기화"> 
+				<a href="/MovieProject/moviedetail.do?mId=${movie.mid }"> 
+					<input type="button" value="목록으로">
+				</a>
+				</td>
+			</tr>
+			</c:if>
+		</table>
+      </form>
+      
+      
+      <!-- 리뷰 디테일 목록 -->
+<!-- 			<form action="/MovieProject/moviereviewwrite.do" method="post"> -->
+<%-- 				<input type="hidden" name="mId" value="${movie.mid }"> --%>
+<%-- 				<input type="hidden" name="uId" value="${uId }"> --%>
+<!-- 				 <input  -->
+<!-- 					type="submit" value="리뷰작성"> -->
+<!-- 			</form> -->
 		
-			<a href="/MovieProject/moviedetail.do?mId=${movie.mid }"> 
-				<input type="button" value="목록으로">
-			</a>
+			
 
 			<c:set var="review" value="${reviewDetail }"></c:set>
 			<table class="table table-striped table-hover">
@@ -89,6 +133,9 @@
 
 				</tr>
 			</table>
+			<a href="/MovieProject/moviedetail.do?mId=${movie.mid }"> 
+				<input type="button" value="목록으로">
+			</a>
 			<%-- 페이징 버튼 만들기 
 	표현할 글이 있는 경우에만 버튼을 표시함--%>
 			<c:if test="${pageDTO.hasBoard()}">

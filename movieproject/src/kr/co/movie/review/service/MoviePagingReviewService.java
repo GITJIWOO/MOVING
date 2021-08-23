@@ -25,27 +25,19 @@ public class MoviePagingReviewService implements IMovieReviewService {
 		Object uIdObj = session.getAttribute("session_id");
 		String uId = (String) uIdObj;
 		System.out.println("UID : " + uId);
-//				이런식으로 유저 아이디가 필요한 부분에서 세션 이용해서 가져오고요 
-//				모델로 제이에스피에 넘기세요  
-//				그럼 아이디 넘기는건 끝나고 
-//				
-//				아이디로 수정 /삭제 권한 확인하는건 
-//				제이에스피에서 제이에스티엘로 등록자 아이디랑 세션 아이디 비교해서 
-//				맞으면 뜨게하고 아니면 못뜨게 하세요 네
-//				
-//				이거 잘 간직하세요 
 
-		if (uId == null) {
-			try {
-				String ui = "/movieuser/movie_user_login_form.jsp";
-				RequestDispatcher dp = request.getRequestDispatcher(ui);
-				dp.forward(request, response);
 
-				// 여기서 포워드를 할수 없어요 / 왜냐면
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+//		if (uId == null) {
+//			try {
+//				String ui = "/movieuser/movie_user_login_form.jsp";
+//				RequestDispatcher dp = request.getRequestDispatcher(ui);
+//				dp.forward(request, response);
+//
+//				// 여기서 포워드를 할수 없어
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
 		// page 파라미터에 있던 값을 가져옵니다.
 		// hint : ?page=페이지번호
 		// page파라미터가 없다면 strPage에 null이 저장됨
