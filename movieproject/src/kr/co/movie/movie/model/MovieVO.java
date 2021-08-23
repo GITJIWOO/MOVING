@@ -7,6 +7,8 @@ public class MovieVO {
 	private String mtitle;
 	private int mgrade;
 	private String mcountry;
+	private String mgenre;
+	private String mtime;
 	private Date mpremiere;
 	private String mdirector;
 	private String mactor;
@@ -44,6 +46,20 @@ public class MovieVO {
 		this.mcountry = mcountry;
 	}
 	
+	public String getMgenre() {
+		return mgenre;
+	}
+	public void setMgenre(String mgenre) {
+		this.mgenre = mgenre;
+	}
+
+	public String getMtime() {
+		return mtime;
+	}
+	public void setMtime(String mtime) {
+		this.mtime = mtime;
+	}
+
 	public Date getMpremiere() {
 		return mpremiere;
 	}
@@ -71,14 +87,12 @@ public class MovieVO {
 	public void setMplot(String mplot) {
 		this.mplot = mplot;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "MovieVO [mid=" + mid + ", mtitle=" + mtitle +
-				", mgrade=" + mgrade + ", mcountry=" + mcountry + 
-				", mdirector=" + mdirector + ", mactor=" + mactor + 
-				", mplot=" + mplot + "]";
+		return "MovieVO [mid=" + mid + ", mtitle=" + mtitle + ", mgrade=" + mgrade + ", mcountry=" + mcountry
+				+ ", mgenre=" + mgenre + ", mtime=" + mtime + ", mpremiere=" + mpremiere + ", mdirector=" + mdirector
+				+ ", mactor=" + mactor + ", mplot=" + mplot + "]";
 	}
-	
-	
+
 }

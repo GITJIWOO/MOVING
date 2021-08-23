@@ -50,6 +50,8 @@ public class MovieUpdateOkService implements IMovieInfoService{
 	    	String strmGrade = request.getParameter("moviegrade");
 	    	int mGrade = Integer.parseInt(strmGrade);
 	    	String mCountry = request.getParameter("moviecountry");
+	    	String mGenre = request.getParameter("moviegenre");
+	    	String mTime = request.getParameter("movietime");
 	    	String strmDate = request.getParameter("moviepremiere");
 	    	Date mPremiere = Date.valueOf(strmDate);
 	    	String mDirector = request.getParameter("moviedirector");
@@ -66,6 +68,8 @@ public class MovieUpdateOkService implements IMovieInfoService{
 	    	movie.setMtitle(mTitle);
 	    	movie.setMgrade(mGrade);
 			movie.setMcountry(mCountry);
+			movie.setMgenre(mGenre);
+			movie.setMtime(mTime);
 			movie.setMpremiere(mPremiere);
 			movie.setMdirector(mDirector);
 			movie.setMactor(mActor);

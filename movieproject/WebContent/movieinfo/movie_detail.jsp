@@ -28,6 +28,14 @@
 			<td>${movie.mcountry }</td>
 		</tr>
 		<tr>
+			<th>장르</th>
+			<td>${movie.mgenre }</td>
+		</tr>
+		<tr>
+			<th>런닝타임</th>
+			<td>${movie.mtime }</td>
+		</tr>
+		<tr>
 			<th>영화 개봉일</th>
 			<td>${movie.mpremiere }</td>
 		</tr>
