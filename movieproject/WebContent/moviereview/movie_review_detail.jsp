@@ -4,32 +4,45 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+<link rel="stylesheet" href="../movieui/css/mstyles.css" />
+<link rel="stylesheet" href="../MovieProject/movieui/css/mstyles.css" />
+<style>
+	 #content {
+	    	display: flex;
+	    	justify-content: center;
+	    	padding: 400px 400px 400px 400px;
+	    }
+</style>
 <meta charset="UTF-8">
-<!-- <link rel="stylesheet" href="../movieui/css/mstyles.css" /> -->
-<!-- <link rel="stylesheet" href="../MovieProject/movieui/css/mstyles.css" /> -->
 <title>리뷰 디테일</title>
 </head>
 <body>
 	<!--main 화면 header start-->
-	<div class="main-bar">
-		<div class="main-bar__column">
-			<span><a href="/MovieProject/moviemain.do"><img
-					src="../movieui/css/screen/images/logo2.png" /></a></span>
-		</div>
-		<div class="main-bar__column">
-			<span> <a class="main-bar__movie"
-				href="/MovieProject/moviedetail.do">영화정보</a> <a
-				class="main-bar__movie" href="#">다운로드</a>
-			</span>
-		</div>
-		<div class="main-bar__column">
-			<span><a class="main-bar__btn"
-				href="/MovieProject/userjoin.do">로그인</a></span> <span>|</span> <span><a
-				class="main-bar__btn" href="/MovieProject/requserjoin.do">회원가입</a></span>
-		</div>
-	</div>
-	<!-- main 화면 header end-->
-				
+    <div class="main-bar">
+      <div class="main-bar__column">
+        <span
+          ><a href="/MovieProject/moviemain.do"><img src="<%=request.getContextPath() %>/movieui/css/screen/images/logo.png" /></a
+        ></span>
+      </div>
+      <div class="main-bar__column">
+        <span>
+          <a class="main-bar__movie" href="/MovieProject/movieselect.do">영화정보</a>
+          <a class="main-bar__movie" href="#">다운로드</a>
+        </span>
+      </div>
+      <div class="main-bar__column">
+        <span><a class="main-bar__btn" href="/MovieProject/userjoin.do">로그인</a></span>
+        <span>|</span>
+        <span><a class="main-bar__btn" href="/MovieProject/requserjoin.do">회원가입</a></span>
+      </div>
+    </div>
+    <!-- main 화면 header end-->
+   <!-- main 화면 body start-->
+    <div class="main-body">
+      <div class="main-sidebar"></div>
+      <div class="main-contents">
+      <div id="contents">
 			<form action="/MovieProject/moviereviewwrite.do" method="post">
 				<input type="hidden" name="mId" value="${movie.mid }">
 				<input type="hidden" name="uId" value="${uId }">
@@ -42,7 +55,7 @@
 			</a>
 
 			<c:set var="review" value="${reviewDetail }"></c:set>
-			<table border="1">
+			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
 						<th>리뷰번호</th>
@@ -113,6 +126,11 @@
 				</c:if>
 			</c:if>
 			<%-- 페이징 부분 끝 --%>
+			</div>
+	<div class="main-sidebar"></div>
+    </div>
+    </div>
+    <!-- main 화면 body end-->
 
 
 	<script type="text/javascript">
