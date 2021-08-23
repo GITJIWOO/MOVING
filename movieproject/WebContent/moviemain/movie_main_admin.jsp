@@ -28,11 +28,13 @@
 	</div>
 	<div id="content">
 	</div>
+	<!-- foot start -->
 	<div id="footer">
 		<p><b>Creators</b>&nbsp;&nbsp;김지우 , 최재인 , 이한빈 , 김영훈</p>
 		<p><b>Contact </b>&nbsp;&nbsp;<a href="https://github.com/GITJIWOO">https://github.com/GITJIWOO</a></p>
 		<hr>
 		<p id="copyright"><b>ⓒ MOVING Corp.</b></p>
 	</div>
+	<!-- foot end -->
 </body>
 </html>
