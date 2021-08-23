@@ -67,3 +67,6 @@
 
 1. 영화 리스트 페이징, 검색 기능 추가
 2. 리스트 UI, UX
+3. review detail, review write.jsp 병합 css 일부 UI 구현
+4. user 부분 css 완료, 관리자 회원정보 조회 세션검사 로직 수정, 로그인 전 후로 메인 UI 구성 변경
+
