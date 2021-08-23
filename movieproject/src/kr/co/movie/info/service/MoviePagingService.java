@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.co.movie.movie.model.MovieDAO;
 import kr.co.movie.movie.model.MoviePageDTO;
@@ -14,6 +15,12 @@ public class MoviePagingService implements IMovieInfoService{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		try {
+			// 세션
+			HttpSession session = request.getSession();
+			// 유저 세션
+			Object uAdminObj = session.getAttribute("session_admin");
+			Object uAdmin = uAdminObj;
+			
 			String strPage = request.getParameter("page");
 			
 			int page = 1;
@@ -31,6 +38,7 @@ public class MoviePagingService implements IMovieInfoService{
 			
 			request.setAttribute("movieList", movieList);
 			request.setAttribute("moviePageDTO", moviePageDTO);
+			request.setAttribute("uAdmin", uAdmin);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

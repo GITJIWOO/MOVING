@@ -13,24 +13,68 @@
 	    	justify-content: center;
 	    	padding-top: 45px;
 	    }
+	    
 	    .movie{
 	    	position: relative;
+	    	width: 700px;
 	    }
+	    
 	    .search {
 	    	margin-bottom: 45px;
-	    	margin-left: 330px;
+	    	margin-left: 400px;
 	    }
+	    
+	    .moviesearch {
+	    	width: 300px;
+	    }
+	    
 	    .movieinfo {
 	    	border: 1px solid blue;
-	    	width: 530px;
+	    	width: 650px;
 	    }
+	    
 	    .movieblock {
 	    	border: 1px solid black;
-	    	width: 250px;
-	    	height: 130px;
+	    	position: relative;
+	    	width: 650px;
+	    	height: 240px;
 	    }
+	    
+	    .movieimage {
+	    	border: 1px solid green;
+	    	position: absolute;
+	    	width: 170px;
+	    	height: 240px;
+	    }
+	    
+	    .clickimage {
+	    	width: 170px;
+	    	height: 240px;
+	    }
+	    
+	    .moviecontent {
+	    	border: 1px solid red;
+	    	position: absolute;
+	    	width: 480px;
+	    	height: 240px;
+	    	left: 170px;
+	    	padding: 10px;
+	    }
+	    
 	    .page {
 	    	margin-top: 30px;
+	    	margin-bottom: 20px;
+	    }
+	    
+	    .movietitle {
+	    	font-size: 30px;
+	    	font-weight: bold;
+	    	margin-top: 13px;
+	    	margin-bottom: 17px;
+	    }
+	    
+	    li {
+	    	margin: 10px;
 	    }
     </style>
 <meta charset="UTF-8">
@@ -63,23 +107,27 @@
       <div class="main-contents">
 		<div class="movie">
 			<div class="search">
-				<form action="/MovieProject/moviesearch.do" method="post">
+				<form action="/MovieProject/moviesearch.do" method="post" class="moviesearch">
 					<input type="text" name="keyword" placeholder="검색어" class="form-control me-2">
 					<button type="submit" class="btn btn-secondary">검색</button>
 				</form>
 			</div>
 			<div class="movieinfo">
 				<c:forEach var="movie" items="${movieList}">
-					<div class="movieblock">	
-						<ul>
-							<li><a href="/MovieProject/moviedetail.do?mId=${movie.mid}">
-								${movie.mtitle }
-							</a></li>
-							<li>${movie.mcountry }</li>
-							<li>${movie.mgenre }</li>
-							<li>${movie.mtime }</li>
-							<li>${movie.mpremiere }</li>
-						</ul>
+					<div class="movieblock">
+						<div class="movieimage"><a href="/MovieProject/moviedetail.do?mId=${movie.mid}"><img src="/MovieProject/movieui/css/screen/images/movieimage.jpg" class="clickimage" width="170px" height="240px"></a></div>
+						<div class="moviecontent">
+							<ul>
+								<li class="movietitle"><a href="/MovieProject/moviedetail.do?mId=${movie.mid}">
+									${movie.mtitle }</a></li>
+								<li>${movie.mcountry }</li>
+								<li>${movie.mgenre }</li>
+								<li>${movie.mtime }</li>
+								<li>${movie.mpremiere }</li>
+								<li>감독 | ${movie.mdirector }</li>
+								<li>출연 | ${movie.mactor }</li>
+							</ul>
+						</div>
 					</div>
 				</c:forEach>
 			</div>
@@ -145,6 +193,11 @@
 					</c:if>
 				</c:if>
 			</div>
+			<c:if test="${uAdmin == 1}">
+				<form action="/MovieProject/movieinfo/movie_insert_form.jsp">
+					<button type="submit" class="btn btn-success">영화 등록</button>
+				</form>
+			</c:if>
 		</div>
       </div>
       <div class="main-sidebar"></div>

@@ -7,11 +7,11 @@
 		/* border: 1px solid black; */
 		height:700px;
 	}
-	#footer {
-		background-color: rgb(238, 232, 232);
-		/* border: 1px solid black; */
-		height:100px;
-	}
+    #footer {
+      background-color: rgb(165, 165, 165);
+      /* border: 1px solid black; */
+      height:100px;
+    }
 	#bodydetail2 {
 		text-align:right;
 	}
@@ -20,12 +20,12 @@
 	#footer > p {
 		padding-left:50px;
 		padding-top:10px;
-		font-size:50%;
+		font-size:70%;
 	}
 	#copyright {
 		text-align:right;
 		padding-right:50px;
 		padding-bottom:10px;
-		font-size:50%;
+		font-size:90%;
 	}
 	hr { text-align:center; width:800px;}

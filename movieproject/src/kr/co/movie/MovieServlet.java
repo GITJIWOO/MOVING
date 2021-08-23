@@ -74,13 +74,6 @@ public class MovieServlet extends HttpServlet {
 		IMovieReviewService mrs = null;
 
 		String ui = null;
-		
-		MovieDAO movieDAO = MovieDAO.getInstance();
-		
-
-		// 세션 쓰는 법
-		HttpSession session = null;
-		session = request.getSession();
 
 		String uri = request.getRequestURI();
 		System.out.println("uri패턴 : " + uri);
