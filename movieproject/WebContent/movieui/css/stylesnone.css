@@ -1,0 +1,122 @@
+@charset "UTF-8";
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* main- bar start */
+/* div */
+.main-bar {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  position: fixed;
+  width: 100%;
+  height: 120px;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.main-bar__column {
+  color: white;
+  width: 33.3%;
+}
+/* img */
+.main-bar__column img {
+  width: 145px;
+  height: 60px;
+}
+/* div */
+.main-bar__column:first-child {
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+/* div */
+.main-bar__column:nth-child(2) {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 17px;
+}
+/* div */
+.main-bar__column:last-child {
+  display: flex;
+  justify-content: flex-end;
+}
+/* a */
+.main-bar__movie {
+  color: inherit;
+  text-decoration: none;
+  padding: 0 20px;
+  font-size: 25px;
+  font-weight: 500;
+}
+/* a, form */
+.main-bar__btn {
+  color: inherit;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  display: flex;
+  vertical-align: text-top;
+  font-size: medium;
+  font-weight: 600;
+  border-style: none;
+  background-color: rgba(0, 0, 0, 0);
+  margin: 0 15px;
+}
+/* input */
+.main-bar__btn input:focus {
+  outline: none;
+}
+.main-bar__btn input {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  color: white;
+  font-size: medium;
+  font-weight: 600;
+  margin: -2 15px;
+  font-family: inherit;
+}
+
+/* main- body start */
+/* div */
+.main-body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  display: flex;
+  padding-top: 120px;
+  background-color: #2b2b2b;
+}
+/* div */
+.main-sidebar {
+  width: 13%;
+}
+/* div */
+.main-contents {
+  background-color: white;
+  display: flex;
+  height: 300vh;
+  width: 74%;
+}
+body{
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
