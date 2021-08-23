@@ -4,12 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 <meta charset="UTF-8">
 <title>영화 상세 정보</title>
 </head>
 <body>
 	<h1>영화 상세 정보</h1>
-	<table border="1">
+	<table class="table table-hover">
 		<tr>
 			<th>영화 번호</th>
 			<td>${movie.mid }</td>
@@ -54,9 +55,9 @@
 		<h1>리뷰 목록</h1>
 	<form action="/MovieProject/moviereviewdetail.do" method="post">
 		<input type="hidden" name="mId" value="${movie.mid }">
-		<input type="submit" value="리뷰 더보기">
+		<input type="submit" value="리뷰 더보기" class="btn btn-dark">
 	</form>
-	<table border="1">
+	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th>리뷰번호</th>
@@ -85,12 +86,12 @@
 	
 	<form action="/MovieProject/movieselect.do" method="post">
 		<input type="hidden" name="movielist">
-		<input type="submit" value="영화 리스트로">
+		<input type="submit" value="영화 리스트로" class="btn btn-dark">
 	</form>
 	<c:if test="${session_admin == 1}">
 	<form action="/MovieProject/movieupdate.do?mId=${movie.mid }" method="post">
 		<input type="hidden" name="movieupdate">
-		<input type="submit" value="영화 수정">
+		<input type="submit" value="영화 수정" class="btn btn-dark">
 	</form>
 	</c:if>
 </body>
