@@ -57,7 +57,9 @@ public class MovieDAO {
 				movie.setMid(rs.getInt("mid"));
 				movie.setMtitle(rs.getString("mtitle"));
 				movie.setMgrade(rs.getInt("mgrade"));
-				movie.setMcountry(rs.getString("mcountry"));	
+				movie.setMcountry(rs.getString("mcountry"));
+				movie.setMgenre(rs.getString("mgenre"));
+				movie.setMtime(rs.getString("mtime"));
 				movie.setMpremiere(rs.getDate("mpremiere"));
 				movie.setMdirector(rs.getString("mdirector"));
 				movie.setMactor(rs.getString("mactor"));
@@ -92,16 +94,18 @@ public class MovieDAO {
 		try {
 			con = ds.getConnection();
 			String sql = "INSERT INTO movie (mtitle, mgrade,"
-					+ " mcountry, mpremiere, mdirector, mactor, mplot) "
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
+					+ " mcountry, mgenre, mtime, mpremiere, mdirector, mactor, mplot) "
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, movie.getMtitle());
 			pstmt.setInt(2, movie.getMgrade());
 			pstmt.setString(3, movie.getMcountry());
-			pstmt.setDate(4, movie.getMpremiere());
-			pstmt.setString(5, movie.getMdirector());
-			pstmt.setString(6, movie.getMactor());
-			pstmt.setString(7, movie.getMplot());
+			pstmt.setString(4, movie.getMgenre());
+			pstmt.setString(5, movie.getMtime());
+			pstmt.setDate(6, movie.getMpremiere());
+			pstmt.setString(7, movie.getMdirector());
+			pstmt.setString(8, movie.getMactor());
+			pstmt.setString(9, movie.getMplot());
 			
 			pstmt.executeUpdate();
 			
@@ -143,6 +147,8 @@ public class MovieDAO {
 				movie.setMtitle(rs.getString("mtitle"));
 				movie.setMgrade(rs.getInt("mgrade"));
 				movie.setMcountry(rs.getString("mcountry"));
+				movie.setMgenre(rs.getString("mgenre"));
+				movie.setMtime(rs.getString("mtime"));
 				movie.setMpremiere(rs.getDate("mpremiere"));
 				movie.setMdirector(rs.getString("mdirector"));
 				movie.setMactor(rs.getString("mactor"));
@@ -176,18 +182,20 @@ public class MovieDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con = ds.getConnection();
-			String sql = "UPDATE movie SET mtitle=?, mgrade=?, mcountry=?, "
+			String sql = "UPDATE movie SET mtitle=?, mgrade=?, mcountry=?, mgenre=?, mtime=?, "
 					+ "mpremiere=?, mdirector=?, mactor=?, mplot=? WHERE mid=?";
 			
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, movie.getMtitle());
 			pstmt.setInt(2, movie.getMgrade());
 			pstmt.setString(3, movie.getMcountry());
-			pstmt.setDate(4, movie.getMpremiere());
-			pstmt.setString(5, movie.getMdirector());
-			pstmt.setString(6, movie.getMactor());
-			pstmt.setString(7, movie.getMplot());
-			pstmt.setInt(8, movie.getMid());
+			pstmt.setString(4, movie.getMgenre());
+			pstmt.setString(5, movie.getMtime());
+			pstmt.setDate(6, movie.getMpremiere());
+			pstmt.setString(7, movie.getMdirector());
+			pstmt.setString(8, movie.getMactor());
+			pstmt.setString(9, movie.getMplot());
+			pstmt.setInt(10, movie.getMid());
 			
 			pstmt.executeUpdate();
 			
@@ -233,6 +241,8 @@ public class MovieDAO {
 				movie.setMtitle(rs.getString("mtitle"));
 				movie.setMgrade(rs.getInt("mgrade"));
 				movie.setMcountry(rs.getString("mcountry"));
+				movie.setMgenre(rs.getString("mgenre"));
+				movie.setMtime(rs.getString("mtime"));
 				movie.setMpremiere(rs.getDate("mpremiere"));
 				movie.setMdirector(rs.getString("mdirector"));
 				movie.setMactor(rs.getString("mactor"));
@@ -325,6 +335,8 @@ public class MovieDAO {
 				movie.setMtitle(rs.getString("mtitle"));
 				movie.setMgrade(rs.getInt("mgrade"));
 				movie.setMcountry(rs.getString("mcountry"));
+				movie.setMgenre(rs.getString("mgenre"));
+				movie.setMtime(rs.getString("mtime"));
 				movie.setMpremiere(rs.getDate("mpremiere"));
 				movie.setMdirector(rs.getString("mdirector"));
 				movie.setMactor(rs.getString("mactor"));

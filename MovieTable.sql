@@ -26,6 +26,8 @@ SELECT * FROM user;
     mtitle = 영화 제목
     mgrade = 영화 등급
     mcountry = 영화 제작 국가
+    mgenre = 영화 장르
+    mtime = 영화 시간
     mpremiere = 영화 개봉일
     mdirector = 영화 감독
     mactor = 영화 배우
@@ -36,6 +38,8 @@ CREATE TABLE movie(
     mtitle VARCHAR(100) NOT NULL,
     mgrade INT(2) NOT NULL,
     mcountry VARCHAR(30) NOT NULL,
+    mgenre VARCHAR(20) NOT NULL,
+    mtime VARCHAR(10) NOT NULL,
     mpremiere DATE NOT NULL,
     mdirector VARCHAR(30) NOT NULL,
     mactor VARCHAR(30) NOT NULL,
@@ -43,11 +47,9 @@ CREATE TABLE movie(
 );
 SELECT * FROM movie;
 
-INSERT INTO movie (mtitle, mgrade, mcountry, mpremiere, mdirector, mactor, mplot)
-					VALUES ('카34', 1, '미국', '2021-06-12', '김지우', '윤지우', '자동자 경주');
+INSERT INTO movie (mtitle, mgrade, mcountry, mgenre, mtime, mpremiere, mdirector, mactor, mplot)
+					VALUES ('카34', 1, '미국', '레이싱', '84분','2021-06-12', '김지우', '윤지우', '자동자 경주');
                     
-                    
-
 DROP TABLE movie;
 
 
@@ -68,6 +70,8 @@ CREATE TABLE review(
     mid INT,
     FOREIGN KEY (mid) REFERENCES movie(mid)
 );
+
+DROP TABLE review;
 
 /*	영화 예매 정보 테이블
 	modeid = 영화 디테일 식별 번호

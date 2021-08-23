@@ -28,6 +28,14 @@
 				<td><input type="text" name="moviecountry" value="${movie.mcountry }" required="required"/><br/></td>
 			</tr>
 			<tr>
+				<th>영화 장르</th>
+				<td><input type="text" name="moviegenre" value="${movie.mgenre }" required="required"/><br/></td>
+			</tr>
+			<tr>
+				<th>영화 런닝타임</th>
+				<td><input type="text" name="movietime" value="${movie.mtime }" required="required"/><br/></td>
+			</tr>
+			<tr>
 				<th>영화 개봉일</th>
 				<td><input type="date" name="moviepremiere" value="${movie.mpremiere }" required="required"/><br/></td>
 			</tr>

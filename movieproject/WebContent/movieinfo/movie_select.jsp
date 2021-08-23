@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link rel="stylesheet" href="../movieui/css/mstyles.css" />
     <link rel="stylesheet" href="../MovieProject/movieui/css/mstyles.css" />
     <style>
@@ -75,6 +76,8 @@
 								${movie.mtitle }
 							</a></li>
 							<li>${movie.mcountry }</li>
+							<li>${movie.mgenre }</li>
+							<li>${movie.mtime }</li>
 							<li>${movie.mpremiere }</li>
 						</ul>
 					</div>
