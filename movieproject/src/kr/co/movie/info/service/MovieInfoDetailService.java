@@ -35,7 +35,7 @@ public class MovieInfoDetailService implements IMovieInfoService {
 			MovieVO movie = dao.MovieDetail(mId);
 
 			ReviewDAO rdao = ReviewDAO.getInstance();
-			List<ReviewVO> reviewList = rdao.getReviewList();
+			List<ReviewVO> reviewList = rdao.getReviewList(mId);
 
 			request.setAttribute("movie", movie);
 			request.setAttribute("reviewList", reviewList);

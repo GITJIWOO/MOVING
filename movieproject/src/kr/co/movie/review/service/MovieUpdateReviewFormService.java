@@ -19,6 +19,7 @@ public class MovieUpdateReviewFormService implements IMovieReviewService {
 		String uId = (String) uIdObj;
 		System.out.println("UID : " + uId);
 		System.out.println(request.getParameter("rNum"));
+		System.out.println(request.getParameter("mId"));
 		
 		try {
 			request.setCharacterEncoding("utf-8");

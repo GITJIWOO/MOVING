@@ -35,20 +35,24 @@ public class MovieWriteReviewService implements IMovieReviewService {
 			String strRate = request.getParameter("rRate");
 			String mTitle = request.getParameter("mTitle");
 			int rRate = Integer.parseInt(strRate);
-//			String mId = request.getParameter("mId");
+			String strMId = request.getParameter("mId");
 			// dao 생성
 			ReviewDAO dao = ReviewDAO.getInstance();
 			MovieDAO mdao = MovieDAO.getInstance();
 			
-//			MovieVO movie = mdao.MovieDetail(mId);
+			int mId = Integer.parseInt(strMId);
+			
+			MovieVO movie = mdao.MovieDetail(strMId);
+			
 			// VO 생성
 			ReviewVO review = new ReviewVO();
 			review.setuId(uId);
 			review.setrContent(rContent);
 			review.setrRate(rRate);
 			review.setmTitle(mTitle);
+			review.setmId(mId);
 			
-//			request.setAttribute("mId", movie);
+			request.setAttribute("mId", movie);
 			request.setAttribute("uId", uid);
 
 			System.out.println("유저 아이디: " + uid);

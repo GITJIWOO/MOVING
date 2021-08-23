@@ -31,14 +31,14 @@ public class MovieListReviewService implements IMovieReviewService {
 //			}
 //		}
 		
-		ReviewDAO dao = ReviewDAO.getInstance();
-		
-		List<ReviewVO> reviewList = dao.getReviewList();
-		
-		request.setAttribute("reviewList", reviewList);
-		System.out.println("service 게시물 데이터: " + reviewList);
-		
-		
+//		ReviewDAO dao = ReviewDAO.getInstance();
+//		
+//		List<ReviewVO> reviewList = dao.getReviewList();
+//		
+//		request.setAttribute("reviewList", reviewList);
+//		System.out.println("service 게시물 데이터: " + reviewList);
+//		
+//		
 		
 		
 

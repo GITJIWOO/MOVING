@@ -7,10 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.co.movie.movie.model.MovieDAO;
+import kr.co.movie.movie.model.MovieVO;
 import kr.co.movie.review.model.ReviewDAO;
 import kr.co.movie.review.model.ReviewVO;
 
-public class MovieDeleteReviewService implements IMovieReviewService {
+public class MovieDeleteReviewService implements IMovieReviewService { 
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
@@ -25,16 +27,21 @@ public class MovieDeleteReviewService implements IMovieReviewService {
 		// rnum 파라미터
 		String strrNum = request.getParameter("rNum");
 		int rNum = Integer.parseInt(strrNum);
-
+		String mId = request.getParameter("mId");
 		// DAO 생성
 		ReviewDAO dao = ReviewDAO.getInstance();
-
+		
 		System.out.println("삭제 리뷰 번호: " + rNum);
 
+		// mId 파라미터 넣기 
+		List<ReviewVO> reviewList = dao.getReviewList(mId);
 		
-		List<ReviewVO> reviewList = dao.getReviewList();
+		// 영화 다오 넣기 쿼리 실행 
+		MovieDAO mdao = MovieDAO.getInstance();
+		List<MovieVO> movieList =  mdao.getMovieList();
 		
 		request.setAttribute("reviewList", reviewList);
+		request.setAttribute("movieList", movieList);
 		System.out.println("service 게시물 데이터: " + reviewList);
 		// delete 로적에 rNum 넣어서 삭제
 		int resultCode = dao.delete(rNum);
