@@ -10,6 +10,7 @@
 </head>
 <body>
 	<!--main 화면 header start-->
+	<!-- 로그인 전에만 볼 수 있는 페이지 -->
     <div class="main-bar">
       <div class="main-bar__column">
         <span

@@ -10,7 +10,8 @@
 <title>로그인</title>
 </head>
 <body>
-	<!-- CSS START -->
+	<!--main 화면 header start-->
+	<!-- 로그인 전에만 볼 수 있는 페이지 -->
 	<div class="main-bar">
       <div class="main-bar__column">
         <span
@@ -29,7 +30,7 @@
         <span><a class="main-bar__btn" href="/MovieProject/requserjoin.do">회원가입</a></span>
       </div>
     </div>
-	<!-- CSS END -->
+	<!-- main 화면 header end-->
 	
 	<c:if test = "${joinCheck == 1 }">
 		<script>alert('회원가입이 완료되었습니다.');</script>
