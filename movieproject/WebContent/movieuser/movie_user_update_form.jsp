@@ -10,6 +10,7 @@
 </head>
 <body>
 <!--main 화면 header start-->
+<!-- 로그인 후에만 볼 수 있는 페이지 -->
     <div class="main-bar">
       <div class="main-bar__column">
         <span
@@ -23,9 +24,13 @@
         </span>
       </div>
       <div class="main-bar__column">
-        <span><a class="main-bar__btn" href="/MovieProject/userjoin.do">로그인</a></span>
+        <span><a class="main-bar__btn">${session_id } 님 환영합니다!</a></span>
         <span>|</span>
-        <span><a class="main-bar__btn" href="/MovieProject/requserjoin.do">회원가입</a></span>
+        <form class="main-bar__btn"  action = "/MovieProject/userdetail.do" method = "post">
+		<input type = "hidden" name = "uId" value = "${session_id }" />
+		<input type = "submit" value = "마이페이지" />
+		</form>        <span>|</span>
+        <span><a class="main-bar__btn" href="/MovieProject/userlogout.do">로그아웃</a></span>
       </div>
     </div>
     <!-- main 화면 header end-->

@@ -25,9 +25,11 @@
         </span>
       </div>
       <div class="main-bar__column">
-        <span><a class="main-bar__btn" href="/MovieProject/userjoin.do">로그인</a></span>
+        <span><a class="main-bar__btn">${session_id } 님 환영합니다!</a></span>
         <span>|</span>
-        <span><a class="main-bar__btn" href="/MovieProject/requserjoin.do">회원가입</a></span>
+        <span><a class="main-bar__btn" href="/MovieProject/userselect.do">관리자페이지</a></span>
+        <span>|</span>
+        <span><a class="main-bar__btn" href="/MovieProject/userlogout.do">로그아웃</a></span>
       </div>
     </div>
     <!-- main 화면 header end-->
@@ -69,7 +71,7 @@
 			</c:if>
 			
 			<c:forEach var = "pageNum" begin = "${userDTO.startPage }" end = "${userDTO.endPage }">
-				<a class="info-page__each" href = "/MovieProject/userselect.do?page=${pageNum }">[${pageNum }]</a>
+				<a class="info-page__each" href = "/MovieProject/userselect.do?page=${pageNum }">${pageNum }</a>
 			</c:forEach>
 			
 			<c:if test = "${userDTO.endPage < userDTO.totalPages }">

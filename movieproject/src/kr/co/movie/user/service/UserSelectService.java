@@ -27,8 +27,9 @@ public class UserSelectService implements IMovieUserService{
 				e.printStackTrace();
 			}
 		}
-		String session_admin = (String)session.getAttribute("session_admin");
-		if(session_admin == null) {
+		
+		int session_admin = (int)session.getAttribute("session_admin");
+		if(session_admin == 0) {
 			try {
 				String ui = "/moviemain/movie_main.jsp";
 				RequestDispatcher dp = request.getRequestDispatcher(ui);
@@ -37,6 +38,7 @@ public class UserSelectService implements IMovieUserService{
 				e.printStackTrace();
 			}
 		}
+
 		String strPage = request.getParameter("page");
 		int currentPage = 1;
 		if(strPage != null) {
