@@ -6,7 +6,7 @@
 @import "./screen/userlogin.css";
 @import "./screen/userdetail.css";
 @import "./screen/userupdate.css";
-@import "./screen/userinfo.css";
+
 
 /* component */
 @import "./screen/components/main-bar.css";

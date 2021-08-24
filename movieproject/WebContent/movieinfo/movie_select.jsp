@@ -26,10 +26,10 @@
 	    
 	    .moviesearch {
 	    	width: 300px;
+	    	height: 40px;
 	    }
 	    
 	    .movieinfo {
-	    	border: 1px solid blue;
 	    	width: 650px;
 	    }
 	    
@@ -38,10 +38,10 @@
 	    	position: relative;
 	    	width: 650px;
 	    	height: 240px;
+	    	margin-top: 30px;
 	    }
 	    
 	    .movieimage {
-	    	border: 1px solid green;
 	    	position: absolute;
 	    	width: 170px;
 	    	height: 240px;
@@ -62,6 +62,8 @@
 	    }
 	    
 	    .page {
+	    	display: flex;
+ 		   	justify-content: center;
 	    	margin-top: 30px;
 	    	margin-bottom: 20px;
 	    }
@@ -76,16 +78,22 @@
 	    li {
 	    	margin: 10px;
 	    }
+	    
+	    .adminbutton {
+	    	display: flex;
+ 		   	justify-content: center;
+	    }
     </style>
 <meta charset="UTF-8">
 <title>영화 정보</title>
 </head>
 <body>
 	<!--main 화면 header start-->
+	<!-- 로그인 전과 후, 관리자 모두 볼 수 있는 페이지 -->
     <div class="main-bar">
       <div class="main-bar__column">
         <span
-          ><a href="/MovieProject/moviemain.do"><img src="<%=request.getContextPath() %>/movieui/css/screen/images/logo.png" /></a
+          ><a href="/MovieProject/moviemain.do"><img src="/MovieProject/movieui/css/screen/images/logo.png" /></a
         ></span>
       </div>
       <div class="main-bar__column">
@@ -94,11 +102,30 @@
           <a class="main-bar__movie" href="#">다운로드</a>
         </span>
       </div>
+      <c:if test="${session_id == null }">
       <div class="main-bar__column">
         <span><a class="main-bar__btn" href="/MovieProject/userjoin.do">로그인</a></span>
         <span>|</span>
         <span><a class="main-bar__btn" href="/MovieProject/requserjoin.do">회원가입</a></span>
       </div>
+      </c:if>
+      <c:if test="${session_id != null }">
+      <div class="main-bar__column">
+        <span><a class="main-bar__btn">${session_id } 님 환영합니다!</a></span>
+        <span>|</span>
+        <c:if test="${session_admin == 1 }">
+        <span><a class="main-bar__btn" href="/MovieProject/userselect.do">관리자페이지</a></span>
+        </c:if>
+        <c:if test="${session_admin == 0 }">
+        <form class="main-bar__btn"  action = "/MovieProject/userdetail.do" method = "post">
+		<input type = "hidden" name = "uId" value = "${session_id }" />
+		<input type = "submit" value = "마이페이지" />
+		</form>
+        </c:if>
+        <span>|</span>
+        <span><a class="main-bar__btn" href="/MovieProject/userlogout.do">로그아웃</a></span>
+      </div>
+      </c:if>
     </div>
     <!-- main 화면 header end-->
     <!-- main 화면 body start-->
@@ -106,10 +133,23 @@
       <div class="main-sidebar"></div>
       <div class="main-contents">
 		<div class="movie">
+			<div class="adminbutton">
+				<c:if test="${session_admin == 1}">
+					<form action="/MovieProject/movieinfo/movie_insert_form.jsp">
+						<button type="submit" class="btn btn-success">영화 등록</button>
+					</form>
+				</c:if>
+			</div>
 			<div class="search">
 				<form action="/MovieProject/moviesearch.do" method="post" class="moviesearch">
-					<input type="text" name="keyword" placeholder="검색어" class="form-control me-2">
-					<button type="submit" class="btn btn-secondary">검색</button>
+					<div class="row">
+						<div class="col-md-9">
+							<input type="text" name="keyword" placeholder="검색어" class="form-control me-2">
+						</div>
+						<div class="col-md-3">
+							<button type="submit" class="btn btn-secondary">검색</button>
+						</div>
+					</div>
 				</form>
 			</div>
 			<div class="movieinfo">
@@ -193,11 +233,6 @@
 					</c:if>
 				</c:if>
 			</div>
-			<c:if test="${uAdmin == 1}">
-				<form action="/MovieProject/movieinfo/movie_insert_form.jsp">
-					<button type="submit" class="btn btn-success">영화 등록</button>
-				</form>
-			</c:if>
 		</div>
       </div>
       <div class="main-sidebar"></div>
