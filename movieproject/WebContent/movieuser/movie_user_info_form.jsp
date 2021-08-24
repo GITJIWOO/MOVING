@@ -5,14 +5,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8"><link
+<meta charset="UTF-8">
+<link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
       crossorigin="anonymous"
     />
-<link rel="stylesheet" href="../movieui/css/stylesnone.css" />
-<link rel="stylesheet" href="../MovieProject/movieui/css/stylesnone.css" />
+<link rel="stylesheet" href="../movieui/css/mstyles.css" />
+<link rel="stylesheet" href="../MovieProject/movieui/css/mstyles.css" />
+<style>
+	.main-contents {
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	}
+	.info-header {
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	}
+	.info-header__title {
+	  font-size: 30px;
+	  font-weight: 500;
+	  padding: 20px 0;
+	  margin: 15px 0;
+	  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	}
+	.page-link{
+		color: black;
+	}
+</style>
 <title>사용자 정보 조회</title>
 </head>
 <body>
@@ -44,7 +67,7 @@
       <div class="main-contents">
         <div class="info-header">
           <h1 class="info-header__title">사용자 정보 조회</h1>
-          <form class="info-form">
+
             <table class="table table-hover">
               <thead class="info-form__content">
                 <tr>
@@ -68,24 +91,39 @@
 			</tbody>
 		</table>
 		<%-- 페이징 시작 --%>
-		<div class="info-page">
+
 		<c:if test = "${userDTO.hasUser() }">
-		
+		<ul class = "pagination justify-content-center">
 			<c:if test = "${userDTO.startPage > 10 }">
-				<a class="info-page__each" class="info-page__each" href = "/MovieProject/userselect.do?page=${userDTO.startPage - 10 }">&lt;</a>
+			<li class = "page-item">
+				<a class="page-link" href = "/MovieProject/userselect.do?page=${userDTO.startPage - 10 }">«</a>
+			</li>
 			</c:if>
 			
 			<c:forEach var = "pageNum" begin = "${userDTO.startPage }" end = "${userDTO.endPage }">
-				<a class="info-page__each" href = "/MovieProject/userselect.do?page=${pageNum }">${pageNum }</a>
+				<c:if test = "${userDTO.currentPage == pageNum }">
+				<li class = "page-item active">			
+					<a class="page-link" href = "/MovieProject/userselect.do?page=${pageNum }">${pageNum }</a>
+				</li>
+				</c:if>
+				
+				<c:if test = "${userDTO.currentPage != pageNum }">			
+				<li class = "page-item">			
+					<a class="page-link" href = "/MovieProject/userselect.do?page=${pageNum }">${pageNum }</a>
+				</li>	
+				</c:if>		
 			</c:forEach>
 			
 			<c:if test = "${userDTO.endPage < userDTO.totalPages }">
-				<a class="info-page__each" href = "/MovieProject/userselect.do?page=${userDTO.startPage + 10 }">&gt;</a>
-			</c:if>	
+			<li class = "page-item">			
+				<a class="page-link" href = "/MovieProject/userselect.do?page=${userDTO.startPage + 10 }">»</a>
+			</li>
+			</c:if>
+		</ul>
 		</c:if>
-		</div>
+
 		<%-- 페이징 끝 --%>
-	</form>
+
 	</div>
       </div>
       <div class="main-sidebar"></div>

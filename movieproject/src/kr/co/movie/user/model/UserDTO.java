@@ -51,6 +51,10 @@ public class UserDTO {
 		return userList;
 	}
 	
+	public int getCurrentPage() {
+		return currentPage;
+	}
+	
 	public int getTotalPages() {
 		return totalPages;
 	}
