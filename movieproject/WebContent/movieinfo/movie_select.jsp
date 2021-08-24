@@ -40,7 +40,8 @@
 	    	position: relative;
 	    	width: 650px;
 	    	height: 240px;
-	    	margin-top: 30px;
+	    	margin-top: 15px;
+	    	margin-bottom: 15px;
 	    }
 	    
 	    .movieimage {
