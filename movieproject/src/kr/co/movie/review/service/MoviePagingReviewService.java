@@ -25,7 +25,10 @@ public class MoviePagingReviewService implements IMovieReviewService {
 		Object uIdObj = session.getAttribute("session_id");
 		String uId = (String) uIdObj;
 		System.out.println("UID : " + uId);
-
+		// 영자 세션
+		Object adminIdObj = session.getAttribute("session_admin");
+		String adminId = (String) adminIdObj;
+		System.out.println("adminSession_Id: " + adminId);
 
 //		if (uId == null) {
 //			try {
@@ -51,7 +54,7 @@ public class MoviePagingReviewService implements IMovieReviewService {
 		if (strPage != null) {
 			page = Integer.parseInt(strPage);
 		}
-		
+
 		// DAO생성
 		ReviewDAO rdao = ReviewDAO.getInstance();
 		MovieDAO mdao = MovieDAO.getInstance();

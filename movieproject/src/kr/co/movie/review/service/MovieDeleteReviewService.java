@@ -22,7 +22,10 @@ public class MovieDeleteReviewService implements IMovieReviewService {
 		Object uIdObj = session.getAttribute("session_id");
 		String uId = (String) uIdObj;
 		System.out.println("UID : " + uId);
-
+		// 영자 세션
+		Object adminIdObj = session.getAttribute("session_admin");
+		String adminId = (String) adminIdObj;
+		System.out.println("adminSession_Id: " + adminId);
 
 		// rnum 파라미터
 		String strrNum = request.getParameter("rNum");
@@ -43,6 +46,8 @@ public class MovieDeleteReviewService implements IMovieReviewService {
 		request.setAttribute("reviewList", reviewList);
 		request.setAttribute("movieList", movieList);
 		System.out.println("service 게시물 데이터: " + reviewList);
+		//
+		request.setAttribute("adminId", adminId);
 		// delete 로적에 rNum 넣어서 삭제
 		int resultCode = dao.delete(rNum);
 		if (resultCode == 1) {
