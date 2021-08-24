@@ -49,7 +49,7 @@ CREATE TABLE movie(
 SELECT * FROM movie;
 
 INSERT INTO movie (mtitle, mgrade, mcountry, mgenre, mtime, mpremiere, mdirector, mactor, mplot)
-					VALUES ('카34', 1, '미국', '레이싱', '84분','2021-06-12', '김지우', '윤지우', '자동자 경주');
+					VALUES ('카17', 1, '미국', '레이싱', '84분','2021-03-10', '김지우', '윤지우', '자동자 경주');
                     
 DROP TABLE movie;
 

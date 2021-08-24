@@ -225,7 +225,7 @@ public class MovieDAO {
 		PreparedStatement pstmt = null;		
 		ResultSet rs = null;
 
-		String sql = "SELECT * FROM movie ORDER BY mpremiere DESC LIMIT ?, 10";
+		String sql = "SELECT * FROM movie ORDER BY mpremiere ASC LIMIT ?, 10";
 		
 		try {
 			con = ds.getConnection();
@@ -318,7 +318,7 @@ public class MovieDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "SELECT * FROM movie WHERE mtitle LIKE ? LIMIT ?, 10";
+		String sql = "SELECT * FROM movie WHERE mtitle LIKE ? ORDER BY mpremiere DESC LIMIT ?, 10";
 		
 		try {
 			con = ds.getConnection();

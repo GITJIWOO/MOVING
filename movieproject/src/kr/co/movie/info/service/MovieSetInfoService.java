@@ -28,7 +28,7 @@ public class MovieSetInfoService implements IMovieInfoService{
 				e.printStackTrace();
 			}
 		}
-		String session_admin = (String)session.getAttribute("session_admin");
+		int session_admin = (int)session.getAttribute("session_admin");
 		if(session_admin == null) {
 			try {
 				String ui = "/moviemain/movie_main.jsp";
