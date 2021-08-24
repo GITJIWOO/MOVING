@@ -10,25 +10,40 @@
 <meta charset="UTF-8">
 <title>영화 상세 정보</title>
 <style>
+.main-contents{
+	display:flex;
+	flex-direction: column;
+	
+}
+	.movie {
+		display: flex;
+	}
 	.movie_detail {
-		padding-left : 8%;
-		padding-top : 15%;
+		padding-left : 6%;
+		padding-top : 10%;
 		width : 70%;
-		height : 20%;
-		float:left;
+		height : 70%;
+		font-size: 130%;
 	}
 	.movie_img {
+		text-align:center;
 		padding-top: 5%;
 		padding-right: 5%;
 		width: 60%;
-		height:80%;
-		float:right;
-	}
-	.movie_review{
-		clear:both;
+		height:60%;
 	}
 	hr {
-		width:90%;
+		width:80%;
+	}
+	.main-body{
+	height: 100vh;
+}
+	.movie_detail span {
+		font-weight:bold;
+	}
+	.movie_title {
+		font-size:45px;
+		font-weight:700;
 	}
 </style>
 </head>
@@ -63,42 +78,85 @@
       <div class="main-sidebar"></div>
       <div class="main-contents">
 	
+		<div class="movie">
+			<div class="movie_detail">
+			<h3 class="movie_title">${movie.mtitle }</h3>
+			<hr>
+			<p>
+				<span>개요</span>&nbsp;&nbsp;&nbsp;${movie.mgenre } | ${movie.mcountry } | ${movie.mtime } | ${movie.mpremiere }
+			</p><br>
+			<p>
+				<span>감독</span>&nbsp;&nbsp;&nbsp;${movie.mdirector }
+			</p><br>
+			<p>
+				<span>출연</span>&nbsp;&nbsp;&nbsp;${movie.mactor }
+			</p><br>
+			<p>
+				<span>등급</span>&nbsp;&nbsp;&nbsp;${movie.mgrade }
+			</p><br>
+			
+			<hr>
+			
+			<h3>줄거리</h3>
+			<p>${movie.mplot }</p>
+				
+			</div>
+			<div class="movie_img">
+				<img src="/MovieProject/movieui/css/screen/images/movieimage.jpg" width="240px" height="339px"/>
+			</div>
+		</div>
 	
-	<div class="movie_detail">
-		<h3>${movie.mtitle }</h3>
-		<hr>
-		<p>
-			<b>개요</b>&nbsp;&nbsp;&nbsp;${movie.mgenre } | ${movie.mcountry } | ${movie.mtime } | ${movie.mpremiere }
-		</p><br>
-		<p>
-			<b>감독</b>&nbsp;&nbsp;&nbsp;${movie.mdirector }
-		</p><br>
-		<p>
-			<b>출연</b>&nbsp;&nbsp;&nbsp;${movie.mactor }
-		</p><br>
-		<p>
-			<b>등급</b>&nbsp;&nbsp;&nbsp;${movie.mgrade }
-		</p><br>
+		<div class="review">
+			<h1>리뷰 목록</h1>
+			<form action="/MovieProject/moviereviewdetail.do" method="post">
+				<input type="hidden" name="mId" value="${movie.mid }">
+				<input type="submit" value="리뷰 더보기" class="btn btn-dark">
+			</form>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>리뷰번호</th>
+				<th>회원아이디</th>
+				<th>영화 제목</th>
+				<th>평점</th>
+				<th>리뷰내용</th>
+				<th>작성일</th>
+			</tr>
+			
+		</thead>
+		<tbody>
+			<c:forEach var="review" items="${reviewList}">
+			<tr>
+				<td>${review.rNum}</td>
+				<td>${review.uId}</td>
+				<td>${review.mTitle}</td>
+				<td>${review.rRate}</td>
+				<td>${review.rContent}</td>
+				<td>${review.rDate}</td>
+			</tr>	
+			</c:forEach>
+		</tbody>
+
+	</table>
+	
+	
+	<form action="/MovieProject/movieselect.do" method="post">
+		<input type="hidden" name="movielist">
+		<input type="submit" value="영화 리스트로" class="btn btn-dark">
+	</form>
+	<c:if test="${session_admin == 1}">
+	<form action="/MovieProject/movieupdate.do?mId=${movie.mid }" method="post">
+		<input type="hidden" name="movieupdate">
+		<input type="submit" value="영화 수정" class="btn btn-dark">
+	</form>
+	</c:if>
+		</div>
 		
-		<hr>
-		
-		<h3>줄거리</h3>
-		<p>${movie.mplot }</p>
-		
-	</div>
-	
-	<div class="movie_img">
-		<img src="/MovieProject/movieui/css/screen/images/movieimage.jpg" width="90%" height="90%"/>
-	</div>
-	
-	<div class="movie_review">
-	</div>
-	
+
 	
 		</div>
       <div class="main-sidebar"></div>
     </div>
-	
 	<!-- BODY END -->
 	
 	<!-- footer start -->
