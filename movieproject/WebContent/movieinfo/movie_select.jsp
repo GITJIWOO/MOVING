@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="../movieui/css/mstyles.css" />
     <link rel="stylesheet" href="../MovieProject/movieui/css/mstyles.css" />
     <style>
+    	.main-body {
+    		height: auto;
+    	}
 	    .main-contents {
 	    	display: flex;
 	    	justify-content: center;
@@ -34,7 +37,6 @@
 	    }
 	    
 	    .movieblock {
-	    	border: 1px solid black;
 	    	position: relative;
 	    	width: 650px;
 	    	height: 240px;
@@ -53,7 +55,6 @@
 	    }
 	    
 	    .moviecontent {
-	    	border: 1px solid red;
 	    	position: absolute;
 	    	width: 480px;
 	    	height: 240px;
