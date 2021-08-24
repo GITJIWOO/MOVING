@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.co.movie.movie.model.MovieDAO;
 import kr.co.movie.review.model.ReviewDAO;
 import kr.co.movie.review.model.ReviewVO;
 
@@ -42,7 +43,9 @@ public class MovieUpdateReviewService implements IMovieReviewService {
 //		review.setrDate(rDate);
 //		review.setuId(uId);
 //		review.setmTitle(mTitle);
-
+		
+		MovieDAO mdao = MovieDAO.getInstance();
+		mdao.getMovieList();
 		// 3. DAO 생성 및 update로직 호출(update 로직은 직접작성)
 		ReviewDAO dao = ReviewDAO.getInstance();
 		int resultCode = dao.update(review);

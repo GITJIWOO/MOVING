@@ -39,7 +39,7 @@ public class ReviewDAO {
 		// connection, preparedStatement 객체 선언
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO review (uId, rRate, rContent,rDate, mTitle) VALUES(?, ?, ?, now(), ?)";
+		String sql = "INSERT INTO review (uId, rRate, rContent,rDate, mTitle,mId) VALUES(?, ?, ?, now(), ?,?)";
 
 		try {
 			con = ds.getConnection();
@@ -48,6 +48,7 @@ public class ReviewDAO {
 			pstmt.setInt(2, review.getrRate());
 			pstmt.setString(3, review.getrContent());
 			pstmt.setString(4, review.getmTitle());
+			pstmt.setInt(5, review.getmId());
 
 			pstmt.executeUpdate();
 			return WRITE_SUCCESS;
@@ -157,7 +158,7 @@ public class ReviewDAO {
 	}// end update()
 
 	// 페이지 번호에 맞는 게시물 가져오기
-	public List<ReviewVO> getReviewList() {
+	public List<ReviewVO> getReviewList(String mId) {
 		// 내부에서 사용할 변수 선언
 		List<ReviewVO> reviewList = new ArrayList<ReviewVO>();
 		Connection con = null;
@@ -165,12 +166,12 @@ public class ReviewDAO {
 		ResultSet rs = null;
 
 		// 쿼리문(SELECT구문, 역순)
-		String sql = "SELECT * FROM review ORDER BY rnum DESC LIMIT 5";
+		String sql = "SELECT * FROM review where mId = ? ORDER BY rnum DESC LIMIT 5";
 		try {
 			// 연결구문을 다 작성해주세요. 리턴구문까지.
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
-			// 여기 ?를 안채우는데요. 밑에 오류가 있는거같은데요
+			pstmt.setString(1, mId);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -179,6 +180,7 @@ public class ReviewDAO {
 				review.setrNum(rs.getInt("rnum"));
 				review.setuId(rs.getString("uid"));
 				review.setmTitle(rs.getString("mtitle"));
+				review.setmId(rs.getInt("mid"));
 				review.setrRate(rs.getInt("rrate"));
 				review.setrContent(rs.getString("rcontent"));
 				review.setrDate(rs.getTimestamp("rdate"));
@@ -207,7 +209,7 @@ public class ReviewDAO {
 		return reviewList;
 	} // end getReviewList()
 
-	public List<ReviewVO> getPageList(int pageNum) {
+	public List<ReviewVO> getPageList(int pageNum, String mId) {
 		// 내부에서 사용할 변수 선언
 		List<ReviewVO> reviewList = new ArrayList<>();
 		Connection con = null;
@@ -215,13 +217,13 @@ public class ReviewDAO {
 		ResultSet rs = null;
 
 		// 쿼리문(SELECT구문, 역순, 5개씩 pageNum에 맞춰서);
-		String sql = "SELECT * FROM review ORDER BY rnum DESC LIMIT ?, 15";
+		String sql = "SELECT * FROM review WHERE mId = ? ORDER BY rnum DESC LIMIT ?, 15";
 		try {
 			// 연결구문을 다 작성해주세요. 리턴구문까지.
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
-
-			pstmt.setInt(1, pageNum);
+			pstmt.setString(1, mId);
+			pstmt.setInt(2, pageNum);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -230,6 +232,7 @@ public class ReviewDAO {
 				review.setrNum(rs.getInt("rNUm"));
 				review.setuId(rs.getString("uId"));
 				review.setmTitle(rs.getString("mTitle"));
+				review.setmId(rs.getInt("mid"));
 				review.setrRate(rs.getInt("rRate"));
 				review.setrContent(rs.getString("rContent"));
 				review.setrDate(rs.getTimestamp("rDate"));
@@ -321,6 +324,7 @@ public class ReviewDAO {
 			review.setrRate(rs.getInt("rrate"));
 			review.setrContent(rs.getString("rcontent"));
 			review.setrDate(rs.getTimestamp("rdate"));
+			review.setmId(rs.getInt("mid"));
 			
 			System.out.println("review" + review);
 			
