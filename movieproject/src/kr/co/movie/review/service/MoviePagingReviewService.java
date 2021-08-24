@@ -26,9 +26,16 @@ public class MoviePagingReviewService implements IMovieReviewService {
 		String uId = (String) uIdObj;
 		System.out.println("UID : " + uId);
 		// 영자 세션
-		Object adminIdObj = session.getAttribute("session_admin");
-		String adminId = (String) adminIdObj;
-		System.out.println("adminSession_Id: " + adminId);
+//		int session_admin = (int) session.getAttribute("session_admin");
+//		if (session_admin == 0) {
+//			try {
+//				String ui = "/moviemain/movie_main.jsp";
+//				RequestDispatcher dp = request.getRequestDispatcher(ui);
+//				dp.forward(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
 
 //		if (uId == null) {
 //			try {
