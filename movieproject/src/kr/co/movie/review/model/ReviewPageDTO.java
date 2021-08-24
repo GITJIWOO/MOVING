@@ -28,23 +28,23 @@ public class ReviewPageDTO {
 			this.endPage = 0;
 		} else {
 			// 게시글 총 개수를 이용해 전체 페이지 개수부터 구하기
-			this.totalPages = this.total / 5;
-			if(this.total % 5 > 0) {
+			this.totalPages = this.total / 10;
+			if(this.total % 10 > 0) {
 				// 만약 나눴을때 10개로 딱떨어지지 않으면
 				// 마지막에 페이지를 하나 더 추가해야함
 				this.totalPages += 1;
 			}
 			
 			// 현재 보고 있는 페이지 그룹의 시작 번호 구하기.
-			int modVal = this.currentPage % 5;
+			int modVal = this.currentPage % 10;
 			this.startPage =
-					this.currentPage / 5 * 5 + 1;
+					this.currentPage / 10 * 10 + 1;
 			if(modVal == 0) {
-				this.startPage -= 5;
+				this.startPage -= 10;
 			}
 			
 			// 해당 페이지 그룹의 끝 번호 구하기.
-			endPage = startPage + (5 - 1);
+			endPage = startPage + (10 - 1);
 			// 단 위에서 구한 명목상의 마지막 번호가
 			// totalPages를 초과하는 경우는
 			// totalPages로 대신 대입한다.

@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="../MovieProject/movieui/css/mstyles.css" />
 <style>
 #contents {
-	/* 	display: flex; */
+	/* 	 	display: flex;  */
 	justify-content: center;
 	text-align: center;
 	margin: 20px auto 20px auto;
@@ -82,32 +82,26 @@
 								<td>영화제목</td>
 								<td><input type="text" name="mTitle"
 									value="${movie.mtitle }" readonly>
-								<td><select name="rRate" style="background:activeborder;color: aqua;">
-										<option style="background: olive; color: aqua;">평점</option>
-										<option style="background: olive;" value="1">1</option>
-										<option style="background: olive;" value="2">2</option>
-										<option style="background: olive;" value="3">3</option>
-										<option style="background: olive;" value="4">4</option>
-										<option style="background: olive;" value="5">5</option>
+								<td><select name="rRate"
+									style="background: activeborder; color: black;">
+										<option style="background: gray; color: black;">평점</option>
+										<option style="background: gray;" value="1">1</option>
+										<option style="background: gray;" value="2">2</option>
+										<option style="background: gray;" value="3">3</option>
+										<option style="background: gray;" value="4">4</option>
+										<option style="background: gray;" value="5">5</option>
 								</select></td>
 							</tr>
 							<td>글쓴이</td>
 							<td><input type="text" name="uId" value="${uId }" readonly></td>
 							<tr>
-								<td>리뷰내용</td>
+								<td></td>
 								<td><textarea rows="10" cols="50" name="rContent">${review.rContent}</textarea>
 								</td>
+
+								<td><input type="submit" value="등록" class="btn btn-light">
 							</tr>
 							<tr>
-
-
-
-							</tr>
-
-
-							<tr>
-								<td><input type="submit" value="등록" class="btn btn-light"> <input
-									type="reset" value="초기화" class="btn btn-light">
 							</tr>
 						</c:if>
 					</table>
@@ -123,9 +117,9 @@
 				<!-- 			</form> -->
 
 
-				<a href="/MovieProject/moviedetail.do?mId=${movie.mid }"> <input
-					type="button" class="btn btn-light" value="목록으로">
-				</a>
+				<%-- 				<a href="/MovieProject/moviedetail.do?mId=${movie.mid }"> <input --%>
+				<!-- 					type="button" class="btn btn-light" value="영화정보"> -->
+				<!-- 				</a> -->
 				<c:set var="review" value="${reviewDetail }"></c:set>
 				<table class="table table-striped table-hover">
 					<thead>
@@ -148,13 +142,24 @@
 								<td>${review.rContent }</td>
 								<td>${review.rDate }</td>
 								<c:if test="${review.uId == uId }">
-
-									<td><select onchange="ddd(this.value,'${review.rNum}')">
-											<option value=""></option>
-											<option value="/MovieProject/moviereviewupdateok.do">수정</option>
-											<option value="/MovieProject/moviereviewdelete.do">삭제</option>
-									</select></td>
-
+									<td>
+										<!-- 
+										<form action="/MovieProject/moviereviewupdate.do" method="post">
+											<input type="hidden" name="rNum" value="${review.rNum }]">
+											<input type="hidden" name="uId" value="${uId }">
+											<input type="hidden" name="rRate" value="${review.rRate }">
+											<input type="hidden" name="rContent" value="${review.rContent }">
+											<input type="submit" value="수정">
+										</form>
+										 -->
+										<form action="/MovieProject/moviereviewdelete.do"
+											method="post">
+											<input type="hidden" name="rNum" value="${review.rNum }">
+											<input type="hidden" name="mId" value="${movie.mid }">
+											<input type="submit" value="삭제"
+												class="btn btn-outline-secondary btn-sm">
+										</form>
+									</td>
 								</c:if>
 							</tr>
 						</c:forEach>
@@ -164,47 +169,55 @@
 
 				<%-- 페이징 버튼 만들기 
 	표현할 글이 있는 경우에만 버튼을 표시함--%>
-				<div class="listPage">
-					<c:if test="${pageDTO.hasBoard()}">
 
-						<%-- 맨 처음 --%>
-						<c:if test="${pageDTO.startPage > 5}">
-							<a href="/MovieProject/moviereviewdetail.do?page=1"> [first]</a>
-						</c:if>
+				<c:if test="${pageDTO.hasBoard()}">
+					<ul class="pagination justify-content-center pagination-sm">
+						<%-- 						
 
 						<%-- 뒤로가기 버튼을 표시할지 말지 결정하는 부분 --%>
-						<c:if test="${pageDTO.startPage > 5}">
-							<a
-								href="/MovieProject/moviereviewdetail.do?page=${pageDTO.startPage - 5}">
-								[prev] </a>
+						<c:if test="${pageDTO.startPage > 10}">
+							<form
+								action="/MovieProject/moviereviewdetail.do?page=${pageDTO.startPage - 10}"
+								method="post">
+								<input type="hidden" name="mId" value="${movie.mid }"> <input
+									type="submit" class="btn btn-gray" value="<<">
+							</form>
+							<!-- 							<li class="page-item"><a class="page-link" -->
+							<%-- 								href="/MovieProject/moviereviewdetail.do?page=${pageDTO.startPage - 10}">«</a></li> --%>
 						</c:if>
 
 						<%-- 페이지 번호 10개 묶음을 깔아주는 부분 --%>
 						<c:forEach var="pNo" begin="${pageDTO.startPage}"
 							end="${pageDTO.endPage}">
-							<a href="/MovieProject/moviereviewdetail.do?page=${pNo}">[${pNo}]</a>
+							<form action="/MovieProject/moviereviewdetail.do?page=${pNo}"
+								method="post">
+								<input type="hidden" name="mId" value="${movie.mid }"> <input
+									type="submit" class="btn btn-gray" value="${pNo }">
+							</form>
 						</c:forEach>
 
 						<%-- 다음으로 가기 버튼을 표시할지 말지 결정하는 부분 --%>
 						<c:if test="${pageDTO.endPage < pageDTO.totalPages}">
-							<a
-								href="/MovieProject/moviereviewdetail.do?page=${pageDTO.startPage + 5}">
-								[next] </a>
+							<form
+								action="/MovieProject/moviereviewdetail.do?page=${pageDTO.startPage + 10}"
+								method="post">
+								<input type="hidden" name="mId" value="${movie.mid }"> <input
+									type="submit" class="btn btn-gray" value=">>">
+							</form>
+							<!-- 							<li class="page-item"><a class="page-link" -->
+							<%-- 								href="/MovieProject/moviereviewdetail.do?page=${pageDTO.startPage + 10}"> --%>
+							<!-- 									» </a> -->
 						</c:if>
 
-						<%-- 마지막 --%>
-						<c:if test="${pageDTO.endPage < pageDTO.totalPages}">
-							<a
-								href="/MovieProject/moviereviewdetail.do?page=${pageDTO.endPage}">
-								[last] </a>
-						</c:if>
-					</c:if>
-				</div>
-				<%-- 페이징 부분 끝 --%>
+					</ul>
+				</c:if>
 			</div>
 		</div>
-		<div class="main-sidebar"></div>
+		<%-- 페이징 부분 끝 --%>
 	</div>
+
+	<div class="main-sidebar"></div>
+
 	<!-- main 화면 body end-->
 	<!-- foot start -->
 	<div id="footer">
