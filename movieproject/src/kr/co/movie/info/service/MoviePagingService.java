@@ -19,7 +19,9 @@ public class MoviePagingService implements IMovieInfoService{
 			HttpSession session = request.getSession();
 			// 유저 세션
 			Object uAdminObj = session.getAttribute("session_admin");
-			Object uAdmin = uAdminObj;
+			Object session_admin = uAdminObj;
+			Object uIdObj = session.getAttribute("session_id");
+			Object session_id = uIdObj;
 			
 			String strPage = request.getParameter("page");
 			
@@ -38,7 +40,8 @@ public class MoviePagingService implements IMovieInfoService{
 			
 			request.setAttribute("movieList", movieList);
 			request.setAttribute("moviePageDTO", moviePageDTO);
-			request.setAttribute("uAdmin", uAdmin);
+			request.setAttribute("session_admin", session_admin);
+			request.setAttribute("session_id", session_id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
