@@ -15,7 +15,7 @@
 	<div class="main-bar">
       <div class="main-bar__column">
         <span
-          ><a href="/MovieProject/moviemain.do"><img src="<%=request.getContextPath() %>/movieui/css/screen/images/logo.png" /></a
+          ><a href="/MovieProject/moviemain.do"><img src="/MovieProject/movieui/css/screen/images/logo.png" /></a
         ></span>
       </div>
       <div class="main-bar__column">

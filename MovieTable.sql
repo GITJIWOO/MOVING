@@ -21,6 +21,7 @@ INSERT INTO user VALUES('adminid', 'adminpw', 'admin', 'admin@admin.com', 30, 1)
 SELECT * FROM user;
 
 
+
 /*  영화 정보 테이블
 	mid = 영화 식별 번호
     mtitle = 영화 제목
