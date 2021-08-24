@@ -35,6 +35,9 @@
 	.page-link{
 		color: black;
 	}
+	.main-body{
+		height: 100vh;
+	}
 </style>
 <title>사용자 정보 조회</title>
 </head>
