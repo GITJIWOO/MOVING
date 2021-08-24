@@ -15,9 +15,9 @@ public class UserJoinService implements IMovieUserService{
 		HttpSession session = null;
 		session = request.getSession();
 		String uId = (String)session.getAttribute("session_id");
-		if(uId == null) {
+		if(uId != null) {
 			try {
-				String ui = "/movieuser/movie_user_login_form.jsp";
+				String ui = "/moviemain/movie_main.jsp";
 				RequestDispatcher dp = request.getRequestDispatcher(ui);
 				dp.forward(request, response);
 			}catch(Exception e) {

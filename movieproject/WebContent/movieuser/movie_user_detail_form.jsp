@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="../movieui/css/mstyles.css" />
 <link rel="stylesheet" href="../MovieProject/movieui/css/mstyles.css" />
-<title>Insert title here</title>
+<title>회원정보</title>
 </head>
 <body>
 <!--main 화면 header start-->
