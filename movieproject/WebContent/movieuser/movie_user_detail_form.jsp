@@ -11,6 +11,20 @@
 .main-body{
 	height: 100vh;
 }
+table,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
 </style>
 <title>회원정보</title>
 </head>
