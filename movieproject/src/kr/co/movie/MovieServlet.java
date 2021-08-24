@@ -87,8 +87,8 @@ public class MovieServlet extends HttpServlet {
 		
 		// 메인 화면
 		if (uri.equals("/MovieProject/moviemain.do")) {
-//			mus = new UserMainService();
-//			mus.execute(request, response);
+			mis = new MoviePagingService();
+			mis.execute(request, response);
 			ui = "/moviemain/movie_main.jsp";
 			
 			// 사용자 회원가입 폼
