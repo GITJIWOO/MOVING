@@ -7,6 +7,11 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="../movieui/css/mstyles.css" />
 <link rel="stylesheet" href="../MovieProject/movieui/css/mstyles.css" />
+<style>
+.main-body{
+	height: 100vh;
+}
+</style>
 <title>회원정보</title>
 </head>
 <body>
