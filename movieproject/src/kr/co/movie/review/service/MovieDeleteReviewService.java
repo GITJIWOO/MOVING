@@ -17,11 +17,11 @@ public class MovieDeleteReviewService implements IMovieReviewService {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// 세션
-				HttpSession session = request.getSession();
-				// 유저 세션
-				Object uIdObj = session.getAttribute("session_id");
-				String uId = (String) uIdObj;
-				System.out.println("UID : " + uId);
+		HttpSession session = request.getSession();
+		// 유저 세션
+		Object uIdObj = session.getAttribute("session_id");
+		String uId = (String) uIdObj;
+		System.out.println("UID : " + uId);
 
 
 		// rnum 파라미터

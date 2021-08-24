@@ -217,7 +217,7 @@ public class ReviewDAO {
 		ResultSet rs = null;
 
 		// 쿼리문(SELECT구문, 역순, 5개씩 pageNum에 맞춰서);
-		String sql = "SELECT * FROM review WHERE mId = ? ORDER BY rnum DESC LIMIT ?, 15";
+		String sql = "SELECT * FROM review WHERE mId = ? ORDER BY rnum DESC LIMIT ?, 10";
 		try {
 			// 연결구문을 다 작성해주세요. 리턴구문까지.
 			con = ds.getConnection();
@@ -352,4 +352,42 @@ public class ReviewDAO {
 		return review;
 		
 	}// end selectOne()
+	
+	// 페이징 처리를 위해 DB내 전체 데이터 개수 알아오기
+	public int getMidReviewCount(String mId) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int countNum = 0;
+
+		String sql = "SELECT COUNT(*) FROM review WHERE mid=?";
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mId);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				countNum = rs.getInt(1);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (con != null && !con.isClosed()) {
+					con.close();
+				}
+				if (pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+				if (rs != null && !rs.isClosed()) {
+					rs.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return countNum;
+	} // end getReviewCount()
 }

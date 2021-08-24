@@ -16,17 +16,17 @@ public class MovieUpdateReviewService implements IMovieReviewService {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// 세션
-				HttpSession session = request.getSession();
-				// 유저 세션
-				Object uIdObj = session.getAttribute("session_id");
-				String uId = (String) uIdObj;
-				System.out.println("UID : " + uId);
+		HttpSession session = request.getSession();
+		// 유저 세션
+		Object uIdObj = session.getAttribute("session_id");
+		String session_id = (String) uIdObj;
+		System.out.println("UID : " + session_id);
 
 		// 1. 파라미터 6개 받아오기
 		String strrNum = request.getParameter("rNum");
 		int rNum = Integer.parseInt(strrNum);
 		// 유저id
-//		String uId = request.getParameter("uId");
+		String uId = request.getParameter("uId");
 		// 영화제목
 //		String mTitle = request.getParameter("mTitle");
 		String strrRate = request.getParameter("rRate");
@@ -41,7 +41,7 @@ public class MovieUpdateReviewService implements IMovieReviewService {
 		review.setrRate(rRate);
 		review.setrContent(rContent);
 //		review.setrDate(rDate);
-//		review.setuId(uId);
+		review.setuId(uId);
 //		review.setmTitle(mTitle);
 		
 		MovieDAO mdao = MovieDAO.getInstance();
