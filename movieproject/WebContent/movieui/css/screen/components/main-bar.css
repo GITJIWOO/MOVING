@@ -7,6 +7,7 @@
   box-sizing: border-box;
   padding: 15px;
   background-color: rgba(0, 0, 0, 0.3);
+  z-index:1000;
 }
 .main-bar__column {
   color: white;
