@@ -84,6 +84,10 @@
 	    	display: flex;
  		   	justify-content: center;
 	    }
+	    
+	    hr {
+	    	width: 600px;
+	    }
     </style>
 <meta charset="UTF-8">
 <title>영화 정보</title>
@@ -170,6 +174,7 @@
 							</ul>
 						</div>
 					</div>
+					<div class="moviehr"><hr></div>
 				</c:forEach>
 			</div>
 			<div class="page">
