@@ -8,9 +8,13 @@
 		height:700px;
 	}
     #footer {
+    bottom:0;
+    width: 100%;
       background-color: rgb(165, 165, 165);
       /* border: 1px solid black; */
       height:100px;
+      z-index: 1000;
+      clear:both;
     }
 	#bodydetail2 {
 		text-align:right;

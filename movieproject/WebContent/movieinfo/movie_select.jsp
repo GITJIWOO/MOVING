@@ -40,7 +40,8 @@
 	    	position: relative;
 	    	width: 650px;
 	    	height: 240px;
-	    	margin-top: 30px;
+	    	margin-top: 15px;
+	    	margin-bottom: 15px;
 	    }
 	    
 	    .movieimage {
@@ -83,6 +84,10 @@
 	    .adminbutton {
 	    	display: flex;
  		   	justify-content: center;
+	    }
+	    
+	    hr {
+	    	width: 600px;
 	    }
     </style>
 <meta charset="UTF-8">
@@ -170,6 +175,7 @@
 							</ul>
 						</div>
 					</div>
+					<div class="moviehr"><hr></div>
 				</c:forEach>
 			</div>
 			<div class="page">

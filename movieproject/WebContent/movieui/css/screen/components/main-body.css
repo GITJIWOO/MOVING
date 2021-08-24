@@ -9,9 +9,16 @@ body {
 .main-sidebar {
   width: 13%;
 }
+.main-sidebar:first-child{
+	float: left;
+}
+.main-sidebar:last-child{
+	float: right;
+}
 .main-contents {
   background-color: white;
   display: flex;
-  height: 300vh;
   width: 74%;
+  float: left;
+
 }

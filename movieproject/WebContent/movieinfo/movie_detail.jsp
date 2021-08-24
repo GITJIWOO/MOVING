@@ -12,17 +12,24 @@
 <style>
 	.movie_detail {
 		padding-left : 8%;
-		padding-top : 9%;
+		padding-top : 15%;
 		width : 60%;
-	}
-	.submenu {
-		text-weight:bold;
+		height : 20%;
+		float:left;
 	}
 	.movie_img {
-		
+		padding-top: 5%;
+		padding-right: 5%;
+		width: 60%;
+		height:20%;
+		float:right;
 	}
 	hr {
-		width:10%;
+		width:90%;
+	}
+	.movie_plot {
+		clear:both;
+		display:inline-block;
 	}
 </style>
 </head>
@@ -78,14 +85,13 @@
 	</div>
 	
 	<div class="movie_img">
-		<img src="/MovieProject/movieui/css/screen/images/movieimage.jpg" width="90%" height="10%"/>
+		<img src="/MovieProject/movieui/css/screen/images/movieimage.jpg" width="90%" height="90%"/>
 	</div>
 	
-	<div class="movie_plot">
-		<h3>줄거리</h3>
-		<p>${movie.mplot }</p>
-	</div>
-
+	<br/>
+	<h1>줄거리</h1>
+	<p>${movie.mplot }</p>
+	
 	
 	</div>
       <div class="main-sidebar"></div>
