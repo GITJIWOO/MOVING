@@ -12,40 +12,34 @@
 <style>
 .main-body {
   height: 150vh;
+  position: relative;
 }
 .main-contents {
   display: flex;
   flex-direction: column;
 }
+.movie-info {
+  margin: 30px;
+}
 .movie-info:first-child {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 30px;
+  margin: 40px;
 }
-.movie-info:last-child {
-  margin: 0 20px;
-}
-
-.movie-info__upper:first-child {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+.movie-info__upper {
+  width: 70%;
+  padding-bottom: 70px;
 }
 
 .movie__title {
-  font-size: 35px;
+  font-size: 37px;
   font-weight: 500;
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-  padding-bottom: 20px;
-  margin-bottom: 20px;
+  padding: 30px 0;
+  margin-bottom: 30px;
 }
-.movie__detail:first-child {
-  margin: 0 40px;
-}
-.movie__detail:last-child {
-  margin: 40px;
-  margin-top: 0;
+.movie__detail-img {
+  position: absolute;
+  top: 160px;
+  left: 70%;
 }
 .movie__detail-each {
   font-size: 20px;
@@ -53,14 +47,6 @@
 }
 .movie__detail-head {
   font-weight: 700;
-}
-.movie__plot-head {
-  font-weight: 700;
-  font-size: 20px;
-  margin-bottom: 15px;
-}
-.movie__plot-contents {
-  word-break: break-all;
 }
 .movie-info__review {
   font-weight: 700;
@@ -130,7 +116,13 @@
 		                <span class="movie__detail-head">등급&nbsp;</span>|
 		                ${movie.mgrade }
 		              </div>
-            		</div>				
+            		</div>
+            	</div>
+            <div class = "movie-info__lower">
+	            <div class="movie__detail-each">
+	              <span class="movie__detail-head">줄거리</span>${movie.mplot}  
+	            </div>            			
+		    </div>
 		           	<div class="movie__detail">
 		              <div class="movie__detail-img">
 		                <img
@@ -141,15 +133,7 @@
 		              </div>
 		            </div>
 				</div>
-          <div class="movie-info__upper">
-            <div class="movie__detail">
-              <div class="movie__plot-head">줄거리</div>
-              <div class="movie__plot-contents">${movie.mplot}</div>
-            </div>
-          </div>
-		</div>
-		
-        <div class="movie-info">
+        	<div class="movie-info">
           <h1 class="movie-info__review">리뷰 목록</h1>
 
           <form action="/MovieProject/moviereviewdetail.do" method="post">
