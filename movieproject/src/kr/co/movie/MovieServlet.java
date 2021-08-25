@@ -245,6 +245,14 @@ public class MovieServlet extends HttpServlet {
 			mis.execute(request, response);
 			ui = "/movieinfo/movie_detail.jsp";
 			
+<<<<<<< HEAD
+=======
+			//찜한 영화 목록 가져오기 서비스
+		} else if(uri.equals("/MovieProject/favoritemovieget.do")) {
+			mis = new FavoriteMovieGetService();
+			mis.execute(request, response);
+			ui = "";
+>>>>>>> parent of 5fe92de (ㅁㅇㄴㄾㅋㅊㅍ)
 			
 			// 그 외
 		} else {
