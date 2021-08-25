@@ -141,7 +141,7 @@
 								<td>${review.rRate }</td>
 								<td>${review.rContent }</td>
 								<td>${review.rDate }</td>
-								<c:if test="${review.uId == uId }">
+								<c:if test="${review.uId == uId || session_admin == 1}">
 									<td>
 										<!-- 
 										<form action="/MovieProject/moviereviewupdate.do" method="post">

@@ -18,20 +18,25 @@ public class MovieUpdateReviewFormService implements IMovieReviewService {
 		Object uIdObj = session.getAttribute("session_id");
 		String uId = (String) uIdObj;
 		System.out.println("UID : " + uId);
+		// 영자 세션
+		Object adminIdObj = session.getAttribute("session_admin");
+		String adminId = (String) adminIdObj;
+		System.out.println("adminSession_Id: " + adminId);
+
 		System.out.println(request.getParameter("rNum"));
 		System.out.println(request.getParameter("mId"));
-		
+
 		try {
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
-			
+
 			String strrNum = request.getParameter("rNum");
 			int rNum = Integer.parseInt(strrNum);
-			
+
 			ReviewDAO dao = ReviewDAO.getInstance();
-			
-			ReviewVO review =  dao.selectOne(rNum);
-			
+
+			ReviewVO review = dao.selectOne(rNum);
+
 			request.setAttribute("review", review);
 			request.setAttribute("uId", uId);
 			System.out.println("유저 아이디: " + uId);
