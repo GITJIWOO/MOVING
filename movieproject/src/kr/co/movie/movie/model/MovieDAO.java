@@ -3,6 +3,7 @@ package kr.co.movie.movie.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -488,4 +489,32 @@ public class MovieDAO {
 		}
 		return movieList;
 	}
+	
+	// 영화 티저 영상 추
+	public int setMovieVideo(VideoVO video) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ds.getConnection();
+			String sql = "INSERT INTO moviepreview (mid, mpaddress) VALUES (?, ?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, video.getmID());
+			pstmt.setString(2, video.getmPaddress());
+			pstmt.executeUpdate();
+		}catch(SQLException e){
+			System.out.println("에러: " + e);
+		}finally {
+			try {
+				if(con != null && !con.isClosed()) {
+					con.close();
+				}
+				if(pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return SUCCESS;
+	}// setMovieVideo END
 }
