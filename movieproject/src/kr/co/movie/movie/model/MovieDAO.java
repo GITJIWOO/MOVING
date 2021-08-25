@@ -405,4 +405,38 @@ public class MovieDAO {
 		}
 		return movieCount;
 	} // end getMoviePageCount
+	
+	//찜한 영화 INSERT
+	public int favoriteMovieInsert(String mid, String uid) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "INSERT INTO userfavoritemovie VALUES (?, ?)";
+		
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, mid);
+			pstmt.setString(2, uid);
+			
+			pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			return FAIL;
+		} finally {
+	 		try {
+	 			if(con != null && !con.isClosed()) {
+	 				con.close();
+	 			}
+	 			if(pstmt != null && !pstmt.isClosed()) {
+	 				pstmt.close();
+	 			}
+	 		} catch (Exception e){
+	 			e.printStackTrace();
+	 		}
+		}
+		return SUCCESS;
+	} // favoriteMovieInsert END
 }
