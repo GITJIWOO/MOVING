@@ -2,7 +2,7 @@ package kr.co.movie.movie.model;
 
 public class VideoVO {
 	private int mPid;
-	private int mID;
+	private int mId;
 	private String mPaddress;
 	
 	public VideoVO() {
@@ -10,10 +10,10 @@ public class VideoVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public VideoVO(int mPid, int mID, String mPaddress) {
+	public VideoVO(int mPid, int mId, String mPaddress) {
 		super();
 		this.mPid = mPid;
-		this.mID = mID;
+		this.mId = mId;
 		this.mPaddress = mPaddress;
 	}
 
@@ -25,12 +25,12 @@ public class VideoVO {
 		this.mPid = mPid;
 	}
 
-	public int getmID() {
-		return mID;
+	public int getmId() {
+		return mId;
 	}
 
-	public void setmID(int mID) {
-		this.mID = mID;
+	public void setmId(int mId) {
+		this.mId = mId;
 	}
 
 	public String getmPaddress() {
@@ -43,7 +43,7 @@ public class VideoVO {
 
 	@Override
 	public String toString() {
-		return "VideoVO [mPid=" + mPid + ", mID=" + mID + ", mPaddress=" + mPaddress + "]";
+		return "VideoVO [mPid=" + mPid + ", mId=" + mId + ", mPaddress=" + mPaddress + "]";
 	}
 	
 	

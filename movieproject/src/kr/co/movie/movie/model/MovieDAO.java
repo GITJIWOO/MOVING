@@ -489,7 +489,7 @@ public class MovieDAO {
 		return movieList;
 	}
 	
-	// 영화 티저 영상 추
+	// 영화 티저 추가 
 	public int setMovieVideo(VideoVO video) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -497,7 +497,7 @@ public class MovieDAO {
 			con = ds.getConnection();
 			String sql = "INSERT INTO moviepreview (mid, mpaddress) VALUES (?, ?)";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, video.getmID());
+			pstmt.setInt(1, video.getmId());
 			pstmt.setString(2, video.getmPaddress());
 			pstmt.executeUpdate();
 		}catch(SQLException e){
@@ -516,4 +516,38 @@ public class MovieDAO {
 		}
 		return SUCCESS;
 	}// setMovieVideo END
+	
+	// 영화 티저 관련 
+	public int setMovieVideo () {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = ds.getConnection();
+			String sql = "SELECT last_insert_id()";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			int mId = -2;
+			if(rs.next()) {
+				mId = rs.getInt(1);
+			}
+			
+			return mId;
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+	 		try {
+	 			if(con != null && !con.isClosed()) {
+	 				con.close();
+	 			}
+	 			if(pstmt != null && !pstmt.isClosed()) {
+	 				pstmt.close();
+	 			}
+	 		} catch (Exception e){
+	 			e.printStackTrace();
+	 		}
+		}
+		return -1;
+	} // end setMovie
 }

@@ -19,6 +19,7 @@ import kr.co.movie.info.service.MovieInfoDetailService;
 import kr.co.movie.info.service.MoviePagingService;
 import kr.co.movie.info.service.MovieSearchService;
 import kr.co.movie.info.service.MovieSetInfoService;
+import kr.co.movie.info.service.MovieSetVideoService;
 import kr.co.movie.info.service.MovieUpdateOkService;
 import kr.co.movie.movie.model.MovieDAO;
 import kr.co.movie.movie.model.MovieVO;
@@ -164,9 +165,15 @@ public class MovieServlet extends HttpServlet {
 			// 영화 정보 업로드
 		else if (uri.equals("/MovieProject/movieinsert.do")) {
 			mis = new MovieSetInfoService();
-			mis.execute(request, response);
+			mis.execute(request, response);			
+			// 영화 티저 주소 업로드 
+			mis = new MovieSetVideoService();
+			mis.execute(request, response);			
 			ui = "/movieselect.do";
+			
 
+			
+			
 			// 영화 리스트
 		} else if (uri.equals("/MovieProject/movieselect.do")) {
 			mis = new MoviePagingService();
