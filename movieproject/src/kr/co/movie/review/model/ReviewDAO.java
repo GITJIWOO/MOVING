@@ -424,5 +424,56 @@ public class ReviewDAO {
 		}
 		return countNum;
 	} // end getReviewCount()
+	
 
+	// 페이지 번호에 맞는 게시물 가져오기
+	public List<ReviewVO> getUserReviewList(String uId) {
+		// 내부에서 사용할 변수 선언
+		List<ReviewVO> reviewList = new ArrayList<ReviewVO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		// 쿼리문(SELECT구문, 역순)
+		String sql = "SELECT * FROM review where uid = ? ORDER BY rdate DESC";
+		try {
+			// 연결구문을 다 작성해주세요. 리턴구문까지.
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, uId);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				ReviewVO review = new ReviewVO();
+
+				review.setrNum(rs.getInt("rnum"));
+				review.setuId(rs.getString("uid"));
+				review.setmTitle(rs.getString("mtitle"));
+				review.setmId(rs.getInt("mid"));
+				review.setrRate(rs.getInt("rrate"));
+				review.setrContent(rs.getString("rcontent"));
+				review.setrDate(rs.getTimestamp("rdate"));
+
+				reviewList.add(review);
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (con != null && !con.isClosed()) {
+					con.close();
+				}
+				if (pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+				if (rs != null && !rs.isClosed()) {
+					rs.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return reviewList;
+	} // end getUserReviewList()
 }
