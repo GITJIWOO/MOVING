@@ -186,7 +186,7 @@ public class ReviewDAO {
 				review.setrDate(rs.getTimestamp("rdate"));
 
 				reviewList.add(review);
-				
+
 			}
 			System.out.println("db 데이터: " + reviewList);
 		} catch (Exception e) {
@@ -296,15 +296,50 @@ public class ReviewDAO {
 		}
 		return countNum;
 	} // end getReviewCount()
-	
+
+	public int getAvgReview(String mId) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int countNum = 0;
+
+		String sql = "SELECT AVG(rRate) FROM review WHERE mId = ?";
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mId);
+			rs = pstmt.executeQuery();
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (con != null && !con.isClosed()) {
+					con.close();
+				}
+				if (pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+				if (rs != null && !rs.isClosed()) {
+					rs.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return countNum;
+	} // end getAvgReview()
+
 	public ReviewVO selectOne(int rNum) {
 		System.out.println("rNum: " + rNum);
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		ReviewVO review = new ReviewVO();
-		
+
 		// 커넥션 연결 및 쿼리문 실행
 		String sql = "SELECT * FROM review WHERE rnum = ?";
 
@@ -316,19 +351,18 @@ public class ReviewDAO {
 
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				
-			
-			review.setrNum(rs.getInt("rnum"));
-			review.setuId(rs.getString("uid"));
-			review.setmTitle(rs.getString("mtitle"));
-			review.setrRate(rs.getInt("rrate"));
-			review.setrContent(rs.getString("rcontent"));
-			review.setrDate(rs.getTimestamp("rdate"));
-			review.setmId(rs.getInt("mid"));
-			
-			System.out.println("review" + review);
-			
-			return review;
+
+				review.setrNum(rs.getInt("rnum"));
+				review.setuId(rs.getString("uid"));
+				review.setmTitle(rs.getString("mtitle"));
+				review.setrRate(rs.getInt("rrate"));
+				review.setrContent(rs.getString("rcontent"));
+				review.setrDate(rs.getTimestamp("rdate"));
+				review.setmId(rs.getInt("mid"));
+
+				System.out.println("review" + review);
+
+				return review;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -350,9 +384,9 @@ public class ReviewDAO {
 
 		}
 		return review;
-		
+
 	}// end selectOne()
-	
+
 	// 페이징 처리를 위해 DB내 전체 데이터 개수 알아오기
 	public int getMidReviewCount(String mId) {
 		Connection con = null;
@@ -390,4 +424,5 @@ public class ReviewDAO {
 		}
 		return countNum;
 	} // end getReviewCount()
+
 }

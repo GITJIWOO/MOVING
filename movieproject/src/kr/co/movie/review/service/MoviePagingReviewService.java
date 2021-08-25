@@ -25,7 +25,17 @@ public class MoviePagingReviewService implements IMovieReviewService {
 		Object uIdObj = session.getAttribute("session_id");
 		String uId = (String) uIdObj;
 		System.out.println("UID : " + uId);
-
+		// 영자 세션
+//		int session_admin = (int) session.getAttribute("session_admin");
+//		if (session_admin == 0) {
+//			try {
+//				String ui = "/moviemain/movie_main.jsp";
+//				RequestDispatcher dp = request.getRequestDispatcher(ui);
+//				dp.forward(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
 
 //		if (uId == null) {
 //			try {
@@ -51,7 +61,7 @@ public class MoviePagingReviewService implements IMovieReviewService {
 		if (strPage != null) {
 			page = Integer.parseInt(strPage);
 		}
-		
+
 		// DAO생성
 		ReviewDAO rdao = ReviewDAO.getInstance();
 		MovieDAO mdao = MovieDAO.getInstance();
