@@ -76,9 +76,14 @@
 						<td><textarea rows="10" cols="50" name="movieplot" required="required"></textarea><br/></td>
 					</tr>
 					<tr>
+						<th>영화 티저주소</th>
+						<td><input type="text" name="teaseraddress" required="required"/><br/></td>
+					</tr>
+					<tr>
 						<td><input type="submit" value="올리기"></td>
 						<td><input type="reset" value="초기화"></td>
 					</tr>
+		
 				</table>
 			</form>
 			<form action="/MovieProject/movieselect.do" method="post">

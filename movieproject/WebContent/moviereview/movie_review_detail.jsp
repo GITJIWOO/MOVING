@@ -157,6 +157,7 @@
 											<input type="hidden" name="rNum" value="${review.rNum }">
 											<input type="hidden" name="mId" value="${movie.mid }">
 											<input type="submit" value="삭제"
+											onclick="Javascript:confirm_delete();"
 												class="btn btn-outline-secondary btn-sm">
 										</form>
 									</td>
@@ -236,8 +237,15 @@
 
 
 	<script type="text/javascript">
-		function ddd(locationParam, rnum) {
-			location.href = locationParam + "?rNum=" + rnum;
+// 		function ddd(locationParam, rnum) {
+// 			location.href = locationParam + "?rNum=" + rnum;
+// 		}
+		function confirm_delete() {
+			if (confirm("정말 삭제하시겠습니까?")) {
+				alert("삭제확인");
+			}else {
+				alert("삭제취소");
+			}
 		}
 	</script>
 </body>

@@ -303,7 +303,7 @@ public class ReviewDAO {
 		ResultSet rs = null;
 		int countNum = 0;
 
-		String sql = "SELECT AVG(rRate) FROM review WHERE mId = ?";
+		String sql = "SELECT AVG(rRate) FROM review group by mId = ?";
 
 		try {
 			con = ds.getConnection();
