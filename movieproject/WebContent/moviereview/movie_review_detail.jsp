@@ -152,12 +152,12 @@
 											<input type="submit" value="수정">
 										</form>
 										 -->
-										<form action="/MovieProject/moviereviewdelete.do"
-											method="post">
+										<form id="deleteForm"
+											action="/MovieProject/moviereviewdelete.do" method="post">
 											<input type="hidden" name="rNum" value="${review.rNum }">
 											<input type="hidden" name="mId" value="${movie.mid }">
-											<input type="submit" value="삭제"
-											onclick="Javascript:confirm_delete();"
+											<input type="button" value="삭제"
+												onclick="Javascript:confirm_delete();"
 												class="btn btn-outline-secondary btn-sm">
 										</form>
 									</td>
@@ -220,33 +220,47 @@
 	<div class="main-sidebar"></div>
 
 	<!-- main 화면 body end-->
-	<!-- foot start -->
-	<div id="footer">
-		<p>
-			<b>Creators</b>&nbsp;&nbsp;김지우 , 최재인 , 이한빈 , 김영훈
-		</p>
-		<p>
-			<b>Contact </b>&nbsp;&nbsp;<a href="https://github.com/GITJIWOO">https://github.com/GITJIWOO</a>
-		</p>
-		<hr>
-		<p id="copyright">
-			<b>ⓒ MOVING Corp.</b>
-		</p>
+	<!-- footer start -->
+	<div class="footer">
+		<div class="footer-info">
+			<div>CREATORS&nbsp;&nbsp;김지우 , 최재인 , 이한빈 , 김영훈</div>
+			<div>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</div>
+			<div>
+				CONTACT&nbsp;&nbsp;<a href="https://github.com/GITJIWOO">https://github.com/GITJIWOO</a>
+			</div>
+		</div>
+		<div class="footer-copyright">
+			<div>Copyright © MOVING All right reserved.</div>
+		</div>
 	</div>
-	<!-- foot end -->
-
+	<!-- footer end -->
 
 	<script type="text/javascript">
-// 		function ddd(locationParam, rnum) {
-// 			location.href = locationParam + "?rNum=" + rnum;
-// 		}
+		// 		function ddd(locationParam, rnum) {
+		// 			location.href = locationParam + "?rNum=" + rnum;
+		// 		}
+
 		function confirm_delete() {
+
+			var deleteForm = document.getElementById('deleteForm');
 			if (confirm("정말 삭제하시겠습니까?")) {
 				alert("삭제확인");
-			}else {
+				// 삭제 확인시 서버로 전송 
+				deleteForm.submit();
+				var b = 0;
+			} else {
 				alert("삭제취소");
 			}
 		}
+		/////////////////////////////////////////////////////////
+		// 리터럴 방식 
+
+		var hello = function() {
+			console.log("Hi");
+		}
+
+		hello();
 	</script>
+
 </body>
 </html>

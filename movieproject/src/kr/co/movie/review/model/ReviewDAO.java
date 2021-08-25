@@ -296,22 +296,23 @@ public class ReviewDAO {
 		}
 		return countNum;
 	} // end getReviewCount()
-
+	
 	public int getAvgReview(String mId) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		int countNum = 0;
-
-		String sql = "SELECT AVG(rRate) FROM review group by mId = ?";
+		int avg = 0 ;
+		
+		String sql = "SELECT AVG(rRate) FROM review WHERE mId = ?";
 
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mId);
 			rs = pstmt.executeQuery();
+			rs.next();
+			avg = rs.getInt("AVG(rRate)");
 			
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -329,7 +330,8 @@ public class ReviewDAO {
 				e.printStackTrace();
 			}
 		}
-		return countNum;
+		return avg;
+
 	} // end getAvgReview()
 
 	public ReviewVO selectOne(int rNum) {

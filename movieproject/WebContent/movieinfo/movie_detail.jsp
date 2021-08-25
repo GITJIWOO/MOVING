@@ -95,7 +95,7 @@
 		<div class="movie-info">
 			<div class="movie-info__upper">
 				<div class="movie__detail">
-	              	<div class="movie__title">${movie.mtitle }</div>
+	              	<div class="movie__title">${movie.mtitle }&nbsp;&nbsp;&nbsp; 평점 | ${avg }</div>
 		              <div class="movie__detail-each">
 		                <span class="movie__detail-head">개요&nbsp;</span>|
 		                ${movie.mgenre } | ${movie.mcountry } | ${movie.mtime } |
