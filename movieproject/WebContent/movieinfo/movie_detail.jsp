@@ -160,6 +160,11 @@
 			<input type="hidden" name="movielist">
 			<input type="submit" value="영화 리스트로" class="btn btn-dark">
 		</form>
+		<form action="/MovieProject/favoritemovieinsert.do" method="post">
+			<input type="hidden" name="mid" value="${movie.mid }" />
+			<input type="hidden" name="uid" value="${session_id }" />
+			<input type="submit" value="찜하기" class="btn btn-dark">
+		</form>
 		<c:if test="${session_admin == 1}">
 		<form action="/MovieProject/movieupdate.do?mId=${movie.mid }" method="post">
 			<input type="hidden" name="movieupdate">

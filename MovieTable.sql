@@ -74,37 +74,25 @@ CREATE TABLE review(
 
 DROP TABLE review;
 
-/*	영화 예매 정보 테이블
-	modeid = 영화 디테일 식별 번호
+/*	영화 예고편 테이블
+	mpid = 영화 예고편 식별 번호
 	mid = 영화 식별 번호
-    mlimit = 영화관 인원제한
-    mtime = 영화 상영 시간
+    mpaddress = 영화 예고편 유튜브 주소
 */
-CREATE TABLE moviedetail (
-	modeid INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE moviepreview (
+	mpid INT PRIMARY KEY AUTO_INCREMENT,
 	mid INT,
-    mlimit INT(3) NOT NULL,
-    mtime DATETIME NOT NULL,
+    mpaddress VARCHAR(1000) NOT NULL,
     FOREIGN KEY (mid) REFERENCES movie(mid)
 );
 
-
-
-
-
-
-/*  영화 예약 테이블
-	uid = 유저 아이디
-    mid = 영화 
-    bprice = 영화 표 가격
-	ppers = 감상 인원
+/*  찜한 영화 테이블
+	mid = 영화 식별 번호
+    uid = 유저 아이디
 */
-/*
-CREATE TABLE booking (
-	uid VARCHAR(20) PRIMARY KEY,
-    mid INT,
-    bprice INT NOT NULL,
-    bpers INT NOT NULL,
-    dtime TIMESTAMP
+CREATE TABLE userfavoritemovie (
+	mid INT PRIMARY KEY,
+    uid VARCHAR(20) NOT NULL,
+    FOREIGN KEY (mid) REFERENCES movie(mid),
+    FOREIGN KEY (uid) REFERENCES user(uid)
 );
-*/
