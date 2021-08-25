@@ -240,11 +240,12 @@ public class MovieServlet extends HttpServlet {
 			mrs = new MovieUpdateReviewFormService();
 			mrs.execute(request, response);
 			ui = "/moviereview/movie_review_update.jsp";
+			
+			//찜한 영화 목록 등록하기 서비스
 		} else if(uri.equals("/MovieProject/favoritemovieinsert.do")) {
 			mis = new FavoriteMovieInsertService();
 			mis.execute(request, response);
 			ui = "/movieinfo/movie_detail.jsp";
-			
 			
 			// 그 외
 		} else {
