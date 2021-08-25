@@ -448,13 +448,12 @@ public class MovieDAO {
 		
 		List<MovieVO> movieList = new ArrayList<>();
 		
-		String sql = "SELECT mid FROM userfavoritemovie WHERE uid LIKE ?";
+		String sql = "SELECT * FROM userfavoritemovie INNER JOIN movie ON userfavoritemovie.uid=movie.mid WHERE uid=?";
 		
 		try {
 			con = ds.getConnection();
 			
 			pstmt = con.prepareStatement(sql);
-			
 			pstmt.setString(1, uid);
 			
 			rs = pstmt.executeQuery();
@@ -487,5 +486,5 @@ public class MovieDAO {
 	 		}
 		}
 		return movieList;
-	}
+	} // end getFavoriteMovies
 }

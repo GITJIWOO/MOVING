@@ -96,3 +96,7 @@ CREATE TABLE userfavoritemovie (
     FOREIGN KEY (mid) REFERENCES movie(mid),
     FOREIGN KEY (uid) REFERENCES user(uid)
 );
+
+INSERT INTO userfavoritemovie VALUES (3, 'qwer123');
+
+SELECT * FROM userfavoritemovie u INNER JOIN movie m ON u.mid=m.mid WHERE uid='qwer123';
