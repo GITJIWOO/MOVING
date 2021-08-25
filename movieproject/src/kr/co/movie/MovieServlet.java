@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.co.movie.info.service.FavoriteMovieGetService;
 import kr.co.movie.info.service.FavoriteMovieInsertService;
 import kr.co.movie.info.service.IMovieInfoService;
 import kr.co.movie.info.service.MovieGetInfoService;
@@ -240,11 +241,18 @@ public class MovieServlet extends HttpServlet {
 			mrs = new MovieUpdateReviewFormService();
 			mrs.execute(request, response);
 			ui = "/moviereview/movie_review_update.jsp";
+			
+			//찜한 영화 목록 등록 서비스
 		} else if(uri.equals("/MovieProject/favoritemovieinsert.do")) {
 			mis = new FavoriteMovieInsertService();
 			mis.execute(request, response);
 			ui = "/movieinfo/movie_detail.jsp";
 			
+			//찜한 영화 목록 가져오기 서비스
+		} else if(uri.equals("/MovieProject/favoritemovieget.do")) {
+			mis = new FavoriteMovieGetService();
+			mis.execute(request, response);
+			ui = "";
 			
 			// 그 외
 		} else {
