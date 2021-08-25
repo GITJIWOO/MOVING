@@ -17,12 +17,11 @@ public class MovieWriteReviewService implements IMovieReviewService {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// 세션
-				HttpSession session = request.getSession();
-				// 유저 세션
-				Object uIdObj = session.getAttribute("session_id");
-				String uid = (String) uIdObj;
-				System.out.println("UID : " + uid);
-
+		HttpSession session = request.getSession();
+		// 유저 세션
+		Object uIdObj = session.getAttribute("session_id");
+		String uid = (String) uIdObj;
+		System.out.println("UID : " + uid);
 
 		try {
 
@@ -39,11 +38,11 @@ public class MovieWriteReviewService implements IMovieReviewService {
 			// dao 생성
 			ReviewDAO dao = ReviewDAO.getInstance();
 			MovieDAO mdao = MovieDAO.getInstance();
-			
+
 			int mId = Integer.parseInt(strMId);
-			
+
 			MovieVO movie = mdao.MovieDetail(strMId);
-			
+
 			// VO 생성
 			ReviewVO review = new ReviewVO();
 			review.setuId(uId);
@@ -51,7 +50,7 @@ public class MovieWriteReviewService implements IMovieReviewService {
 			review.setrRate(rRate);
 			review.setmTitle(mTitle);
 			review.setmId(mId);
-			
+
 			request.setAttribute("mId", movie);
 			request.setAttribute("uId", uid);
 

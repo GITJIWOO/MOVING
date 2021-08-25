@@ -12,7 +12,7 @@ import kr.co.movie.movie.model.MovieVO;
 import kr.co.movie.review.model.ReviewDAO;
 import kr.co.movie.review.model.ReviewVO;
 
-public class MovieDeleteReviewService implements IMovieReviewService { 
+public class MovieDeleteReviewService implements IMovieReviewService {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
@@ -22,7 +22,17 @@ public class MovieDeleteReviewService implements IMovieReviewService {
 		Object uIdObj = session.getAttribute("session_id");
 		String uId = (String) uIdObj;
 		System.out.println("UID : " + uId);
-
+		// 영자 세션
+		int session_admin = (int) session.getAttribute("session_admin");
+		if (session_admin == 0) {
+			try {
+				String ui = "/moviemain/movie_main.jsp";
+				RequestDispatcher dp = request.getRequestDispatcher(ui);
+				dp.forward(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 
 		// rnum 파라미터
 		String strrNum = request.getParameter("rNum");
@@ -30,19 +40,21 @@ public class MovieDeleteReviewService implements IMovieReviewService {
 		String mId = request.getParameter("mId");
 		// DAO 생성
 		ReviewDAO dao = ReviewDAO.getInstance();
-		
+
 		System.out.println("삭제 리뷰 번호: " + rNum);
 
-		// mId 파라미터 넣기 
+		// mId 파라미터 넣기
 		List<ReviewVO> reviewList = dao.getReviewList(mId);
-		
-		// 영화 다오 넣기 쿼리 실행 
+
+		// 영화 다오 넣기 쿼리 실행
 		MovieDAO mdao = MovieDAO.getInstance();
-		List<MovieVO> movieList =  mdao.getMovieList();
-		
+		List<MovieVO> movieList = mdao.getMovieList();
+
 		request.setAttribute("reviewList", reviewList);
 		request.setAttribute("movieList", movieList);
 		System.out.println("service 게시물 데이터: " + reviewList);
+		//
+		request.setAttribute("adminId", session_admin);
 		// delete 로적에 rNum 넣어서 삭제
 		int resultCode = dao.delete(rNum);
 		if (resultCode == 1) {
