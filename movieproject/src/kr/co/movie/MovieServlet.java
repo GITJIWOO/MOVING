@@ -37,6 +37,7 @@ import kr.co.movie.user.service.UserJoinService;
 import kr.co.movie.user.service.UserLoginService;
 import kr.co.movie.user.service.UserLogoutService;
 import kr.co.movie.user.service.UserReqJoinService;
+import kr.co.movie.user.service.UserRvFvService;
 import kr.co.movie.user.service.UserSelectService;
 import kr.co.movie.user.service.UserUpdateService;
 
@@ -150,6 +151,12 @@ public class MovieServlet extends HttpServlet {
 			mus = new UserSelectService();
 			mus.execute(request, response);
 			ui = "/movieuser/movie_user_info_form.jsp";
+			
+			// 사용자 리뷰, 찜한 영화 내역 확인
+		} else if (uri.equals("/MovieProject/userrvfv.do")) {
+			mus = new UserRvFvService();
+			mus.execute(request, response);
+			ui = "/movieuser/movie_user_rvfv.jsp";
 		} 
 		
 		
