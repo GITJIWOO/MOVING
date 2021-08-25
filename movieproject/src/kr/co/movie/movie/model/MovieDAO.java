@@ -439,4 +439,53 @@ public class MovieDAO {
 		}
 		return SUCCESS;
 	} // favoriteMovieInsert END
+	
+	//찜한 영화들 가져오기
+	public List<MovieVO> getFavoriteMovies(String uid) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		List<MovieVO> movieList = new ArrayList<>();
+		
+		String sql = "SELECT mid FROM userfavoritemovie WHERE uid LIKE ?";
+		
+		try {
+			con = ds.getConnection();
+			
+			pstmt = con.prepareStatement(sql);
+			
+			pstmt.setString(1, uid);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				MovieVO movie = new MovieVO();
+				
+				movie = MovieDetail(rs.getString(1));
+				
+				movieList.add(movie);
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+	 		try {
+	 			if(con != null && !con.isClosed()) {
+	 				con.close();
+	 			}
+	 			if(pstmt != null && !pstmt.isClosed()) {
+	 				pstmt.close();
+	 			}
+	 			if(rs != null && !rs.isClosed()) {
+	 				rs.close();
+	 			}
+	 			
+	 		} catch (Exception e){
+	 			e.printStackTrace();
+	 		}
+		}
+		return movieList;
+	}
 }
