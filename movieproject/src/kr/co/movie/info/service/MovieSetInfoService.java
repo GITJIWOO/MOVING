@@ -73,6 +73,11 @@ public class MovieSetInfoService implements IMovieInfoService{
 			
 			int resultCode = dao.setMovie(movie);
 			
+			// mid 가져오기 
+
+			int mId = dao.setMovieVideo();
+			request.setAttribute("mId_add", mId);
+			
 			if(resultCode == 0) {
 				System.out.println("에러 발생으로 영화가 입력되지 않았습니다.");
 			} else if(resultCode == 1) {
