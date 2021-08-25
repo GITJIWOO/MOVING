@@ -10,56 +10,68 @@
 <meta charset="UTF-8">
 <title>영화 상세 정보</title>
 <style>
-.main-contents{
-	display:flex;
-	flex-direction: column;
-	
+.main-body {
+  height: 150vh;
 }
-	.movie {
-		display: flex;
-		margin-bottom: 50px; 
-	}
-	.movie_detail {
-		padding-left : 5%;
-		padding-top : 7%;
-		width : 70%;
-		height : 70%;
-		font-size: 130%;
-	}
-	.movie_img {
-		text-align:center;
-		padding-top: 5%;
-		padding-right: 5%;
-		width: 60%;
-		height:60%;
-	}
-	hr {
-		width:80%;
-	}
-	.main-body{
-	height: 150vh;
+.main-contents {
+  display: flex;
+  flex-direction: column;
 }
-	.movie_detail span {
-		font-weight:bold;
-	}
-	.movie_title {
-		font-size:45px;
-		font-weight:700;
-	}
-	.movie_main {
-		padding: 50px;
-	}
-	.movie_plot {
-		font-size: 25px;
-		font-weight: 700;
-		margin-bottom: 20px;
-	}
-	.review_list {
-		font-size: 25px;
-		border-bottom: 1px solid black;
-		padding-bottom: 30px;
-		margin: 30px 0;
-	}
+.movie-info:first-child {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+}
+.movie-info:last-child {
+  margin: 0 20px;
+}
+
+.movie-info__upper:first-child {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.movie__title {
+  font-size: 35px;
+  font-weight: 500;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+.movie__detail:first-child {
+  margin: 0 40px;
+}
+.movie__detail:last-child {
+  margin: 40px;
+  margin-top: 0;
+}
+.movie__detail-each {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.movie__detail-head {
+  font-weight: 700;
+}
+.movie__plot-head {
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+.movie__plot-contents {
+  word-break: break-all;
+}
+.movie-info__review {
+  font-weight: 700;
+  font-size: 25px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 20px;
+  margin: 20px 0;
+}
+.movie-review__btn {
+  display: inline;
+}
 </style>
 </head>
 <body>
@@ -92,81 +104,94 @@
 	<div class="main-body">
       <div class="main-sidebar"></div>
       <div class="main-contents">
-		<div class="movie_main">
-			<div class="movie">
-				<div class="movie_detail">
-				<h3 class="movie_title">${movie.mtitle }</h3>
-				<hr>
-				<p>
-					<span>개요</span> | &nbsp;&nbsp;&nbsp;${movie.mgenre } | ${movie.mcountry } | ${movie.mtime } | ${movie.mpremiere }
-				</p><br>
-				<p>
-					<span>감독</span> | &nbsp;&nbsp;&nbsp;${movie.mdirector }
-				</p><br>
-				<p>
-					<span>출연</span> | &nbsp;&nbsp;&nbsp;${movie.mactor }
-				</p><br>
-				<p>
-					<span>등급</span> | &nbsp;&nbsp;&nbsp;${movie.mgrade }
-				</p><br>
+      
+      
+		<div class="movie-info">
+			<div class="movie-info__upper">
+				<div class="movie__detail">
+	              	<div class="movie__title">${movie.mtitle }</div>
+		              <div class="movie__detail-each">
+		                <span class="movie__detail-head">개요&nbsp;</span>|
+		                ${movie.mgenre } | ${movie.mcountry } | ${movie.mtime } |
+		                ${movie.mpremiere }
+		              </div>	
 				
-				<hr>
+		              <div class="movie__detail-each">
+		                <span class="movie__detail-head">감독&nbsp;</span>|
+		                ${movie.mdirector }
+		              </div>
 				
-				<h3 class="movie_plot">줄거리</h3>
-				<p>${movie.mplot }</p>
-					
+		             <div class="movie__detail-each">
+		                <span class="movie__detail-head">출연&nbsp;</span>|
+		                ${movie.mactor }
+		              </div>
+				
+		              <div class="movie__detail-each">
+		                <span class="movie__detail-head">등급&nbsp;</span>|
+		                ${movie.mgrade }
+		              </div>
+            		</div>				
+		           	<div class="movie__detail">
+		              <div class="movie__detail-img">
+		                <img
+		                  src="/MovieProject/movieui/css/screen/images/movieimage.jpg"
+		                  width="240px"
+		                  height="339px"
+		                />
+		              </div>
+		            </div>
 				</div>
-				<div class="movie_img">
-					<img src="/MovieProject/movieui/css/screen/images/movieimage.jpg" width="240px" height="339px"/>
-				</div>
-			</div>
+          <div class="movie-info__upper">
+            <div class="movie__detail">
+              <div class="movie__plot-head">줄거리</div>
+              <div class="movie__plot-contents">${movie.mplot}</div>
+            </div>
+          </div>
+		</div>
 		
-			<div class="review">
-				<h1 class="review_list">리뷰 목록</h1>
+        <div class="movie-info">
+          <h1 class="movie-info__review">리뷰 목록</h1>
 
-				<form action="/MovieProject/moviereviewdetail.do" method="post">
-					<input type="hidden" name="mId" value="${movie.mid }">
-					<input type="submit" value="리뷰 더보기" class="btn btn-dark">
-				</form>
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>리뷰번호</th>
-						<th>회원아이디</th>
-						<th>영화 제목</th>
-						<th>평점</th>
-						<th>리뷰내용</th>
-						<th>작성일</th>
-					</tr>
-					
-				</thead>
-				<tbody>
-					<c:forEach var="review" items="${reviewList}">
-					<tr>
-						<td>${review.rNum}</td>
-						<td>${review.uId}</td>
-						<td>${review.mTitle}</td>
-						<td>${review.rRate}</td>
-						<td>${review.rContent}</td>
-						<td>${review.rDate}</td>
-					</tr>	
-					</c:forEach>
-				</tbody>
+          <form action="/MovieProject/moviereviewdetail.do" method="post">
+            <input type="hidden" name="mId" value="${movie.mid }" />
+            <input type="submit" value="리뷰 더보기" class="btn btn-dark" />
+          </form>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>리뷰번호</th>
+                <th>회원아이디</th>
+                <th>영화 제목</th>
+                <th>평점</th>
+                <th>리뷰내용</th>
+                <th>작성일</th>
+              </tr>
+            </thead>
+            <tbody>
+              <c:forEach var="review" items="${reviewList}">
+                <tr>
+                  <td>${review.rNum}</td>
+                  <td>${review.uId}</td>
+                  <td>${review.mTitle}</td>
+                  <td>${review.rRate}</td>
+                  <td>${review.rContent}</td>
+                  <td>${review.rDate}</td>
+                </tr>
+              </c:forEach>
+            </tbody>
+          </table>
 		
-			</table>
-			
-		
-		<form action="/MovieProject/movieselect.do" method="post">
+		<form class="movie-review__btn" action="/MovieProject/movieselect.do" method="post">
 			<input type="hidden" name="movielist">
 			<input type="submit" value="영화 리스트로" class="btn btn-dark">
 		</form>
-		<form action="/MovieProject/favoritemovieinsert.do" method="post">
+		<form class="movie-review__btn" action="/MovieProject/favoritemovieinsert.do" method="post">
 			<input type="hidden" name="mid" value="${movie.mid }" />
 			<input type="hidden" name="uid" value="${session_id }" />
 			<input type="submit" value="찜하기" class="btn btn-dark">
 		</form>
 		<c:if test="${session_admin == 1}">
-		<form action="/MovieProject/movieupdate.do?mId=${movie.mid }" method="post">
+		<form class="movie-review__btn" action="/MovieProject/movieupdate.do?mId=${movie.mid }" method="post">
 			<input type="hidden" name="movieupdate">
 			<input type="submit" value="영화 수정" class="btn btn-dark">
 		</form>
@@ -174,19 +199,25 @@
 			</div>
 		</div>
 
-	
-		</div>
       <div class="main-sidebar"></div>
     </div>
 	<!-- BODY END -->
 	
-	<!-- footer start -->
-	<div id="footer">
-		<p><b>Creators</b>&nbsp;&nbsp;김지우 , 최재인 , 이한빈 , 김영훈</p>
-		<p><b>Contact </b>&nbsp;&nbsp;<a href="https://github.com/GITJIWOO">https://github.com/GITJIWOO</a></p>
-		<hr>
-		<p id="copyright"><b>ⓒ MOVING Corp.</b></p>
-	</div>
+    <!-- footer start -->
+	<div class="footer">
+      <div class="footer-info">
+        <div>CREATORS&nbsp;&nbsp;김지우 , 최재인 , 이한빈 , 김영훈</div>
+        <div>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</div>
+        <div>
+          CONTACT&nbsp;&nbsp;<a href="https://github.com/GITJIWOO"
+            >https://github.com/GITJIWOO</a
+          >
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div>Copyright © MOVING All right reserved.</div>
+      </div>
+    </div>
 	<!-- footer end -->
 </body>
 </html>
