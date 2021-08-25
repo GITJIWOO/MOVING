@@ -180,6 +180,13 @@
 			<input type="submit" value="영화 수정" class="btn btn-dark">
 		</form>
 		</c:if>
+		<c:if test="${favorite_result == 1 }">
+			<script>alert("찜목록에 저장되었습니다."); history.back();</script>
+		</c:if>
+		<c:if test="${favorite_result == 0 }">
+			<script>alert("저장에 실패했습니다."); history.back();</script>
+		</c:if>
+		
 			</div>
 		</div>
 
