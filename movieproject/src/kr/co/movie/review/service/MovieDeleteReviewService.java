@@ -24,15 +24,15 @@ public class MovieDeleteReviewService implements IMovieReviewService {
 		System.out.println("UID : " + uId);
 		// 영자 세션
 		int session_admin = (int) session.getAttribute("session_admin");
-		if (session_admin == 0) {
-			try {
-				String ui = "/moviemain/movie_main.jsp";
-				RequestDispatcher dp = request.getRequestDispatcher(ui);
-				dp.forward(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+//		if (session_admin == 0) {
+//			try {
+//				String ui = "/moviemain/movie_main.jsp";
+//				RequestDispatcher dp = request.getRequestDispatcher(ui);
+//				dp.forward(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
 
 		// rnum 파라미터
 		String strrNum = request.getParameter("rNum");
