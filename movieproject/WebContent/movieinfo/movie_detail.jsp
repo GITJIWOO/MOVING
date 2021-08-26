@@ -20,6 +20,7 @@
 }
 .movie-info {
   margin: 30px;
+  width: 90%;
 }
 .movie-info:first-child {
   margin: 40px;
@@ -148,16 +149,16 @@
 	              <span class="movie__detail-head">줄거리</span>${movie.mplot}  
 	            </div>            			
 		    </div>
-		           	<div class="movie__detail">
-		              <div class="movie__detail-img">
-		                <img
-		                  src="/MovieProject/movieui/css/screen/images/movieimage.jpg"
-		                  width="240px"
-		                  height="339px"
-		                />
-		              </div>
-		            </div>
-				</div>
+           	<div class="movie__detail">
+              <div class="movie__detail-img">
+                <img
+                  src="/MovieProject/movieui/css/screen/images/movieimage.jpg"
+                  width="240px"
+                  height="339px"
+                />
+              </div>
+            </div>
+		</div>
         	<div class="movie-info">
           <h1 class="movie-info__review">리뷰 목록</h1>
 
