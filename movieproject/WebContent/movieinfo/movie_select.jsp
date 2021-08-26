@@ -90,9 +90,8 @@
 	    	width: 600px;
 	    }
 	    .avg {
-	    float:right;
-	    font-size: 27px;
-	    padding-top: 10px;
+	    font-size: 20px;
+	    
 }
     </style>
 <meta charset="UTF-8">
