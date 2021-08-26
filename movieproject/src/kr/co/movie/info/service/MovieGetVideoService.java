@@ -14,10 +14,10 @@ public class MovieGetVideoService implements IMovieInfoService{
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
 			
-			String mId = (String)request.getParameter("mId");
-			VideoVO video = new VideoVO();
+			int mId = Integer.parseInt((String)request.getParameter("mId"));
 			MovieDAO dao = MovieDAO.getInstance();
-			
+			String mPaddress = dao.getMovieVideo(mId);
+			request.setAttribute("mPaddress", mPaddress);
 			
 		}catch(Exception e) {
 			e.printStackTrace();

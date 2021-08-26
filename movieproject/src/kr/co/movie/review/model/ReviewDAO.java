@@ -455,7 +455,7 @@ public class ReviewDAO {
 				review.setrRate(rs.getDouble("rrate"));
 				review.setrContent(rs.getString("rcontent"));
 				review.setrDate(rs.getTimestamp("rdate"));
-
+				
 				reviewList.add(review);
 
 			}

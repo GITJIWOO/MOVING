@@ -53,7 +53,27 @@
 					</tr>
 					<tr>
 						<th>영화 장르</th>
-						<td><input type="text" name="moviegenre" required="required"/><br/></td>
+						<td>
+							<input type="checkbox" name="moviegenre" value="액션" />액션&nbsp;
+							<input type="checkbox" name="moviegenre" value="모험" />모험&nbsp;
+							<input type="checkbox" name="moviegenre" value="애니메이션" />애니메이션&nbsp;
+							<input type="checkbox" name="moviegenre" value="코미디" />코미디&nbsp;
+							<input type="checkbox" name="moviegenre" value="범죄" />범죄&nbsp;<br/>
+							<input type="checkbox" name="moviegenre" value="다큐" />다큐&nbsp;
+							<input type="checkbox" name="moviegenre" value="드라마" />드라마&nbsp;
+							<input type="checkbox" name="moviegenre" value="가족" />가족&nbsp;
+							<input type="checkbox" name="moviegenre" value="판타지" />판타지&nbsp;
+							<input type="checkbox" name="moviegenre" value="역사" />역사&nbsp;<br/>
+							<input type="checkbox" name="moviegenre" value="공포" />공포&nbsp;
+							<input type="checkbox" name="moviegenre" value="뮤지컬" />뮤지컬&nbsp;
+							<input type="checkbox" name="moviegenre" value="미스터리" />미스터리&nbsp;
+							<input type="checkbox" name="moviegenre" value="멜로" />멜로&nbsp;
+							<input type="checkbox" name="moviegenre" value="SF" />SF&nbsp;<br/>
+							<input type="checkbox" name="moviegenre" value="스포츠" />스포츠&nbsp;
+							<input type="checkbox" name="moviegenre" value="스릴러" />스릴러&nbsp;
+							<input type="checkbox" name="moviegenre" value="전쟁" />전쟁&nbsp;
+							
+						</td>
 					</tr>
 					<tr>
 						<th>영화 런닝타임</th>
@@ -103,5 +123,6 @@
 		<p id="copyright"><b>ⓒ MOVING Corp.</b></p>
 	</div>
 	<!-- foot end -->
+	
 </body>
 </html>

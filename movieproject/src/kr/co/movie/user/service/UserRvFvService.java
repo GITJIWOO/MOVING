@@ -39,8 +39,8 @@ public class UserRvFvService implements IMovieUserService {
 		List<MovieVO> faMovies = mdao.getFavoriteMovies(uid);
 		
 		ReviewDAO rdao = ReviewDAO.getInstance();
-		List<ReviewVO> reviewList = rdao.getUserReviewList(uId);
-		System.out.println(faMovies);
+		List<ReviewVO> reviewList = rdao.getUserReviewList(uid);
+		System.out.println(reviewList);
 		
 		request.setAttribute("user", user);
 		request.setAttribute("faMovies", faMovies);
