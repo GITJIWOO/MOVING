@@ -534,8 +534,8 @@ public class MovieDAO {
 			}
 			
 			return mId;
-		} catch(Exception e) {
-			e.printStackTrace();
+		} catch(SQLException e){
+			System.out.println("에러: " + e);
 		} finally {
 	 		try {
 	 			if(con != null && !con.isClosed()) {
@@ -549,5 +549,40 @@ public class MovieDAO {
 	 		}
 		}
 		return -1;
-	} // end setMovie
+	}// setMovieVideo END
+	
+	public String getMovieVideo(int mId) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String mPaddress = "";
+		try {
+			con = ds.getConnection();
+			String sql = "SELECT mpaddress FROM moviepreview WHERE mid = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, mId);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				mPaddress = rs.getString(1);
+			}
+			return mPaddress;
+		}catch(SQLException e) {
+			System.out.println("에러: " + e);
+		}finally {
+			try {
+				if(con != null && !con.isClosed()) {
+					con.close();
+				}
+				if(pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+				if(rs != null && !rs.isClosed()) {
+					rs.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return mPaddress;
+	}
 }

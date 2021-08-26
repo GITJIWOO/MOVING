@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import kr.co.movie.info.service.FavoriteMovieInsertService;
 import kr.co.movie.info.service.IMovieInfoService;
 import kr.co.movie.info.service.MovieGetInfoService;
+import kr.co.movie.info.service.MovieGetVideoService;
 import kr.co.movie.info.service.MovieInfoDetailService;
 import kr.co.movie.info.service.MoviePagingService;
 import kr.co.movie.info.service.MovieSearchService;
@@ -195,6 +196,8 @@ public class MovieServlet extends HttpServlet {
 			// 영화 디테일 정보
 		} else if (uri.equals("/MovieProject/moviedetail.do")) {
 			mis = new MovieInfoDetailService();
+			mis.execute(request, response);
+			mis = new MovieGetVideoService();
 			mis.execute(request, response);
 			ui = "/movieinfo/movie_detail.jsp";
 			
