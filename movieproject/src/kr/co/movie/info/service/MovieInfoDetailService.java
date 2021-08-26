@@ -37,7 +37,9 @@ public class MovieInfoDetailService implements IMovieInfoService {
 			ReviewDAO rdao = ReviewDAO.getInstance();
 			List<ReviewVO> reviewList = rdao.getReviewList(mId);
 			int avg = rdao.getAvgReview(mId);
+			double dAvg = rdao.getAvgReview(mId);
 			request.setAttribute("avg", avg);
+			request.setAttribute("dAvg", dAvg);
 			System.out.println("평균: " + avg);
 			request.setAttribute("movie", movie);
 			request.setAttribute("reviewList", reviewList);
