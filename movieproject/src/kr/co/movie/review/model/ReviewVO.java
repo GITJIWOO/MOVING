@@ -11,7 +11,7 @@ public class ReviewVO {
 	private String rContent;
 	private Timestamp rDate;
 	private int mId;
-	private DecimalFormat format = new DecimalFormat(0.0);
+	private DecimalFormat format = new DecimalFormat("#.#");
 
 	public ReviewVO() {
 		super();
@@ -58,7 +58,8 @@ public class ReviewVO {
 	}
 
 	public void setrRate(double rRate) {
-		this.rRate = format.format();
+		String r = format.format(rRate);
+		this.rRate = Double.parseDouble(r);
 	}
 
 	public String getrContent() {
