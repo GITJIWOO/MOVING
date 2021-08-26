@@ -34,6 +34,7 @@
   font-weight: 500;
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   padding: 30px 0;
+  padding-bottom: 55px;
   margin-bottom: 30px;
 }
 .movie__detail-img {
@@ -44,6 +45,7 @@
 .movie__detail-each {
   font-size: 20px;
   margin-bottom: 20px;
+  
 }
 .movie__detail-head {
   font-weight: 700;
@@ -57,6 +59,14 @@
 }
 .movie-review__btn {
   display: inline;
+}
+.mtitle{
+	float:left;
+}
+.avg{
+	float:right;
+	font-size: 27px;
+	padding-top: 10px;
 }
 </style>
 </head>
@@ -95,7 +105,22 @@
 		<div class="movie-info">
 			<div class="movie-info__upper">
 				<div class="movie__detail">
-	              	<div class="movie__title">${movie.mtitle }&nbsp;&nbsp;&nbsp; 평점 | ${avg }</div>
+	              	<div class="movie__title">
+	             		<div class="mtitle"> ${movie.mtitle }</div>
+	              	<div class="avg">
+	              	평점 |
+	              	<c:set var="avg" value="${avg }" /> 
+	              	<c:choose>
+	              	<c:when test="${avg eq 1}">★☆☆☆☆</c:when>
+	              	<c:when test="${avg eq 2}">★★☆☆☆</c:when>
+	              	<c:when test="${avg eq 3}">★★★☆☆</c:when>
+	              	<c:when test="${avg eq 4}">★★★★☆</c:when>
+	              	<c:when test="${avg eq 5}">★★★★★</c:when>
+	              	</c:choose>
+	              	${dAvg }
+	              	</div>
+	              	
+	              	 </div>
 		              <div class="movie__detail-each">
 		                <span class="movie__detail-head">개요&nbsp;</span>|
 		                ${movie.mgenre } | ${movie.mcountry } | ${movie.mtime } |
