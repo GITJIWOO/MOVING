@@ -72,7 +72,11 @@ CREATE TABLE review(
     FOREIGN KEY (mid) REFERENCES movie(mid)
 );
 
+SELECT * FROM review where uid='qwer123' ORDER BY rdate DESC;
+
 DROP TABLE review;
+
+
 
 /*	영화 예고편 테이블
 	mpid = 영화 예고편 식별 번호
@@ -96,7 +100,6 @@ CREATE TABLE userfavoritemovie (
     FOREIGN KEY (mid) REFERENCES movie(mid),
     FOREIGN KEY (uid) REFERENCES user(uid)
 );
-
+SELECT * FROM userfavoritemovie;
 INSERT INTO userfavoritemovie VALUES (3, 'qwer123');
-
-SELECT * FROM userfavoritemovie u INNER JOIN movie m ON u.mid=m.mid WHERE uid='qwer123';
+SELECT * FROM userfavoritemovie INNER JOIN movie ON userfavoritemovie.mid=movie.mid WHERE uid='qwer123';

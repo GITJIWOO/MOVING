@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="../movieui/css/mstyles.css" />
 <link rel="stylesheet" href="../MovieProject/movieui/css/mstyles.css" />
-<title>Insert title here</title>
+<title>내 기록 관리</title>
 </head>
 <body>
 	
@@ -46,11 +47,24 @@
       		</form>
       		<hr>
       		<div class="review">
-      			
+      			<h1>내가 남긴 리뷰</h1>
+      			<ul>
+	   				<c:forEach var="review" items="${reviewList }">
+	   					<li><a href="/MovieProject/moviedetail.do?mId=${review.mId}">${review.mTitle }</a></li>
+	   					<li>${review.rRate }</li>
+	   					<li>${review.rContent }</li>
+	   					<li>${review.rDate }</li>
+	   				</c:forEach>
+   				</ul>
       		</div>
       		<div class="favorite">
+      			<h1>내가 찜 한 영화</h1>
       			<ul>
-      				<li>${faMovies.mId }</li>
+      				<c:forEach var="movie" items="${faMovies }">
+	      				<li><a href="/MovieProject/moviedetail.do?mId=${movie.mid}">${movie.mtitle }</a></li>
+	      				<li>${movie.mgenre }</li>
+	      				<li>${movie.mpremiere }</li>
+      				</c:forEach>
       			</ul>
       		</div>
       	</div>

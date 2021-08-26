@@ -449,7 +449,7 @@ public class MovieDAO {
 		
 		List<MovieVO> movieList = new ArrayList<>();
 		
-		String sql = "SELECT * FROM userfavoritemovie INNER JOIN movie ON userfavoritemovie.uid=movie.mid WHERE uid=?";
+		String sql = "SELECT * FROM userfavoritemovie INNER JOIN movie ON userfavoritemovie.mid=movie.mid WHERE uid=?";
 		
 		try {
 			con = ds.getConnection();
