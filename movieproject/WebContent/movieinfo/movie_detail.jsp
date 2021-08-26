@@ -128,14 +128,14 @@
 	              	평점 |
 	              	<c:set var="avg" value="${avg }" /> 
 	              	<c:choose>
-	              	<c:when test="${1 >= avg}">☆☆☆☆☆</c:when>
-	              	<c:when test="${2 >= avg}">★☆☆☆☆</c:when>
-	              	<c:when test="${3 >= avg}">★★☆☆☆</c:when>
-	              	<c:when test="${4 >= avg}">★★★☆☆</c:when>
-	              	<c:when test="${5 >= avg}">★★★★☆</c:when>
-	              	<c:when test="${6 >= avg}">★★★★★</c:when>
+	              	<c:when test="${1 >= avg.rRate}">☆☆☆☆☆</c:when>
+	              	<c:when test="${1.7 >= avg.rRate}">★☆☆☆☆</c:when>
+	              	<c:when test="${2.7 >= avg.rRate}">★★☆☆☆</c:when>
+	              	<c:when test="${3.7 >= avg.rRate}">★★★☆☆</c:when>
+	              	<c:when test="${4.7 >= avg.rRate}">★★★★☆</c:when>
+	              	<c:when test="${4.7 < avg.rRate}">★★★★★</c:when>
 	              	</c:choose>
-	              	${avg }
+	              	${avg.rRate }
 	              	</div>
 	              	
 	              	 </div>

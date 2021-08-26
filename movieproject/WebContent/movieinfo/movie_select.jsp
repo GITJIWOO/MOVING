@@ -176,11 +176,11 @@
 										평점 |
 			              				<c:choose>
 			              				<c:when test="${1 >= rAR.rRate}">☆☆☆☆☆</c:when>
-			              				<c:when test="${2 >= rAR.rRate}">★☆☆☆☆</c:when>
-			              				<c:when test="${3 >= rAR.rRate}">★★☆☆☆</c:when>
-			              				<c:when test="${4 >= rAR.rRate}">★★★☆☆</c:when>
-			              				<c:when test="${5 >= rAR.rRate}">★★★★☆</c:when>
-			              				<c:when test="${5 eq rAR.rRate}">★★★★★</c:when>
+			              				<c:when test="${1.7 >= rAR.rRate}">★☆☆☆☆</c:when>
+			              				<c:when test="${2.7 >= rAR.rRate}">★★☆☆☆</c:when>
+			              				<c:when test="${3.7 >= rAR.rRate}">★★★☆☆</c:when>
+			              				<c:when test="${4.7 >= rAR.rRate}">★★★★☆</c:when>
+			              				<c:when test="${4.7 < rAR.rRate}">★★★★★</c:when>
 			              				</c:choose>${rAR.rRate }
 			              				</li>
 									</c:if>
