@@ -45,7 +45,7 @@ public class ReviewDAO {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, review.getuId());
-			pstmt.setInt(2, review.getrRate());
+			pstmt.setDouble(2, review.getrRate());
 			pstmt.setString(3, review.getrContent());
 			pstmt.setString(4, review.getmTitle());
 			pstmt.setInt(5, review.getmId());
@@ -129,7 +129,7 @@ public class ReviewDAO {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, review.getrContent());
-			pstmt.setInt(2, review.getrRate());
+			pstmt.setDouble(2, review.getrRate());
 			pstmt.setInt(3, review.getrNum());
 
 			pstmt.executeUpdate();
@@ -181,7 +181,7 @@ public class ReviewDAO {
 				review.setuId(rs.getString("uid"));
 				review.setmTitle(rs.getString("mtitle"));
 				review.setmId(rs.getInt("mid"));
-				review.setrRate(rs.getInt("rrate"));
+				review.setrRate(rs.getDouble("rrate"));
 				review.setrContent(rs.getString("rcontent"));
 				review.setrDate(rs.getTimestamp("rdate"));
 
@@ -233,7 +233,7 @@ public class ReviewDAO {
 				review.setuId(rs.getString("uId"));
 				review.setmTitle(rs.getString("mTitle"));
 				review.setmId(rs.getInt("mid"));
-				review.setrRate(rs.getInt("rRate"));
+				review.setrRate(rs.getDouble("rRate"));
 				review.setrContent(rs.getString("rContent"));
 				review.setrDate(rs.getTimestamp("rDate"));
 				reviewList.add(review);
@@ -297,21 +297,21 @@ public class ReviewDAO {
 		return countNum;
 	} // end getReviewCount()
 	
-	public int getAvgReview(String mId) {
+	public double getAvgReview(int mId) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		int avg = 0 ;
+		double avg = 0 ;
 		
 		String sql = "SELECT AVG(rRate) FROM review WHERE mId = ?";
 
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, mId);
+			pstmt.setInt(1, mId);
 			rs = pstmt.executeQuery();
 			rs.next();
-			avg = rs.getInt("AVG(rRate)");
+			avg = rs.getDouble("AVG(rRate)");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -357,7 +357,7 @@ public class ReviewDAO {
 				review.setrNum(rs.getInt("rnum"));
 				review.setuId(rs.getString("uid"));
 				review.setmTitle(rs.getString("mtitle"));
-				review.setrRate(rs.getInt("rrate"));
+				review.setrRate(rs.getDouble("rrate"));
 				review.setrContent(rs.getString("rcontent"));
 				review.setrDate(rs.getTimestamp("rdate"));
 				review.setmId(rs.getInt("mid"));
@@ -452,7 +452,7 @@ public class ReviewDAO {
 				review.setuId(rs.getString("uid"));
 				review.setmTitle(rs.getString("mtitle"));
 				review.setmId(rs.getInt("mid"));
-				review.setrRate(rs.getInt("rrate"));
+				review.setrRate(rs.getDouble("rrate"));
 				review.setrContent(rs.getString("rcontent"));
 				review.setrDate(rs.getTimestamp("rdate"));
 
@@ -478,4 +478,39 @@ public class ReviewDAO {
 		}
 		return reviewList;
 	} // end getUserReviewList()
+	
+	public ReviewVO getMovieId (int mid) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		ReviewVO review = new ReviewVO();
+		
+		try {
+			con = ds.getConnection();
+			String sql = "SELECT AVG(rrate), mid FROM review GROUP BY mid HAVING mid=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, mid);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				review.setrRate(rs.getDouble("AVG(rrate)"));
+				review.setmId(rs.getInt("mid"));
+				System.out.println(review);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+	 		try {
+	 			if(con != null && !con.isClosed()) {
+	 				con.close();
+	 			}
+	 			if(pstmt != null && !pstmt.isClosed()) {
+	 				pstmt.close();
+	 			}
+	 		} catch (Exception e){
+	 			e.printStackTrace();
+	 		}
+		}
+		return review;
+	} // end
 }

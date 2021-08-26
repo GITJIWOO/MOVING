@@ -6,7 +6,7 @@ public class ReviewVO {
 	private int rNum;
 	private String uId;
 	private String mTitle;
-	private int rRate;
+	private double rRate;
 	private String rContent;
 	private Timestamp rDate;
 	private int mId;
@@ -50,11 +50,11 @@ public class ReviewVO {
 		this.mTitle = mTitle;
 	}
 
-	public int getrRate() {
+	public double getrRate() {
 		return rRate;
 	}
 
-	public void setrRate(int rRate) {
+	public void setrRate(double rRate) {
 		this.rRate = rRate;
 	}
 

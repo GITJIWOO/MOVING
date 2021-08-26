@@ -27,6 +27,7 @@ public class MovieInfoDetailService implements IMovieInfoService {
 			response.setCharacterEncoding("utf-8");
 
 			String mId = request.getParameter("mId");
+			int intmId = Integer.parseInt(mId);
 			
 			System.out.println("목록 요청 mId : "+mId);
 
@@ -36,11 +37,8 @@ public class MovieInfoDetailService implements IMovieInfoService {
 
 			ReviewDAO rdao = ReviewDAO.getInstance();
 			List<ReviewVO> reviewList = rdao.getReviewList(mId);
-			int avg = rdao.getAvgReview(mId);
-			double dAvg = rdao.getAvgReview(mId);
+			double avg = rdao.getAvgReview(intmId);
 			request.setAttribute("avg", avg);
-			request.setAttribute("dAvg", dAvg);
-			System.out.println("평균: " + avg);
 			request.setAttribute("movie", movie);
 			request.setAttribute("reviewList", reviewList);
 			request.setAttribute("uId", uId);

@@ -74,6 +74,11 @@ CREATE TABLE review(
 
 DROP TABLE review;
 
+SELECT AVG(rrate), mid FROM review GROUP BY mid HAVING mid=1;
+
+
+
+
 /*	영화 예고편 테이블
 	mpid = 영화 예고편 식별 번호
 	mid = 영화 식별 번호

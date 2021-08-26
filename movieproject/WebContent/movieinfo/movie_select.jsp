@@ -19,12 +19,12 @@
 	    
 	    .movie{
 	    	position: relative;
-	    	width: 700px;
+	    	width: 80%;
 	    }
 	    
 	    .search {
-	    	margin-bottom: 45px;
-	    	margin-left: 400px;
+	    	margin-bottom: 30px;
+	    	margin-left: 70%;
 	    }
 	    
 	    .moviesearch {
@@ -89,6 +89,11 @@
 	    hr {
 	    	width: 600px;
 	    }
+	    .avg {
+	    float:right;
+	    font-size: 27px;
+	    padding-top: 10px;
+}
     </style>
 <meta charset="UTF-8">
 <title>영화 정보</title>
@@ -166,6 +171,21 @@
 							<ul>
 								<li class="movietitle"><a href="/MovieProject/moviedetail.do?mId=${movie.mid}">
 									${movie.mtitle }</a></li>
+								<c:forEach var="rAR" items="${reviewAvgRateList }">
+									<c:if test="${rAR.mId eq movie.mid }">
+										<li class="avg">
+										평점 |
+			              				<c:choose>
+			              				<c:when test="${1 >= rAR.rRate}">☆☆☆☆☆</c:when>
+			              				<c:when test="${2 >= rAR.rRate}">★☆☆☆☆</c:when>
+			              				<c:when test="${3 >= rAR.rRate}">★★☆☆☆</c:when>
+			              				<c:when test="${4 >= rAR.rRate}">★★★☆☆</c:when>
+			              				<c:when test="${5 >= rAR.rRate}">★★★★☆</c:when>
+			              				<c:when test="${5 eq rAR.rRate}">★★★★★</c:when>
+			              				</c:choose>${rAR.rRate }
+			              				</li>
+									</c:if>
+								</c:forEach>
 								<li>${movie.mcountry }</li>
 								<li>${movie.mgenre }</li>
 								<li>${movie.mtime }</li>
