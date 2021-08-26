@@ -7,12 +7,40 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="../movieui/css/mstyles.css" />
 <link rel="stylesheet" href="../MovieProject/movieui/css/mstyles.css" />
+<style>
+    .main-contents {
+    	display: flex;
+    	justify-content: center;
+    	padding-top: 45px;
+    }
+    .main-rvfv {
+    	width: 70%;
+    }
+    .
+	.review {
+		float: left;
+		width: 45%;
+		padding-right: 10px;
+	}
+	.favorite {
+		float: right;
+		width: 45%;
+		padding-left: 10px;
+	}
+	h1 {
+		font-size: 150%;
+		font-weight: 30px;
+		margin: 10px 0;
+	}
+	li {
+		margin: 10px 0;
+	}
+</style>
 <title>내 기록 관리</title>
 </head>
 <body>
-	
-<!--main 화면 header start-->
-<!-- 로그인 후에만 볼 수 있는 페이지 -->
+	<!--main 화면 header start-->
+	<!-- 로그인 후에만 볼 수 있는 페이지 -->
     <div class="main-bar">
       <div class="main-bar__column">
         <span
@@ -41,19 +69,22 @@
       <div class="main-sidebar"></div>
       <div class="main-contents">
       	<div class="main-rvfv">
-      		<form action="/MovieProject/userdetail.do" method="post" class="back">
-      			<input type="hidden" name="uId" value="${session_id }">
-      			<input type="submit" value="돌아가기">
-      		</form>
+      		<div class="user-info__btn">
+	      		<form action="/MovieProject/userdetail.do" method="post" class="back">
+	      			<input type="hidden" name="uId" value="${session_id }">
+	      			<input type="submit" value="내 정보">
+	      		</form>
+      		</div>
       		<hr>
       		<div class="review">
       			<h1>내가 남긴 리뷰</h1>
       			<ul>
 	   				<c:forEach var="review" items="${reviewList }">
-	   					<li><a href="/MovieProject/moviedetail.do?mId=${review.mId}">${review.mTitle }</a></li>
-	   					<li>${review.rRate }</li>
-	   					<li>${review.rContent }</li>
-	   					<li>${review.rDate }</li>
+	   					<li>제목 | <a href="/MovieProject/moviedetail.do?mId=${review.mId}">${review.mTitle }</a></li>
+	   					<li>평점 | ${review.rRate }</li>
+	   					<li>날짜 | ${review.rDate }</li>
+	   					<li>내용 | ${review.rContent }</li>
+	   					<hr>
 	   				</c:forEach>
    				</ul>
       		</div>
@@ -61,9 +92,10 @@
       			<h1>내가 찜 한 영화</h1>
       			<ul>
       				<c:forEach var="movie" items="${faMovies }">
-	      				<li><a href="/MovieProject/moviedetail.do?mId=${movie.mid}">${movie.mtitle }</a></li>
-	      				<li>${movie.mgenre }</li>
-	      				<li>${movie.mpremiere }</li>
+	      				<li>제목 | <a href="/MovieProject/moviedetail.do?mId=${movie.mid}">${movie.mtitle }</a></li>
+	      				<li>장르 | ${movie.mgenre }</li>
+	      				<li>개봉일 | ${movie.mpremiere }</li>
+	      				<hr>
       				</c:forEach>
       			</ul>
       		</div>
