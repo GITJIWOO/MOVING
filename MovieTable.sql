@@ -38,9 +38,9 @@ CREATE TABLE movie(
 	mid INT AUTO_INCREMENT PRIMARY KEY,
     mtitle VARCHAR(100) NOT NULL,
     mgrade INT(2) NOT NULL,
-    mcountry VARCHAR(30) NOT NULL,
-    mgenre VARCHAR(30) NOT NULL,
-    mtime VARCHAR(30) NOT NULL,
+    mcountry VARCHAR(100) NOT NULL,
+    mgenre VARCHAR(1000) NOT NULL,
+    mtime VARCHAR(100) NOT NULL,
     mpremiere DATE NOT NULL,
     mdirector VARCHAR(100) NOT NULL,
     mactor VARCHAR(1000) NOT NULL,
@@ -72,11 +72,9 @@ CREATE TABLE review(
     FOREIGN KEY (mid) REFERENCES movie(mid)
 );
 
+SELECT * FROM review where uid='qwer123' ORDER BY rdate DESC;
+
 DROP TABLE review;
-
-SELECT AVG(rrate), mid FROM review GROUP BY mid HAVING mid=1;
-
-
 
 
 /*	영화 예고편 테이블
@@ -101,7 +99,6 @@ CREATE TABLE userfavoritemovie (
     FOREIGN KEY (mid) REFERENCES movie(mid),
     FOREIGN KEY (uid) REFERENCES user(uid)
 );
-
+SELECT * FROM userfavoritemovie;
 INSERT INTO userfavoritemovie VALUES (3, 'qwer123');
-
-SELECT * FROM userfavoritemovie u INNER JOIN movie m ON u.mid=m.mid WHERE uid='qwer123';
+SELECT * FROM userfavoritemovie INNER JOIN movie ON userfavoritemovie.mid=movie.mid WHERE uid='qwer123';

@@ -11,7 +11,7 @@
 <title>영화 상세 정보</title>
 <style>
 .main-body {
-  height: 150vh;
+  height: 220vh;
   position: relative;
 }
 .main-contents {
@@ -20,6 +20,7 @@
 }
 .movie-info {
   margin: 30px;
+  width: 90%;
 }
 .movie-info:first-child {
   margin: 40px;
@@ -45,10 +46,26 @@
 .movie__detail-each {
   font-size: 20px;
   margin-bottom: 20px;
-  
 }
 .movie__detail-head {
   font-weight: 700;
+}
+.lower {
+  padding-top: 25px;
+  margin-bottom: 15px;
+}
+.head{
+	padding-bottom: 15px;
+	font-size: 23px;
+}
+.movie__detail-detail{
+  border-top: 1px solid black;
+  padding: 15px 0;
+  margin-top: 15px;
+}
+.movie__video{
+	display: flex;
+	justify-content: center;
 }
 .movie-info__review {
   font-weight: 700;
@@ -124,44 +141,55 @@
 	              	 </div>
 		              <div class="movie__detail-each">
 		                <span class="movie__detail-head">개요&nbsp;</span>|
-		                ${movie.mgenre } | ${movie.mcountry } | ${movie.mtime } |
-		                ${movie.mpremiere }
+		                &nbsp;${movie.mgenre } &nbsp;|&nbsp; ${movie.mcountry } &nbsp;|&nbsp; 
+		                ${movie.mtime } &nbsp;|&nbsp; ${movie.mpremiere }
 		              </div>	
 				
 		              <div class="movie__detail-each">
 		                <span class="movie__detail-head">감독&nbsp;</span>|
-		                ${movie.mdirector }
+		                &nbsp;${movie.mdirector }
 		              </div>
 				
 		             <div class="movie__detail-each">
 		                <span class="movie__detail-head">출연&nbsp;</span>|
-		                ${movie.mactor }
+		                &nbsp;${movie.mactor }
 		              </div>
 				
 		              <div class="movie__detail-each">
 		                <span class="movie__detail-head">등급&nbsp;</span>|
-		                ${movie.mgrade }
+		                &nbsp;${movie.mgrade }
 		              </div>
             		</div>
             	</div>
-            <div class = "movie-info__lower">
+            <div class = "movie-info__lower lower">
 	            <div class="movie__detail-each">
-	              <span class="movie__detail-head">줄거리</span>${movie.mplot}  
+	              <span class="movie__detail-head head">줄거리</span>
+	              	<div class="movie__detail-detail">
+	              	${movie.mplot}
+	              	</div> 
 	            </div>            			
 		    </div>
-		           	<div class="movie__detail">
-		              <div class="movie__detail-img">
-		                <img
-		                  src="/MovieProject/movieui/css/screen/images/movieimage.jpg"
-		                  width="240px"
-		                  height="339px"
-		                />
-		              </div>
-		            </div>
-				</div>
-        	<div class="movie-info">
+           	<div class="movie__detail">
+              <div class="movie__detail-img">
+                <img
+                  src="/MovieProject/movieui/css/screen/images/movieimage.jpg"
+                  width="240px"
+                  height="339px"
+                />
+              </div>
+            </div>
+		</div>
+		<div class="movie-info">
+			<div class="movie__video">
+				<script type="text/javascript">
+					var address = "${mPaddress }";
+					address = address.replace("watch?v=", "embed/");
+					document.write("<iframe width='1120' height='630' src='" + address + "' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>");
+				</script>
+			</div>
+		</div>
+        <div class="movie-info">
           <h1 class="movie-info__review">리뷰 목록</h1>
-
           <form action="/MovieProject/moviereviewdetail.do" method="post">
             <input type="hidden" name="mId" value="${movie.mid }" />
             <input type="submit" value="리뷰 더보기" class="btn btn-dark" />

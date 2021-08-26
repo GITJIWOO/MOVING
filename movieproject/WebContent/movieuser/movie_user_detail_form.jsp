@@ -78,7 +78,7 @@ td{
 			<td class="detail-table__item">${user.uAge }</td>
 		</tr>
       </table>
-      <div class="user-detail-info">
+      <div class="user-info__btn">
       	<form action="/MovieProject/userrvfv.do" method="post">
       		<input type="hidden" name="uId" value="${user.uId}"/>
       		<input type="submit" value="내 기록 관리">
