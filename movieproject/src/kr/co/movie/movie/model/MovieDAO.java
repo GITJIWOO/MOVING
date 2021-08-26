@@ -584,5 +584,33 @@ public class MovieDAO {
 			}
 		}
 		return mPaddress;
-	}
+	}// getMovieVideo END
+	
+	public int updateMovieVideo(int mId, String mPaddress) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ds.getConnection();
+			String sql = "UPDATE moviepreview SET mpaddress = '?' WHERE mid = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mPaddress);
+			pstmt.setInt(2, mId);
+			pstmt.executeUpdate();
+			return SUCCESS;
+		}catch(SQLException e) {
+			System.out.println("에러" + e);
+		}finally {
+			try {
+				if(con != null && !con.isClosed()) {
+					con.close();
+				}
+				if(pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return SUCCESS;
+	}// updateMovieVideo END
 }
