@@ -129,11 +129,11 @@
 	              	<c:set var="avg" value="${avg }" /> 
 	              	<c:choose>
 	              	<c:when test="${1 >= avg.rRate}">☆☆☆☆☆</c:when>
-	              	<c:when test="${1.7 >= avg.rRate}">★☆☆☆☆</c:when>
-	              	<c:when test="${2.7 >= avg.rRate}">★★☆☆☆</c:when>
-	              	<c:when test="${3.7 >= avg.rRate}">★★★☆☆</c:when>
-	              	<c:when test="${4.7 >= avg.rRate}">★★★★☆</c:when>
-	              	<c:when test="${4.7 < avg.rRate}">★★★★★</c:when>
+	              	<c:when test="${1.6 >= avg.rRate}">★☆☆☆☆</c:when>
+	              	<c:when test="${2.6 >= avg.rRate}">★★☆☆☆</c:when>
+	              	<c:when test="${3.6 >= avg.rRate}">★★★☆☆</c:when>
+	              	<c:when test="${4.6 >= avg.rRate}">★★★★☆</c:when>
+	              	<c:when test="${4.6 < avg.rRate}">★★★★★</c:when>
 	              	</c:choose>
 	              	${avg.rRate }
 	              	</div>
