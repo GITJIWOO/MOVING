@@ -47,7 +47,18 @@ public class MovieSetInfoService implements IMovieInfoService{
 	    	String strmGrade = request.getParameter("moviegrade");
 	    	int mGrade = Integer.parseInt(strmGrade);
 	    	String mCountry = request.getParameter("moviecountry");
-	    	String mGenre = request.getParameter("moviegenre");
+	    	
+	    	//장르 받아오기
+	    	String mGenre = "";
+	    	String[] arrGenre = request.getParameterValues("moviegenre");
+	    	//장르 목록 소팅
+	    	for(int i=0; i < arrGenre.length; i++) {
+	    		mGenre += arrGenre[i];
+	    		if(i != arrGenre.length - 1) {
+	    			mGenre += ", ";
+	    		}
+	    	}
+	    	
 	    	String mTime = request.getParameter("movietime");
 	    	String strmDate = request.getParameter("movieprimere");
 	    	Date mPremiere = Date.valueOf(strmDate);
@@ -66,7 +77,7 @@ public class MovieSetInfoService implements IMovieInfoService{
 			movie.setMdirector(mDirector);
 			movie.setMactor(mActor);
 			movie.setMplot(mPlot);
-	    	
+			
 			// DAO생성
 			MovieDAO dao = MovieDAO.getInstance();
 			
