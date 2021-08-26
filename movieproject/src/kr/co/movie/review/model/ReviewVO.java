@@ -1,15 +1,17 @@
 package kr.co.movie.review.model;
 
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 
 public class ReviewVO {
 	private int rNum;
 	private String uId;
 	private String mTitle;
-	private int rRate;
+	private double rRate;
 	private String rContent;
 	private Timestamp rDate;
 	private int mId;
+	private DecimalFormat format = new DecimalFormat(0.0);
 
 	public ReviewVO() {
 		super();
@@ -24,6 +26,7 @@ public class ReviewVO {
 		this.rContent = rContent;
 		this.rDate = rDate;
 		this.mId = mId;
+		
 	}
 
 	public int getrNum() {
@@ -50,12 +53,12 @@ public class ReviewVO {
 		this.mTitle = mTitle;
 	}
 
-	public int getrRate() {
+	public double getrRate() {
 		return rRate;
 	}
 
-	public void setrRate(int rRate) {
-		this.rRate = rRate;
+	public void setrRate(double rRate) {
+		this.rRate = format.format();
 	}
 
 	public String getrContent() {

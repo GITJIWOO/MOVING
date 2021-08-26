@@ -77,7 +77,6 @@ SELECT * FROM review where uid='qwer123' ORDER BY rdate DESC;
 DROP TABLE review;
 
 
-
 /*	영화 예고편 테이블
 	mpid = 영화 예고편 식별 번호
 	mid = 영화 식별 번호
