@@ -33,7 +33,7 @@ public class AdminMainService implements IMovieUserService{
 			}
 		}
 		
-		request.setAttribute("uId", uId);
+		request.setAttribute("session_id", uId);
 	}
 
 }

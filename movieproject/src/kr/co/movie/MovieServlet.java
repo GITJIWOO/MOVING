@@ -31,6 +31,7 @@ import kr.co.movie.review.service.MoviePagingReviewService;
 import kr.co.movie.review.service.MovieUpdateReviewFormService;
 import kr.co.movie.review.service.MovieUpdateReviewService;
 import kr.co.movie.review.service.MovieWriteReviewService;
+import kr.co.movie.user.service.AdminMainService;
 import kr.co.movie.user.service.IMovieUserService;
 import kr.co.movie.user.service.UserDeleteService;
 import kr.co.movie.user.service.UserDetailService;
@@ -97,6 +98,8 @@ public class MovieServlet extends HttpServlet {
 		
 			// 관리자 페이지
 		}else if(uri.equals("/MovieProject/movieadminmain.do")) {
+			mus = new AdminMainService();
+			mus.execute(request, response);
 			ui = "/moviemain/movie_main_admin.jsp";
 
 			// 사용자 회원가입 폼

@@ -13,10 +13,65 @@
     />
 <link rel="stylesheet" href="../movieui/css/mstyles.css" />
 <link rel="stylesheet" href="../MovieProject/movieui/css/mstyles.css" />
+<script
+  src="https://kit.fontawesome.com/62b1f47417.js"
+  crossorigin="anonymous"
+></script>
 <style>
-	.main-body{
-		height: 100vh;
-	}
+.main-body {
+  height: 70vh;
+}
+.main-contents {
+  display: flex;
+}
+.admin-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 50px;
+  margin-left: 35%;
+}
+.admin-info__left {
+  margin: 15px 0;
+}
+.admin-info__right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 10px;
+}
+.admin-header {
+  font-size: 35px;
+  padding-bottom: 30px;
+}
+.fas {
+  background-color: #2b2b2b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 130px;
+  width: 130px;
+  border-radius: 50%;
+  color: white;
+}
+.admin-contents input {
+  padding: 10px 0;
+  font-size: 15px;
+  border-radius: 3px;
+  border-style: none;
+  width: 150px;
+  font-size: 15px;
+  font-weight: 600;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+.admin-contents input:hover {
+  color: black;
+  background-color: #e0dfdf;
+}
+
 </style>
 <title>관리자 페이지</title>
 </head>
@@ -47,9 +102,22 @@
     <div class="main-body">
       <div class="main-sidebar"></div>
       <div class="main-contents">
-      <div>
-      ${session_id }
-      </div>
+      <div class="admin-info">
+          <div class="admin-info__left">
+            <i class="fas fa-user-shield fa-4x"></i>
+          </div>
+          <div class="admin-info__right">
+            <div class="admin-header">계정 | ${session_id }</div>
+            <div class="admin-contents">
+              <a href="/MovieProject/userselect.do">
+                <input type="button" value="사용자정보 조회" />
+              </a>
+              <a href="/MovieProject/movieadditional.do">
+                <input type="button" value="영화 등록" />
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="main-sidebar"></div>
     </div>      
