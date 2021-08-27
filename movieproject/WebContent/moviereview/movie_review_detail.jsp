@@ -73,8 +73,7 @@
 			<div id="contents">
 
 				<form action="/MovieProject/moviereviewinsert.do" method="post">
-					<input type="hidden" name="mId" value="${movie.mid }"> <input
-						type="hidden" name="uId" value="${uId}">
+					<input type="hidden" name="mId" value="${movie.mid }"> 
 					<table class="table table-striped table-hover">
 
 						<c:if test="${uId != null }">
@@ -93,20 +92,14 @@
 								</select></td>
 							</tr>
 							<td>글쓴이</td>
+							
 							<td><input type="text" name="uId" value="${uId }" readonly></td>
 							<tr>
 								<td></td>
 								<td><textarea rows="10" cols="50" name="rContent">${review.rContent}</textarea>
 								</td>
-								<c:choose>
-								<c:when test="">
-								
-								</c:when>
-								<c:otherwise>
-								<td><input type="submit" value="등록" 
-								class="btn btn-light">
-								</c:otherwise>
-								</c:choose>
+								<td><input type="submit" value="등록" class="btn btn-light"
+									id="write" onclick="write()">
 							</tr>
 							<tr>
 							</tr>
@@ -252,13 +245,18 @@
 				alert("삭제확인");
 				// 삭제 확인시 서버로 전송 
 				deleteForm.submit();
-				var b = 0;
 			} else {
 				alert("삭제취소");
 			}
 		}
+		
 		function write() {
-			alert("이미 작성한 리뷰가 존재합니다");
+// 			var uId = document.getElementByName('uId').value;
+//			if () {
+				
+// 			} else {
+
+// 			}
 		}
 	</script>
 
