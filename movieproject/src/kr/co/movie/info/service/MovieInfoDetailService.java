@@ -20,7 +20,6 @@ public class MovieInfoDetailService implements IMovieInfoService {
 		// 유저 세션
 		Object uIdObj = session.getAttribute("session_id");
 		String uId = (String) uIdObj;
-		System.out.println("UID : " + uId);
 
 		try {
 			request.setCharacterEncoding("utf-8");
@@ -28,8 +27,6 @@ public class MovieInfoDetailService implements IMovieInfoService {
 
 			String mId = request.getParameter("mId");
 			int intmId = Integer.parseInt(mId);
-			
-			System.out.println("목록 요청 mId : "+mId);
 
 			MovieDAO dao = MovieDAO.getInstance();
 
@@ -44,6 +41,7 @@ public class MovieInfoDetailService implements IMovieInfoService {
 			request.setAttribute("movie", movie);
 			request.setAttribute("reviewList", reviewList);
 			request.setAttribute("uId", uId);
+			request.setAttribute("mPaddress", mPaddress);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

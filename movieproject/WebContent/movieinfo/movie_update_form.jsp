@@ -68,6 +68,10 @@
 				<td><input type="text" name="movieid" value="${movie.mid }" readonly  required="required"/><br/></td>
 			</tr>
 			<tr>
+				<th>영화 포스터</th>
+				<td><input type="text" name="movieposter" value="${movie.mposter }" required="required"/><br/></td>
+			</tr>
+			<tr>
 				<th>영화 제목</th>
 				<td><input type="text" name="movietitle" value="${movie.mtitle }" required="required"/><br/></td>
 			</tr>

@@ -36,6 +36,7 @@ SELECT * FROM user;
 */
 CREATE TABLE movie(
 	mid INT AUTO_INCREMENT PRIMARY KEY,
+    mposter VARCHAR(500) NOT NULL,
     mtitle VARCHAR(100) NOT NULL,
     mgrade INT(2) NOT NULL,
     mcountry VARCHAR(100) NOT NULL,
