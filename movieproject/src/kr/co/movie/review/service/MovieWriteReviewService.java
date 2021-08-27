@@ -31,9 +31,14 @@ public class MovieWriteReviewService implements IMovieReviewService {
 
 			String uId = request.getParameter("uId");
 			String rContent = request.getParameter("rContent");
-			String strRate = request.getParameter("rRate");
+			String strrRate = request.getParameter("rRate");
 			String mTitle = request.getParameter("mTitle");
-			int rRate = Integer.parseInt(strRate);
+			
+			int rRate = 0 ;
+			// rRate numberFormatException 방지
+			if(!strrRate.equals("")) {
+				rRate = Integer.parseInt(strrRate);
+			}
 			String strMId = request.getParameter("mId");
 			// dao 생성
 			ReviewDAO dao = ReviewDAO.getInstance();
@@ -56,11 +61,24 @@ public class MovieWriteReviewService implements IMovieReviewService {
 
 			System.out.println("유저 아이디: " + uid);
 			int resultCode = dao.write(review);
+			
+			// insert 수행 후 리턴 메세지
+			String resultMessage = null; 
+			
 			if (resultCode == 1) {
+				resultMessage = "등록에 성공했습니다."; 
 				System.out.println("DB테이블에 리뷰이 입력되었습니다");
 			} else if (resultCode == 0) {
+				resultMessage = "등록에 실패하였습니다. ";
 				System.out.println("에러 발생으로 리뷰가 입력되지 않았습니다");
+			} else if (resultCode == -1) {
+				resultMessage = "각 영화에는 한 계정당 하나의 리뷰만 등록 가능합니다.";
+				System.out.println("리뷰 등록시 아이디 중복");
+			} else if(resultCode == -2) {
+				resultMessage = "리뷰 내용 또는 평점을 입력 해주세요.";
+				System.out.println("리뷰 내용 입력 필요");
 			}
+			request.setAttribute("resultMessage", resultMessage);
 
 		} catch (Exception e) {
 			e.printStackTrace();

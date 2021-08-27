@@ -14,8 +14,15 @@ import javax.sql.DataSource;
 
 public class ReviewDAO {
 	private DataSource ds;
-	private static final int WRITE_SUCCESS = 1;
-	private static final int WRITE_FAIL = 0;
+	/** 리뷰 등록 성공시 반환 */
+	private static final int REVIEW_WRITE_SUCCESS = 1;
+	/** 단순 리뷰 등록 에러시 반환  */
+	private static final int REVIEW_WRITE_FAIL = 0;
+	/** 리뷰 등록시  uid 중복 될 경우 반환  */
+	private static final int REVIEW_OVERLAP_ERROR = -1;
+	/** 리뷰 등록시 입력값 없을 경우 반환  */ 
+	private static final int REVIEW_CONTENT_NULL_ERROR = -2;
+	
 
 	private ReviewDAO() {
 		try {
@@ -38,20 +45,48 @@ public class ReviewDAO {
 	public int write(ReviewVO review) {
 		// connection, preparedStatement 객체 선언
 		Connection con = null;
-		PreparedStatement pstmt = null;
+		PreparedStatement pstmt = null; // uid 중복 체크 pstmt 
+		PreparedStatement pstmt2 = null; // insert문 실행 pstmt 
+		ResultSet rs = null;
+		
+		String uId = review.getuId();
+		double rRate =  review.getrRate();
+		String rContent = review.getrContent();
+		String mTitle = review.getmTitle();
+		int mId = review.getmId();
+		
+		// 리뷰 insert시 중복방지를 위한 쿼리
+		String distinctionSql = "SELECT uId FROM review WHERE uId = ? AND mId = ?";
 		String sql = "INSERT INTO review (uId, rRate, rContent,rDate, mTitle,mId) VALUES(?, ?, ?, now(), ?,?)";
 
 		try {
+			// 유저 아이디 중복체크 쿼리 실행 스타트 
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(distinctionSql);
 			pstmt.setString(1, review.getuId());
-			pstmt.setDouble(2, review.getrRate());
-			pstmt.setString(3, review.getrContent());
-			pstmt.setString(4, review.getmTitle());
-			pstmt.setInt(5, review.getmId());
+			pstmt.setInt(2, review.getmId());
+			rs = pstmt.executeQuery();
+			// 유저 아이디 중복체크 쿼리 실행 엔드 
+			
+			if( rRate == 0 || mId == 0 || 
+				(rContent.equals("") || rContent == null || rContent.length() == 0)) { // 파라미터 값이 Null 일때 
+				
+				return REVIEW_CONTENT_NULL_ERROR ; 
+			} 
+			else if (!rs.next()) {	// select의 uId 반환값이 없을 경우 insert문 실행
+				pstmt2 = con.prepareStatement(sql);
+				pstmt2.setString(1, uId );
+				pstmt2.setDouble(2, rRate);
+				pstmt2.setString(3,rContent);
+				pstmt2.setString(4, mTitle);
+				pstmt2.setInt(5, mId);
 
-			pstmt.executeUpdate();
-			return WRITE_SUCCESS;
+				pstmt2.executeUpdate();
+				return REVIEW_WRITE_SUCCESS;
+			} else {
+				// uid 중복시 반환 
+				return REVIEW_OVERLAP_ERROR;
+			}
 
 		} catch (Exception e) {
 			System.out.println("에러: " + e);
@@ -61,15 +96,19 @@ public class ReviewDAO {
 				if (con != null && !con.isClosed()) {
 					con.close();
 				}
-				if (pstmt != null && !pstmt.isClosed()) {
+				if ((pstmt != null && !pstmt.isClosed()) && (pstmt2 != null && !pstmt2.isClosed())) {
 					pstmt.close();
+					pstmt2.close();
+				}
+				if (rs != null && !rs.isClosed()) {
+					rs.close();
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 
 		}
-		return WRITE_FAIL;
+		return REVIEW_WRITE_FAIL;
 	}// end write()
 
 	// 삭제

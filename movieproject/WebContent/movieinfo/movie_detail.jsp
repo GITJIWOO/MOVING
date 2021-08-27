@@ -213,7 +213,6 @@
           <table class="table table-hover">
             <thead>
               <tr>
-                <th>리뷰번호</th>
                 <th>회원아이디</th>
                 <th>영화 제목</th>
                 <th>평점</th>
@@ -224,7 +223,6 @@
             <tbody>
               <c:forEach var="review" items="${reviewList}">
                 <tr>
-                  <td>${review.rNum}</td>
                   <td>${review.uId}</td>
                   <td>${review.mTitle}</td>
                   <td>${review.rRate}</td>
@@ -280,5 +278,42 @@
       </div>
     </div>
 	<!-- footer end -->
+	
+	<%-- 김영훈 임시작성 --%>
+	<script type="text/javascript">
+	
+// 	// 즉시 실행함수 정의
+// 	(function() {
+		
+// 		// insert 처리후 MovieWriteReviewService에서 반환 되는 모델 
+// 		var resultMessage = '${resultMessage}';
+		
+// 		if(resultMessage != ''){ // 모델의 반환값이 없을 때 
+		
+// 			alert(resultMessage);
+// 			if (resultMessage != 1) {	// 에러 반환시 뒤로가기
+// 				window.history.back();
+// 			}
+			
+// 		}
+// 	})();
+	
+	function showMovieReviewInsertMsg () {
+		// insert 처리후 MovieWriteReviewService에서 반환 되는 모델 
+		var resultMessage = '${resultMessage}';
+		
+		if(resultMessage != ''){ // 모델의 반환값이 없을 때 
+			alert(resultMessage);
+			if (resultMessage != 1) {	// 에러 반환시 뒤로가기
+				window.history.back();
+			} else { 
+				location.reload(true); // 리뷰 등록 성공시 새로고침 
+			}
+		}
+		
+	}
+	showMovieReviewInsertMsg();
+	
+	</script>
 </body>
 </html>
