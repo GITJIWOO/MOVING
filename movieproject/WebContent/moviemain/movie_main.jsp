@@ -4,10 +4,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 <meta charset="UTF-8">
 <link rel="stylesheet" href="../movieui/css/mstyles.css" />
 <link rel="stylesheet" href="../MovieProject/movieui/css/mstyles.css" />
 <title>메인 화면</title>
+<style>
+	.main-body {
+		height : 150vh;
+	}
+	h2 { 
+		font-size: 50px;
+		text-align:center;
+		padding:50px;
+	}
+	 .carousel-fade .carousel-item, .carousel-item img {
+     max-height: 100vh;
+     min-height: 100vh;
+     display:flex;
+      } 
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<!--main 화면 header start-->
@@ -68,6 +86,80 @@
 	<c:if test="${login_fail == -1 }">
 		<script>alert('비밀번호가 일치하지 않습니다.'); history.back(); </script>
 	</c:if>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+	<!-- ------------- -->
+			<h2>상영 중인 영화</h2>
+	        <div id="carousel-example-generic" class="carousel slide">
+	            <!-- Indicators -->
+	            <ol class="carousel-indicators">
+	              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+	              <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+	              <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+	            </ol>
+	                 <!-- Carousel items -->
+	             <div class="carousel-inner">
+	                <div class="carousel-item active">
+	                   <a href="/MovieProject/moviedetail.do?mId=1"><img class="image" src="../movieui/css/screen/images/movie001.jpg" alt="First slide"></a>
+	                </div>
+	                <div class="carousel-item">
+	                   <a href="/MovieProject/moviedetail.do?mId=2"><img class="image" src="../movieui/css/screen/images/movie002.jpg" alt="Second slide"></a>
+	                </div>
+	                <div class="carousel-item">
+	                   <a href="/MovieProject/moviedetail.do?mId=3"><img class="image" src="../movieui/css/screen/images/movie003.jpg" alt="Third slide"></a>
+	                </div>
+	             </div>
+	            <!-- Controls -->
+	              <a class="carousel-control-prev" href="#carousel-example-generic" data-slide="prev">
+	                <span class="carousel-control-prev-icon"></span>
+	              </a>
+	              <a class="carousel-control-next" href="#carousel-example-generic" data-slide="next">
+	                <span class="carousel-control-next-icon"></span>
+	              </a>
+	          </div>
+			
+			
+	<!-- ------------- -->		
+			</div>
+			<div class="col-md-6">
+			<!-- ----------------- -->
+			
+			<h2>개봉 예정 영화</h2>
+	        <div id="carousel-example-generic2" class="carousel slide">
+	            <!-- Indicators -->
+	            <ol class="carousel-indicators">
+	              <li data-target="#carousel-example-generic2" data-slide-to="0" class="active"></li>
+	              <li data-target="#carousel-example-generic2" data-slide-to="1"></li>
+	              <li data-target="#carousel-example-generic2" data-slide-to="2"></li>
+	            </ol>
+	                 <!-- Carousel items -->
+	             <div class="carousel-inner">
+	                <div class="carousel-item active">
+	                   <a href="/MovieProject/moviedetail.do?mId=1"><img class="image" src="../movieui/css/screen/images/movie001.jpg" alt="First slide"></a>
+	                </div>
+	                <div class="carousel-item">
+	                   <a href="/MovieProject/moviedetail.do?mId=2"><img class="image" src="../movieui/css/screen/images/movie002.jpg" alt="Second slide"></a>
+	                </div>
+	                <div class="carousel-item">
+	                   <a href="/MovieProject/moviedetail.do?mId=3"><img class="image" src="../movieui/css/screen/images/movie003.jpg" alt="Third slide"></a>
+	                </div>
+	             </div>
+	            <!-- Controls -->
+	              <a class="carousel-control-prev" href="#carousel-example-generic2" data-slide="prev">
+	                <span class="carousel-control-prev-icon"></span>
+	              </a>
+	              <a class="carousel-control-next" href="#carousel-example-generic2" data-slide="next">
+	                <span class="carousel-control-next-icon"></span>
+	              </a>
+	          </div>
+			
+			<!-- ------------------ -->
+			</div>
+		</div>
+	</div>
+	
+	
 	</div>
       <div class="main-sidebar"></div>
     </div>
