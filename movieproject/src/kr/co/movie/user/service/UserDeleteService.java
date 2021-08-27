@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.co.movie.movie.model.MovieDAO;
+import kr.co.movie.review.model.ReviewDAO;
 import kr.co.movie.user.model.UserDAO;
 
 public class UserDeleteService implements IMovieUserService{
@@ -24,9 +26,13 @@ public class UserDeleteService implements IMovieUserService{
 			}
 		}
 		UserDAO dao = UserDAO.getInstance();
+		ReviewDAO rdao = ReviewDAO.getInstance();
+		MovieDAO mdao = MovieDAO.getInstance();
 		// 위에서 로그인 세션을 확인했으니, 여기서 확인 없이 바로 탈퇴
 		// alert - 정말 탈퇴하시겠습니까?
 		dao.userDelete(uId);
+		rdao.deleteAllReview(uId);
+		mdao.deleteUserFavoritemovie(uId);
 		// userDelete 위에 위치하는지 아래 위치하는지 확인 
 		session.invalidate();
 	}
