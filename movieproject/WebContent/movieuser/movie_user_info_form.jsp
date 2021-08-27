@@ -62,8 +62,8 @@
       </div>
       <div class="main-bar__column">
         <span>
+          <a class="main-bar__movie" href="/MovieProject/moviemain.do">홈</a>
           <a class="main-bar__movie" href="/MovieProject/movieselect.do">영화정보</a>
-          <a class="main-bar__movie" href="#">다운로드</a>
         </span>
       </div>
       <div class="main-bar__column">
