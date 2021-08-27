@@ -20,6 +20,7 @@
     }
     .main-rvfv {
     	width: 80%;
+    	font-size: 120%;
     }
 	.review {
 		float: left;
@@ -40,10 +41,12 @@
 		margin: 10px 0;
 	}
 	.user-info__btn {
-    	justify-content: center;
+    	display: flex;
+		align-items: center;
+		justify-content: center;
 	}
-	.btn btn-outline-secondary btn-sm {
-		
+	.button {
+		float: right;
 	}
 	
 </style>
@@ -51,7 +54,7 @@
 </head>
 <body>
 	<!--main 화면 header start-->
-	<!-- 로그인 후에만 볼 수 있는 페이지 -->
+	<!-- 로그인 전과 후, 관리자 모두 볼 수 있는 페이지 -->
     <div class="main-bar">
       <div class="main-bar__column">
         <span
@@ -61,18 +64,33 @@
       <div class="main-bar__column">
         <span>
           <a class="main-bar__movie" href="/MovieProject/movieselect.do">영화정보</a>
-          <a class="main-bar__movie" href="#">영화예매</a>
+          <a class="main-bar__movie" href="#">다운로드</a>
         </span>
       </div>
+      <c:if test="${session_id == null }">
+      <div class="main-bar__column">
+        <span><a class="main-bar__btn" href="/MovieProject/userjoin.do">로그인</a></span>
+        <span>|</span>
+        <span><a class="main-bar__btn" href="/MovieProject/requserjoin.do">회원가입</a></span>
+      </div>
+      </c:if>
+      <c:if test="${session_id != null }">
       <div class="main-bar__column">
         <span><a class="main-bar__btn">${session_id } 님 환영합니다!</a></span>
         <span>|</span>
+        <c:if test="${session_admin == 1 }">
+        <span><a class="main-bar__btn" href="/MovieProject/userselect.do">관리자페이지</a></span>
+        </c:if>
+        <c:if test="${session_admin == 0 }">
         <form class="main-bar__btn"  action = "/MovieProject/userdetail.do" method = "post">
 		<input type = "hidden" name = "uId" value = "${session_id }" />
 		<input type = "submit" value = "마이페이지" />
-		</form>        <span>|</span>
+		</form>
+        </c:if>
+        <span>|</span>
         <span><a class="main-bar__btn" href="/MovieProject/userlogout.do">로그아웃</a></span>
       </div>
+      </c:if>
     </div>
     <!-- main 화면 header end-->
     <!-- main 화면 body start-->
@@ -86,14 +104,14 @@
 	      			<input type="submit" value="내 정보">
 	      		</form>
       		</div>
-      		<hr>
       		<div class="review">
       			<h1 class="title">내가 남긴 리뷰</h1>
+      			<hr>
       			<ul>
 	   				<c:forEach var="review" items="${reviewList }">
 	   					<li>제목 | <a href="/MovieProject/moviedetail.do?mId=${review.mId}">${review.mTitle }</a>
 							<form id="deleteForm"
-								action="/MovieProject/moviereviewdelete.do" method="post">
+								action="/MovieProject/moviereviewdelete.do" method="post" class="button">
 								<input type="hidden" name="rNum" value="${review.rNum }">
 								<input type="hidden" name="mId" value="${movie.mid }">
 								<input type="button" value="삭제"
@@ -110,6 +128,7 @@
       		</div>
       		<div class="favorite">
       			<h1 class="title">내가 찜 한 영화</h1>
+      			<hr>
       			<ul>
       				<c:forEach var="movie" items="${faMovies }">
 	      				<li>제목 | <a href="/MovieProject/moviedetail.do?mId=${movie.mid}">${movie.mtitle }</a></li>
