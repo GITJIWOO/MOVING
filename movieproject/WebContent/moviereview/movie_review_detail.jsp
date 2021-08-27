@@ -129,6 +129,15 @@
 							<th>평점</th>
 							<th>리뷰내용</th>
 							<th>작성일</th>
+							<th><select name="PagingByRate"
+									style="background: activeborder; color: black;" onchange="viewReviewListByRate()">
+										<option style="background: gray; color: black;">평점</option>
+										<option style="background: gray;" value="1">1</option>
+										<option style="background: gray;" value="2">2</option>
+										<option style="background: gray;" value="3">3</option>
+										<option style="background: gray;" value="4">4</option>
+										<option style="background: gray;" value="5">5</option>
+								</select></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -250,14 +259,16 @@
 			}
 		}
 		
-		function write() {
-// 			var uId = document.getElementByName('uId').value;
-//			if () {
-				
-// 			} else {
-
-// 			}
+		
+		function viewReviewListByRate() {
+			
+			var targetRate = document.getElementByName('PagingByRate').value;
+			var mId = '${movie.mid }';
+			
+			location.href='/MovieProject/moviereviewdetailbyrate.do?mId='+mId+'&rRate='+rRate;
+			
 		}
+		
 	</script>
 
 </body>
