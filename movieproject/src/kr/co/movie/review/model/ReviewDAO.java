@@ -113,6 +113,47 @@ public class ReviewDAO {
 		return resultCode;
 	}// end delete()
 
+	// 삭제
+	public int deleteAllReview(String uId) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int resultCode;
+
+		// 커넥션 연결 및 쿼리문 실행
+		String sql = "DELETE FROM review WHERE uId = ?";
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, uId);
+
+			pstmt.executeUpdate();
+
+			System.out.println("탈퇴한 회원(리뷰): " + uId);
+			resultCode = 1;
+
+		} catch (Exception e) {
+			System.out.println("에러: " + e);
+			e.printStackTrace();
+			resultCode = 0;
+
+		} finally {
+			try {
+				if (con != null && !con.isClosed()) {
+					con.close();
+				}
+				if (pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+		return resultCode;
+	}// end delete()
+
 	/// 업데이트
 	public int update(ReviewVO review) {
 		Connection con = null;
@@ -296,13 +337,13 @@ public class ReviewDAO {
 		}
 		return countNum;
 	} // end getReviewCount()
-	
+
 	public double getAvgReview(int mId) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		double avg = 0 ;
-		
+		double avg = 0;
+
 		String sql = "SELECT AVG(rRate) FROM review WHERE mId = ?";
 
 		try {
@@ -312,7 +353,7 @@ public class ReviewDAO {
 			rs = pstmt.executeQuery();
 			rs.next();
 			avg = rs.getDouble("AVG(rRate)");
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -426,7 +467,6 @@ public class ReviewDAO {
 		}
 		return countNum;
 	} // end getReviewCount()
-	
 
 	// 페이지 번호에 맞는 게시물 가져오기
 	public List<ReviewVO> getUserReviewList(String uId) {
@@ -455,7 +495,7 @@ public class ReviewDAO {
 				review.setrRate(rs.getDouble("rrate"));
 				review.setrContent(rs.getString("rcontent"));
 				review.setrDate(rs.getTimestamp("rdate"));
-				
+
 				reviewList.add(review);
 
 			}
@@ -478,38 +518,38 @@ public class ReviewDAO {
 		}
 		return reviewList;
 	} // end getUserReviewList()
-	
-	public ReviewVO getMovieId (int mid) {
+
+	public ReviewVO getMovieId(int mid) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		ReviewVO review = new ReviewVO();
-		
+
 		try {
 			con = ds.getConnection();
 			String sql = "SELECT AVG(rrate), mid FROM review GROUP BY mid HAVING mid=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, mid);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				review.setrRate(rs.getDouble("AVG(rrate)"));
 				review.setmId(rs.getInt("mid"));
 				System.out.println(review);
 			}
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-	 		try {
-	 			if(con != null && !con.isClosed()) {
-	 				con.close();
-	 			}
-	 			if(pstmt != null && !pstmt.isClosed()) {
-	 				pstmt.close();
-	 			}
-	 		} catch (Exception e){
-	 			e.printStackTrace();
-	 		}
+			try {
+				if (con != null && !con.isClosed()) {
+					con.close();
+				}
+				if (pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		return review;
 	} // end

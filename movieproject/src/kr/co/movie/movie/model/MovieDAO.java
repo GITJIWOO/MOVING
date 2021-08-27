@@ -613,4 +613,42 @@ public class MovieDAO {
 		}
 		return SUCCESS;
 	}// updateMovieVideo END
+	
+	// 찜목록 삭제
+		public int deleteUserFavoritemovie(String uId) {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			int resultCode;
+
+			String sql = "DELETE FROM userfavoritemovie WHERE uId = ?";
+
+			try {
+
+				con = ds.getConnection();
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, uId);
+				pstmt.executeUpdate();
+
+				resultCode = 1;
+			} catch (Exception e) {
+				System.out.println("에러: " + e);
+				e.printStackTrace();
+				resultCode = 0;
+
+			} finally {
+				try {
+					if (con != null && !con.isClosed()) {
+						con.close();
+					}
+					if (pstmt != null && !pstmt.isClosed()) {
+						pstmt.close();
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+			}
+			return resultCode;
+		}// end deleteUserFavoritemovie()
+
 }

@@ -98,8 +98,15 @@
 								<td></td>
 								<td><textarea rows="10" cols="50" name="rContent">${review.rContent}</textarea>
 								</td>
-
-								<td><input type="submit" value="등록" class="btn btn-light">
+								<c:choose>
+								<c:when test="">
+								
+								</c:when>
+								<c:otherwise>
+								<td><input type="submit" value="등록" 
+								class="btn btn-light">
+								</c:otherwise>
+								</c:choose>
 							</tr>
 							<tr>
 							</tr>
@@ -124,7 +131,6 @@
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
-							<th>리뷰번호</th>
 							<th>회원아이디</th>
 							<th>영화 제목</th>
 							<th>평점</th>
@@ -135,7 +141,6 @@
 					<tbody>
 						<c:forEach var="review" items="${reviewList }">
 							<tr>
-								<td>${review.rNum }</td>
 								<td>${review.uId }</td>
 								<td>${review.mTitle }</td>
 								<td>${review.rRate }</td>
@@ -252,14 +257,9 @@
 				alert("삭제취소");
 			}
 		}
-		/////////////////////////////////////////////////////////
-		// 리터럴 방식 
-
-		var hello = function() {
-			console.log("Hi");
+		function write() {
+			alert("이미 작성한 리뷰가 존재합니다");
 		}
-
-		hello();
 	</script>
 
 </body>
