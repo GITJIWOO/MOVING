@@ -38,7 +38,6 @@
         <span>|</span>
         <span><a class="main-bar__btn" href="/MovieProject/userlogout.do">로그아웃</a></span>
       </div>
-      
     </div>
     <!-- main 화면 header end-->
     <!-- main 화면 body start-->

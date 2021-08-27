@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,8 +11,8 @@
 <title>영화 정보 기입</title>
 </head>
 <body>
-	
 	<!--main 화면 header start-->
+	<!-- 로그인 전과 후, 관리자 모두 볼 수 있는 페이지 -->
     <div class="main-bar">
       <div class="main-bar__column">
         <span
@@ -24,11 +25,30 @@
           <a class="main-bar__movie" href="#">다운로드</a>
         </span>
       </div>
+      <c:if test="${session_id == null }">
       <div class="main-bar__column">
         <span><a class="main-bar__btn" href="/MovieProject/userjoin.do">로그인</a></span>
         <span>|</span>
         <span><a class="main-bar__btn" href="/MovieProject/requserjoin.do">회원가입</a></span>
       </div>
+      </c:if>
+      <c:if test="${session_id != null }">
+      <div class="main-bar__column">
+        <span><a class="main-bar__btn">${session_id } 님 환영합니다!</a></span>
+        <span>|</span>
+        <c:if test="${session_admin == 1 }">
+        <span><a class="main-bar__btn" href="/MovieProject/userselect.do">관리자페이지</a></span>
+        </c:if>
+        <c:if test="${session_admin == 0 }">
+        <form class="main-bar__btn"  action = "/MovieProject/userdetail.do" method = "post">
+		<input type = "hidden" name = "uId" value = "${session_id }" />
+		<input type = "submit" value = "마이페이지" />
+		</form>
+        </c:if>
+        <span>|</span>
+        <span><a class="main-bar__btn" href="/MovieProject/userlogout.do">로그아웃</a></span>
+      </div>
+      </c:if>
     </div>
     <!-- main 화면 header end-->
     <!-- main 화면 body start-->
@@ -115,14 +135,21 @@
       <div class="main-sidebar"></div>
     </div>
     <!-- main 화면 body end-->
-	<!-- foot start -->
-	<div id="footer">
-		<p><b>Creators</b>&nbsp;&nbsp;김지우 , 최재인 , 이한빈 , 김영훈</p>
-		<p><b>Contact </b>&nbsp;&nbsp;<a href="https://github.com/GITJIWOO">https://github.com/GITJIWOO</a></p>
-		<hr>
-		<p id="copyright"><b>ⓒ MOVING Corp.</b></p>
-	</div>
-	<!-- foot end -->
-	
+    <!-- footer start -->
+	<div class="footer">
+      <div class="footer-info">
+        <div>CREATORS&nbsp;&nbsp;김지우 , 최재인 , 이한빈 , 김영훈</div>
+        <div>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</div>
+        <div>
+          CONTACT&nbsp;&nbsp;<a href="https://github.com/GITJIWOO"
+            >https://github.com/GITJIWOO</a
+          >
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div>Copyright © MOVING All right reserved.</div>
+      </div>
+    </div>
+	<!-- footer end -->
 </body>
 </html>
