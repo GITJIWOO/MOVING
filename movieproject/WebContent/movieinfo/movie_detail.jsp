@@ -188,7 +188,7 @@
            	<div class="movie__detail">
               <div class="movie__detail-img">
                 <img
-                  src="/MovieProject/movieui/css/screen/images/movieimage.jpg"
+                  src="${movie.mposter }"
                   width="240px"
                   height="339px"
                 />

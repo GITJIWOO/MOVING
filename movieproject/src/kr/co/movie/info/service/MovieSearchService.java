@@ -21,8 +21,6 @@ public class MovieSearchService implements IMovieInfoService{
 			String keyword = request.getParameter("keyword");
 			String strPage = request.getParameter("page");
 			
-			System.out.println("받아온 키워드 : " + keyword);
-			
 			int page = 1;
 			if(strPage != null) {
 				page = Integer.parseInt(strPage);

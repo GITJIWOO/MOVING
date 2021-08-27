@@ -74,7 +74,7 @@ public class MoviePagingReviewService implements IMovieReviewService {
 		List<ReviewVO> reviewList = rdao.getPageList((page - 1) * 10, mId);
 		// 얻어온 글 전체 개수와 현재 조회중인 페이지 정보를 DTO에 넘겨줌.
 		int countNum = rdao.getMidReviewCount(mId);
-
+		
 		// DTO의 역할은 페이지 하단에 링크만들 정보를 계산하는것.
 		ReviewPageDTO pageDTO = new ReviewPageDTO(countNum, page, reviewList);
 

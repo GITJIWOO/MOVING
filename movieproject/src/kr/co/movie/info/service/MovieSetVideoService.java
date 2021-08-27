@@ -41,7 +41,6 @@ public class MovieSetVideoService implements IMovieInfoService{
 			response.setCharacterEncoding("utf-8");
 			
 			int mId = (int)request.getAttribute("mId_add");
-			System.out.println("getat: " + mId);
 			String mPaddress = request.getParameter("teaseraddress");
 			
 			VideoVO video = new VideoVO();

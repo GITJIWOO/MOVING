@@ -165,7 +165,7 @@
 			<div class="movieinfo">
 				<c:forEach var="movie" items="${movieList}">
 					<div class="movieblock">
-						<div class="movieimage"><a href="/MovieProject/moviedetail.do?mId=${movie.mid}"><img src="/MovieProject/movieui/css/screen/images/movieimage.jpg" class="clickimage" width="170px" height="240px"></a></div>
+						<div class="movieimage"><a href="/MovieProject/moviedetail.do?mId=${movie.mid}"><img src="${movie.mposter }" class="clickimage" width="170px" height="240px"></a></div>
 						<div class="moviecontent">
 							<ul>
 								<li class="movietitle"><a href="/MovieProject/moviedetail.do?mId=${movie.mid}">
