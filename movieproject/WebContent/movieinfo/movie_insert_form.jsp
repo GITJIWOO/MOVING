@@ -60,6 +60,10 @@
 			<form action="http://localhost:8181/MovieProject/movieinsert.do" method="post">
 				<table border="1"> 
 					<tr>
+						<th>영화 포스터</th>
+						<td><input type="text" name="movieposter" required="required"/><br/></td>
+					</tr>
+					<tr>
 						<th>영화 제목</th>
 						<td><input type="text" name="movietitle" required="required"/><br/></td>
 					</tr>
