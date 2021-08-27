@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.co.movie.movie.model.MovieDAO;
 import kr.co.movie.movie.model.MovieVO;
+import kr.co.movie.movie.model.VideoVO;
 
 public class MovieUpdateOkService implements IMovieInfoService{
 
@@ -46,6 +47,7 @@ public class MovieUpdateOkService implements IMovieInfoService{
 			
 			String strmId = request.getParameter("movieid");
 			int mId = Integer.parseInt(strmId);
+			String mPoster = request.getParameter("movieposter");
 	        String mTitle = request.getParameter("movietitle");
 	    	String strmGrade = request.getParameter("moviegrade");
 	    	int mGrade = Integer.parseInt(strmGrade);
@@ -67,6 +69,7 @@ public class MovieUpdateOkService implements IMovieInfoService{
 	    	MovieVO movie = new MovieVO();
 	    	
 	    	movie.setMid(mId);
+	    	movie.setMposter(mPoster);
 	    	movie.setMtitle(mTitle);
 	    	movie.setMgrade(mGrade);
 			movie.setMcountry(mCountry);
@@ -78,11 +81,11 @@ public class MovieUpdateOkService implements IMovieInfoService{
 			movie.setMplot(mPlot);
 			
 			int resultCode = dao.movieUpdate(movie);
-			dao.updateMovieVideo(mId, mPaddress);
+			int result = dao.updateMovieVideo(mId, mPaddress);
 			
-			if(resultCode == 0) {
+			if(resultCode == 0 && result == 0) {
 				System.out.println("수정 실패");
-			} else if(resultCode == 1) {
+			} else if(resultCode == 1 && result == 1) {
 				System.out.println("수정 성공");
 			}
 		} catch(Exception e) {

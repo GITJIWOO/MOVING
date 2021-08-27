@@ -56,6 +56,7 @@ public class MovieDAO {
 				MovieVO movie = new MovieVO();
 				
 				movie.setMid(rs.getInt("mid"));
+				movie.setMposter(rs.getString("mposter"));
 				movie.setMtitle(rs.getString("mtitle"));
 				movie.setMgrade(rs.getInt("mgrade"));
 				movie.setMcountry(rs.getString("mcountry"));
@@ -87,26 +88,26 @@ public class MovieDAO {
 	} // end getMovie
 	
 	
-	
 	// Set Movie Method
 	public int setMovie(MovieVO movie) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
 			con = ds.getConnection();
-			String sql = "INSERT INTO movie (mtitle, mgrade,"
+			String sql = "INSERT INTO movie (mposter, mtitle, mgrade,"
 					+ " mcountry, mgenre, mtime, mpremiere, mdirector, mactor, mplot) "
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, movie.getMtitle());
-			pstmt.setInt(2, movie.getMgrade());
-			pstmt.setString(3, movie.getMcountry());
-			pstmt.setString(4, movie.getMgenre());
-			pstmt.setString(5, movie.getMtime());
-			pstmt.setDate(6, movie.getMpremiere());
-			pstmt.setString(7, movie.getMdirector());
-			pstmt.setString(8, movie.getMactor());
-			pstmt.setString(9, movie.getMplot());
+			pstmt.setString(1, movie.getMposter());
+			pstmt.setString(2, movie.getMtitle());
+			pstmt.setInt(3, movie.getMgrade());
+			pstmt.setString(4, movie.getMcountry());
+			pstmt.setString(5, movie.getMgenre());
+			pstmt.setString(6, movie.getMtime());
+			pstmt.setDate(7, movie.getMpremiere());
+			pstmt.setString(8, movie.getMdirector());
+			pstmt.setString(9, movie.getMactor());
+			pstmt.setString(10, movie.getMplot());
 			
 			pstmt.executeUpdate();
 			
@@ -145,6 +146,7 @@ public class MovieDAO {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				movie.setMid(rs.getInt("mid"));
+				movie.setMposter(rs.getString("mposter"));
 				movie.setMtitle(rs.getString("mtitle"));
 				movie.setMgrade(rs.getInt("mgrade"));
 				movie.setMcountry(rs.getString("mcountry"));
@@ -183,20 +185,21 @@ public class MovieDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con = ds.getConnection();
-			String sql = "UPDATE movie SET mtitle=?, mgrade=?, mcountry=?, mgenre=?, mtime=?, "
+			String sql = "UPDATE movie SET mposter=?, mtitle=?, mgrade=?, mcountry=?, mgenre=?, mtime=?, "
 					+ "mpremiere=?, mdirector=?, mactor=?, mplot=? WHERE mid=?";
 			
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, movie.getMtitle());
-			pstmt.setInt(2, movie.getMgrade());
-			pstmt.setString(3, movie.getMcountry());
-			pstmt.setString(4, movie.getMgenre());
-			pstmt.setString(5, movie.getMtime());
-			pstmt.setDate(6, movie.getMpremiere());
-			pstmt.setString(7, movie.getMdirector());
-			pstmt.setString(8, movie.getMactor());
-			pstmt.setString(9, movie.getMplot());
-			pstmt.setInt(10, movie.getMid());
+			pstmt.setString(1, movie.getMposter());
+			pstmt.setString(2, movie.getMtitle());
+			pstmt.setInt(3, movie.getMgrade());
+			pstmt.setString(4, movie.getMcountry());
+			pstmt.setString(5, movie.getMgenre());
+			pstmt.setString(6, movie.getMtime());
+			pstmt.setDate(7, movie.getMpremiere());
+			pstmt.setString(8, movie.getMdirector());
+			pstmt.setString(9, movie.getMactor());
+			pstmt.setString(10, movie.getMplot());
+			pstmt.setInt(11, movie.getMid());
 			
 			pstmt.executeUpdate();
 			
@@ -239,6 +242,7 @@ public class MovieDAO {
 				MovieVO movie = new MovieVO();
 
 				movie.setMid(rs.getInt("mid"));
+				movie.setMposter(rs.getString("mposter"));
 				movie.setMtitle(rs.getString("mtitle"));
 				movie.setMgrade(rs.getInt("mgrade"));
 				movie.setMcountry(rs.getString("mcountry"));
@@ -333,6 +337,7 @@ public class MovieDAO {
 				MovieVO movie = new MovieVO();
 
 				movie.setMid(rs.getInt("mid"));
+				movie.setMposter(rs.getString("mposter"));
 				movie.setMtitle(rs.getString("mtitle"));
 				movie.setMgrade(rs.getInt("mgrade"));
 				movie.setMcountry(rs.getString("mcountry"));
@@ -591,7 +596,7 @@ public class MovieDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con = ds.getConnection();
-			String sql = "UPDATE moviepreview SET mpaddress = ? WHERE mid = ?";
+			String sql = "UPDATE moviepreview SET mpaddress=? WHERE mid=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mPaddress);
 			pstmt.setInt(2, mId);
@@ -611,44 +616,43 @@ public class MovieDAO {
 				e.printStackTrace();
 			}
 		}
-		return SUCCESS;
+		return FAIL;
 	}// updateMovieVideo END
 	
 	// 찜목록 삭제
-		public int deleteUserFavoritemovie(String uId) {
-			Connection con = null;
-			PreparedStatement pstmt = null;
-			int resultCode;
+	public int deleteUserFavoritemovie(String uId) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		int resultCode;
 
-			String sql = "DELETE FROM userfavoritemovie WHERE uId = ?";
+		String sql = "DELETE FROM userfavoritemovie WHERE uId = ?";
 
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, uId);
+			pstmt.executeUpdate();
+
+			resultCode = 1;
+		} catch (Exception e) {
+			System.out.println("에러: " + e);
+			e.printStackTrace();
+			resultCode = 0;
+
+		} finally {
 			try {
-
-				con = ds.getConnection();
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, uId);
-				pstmt.executeUpdate();
-
-				resultCode = 1;
-			} catch (Exception e) {
-				System.out.println("에러: " + e);
-				e.printStackTrace();
-				resultCode = 0;
-
-			} finally {
-				try {
-					if (con != null && !con.isClosed()) {
-						con.close();
-					}
-					if (pstmt != null && !pstmt.isClosed()) {
-						pstmt.close();
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
+				if (con != null && !con.isClosed()) {
+					con.close();
 				}
-
+				if (pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			return resultCode;
-		}// end deleteUserFavoritemovie()
 
+		}
+		return resultCode;
+	}// end deleteUserFavoritemovie()
 }

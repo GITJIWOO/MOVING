@@ -43,7 +43,6 @@ public class MoviePagingService implements IMovieInfoService{
 			// 위의 movieList에서 향상된 for문을 활용하면 mid들만 뽑아낼 수 있음
 			for(MovieVO movie : movieList) {
 				// mid 10개만 리스트로 만들면 끝
-				MovieVO movieVo = new MovieVO();
 				int mid = movie.getMid();
 				movieid.add(mid);
 			}

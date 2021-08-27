@@ -58,7 +58,7 @@ public class MovieSetInfoService implements IMovieInfoService{
 	    			mGenre += ", ";
 	    		}
 	    	}
-	    	
+	    	String mPoster = request.getParameter("movieposter");
 	    	String mTime = request.getParameter("movietime");
 	    	String strmDate = request.getParameter("movieprimere");
 	    	Date mPremiere = Date.valueOf(strmDate);
@@ -67,7 +67,8 @@ public class MovieSetInfoService implements IMovieInfoService{
 	    	String mPlot = request.getParameter("movieplot");
 	    	// VO생성
 	    	MovieVO movie = new MovieVO();
-	    				
+	    	
+	    	movie.setMposter(mPoster);
 	    	movie.setMtitle(mTitle);
 	    	movie.setMgrade(mGrade);
 			movie.setMcountry(mCountry);

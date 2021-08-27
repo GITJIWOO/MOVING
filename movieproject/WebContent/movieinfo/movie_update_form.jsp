@@ -21,13 +21,13 @@
     <div class="main-bar">
       <div class="main-bar__column">
         <span
-          ><a href="/MovieProject/moviemain.do"><img src="/MovieProject/movieui/css/screen/images/logo.png" /></a
+          ><a href="/MovieProject/moviemain.do"><img src="<%=request.getContextPath() %>/movieui/css/screen/images/logo.png" /></a
         ></span>
       </div>
       <div class="main-bar__column">
         <span>
+          <a class="main-bar__movie" href="/MovieProject/moviemain.do">홈</a>
           <a class="main-bar__movie" href="/MovieProject/movieselect.do">영화정보</a>
-          <a class="main-bar__movie" href="#">다운로드</a>
         </span>
       </div>
       <c:if test="${session_id == null }">
@@ -42,7 +42,7 @@
         <span><a class="main-bar__btn">${session_id } 님 환영합니다!</a></span>
         <span>|</span>
         <c:if test="${session_admin == 1 }">
-        <span><a class="main-bar__btn" href="/MovieProject/userselect.do">관리자페이지</a></span>
+        <span><a class="main-bar__btn" href="/MovieProject/movieadminmain.do">관리자페이지</a></span>
         </c:if>
         <c:if test="${session_admin == 0 }">
         <form class="main-bar__btn"  action = "/MovieProject/userdetail.do" method = "post">
@@ -66,6 +66,10 @@
 			<tr>
 				<th>영화 번호</th>
 				<td><input type="text" name="movieid" value="${movie.mid }" readonly  required="required"/><br/></td>
+			</tr>
+			<tr>
+				<th>영화 포스터</th>
+				<td><input type="text" name="movieposter" value="${movie.mposter }" required="required"/><br/></td>
 			</tr>
 			<tr>
 				<th>영화 제목</th>

@@ -36,6 +36,7 @@ SELECT * FROM user;
 */
 CREATE TABLE movie(
 	mid INT AUTO_INCREMENT PRIMARY KEY,
+    mposter VARCHAR(500) NOT NULL,
     mtitle VARCHAR(100) NOT NULL,
     mgrade INT(2) NOT NULL,
     mcountry VARCHAR(100) NOT NULL,
@@ -48,9 +49,7 @@ CREATE TABLE movie(
 );
 SELECT * FROM movie;
 
-INSERT INTO movie (mtitle, mgrade, mcountry, mgenre, mtime, mpremiere, mdirector, mactor, mplot)
-					VALUES ('카17', 1, '미국', '레이싱', '84분','2021-03-10', '김지우', '윤지우', '자동자 경주');
-                    
+
 DROP TABLE movie;
 
 
@@ -89,6 +88,8 @@ CREATE TABLE moviepreview (
     FOREIGN KEY (mid) REFERENCES movie(mid)
 );
 
+DROP TABLE moviepreview;
+
 /*  찜한 영화 테이블
 	mid = 영화 식별 번호
     uid = 유저 아이디
@@ -102,3 +103,5 @@ CREATE TABLE userfavoritemovie (
 SELECT * FROM userfavoritemovie;
 INSERT INTO userfavoritemovie VALUES (3, 'qwer123');
 SELECT * FROM userfavoritemovie INNER JOIN movie ON userfavoritemovie.mid=movie.mid WHERE uid='qwer123';
+
+DROP TABLE userfavoritemovie;

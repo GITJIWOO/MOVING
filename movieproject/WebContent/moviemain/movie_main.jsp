@@ -66,7 +66,6 @@
         <span><a class="main-bar__btn" href="/MovieProject/userlogout.do">로그아웃</a></span>
       </div>
       </c:if>
-      
     </div>
     <!-- main 화면 header end-->
 	<c:if test="${update_status == 1 }">
