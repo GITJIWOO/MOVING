@@ -60,9 +60,10 @@
 }
 .movie__detail-detail{
   border-top: 1px solid black;
-  padding: 15px 0;
-  margin-top: 15px;
-  white-space: pre;
+  padding-bottom: 15px;
+  margin-top: 20px;
+  white-space: pre-line;
+  line-height: 150%;
 }
 .movie__video{
 	display: flex;
