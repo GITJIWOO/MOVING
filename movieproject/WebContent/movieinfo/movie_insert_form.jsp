@@ -97,7 +97,7 @@
 					</tr>
 					<tr>
 						<th>영화 티저주소</th>
-						<td><input type="text" name="teaseraddress" required="required"/><br/></td>
+						<td><input type="text" name="teaseraddress" required/><br/></td>
 					</tr>
 					<tr>
 						<td><input type="submit" value="올리기"></td>

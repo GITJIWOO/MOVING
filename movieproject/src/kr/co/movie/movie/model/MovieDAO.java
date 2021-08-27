@@ -591,7 +591,7 @@ public class MovieDAO {
 		PreparedStatement pstmt = null;
 		try {
 			con = ds.getConnection();
-			String sql = "UPDATE moviepreview SET mpaddress = '?' WHERE mid = ?";
+			String sql = "UPDATE moviepreview SET mpaddress = ? WHERE mid = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mPaddress);
 			pstmt.setInt(2, mId);

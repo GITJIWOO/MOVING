@@ -36,6 +36,7 @@ public class MovieInfoDetailService implements IMovieInfoService {
 			MovieVO movie = dao.MovieDetail(mId);
 			// 티저 주소 추가
 			String mPaddress = dao.getMovieVideo(Integer.parseInt(mId));
+			request.setAttribute("mPaddress", mPaddress);
 			ReviewDAO rdao = ReviewDAO.getInstance();
 			List<ReviewVO> reviewList = rdao.getReviewList(mId);
 			ReviewVO avg = rdao.getMovieId(intmId);
