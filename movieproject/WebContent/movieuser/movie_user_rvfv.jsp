@@ -5,6 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+	crossorigin="anonymous">
 <link rel="stylesheet" href="../movieui/css/mstyles.css" />
 <link rel="stylesheet" href="../MovieProject/movieui/css/mstyles.css" />
 <style>
@@ -14,27 +19,33 @@
     	padding-top: 45px;
     }
     .main-rvfv {
-    	width: 70%;
+    	width: 80%;
     }
-    .
 	.review {
 		float: left;
-		width: 45%;
+		width: 47%;
 		padding-right: 10px;
 	}
 	.favorite {
 		float: right;
-		width: 45%;
+		width: 47%;
 		padding-left: 10px;
 	}
-	h1 {
+	.title {
 		font-size: 150%;
-		font-weight: 30px;
 		margin: 10px 0;
+		margin-bottom: 15px;
 	}
 	li {
 		margin: 10px 0;
 	}
+	.user-info__btn {
+    	justify-content: center;
+	}
+	.btn btn-outline-secondary btn-sm {
+		
+	}
+	
 </style>
 <title>내 기록 관리</title>
 </head>
@@ -77,10 +88,19 @@
       		</div>
       		<hr>
       		<div class="review">
-      			<h1>내가 남긴 리뷰</h1>
+      			<h1 class="title">내가 남긴 리뷰</h1>
       			<ul>
 	   				<c:forEach var="review" items="${reviewList }">
-	   					<li>제목 | <a href="/MovieProject/moviedetail.do?mId=${review.mId}">${review.mTitle }</a></li>
+	   					<li>제목 | <a href="/MovieProject/moviedetail.do?mId=${review.mId}">${review.mTitle }</a>
+							<form id="deleteForm"
+								action="/MovieProject/moviereviewdelete.do" method="post">
+								<input type="hidden" name="rNum" value="${review.rNum }">
+								<input type="hidden" name="mId" value="${movie.mid }">
+								<input type="button" value="삭제"
+									onclick="Javascript:confirm_delete();"
+									class="btn btn-outline-secondary btn-sm">
+							</form>
+						</li>
 	   					<li>평점 | ${review.rRate }</li>
 	   					<li>날짜 | ${review.rDate }</li>
 	   					<li>내용 | ${review.rContent }</li>
@@ -89,7 +109,7 @@
    				</ul>
       		</div>
       		<div class="favorite">
-      			<h1>내가 찜 한 영화</h1>
+      			<h1 class="title">내가 찜 한 영화</h1>
       			<ul>
       				<c:forEach var="movie" items="${faMovies }">
 	      				<li>제목 | <a href="/MovieProject/moviedetail.do?mId=${movie.mid}">${movie.mtitle }</a></li>

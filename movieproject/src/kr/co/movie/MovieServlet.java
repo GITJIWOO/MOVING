@@ -166,17 +166,18 @@ public class MovieServlet extends HttpServlet {
 		} 
 		
 		
+			// 영화 정보 추가 버튼
+		else if (uri.equals("/MovieProject/movieadditional.do")) {
+			ui = "/movieinfo/movie_insert_form.jsp";
 		
 			// 영화 정보 업로드
-		else if (uri.equals("/MovieProject/movieinsert.do")) {
+		} else if (uri.equals("/MovieProject/movieinsert.do")) {
 			mis = new MovieSetInfoService();
 			mis.execute(request, response);			
 			// 영화 티저 주소 업로드 
 			mis = new MovieSetVideoService();
 			mis.execute(request, response);			
 			ui = "/movieselect.do";
-			
-
 			
 			
 			// 영화 리스트

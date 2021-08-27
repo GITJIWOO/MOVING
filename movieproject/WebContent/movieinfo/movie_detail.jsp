@@ -89,11 +89,12 @@
 </style>
 </head>
 <body>
-	<!-- Header start -->
-	<div class="main-bar">
+	<!--main 화면 header start-->
+	<!-- 로그인 전과 후, 관리자 모두 볼 수 있는 페이지 -->
+    <div class="main-bar">
       <div class="main-bar__column">
         <span
-          ><a href="/MovieProject/moviemain.do"><img src="<%=request.getContextPath() %>/movieui/css/screen/images/logo.png" /></a
+          ><a href="/MovieProject/moviemain.do"><img src="/MovieProject/movieui/css/screen/images/logo.png" /></a
         ></span>
       </div>
       <div class="main-bar__column">
@@ -102,18 +103,32 @@
           <a class="main-bar__movie" href="#">다운로드</a>
         </span>
       </div>
+      <c:if test="${session_id == null }">
+      <div class="main-bar__column">
+        <span><a class="main-bar__btn" href="/MovieProject/userjoin.do">로그인</a></span>
+        <span>|</span>
+        <span><a class="main-bar__btn" href="/MovieProject/requserjoin.do">회원가입</a></span>
+      </div>
+      </c:if>
+      <c:if test="${session_id != null }">
       <div class="main-bar__column">
         <span><a class="main-bar__btn">${session_id } 님 환영합니다!</a></span>
         <span>|</span>
+        <c:if test="${session_admin == 1 }">
+        <span><a class="main-bar__btn" href="/MovieProject/userselect.do">관리자페이지</a></span>
+        </c:if>
+        <c:if test="${session_admin == 0 }">
         <form class="main-bar__btn"  action = "/MovieProject/userdetail.do" method = "post">
 		<input type = "hidden" name = "uId" value = "${session_id }" />
 		<input type = "submit" value = "마이페이지" />
-		</form>        <span>|</span>
+		</form>
+        </c:if>
+        <span>|</span>
         <span><a class="main-bar__btn" href="/MovieProject/userlogout.do">로그아웃</a></span>
       </div>
+      </c:if>
     </div>
-	<!-- Header END -->
-	
+    <!-- main 화면 header end-->
 	<!-- BODY START -->
 	<div class="main-body">
       <div class="main-sidebar"></div>
