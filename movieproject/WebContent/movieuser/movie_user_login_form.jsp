@@ -60,13 +60,21 @@
       <div class="main-sidebar"></div>
     </div>
     <!-- main 화면 body end-->
-    <!-- foot start -->
-	<div id="footer">
-		<p><b>Creators</b>&nbsp;&nbsp;김지우 , 최재인 , 이한빈 , 김영훈</p>
-		<p><b>Contact </b>&nbsp;&nbsp;<a href="https://github.com/GITJIWOO">https://github.com/GITJIWOO</a></p>
-		<hr>
-		<p id="copyright"><b>ⓒ MOVING Corp.</b></p>
-	</div>
-	<!-- foot end -->
+<!-- footer start -->
+	<div class="footer">
+      <div class="footer-info">
+        <div>CREATORS&nbsp;&nbsp;김지우 , 최재인 , 이한빈 , 김영훈</div>
+        <div>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</div>
+        <div>
+          CONTACT&nbsp;&nbsp;<a href="https://github.com/GITJIWOO"
+            >https://github.com/GITJIWOO</a
+          >
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div>Copyright © MOVING All right reserved.</div>
+      </div>
+    </div>
+	<!-- footer end -->
   </body>
 </html>
