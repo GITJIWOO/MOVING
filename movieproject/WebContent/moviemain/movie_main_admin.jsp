@@ -5,36 +5,63 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 페이지</title>
+<link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
 <link rel="stylesheet" href="../movieui/css/mstyles.css" />
+<link rel="stylesheet" href="../MovieProject/movieui/css/mstyles.css" />
+<title>관리자 페이지</title>
 </head>
 <body>
-	<div id="body">
-		<div id="bodydetail2">
-			<c:if test="${session_admin != null }">
-				<h3>관리자님 환영합니다.</h3>
-				<form action="/MovieProject/userlogout.do" method="post">
-					<input type="hidden" name="session_admin" value="${session_admin}" />
-					<input type="submit" value="로그아웃"/>
-				</form>
-			</c:if>
-			<c:if test="${session_admin == null }">
-				<h3>로그인을 해주세요.</h3>
-				<form action="/MovieProject/movieuser/movie_user_login_form.jsp" method="post">
-					<input type="submit" value="로그인"/>
-				</form>
-			</c:if>
-		</div>
-	</div>
-	<div id="content">
-	</div>
-	<!-- foot start -->
-	<div id="footer">
-		<p><b>Creators</b>&nbsp;&nbsp;김지우 , 최재인 , 이한빈 , 김영훈</p>
-		<p><b>Contact </b>&nbsp;&nbsp;<a href="https://github.com/GITJIWOO">https://github.com/GITJIWOO</a></p>
-		<hr>
-		<p id="copyright"><b>ⓒ MOVING Corp.</b></p>
-	</div>
-	<!-- foot end -->
+<!--main 화면 header start-->
+    <div class="main-bar">
+      <div class="main-bar__column">
+        <span
+          ><a href="/MovieProject/moviemain.do"><img src="<%=request.getContextPath() %>/movieui/css/screen/images/logo.png" /></a
+        ></span>
+      </div>
+      <div class="main-bar__column">
+        <span>
+          <a class="main-bar__movie" href="/MovieProject/movieselect.do">영화정보</a>
+          <a class="main-bar__movie" href="#">다운로드</a>
+        </span>
+      </div>
+      <div class="main-bar__column">
+        <span><a class="main-bar__btn">${session_id } 님 환영합니다!</a></span>
+        <span>|</span>
+        <span><a class="main-bar__btn" href="/MovieProject/movieadminmain.do">관리자페이지</a></span>
+        <span>|</span>
+        <span><a class="main-bar__btn" href="/MovieProject/userlogout.do">로그아웃</a></span>
+      </div>
+    </div>
+    <!-- main 화면 header end-->
+    <!-- main 화면 body start-->
+    <div class="main-body">
+      <div class="main-sidebar"></div>
+      <div class="main-contents">
+      
+      
+      </div>
+      <div class="main-sidebar"></div>
+    </div>      
+<!-- footer start -->
+	<div class="footer">
+      <div class="footer-info">
+        <div>CREATORS&nbsp;&nbsp;김지우 , 최재인 , 이한빈 , 김영훈</div>
+        <div>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</div>
+        <div>
+          CONTACT&nbsp;&nbsp;<a href="https://github.com/GITJIWOO"
+            >https://github.com/GITJIWOO</a
+          >
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div>Copyright © MOVING All right reserved.</div>
+      </div>
+    </div>
+	<!-- footer end -->
 </body>
 </html>

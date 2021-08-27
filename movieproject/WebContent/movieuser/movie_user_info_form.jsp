@@ -18,7 +18,6 @@
 	.main-contents {
 	  display: flex;
 	  flex-direction: column;
-	  align-items: center;
 	}
 	.info-header {
 	  display: flex;
@@ -31,6 +30,18 @@
 	  padding: 20px 0;
 	  margin: 15px 0;
 	  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	}
+	.table{
+		width: 80%;
+	}
+	.info-form_each:first-child,
+	.info-form_each:nth-child(2),
+	.info-form_each:nth-child(3),
+	.info-form_each:nth-child(4){
+		width: 23%;
+	}
+	.info-form_each:last-child{
+		width: 8%;
 	}
 	.page-link{
 		color: black;
@@ -58,7 +69,7 @@
       <div class="main-bar__column">
         <span><a class="main-bar__btn">${session_id } 님 환영합니다!</a></span>
         <span>|</span>
-        <span><a class="main-bar__btn" href="/MovieProject/userselect.do">관리자페이지</a></span>
+        <span><a class="main-bar__btn" href="/MovieProject/movieadminmain.do">관리자페이지</a></span>
         <span>|</span>
         <span><a class="main-bar__btn" href="/MovieProject/userlogout.do">로그아웃</a></span>
       </div>
@@ -132,13 +143,21 @@
       <div class="main-sidebar"></div>
     </div>
     <!-- main 화면 body end-->
-    <!-- foot start -->
-	<div id="footer">
-		<p><b>Creators</b>&nbsp;&nbsp;김지우 , 최재인 , 이한빈 , 김영훈</p>
-		<p><b>Contact </b>&nbsp;&nbsp;<a href="https://github.com/GITJIWOO">https://github.com/GITJIWOO</a></p>
-		<hr>
-		<p id="copyright"><b>ⓒ MOVING Corp.</b></p>
-	</div>
-	<!-- foot end -->
+<!-- footer start -->
+	<div class="footer">
+      <div class="footer-info">
+        <div>CREATORS&nbsp;&nbsp;김지우 , 최재인 , 이한빈 , 김영훈</div>
+        <div>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</div>
+        <div>
+          CONTACT&nbsp;&nbsp;<a href="https://github.com/GITJIWOO"
+            >https://github.com/GITJIWOO</a
+          >
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div>Copyright © MOVING All right reserved.</div>
+      </div>
+    </div>
+	<!-- footer end -->
 </body>
 </html>

@@ -89,12 +89,16 @@ public class MovieServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		
-		// 메인 화면
+			// 메인 화면
 		if (uri.equals("/MovieProject/moviemain.do")) {
 			mis = new MoviePagingService();
 			mis.execute(request, response);
 			ui = "/moviemain/movie_main.jsp";
-			
+		
+			// 관리자 페이지
+		}else if(uri.equals("/MovieProject/movieadminmain.do")) {
+			ui = "/moviemain/movie_main_admin.jsp";
+
 			// 사용자 회원가입 폼
 		}else if(uri.equals("/MovieProject/requserjoin.do")) { // 회원가입 버튼 클릭시 a태그에 작성 
 			mus = new UserReqJoinService();
