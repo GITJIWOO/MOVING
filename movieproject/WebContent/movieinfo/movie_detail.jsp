@@ -62,6 +62,7 @@
   border-top: 1px solid black;
   padding: 15px 0;
   margin-top: 15px;
+  white-space: pre;
 }
 .movie__video{
 	display: flex;

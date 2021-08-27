@@ -58,6 +58,8 @@ public class MovieUpdateOkService implements IMovieInfoService{
 	    	String mActor = request.getParameter("movieactor");
 	    	String mPlot = request.getParameter("movieplot");
 	    	
+	    	String mPaddress = request.getParameter("teaseraddress");
+	    	
 			// DAO생성
 			MovieDAO dao = MovieDAO.getInstance();
 			
@@ -76,6 +78,7 @@ public class MovieUpdateOkService implements IMovieInfoService{
 			movie.setMplot(mPlot);
 			
 			int resultCode = dao.movieUpdate(movie);
+			dao.updateMovieVideo(mId, mPaddress);
 			
 			if(resultCode == 0) {
 				System.out.println("수정 실패");
