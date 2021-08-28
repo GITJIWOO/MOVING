@@ -214,7 +214,6 @@
             <thead>
               <tr>
                 <th>회원아이디</th>
-                <th>영화 제목</th>
                 <th>평점</th>
                 <th>리뷰내용</th>
                 <th>작성일</th>
@@ -224,8 +223,14 @@
               <c:forEach var="review" items="${reviewList}">
                 <tr>
                   <td>${review.uId}</td>
-                  <td>${review.mTitle}</td>
-                  <td>${review.rRate}</td>
+                  <td><c:set var="selectedRate" value="${selectedRate }" />
+						<c:choose>
+							<c:when test="${1 eq review.rRate }">★</c:when>
+							<c:when test="${2 eq review.rRate }">★★</c:when>
+							<c:when test="${3 eq review.rRate }">★★★</c:when>
+							<c:when test="${4 eq review.rRate }">★★★★</c:when>
+							<c:when test="${5 eq review.rRate }">★★★★★</c:when>
+						</c:choose></td>
                   <td>${review.rContent}</td>
                   <td>${review.rDate}</td>
                 </tr>

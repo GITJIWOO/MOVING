@@ -288,7 +288,10 @@ public class ReviewDAO {
 		return reviewList;
 	} // end getReviewList()
 
-	public List<ReviewVO> getPageList(int pageNum, String mId, int rRate, String reviewPagingType) {
+	public List<ReviewVO> getPageList(int pageNum, String mId, int rRate) {
+		
+		System.out.println("MoviePagingReviewService - getPageList - rRate : "+rRate);
+		
 		// 내부에서 사용할 변수 선언
 		List<ReviewVO> reviewList = new ArrayList<>();
 		Connection con = null;
@@ -300,12 +303,12 @@ public class ReviewDAO {
 		try {
 			// 쿼리문(SELECT구문, 역순, 5개씩 pageNum에 맞춰서);
 			String sql;  
-			if (rRate != 0) { // 일반 페이징
+			if (rRate == 0) { // 일반 페이징
 				sql = "SELECT * FROM review WHERE mId = ? ORDER BY rnum DESC LIMIT ?, 10";
 				con = ds.getConnection();
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, mId);
-				pstmt.setDouble(2,pageNum);
+				pstmt.setInt(2,pageNum);
 				
 			} else { // 별점별 페이징
 				sql = "SELECT * FROM review WHERE mId = ? AND rRate = ? ORDER BY rnum DESC LIMIT ?, 10";
@@ -481,7 +484,7 @@ public class ReviewDAO {
 	}// end selectOne()
 
 	// 페이징 처리를 위해 DB내 전체 데이터 개수 알아오기
-	public int getMidReviewCount(String mId,int rRate,String reviewPagingType) {
+	public int getMidReviewCount(String mId,int rRate) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -489,7 +492,7 @@ public class ReviewDAO {
 
 		try {
 			String sql;  
-			if (rRate != 0) { // 일반 페이징
+			if (rRate == 0) { // 일반 페이징
 				sql = "SELECT COUNT(*) FROM review WHERE mid=?";
 				con = ds.getConnection();
 				pstmt = con.prepareStatement(sql);
