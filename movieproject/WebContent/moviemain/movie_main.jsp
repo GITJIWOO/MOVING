@@ -14,7 +14,7 @@
 		height : 170vh;
 	}
 	h2 { 
-		font-size: 50px;
+		font-size: 40px;
 		text-align:center;
 		padding:50px;
 	}
@@ -126,7 +126,7 @@
 			<div class="col-md-6">
 			<!-- ----------------- -->
 			
-			<h2>개봉 예정 영화</h2>
+			<h2>MOVING 추천영화</h2>
 	        <div id="carousel-example-generic2" class="carousel slide">
 	            <!-- Indicators -->
 	            <ol class="carousel-indicators">
