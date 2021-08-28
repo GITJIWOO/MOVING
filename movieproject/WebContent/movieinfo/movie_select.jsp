@@ -74,7 +74,7 @@
 	    	font-size: 30px;
 	    	font-weight: bold;
 	    	margin-top: 13px;
-	    	margin-bottom: 17px;
+	    	margin-bottom: 13px;
 	    }
 	    
 	    li {
@@ -146,7 +146,7 @@
 			<div class="adminbutton">
 				<c:if test="${session_admin == 1}">
 					<form action="/MovieProject/movieinfo/movie_insert_form.jsp">
-						<button type="submit" class="btn btn-success">영화 등록</button>
+						<button type="submit" class="btn btn-dark">영화 등록</button>
 					</form>
 				</c:if>
 			</div>
@@ -175,7 +175,7 @@
 										<li class="avg">
 										평점 |
 			              				<c:choose>
-			              				<c:when test="${1 >= rAR.rRate}">☆☆☆☆☆</c:when>
+			              				<c:when test="${1 > rAR.rRate}">☆☆☆☆☆</c:when>
 			              				<c:when test="${1.7 >= rAR.rRate}">★☆☆☆☆</c:when>
 			              				<c:when test="${2.7 >= rAR.rRate}">★★☆☆☆</c:when>
 			              				<c:when test="${3.7 >= rAR.rRate}">★★★☆☆</c:when>
@@ -205,7 +205,7 @@
 						<c:if test="${moviePageDTO.startPage > 10}">
 							<form action="/MovieProject/movieselect.do?page=${moviePageDTO.startPage - 10}">
 								<input type="hidden" name="page" value="${moviePageDTO.startPage - 10}">
-								<button type="submit" class="btn btn-primary">이전</button>
+								<button type="submit" class="btn btn-secondary">이전</button>
 							</form>
 						</c:if>
 						
@@ -213,7 +213,7 @@
 						<c:forEach var="pNo" begin="${moviePageDTO.startPage}" end="${moviePageDTO.endPage}">
 							<form action="/MovieProject/movieselect.do?page=${pNo }">
 								<input type="hidden" name="page" value="${pNo}">
-								<button type="submit" class="btn btn-info">${pNo }</button>
+								<button type="submit" class="btn btn-dark">${pNo }</button>
 							</form>
 						</c:forEach>
 						
@@ -221,7 +221,7 @@
 						<c:if test="${moviePageDTO.endPage < moviePageDTO.totalPages}">
 							<form action="/MovieProject/movieselect.do?page=${moviePageDTO.startPage + 10}">
 								<input type="hidden" name="page" value="${moviePageDTO.startPage + 10}">
-								<button type="submit" class="btn btn-primary">다음</button>
+								<button type="submit" class="btn btn-secondary">다음</button>
 							</form>
 						</c:if>
 					</c:if>
@@ -235,7 +235,7 @@
 							<form action="/MovieProject/moviesearch.do?page=${pNo - 10}">
 								<input type="hidden" name="keyword" value="${keyword }">
 								<input type="hidden" name="page" value="${moviePageDTO.startPage - 10}">
-								<button type="submit" class="btn btn-primary">이전</button>
+								<button type="submit" class="btn btn-secondary">이전</button>
 							</form>
 						</c:if>
 						
@@ -244,7 +244,7 @@
 							<form action="/MovieProject/moviesearch.do?page=${pNo }">
 								<input type="hidden" name="keyword" value="${keyword }">
 								<input type="hidden" name="page" value="${pNo}">
-								<button type="submit" class="btn btn-info">${pNo }</button>
+								<button type="submit" class="btn btn-dark">${pNo }</button>
 							</form>
 						</c:forEach>
 						
@@ -253,7 +253,7 @@
 							<form action="/MovieProject/moviesearch.do?page=${pNo + 10}">
 								<input type="hidden" name="keyword" value="${keyword }">
 								<input type="hidden" name="page" value="${moviePageDTO.startPage + 10}">
-								<button type="submit" class="btn btn-primary">다음</button>
+								<button type="submit" class="btn btn-secondary">다음</button>
 							</form>
 						</c:if>
 					</c:if>

@@ -60,10 +60,9 @@
 }
 .movie__detail-detail{
   border-top: 1px solid black;
-  padding-bottom: 15px;
-  margin-top: 20px;
-  white-space: pre-line;
-  line-height: 150%;
+  padding: 15px 0;
+  margin-top: 15px;
+  white-space: pre;
 }
 .movie__video{
 	display: flex;
@@ -145,7 +144,7 @@
 	              	평점 |
 	              	<c:set var="avg" value="${avg }" /> 
 	              	<c:choose>
-	              	<c:when test="${1 >= avg.rRate}">☆☆☆☆☆</c:when>
+	              	<c:when test="${1 > avg.rRate}">☆☆☆☆☆</c:when>
 	              	<c:when test="${1.6 >= avg.rRate}">★☆☆☆☆</c:when>
 	              	<c:when test="${2.6 >= avg.rRate}">★★☆☆☆</c:when>
 	              	<c:when test="${3.6 >= avg.rRate}">★★★☆☆</c:when>
@@ -214,7 +213,6 @@
           <table class="table table-hover">
             <thead>
               <tr>
-                <th>리뷰번호</th>
                 <th>회원아이디</th>
                 <th>영화 제목</th>
                 <th>평점</th>
@@ -225,7 +223,6 @@
             <tbody>
               <c:forEach var="review" items="${reviewList}">
                 <tr>
-                  <td>${review.rNum}</td>
                   <td>${review.uId}</td>
                   <td>${review.mTitle}</td>
                   <td>${review.rRate}</td>
@@ -281,5 +278,42 @@
       </div>
     </div>
 	<!-- footer end -->
+	
+	<%-- 김영훈 임시작성 --%>
+	<script type="text/javascript">
+	
+// 	// 즉시 실행함수 정의
+// 	(function() {
+		
+// 		// insert 처리후 MovieWriteReviewService에서 반환 되는 모델 
+// 		var resultMessage = '${resultMessage}';
+		
+// 		if(resultMessage != ''){ // 모델의 반환값이 없을 때 
+		
+// 			alert(resultMessage);
+// 			if (resultMessage != 1) {	// 에러 반환시 뒤로가기
+// 				window.history.back();
+// 			}
+			
+// 		}
+// 	})();
+	
+	function showMovieReviewInsertMsg () {
+		// insert 처리후 MovieWriteReviewService에서 반환 되는 모델 
+		var resultMessage = '${resultMessage}';
+		
+		if(resultMessage != ''){ // 모델의 반환값이 없을 때 
+			alert(resultMessage);
+			if (resultMessage != 1) {	// 에러 반환시 뒤로가기
+				window.history.back();
+			} else { 
+				location.reload(true); // 리뷰 등록 성공시 새로고침 
+			}
+		}
+		
+	}
+	showMovieReviewInsertMsg();
+	
+	</script>
 </body>
 </html>
