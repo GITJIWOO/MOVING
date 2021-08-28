@@ -56,7 +56,13 @@ public class MoviePagingReviewService implements IMovieReviewService {
 		String mId = request.getParameter("mId");
 		String uid = request.getParameter("uId");
 		String strrRate = request.getParameter("rRate");
-		int rRate = Integer.parseInt(strrRate);
+		
+		int rRate = 0;
+		if (strrRate != null) {
+			rRate = Integer.parseInt(strrRate);
+			// 
+			request.setAttribute("selectedRate", rRate);
+		}
 
 		// null이 저장된 상황에는 int로 바꿔줄 수 없음
 		// 파라미터가 없을때 들어갈 기본 페이지는 1페이지임
@@ -78,6 +84,7 @@ public class MoviePagingReviewService implements IMovieReviewService {
 		// 얻어온 글 전체 개수와 현재 조회중인 페이지 정보를 DTO에 넘겨줌.
 		int countNum = rdao.getMidReviewCount(mId,rRate);
 		
+		
 		// DTO의 역할은 페이지 하단에 링크만들 정보를 계산하는것.
 		ReviewPageDTO pageDTO = new ReviewPageDTO(countNum, page, reviewList);
 
@@ -87,6 +94,7 @@ public class MoviePagingReviewService implements IMovieReviewService {
 		request.setAttribute("movie", movie);
 		request.setAttribute("uId", uId);
 		request.setAttribute("mId", mId);
+		request.setAttribute("currentPage", page);
 	}
 
 

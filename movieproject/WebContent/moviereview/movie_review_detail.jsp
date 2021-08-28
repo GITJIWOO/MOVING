@@ -28,6 +28,7 @@
 </head>
 <body>
 	<!--main 화면 header start-->
+	<!-- 로그인 전과 후, 관리자 모두 볼 수 있는 페이지 -->
 	<div class="main-bar">
 		<div class="main-bar__column">
 			<span><a href="/MovieProject/moviemain.do"><img
@@ -35,8 +36,8 @@
 		</div>
 		<div class="main-bar__column">
 			<span> <a class="main-bar__movie"
-				href="/MovieProject/movieselect.do">영화정보</a> <a
-				class="main-bar__movie" href="#">다운로드</a>
+				href="/MovieProject/moviemain.do">홈</a> <a class="main-bar__movie"
+				href="/MovieProject/movieselect.do">영화정보</a>
 			</span>
 		</div>
 		<c:if test="${session_id == null }">
@@ -51,7 +52,7 @@
 				<span><a class="main-bar__btn">${session_id } 님 환영합니다!</a></span> <span>|</span>
 				<c:if test="${session_admin == 1 }">
 					<span><a class="main-bar__btn"
-						href="/MovieProject/userselect.do">관리자페이지</a></span>
+						href="/MovieProject/movieadminmain.do">관리자페이지</a></span>
 				</c:if>
 				<c:if test="${session_admin == 0 }">
 					<form class="main-bar__btn" action="/MovieProject/userdetail.do"
@@ -73,7 +74,7 @@
 			<div id="contents">
 
 				<form action="/MovieProject/moviereviewinsert.do" method="post">
-					<input type="hidden" name="mId" value="${movie.mid }"> 
+					<input type="hidden" name="mId" value="${movie.mid }">
 					<table class="table table-striped table-hover">
 
 						<c:if test="${uId != null }">
@@ -84,15 +85,15 @@
 								<td><select name="rRate"
 									style="background: activeborder; color: black;">
 										<option style="background: gray; color: black;">평점</option>
-										<option style="background: gray;" value="1">1</option>
-										<option style="background: gray;" value="2">2</option>
-										<option style="background: gray;" value="3">3</option>
-										<option style="background: gray;" value="4">4</option>
-										<option style="background: gray;" value="5">5</option>
+										<option style="background: gray;" value="1">★</option>
+										<option style="background: gray;" value="2">★★</option>
+										<option style="background: gray;" value="3">★★★</option>
+										<option style="background: gray;" value="4">★★★★</option>
+										<option style="background: gray;" value="5">★★★★★</option>
 								</select></td>
 							</tr>
 							<td>글쓴이</td>
-							
+
 							<td><input type="text" name="uId" value="${uId }" readonly></td>
 							<tr>
 								<td></td>
@@ -125,27 +126,52 @@
 					<thead>
 						<tr>
 							<th>회원아이디</th>
-							<th>영화 제목</th>
 							<th>평점</th>
 							<th>리뷰내용</th>
 							<th>작성일</th>
-							<th><select name="PagingByRate"
-									style="background: activeborder; color: black;" onchange="viewReviewListByRate()">
-										<option style="background: gray; color: black;">평점</option>
-										<option style="background: gray;" value="1">1</option>
-										<option style="background: gray;" value="2">2</option>
-										<option style="background: gray;" value="3">3</option>
-										<option style="background: gray;" value="4">4</option>
-										<option style="background: gray;" value="5">5</option>
-								</select></th>
+							<th><select name="PagingByRate" id="PagingByRate"
+								style="background: activeborder; color: black;"
+								onchange="viewReviewListByRate()">
+									<option style="background: gray; color: black;">
+										<%-- 리뷰 리스트 상단의 별점 선택 했을 경우 select 부분에 선택한 별점 표시 --%>
+										<c:set var="selectedRate" value="${selectedRate }" />
+										<c:choose>
+											<c:when test="${selectedRate != null }">
+												<c:choose>
+													<c:when test="${1 eq selectedRate }">★☆☆☆☆</c:when>
+													<c:when test="${2 eq selectedRate }">★★☆☆☆</c:when>
+													<c:when test="${3 eq selectedRate }">★★★☆☆</c:when>
+													<c:when test="${4 eq selectedRate }">★★★★☆</c:when>
+													<c:when test="${5 eq selectedRate }">★★★★★</c:when>
+												</c:choose>
+											</c:when>
+											<c:otherwise>
+											평점
+										</c:otherwise>
+										</c:choose>
+									</option>
+									<option style="background: gray;" value="1">★</option>
+									<option style="background: gray;" value="2">★★</option>
+									<option style="background: gray;" value="3">★★★</option>
+									<option style="background: gray;" value="4">★★★★</option>
+									<option style="background: gray;" value="5">★★★★★</option>
+							</select></th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="review" items="${reviewList }">
 							<tr>
 								<td>${review.uId }</td>
-								<td>${review.mTitle }</td>
-								<td>${review.rRate }</td>
+								<td>
+								<c:set var="selectedRate" value="${selectedRate }" />
+								<c:choose>
+										<c:when test="${1 eq review.rRate }">★</c:when>
+										<c:when test="${2 eq review.rRate }">★★</c:when>
+										<c:when test="${3 eq review.rRate }">★★★</c:when>
+										<c:when test="${4 eq review.rRate }">★★★★</c:when>
+										<c:when test="${5 eq review.rRate }">★★★★★</c:when>
+									</c:choose>
+									</td>
 								<td>${review.rContent }</td>
 								<td>${review.rDate }</td>
 								<c:if test="${review.uId == uId || session_admin == 1}">
@@ -195,12 +221,10 @@
 						</c:if>
 
 						<%-- 페이지 번호 10개 묶음을 깔아주는 부분 --%>
-						<c:forEach var="pNo" begin="${pageDTO.startPage}"
-							end="${pageDTO.endPage}">
-							<form action="/MovieProject/moviereviewdetail.do?page=${pNo}"
-								method="post">
-								<input type="hidden" name="mId" value="${movie.mid }"> <input
-									type="submit" class="btn btn-gray" value="${pNo }">
+						<c:forEach var="pNo" begin="${pageDTO.startPage}" end="${pageDTO.endPage}">
+							<form action="/MovieProject/moviereviewdetail.do?page=${pNo}" method="post">
+								<input type="hidden" name="mId" value="${movie.mid }"> 
+								<input type="submit" class="btn btn-gray" id="pNo${pNo}" value="${pNo }">
 							</form>
 						</c:forEach>
 
@@ -258,16 +282,34 @@
 				alert("삭제취소");
 			}
 		}
-		
-		
+
 		function viewReviewListByRate() {
-			
-			var targetRate = document.getElementByName('PagingByRate').value;
+			var pagingStars = document.getElementById('PagingByRate');
+			var selectedVal = pagingStars.options.selectedIndex;
+
+			var rRate = pagingStars.options[selectedVal].value;
+
+			console.log("pagingStars : " + pagingStars);
+			console.log("selectedVal : " + selectedVal);
+			console.log("rRate : " + rRate);
+
 			var mId = '${movie.mid }';
+
+			location.href = '/MovieProject/moviereviewdetailbyrate.do?mId='
+					+ mId + '&rRate=' + rRate;
+
+		}
+		
+		function activateCrtPageColor() {
 			
-			location.href='/MovieProject/moviereviewdetailbyrate.do?mId='+mId+'&rRate='+rRate;
+			var currentPageNmb = "${currentPage}";
+			var targetBtn = document.getElementById("pNo"+currentPageNmb);
+			
+			targetBtn.style.color = "pink";
 			
 		}
+		activateCrtPageColor();
+		
 		
 	</script>
 
