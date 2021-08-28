@@ -11,16 +11,18 @@
 <title>메인 화면</title>
 <style>
 	.main-body {
-		height : 150vh;
+		height : 170vh;
 	}
 	h2 { 
-		font-size: 50px;
+		font-size: 40px;
 		text-align:center;
 		padding:50px;
 	}
 	 .carousel-fade .carousel-item, .carousel-item img {
-     max-height: 100vh;
-     min-height: 100vh;
+     max-height: 120vh;
+     min-height: 120vh;
+     max-width: 100vh;
+     min-width: 100vh
      display:flex;
       } 
 </style>
@@ -124,7 +126,7 @@
 			<div class="col-md-6">
 			<!-- ----------------- -->
 			
-			<h2>개봉 예정 영화</h2>
+			<h2>MOVING 추천영화</h2>
 	        <div id="carousel-example-generic2" class="carousel slide">
 	            <!-- Indicators -->
 	            <ol class="carousel-indicators">
