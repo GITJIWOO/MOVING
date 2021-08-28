@@ -68,8 +68,7 @@ public class ReviewDAO {
 			rs = pstmt.executeQuery();
 			// 유저 아이디 중복체크 쿼리 실행 엔드 
 			
-			if( rRate == 0 || mId == 0 || 
-				(rContent.equals("") || rContent == null || rContent.length() == 0)) { // 파라미터 값이 Null 일때 
+			if( rRate == 0 || mId == 0 || rContent.equals("")) { // 파라미터 값이 Null 일때 
 				
 				return REVIEW_CONTENT_NULL_ERROR ; 
 			} 
@@ -289,21 +288,33 @@ public class ReviewDAO {
 		return reviewList;
 	} // end getReviewList()
 
-	public List<ReviewVO> getPageList(int pageNum, String mId) {
+	public List<ReviewVO> getPageList(int pageNum, String mId, int rRate, String reviewPagingType) {
 		// 내부에서 사용할 변수 선언
 		List<ReviewVO> reviewList = new ArrayList<>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		
 
-		// 쿼리문(SELECT구문, 역순, 5개씩 pageNum에 맞춰서);
-		String sql = "SELECT * FROM review WHERE mId = ? ORDER BY rnum DESC LIMIT ?, 10";
+		
 		try {
-			// 연결구문을 다 작성해주세요. 리턴구문까지.
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, mId);
-			pstmt.setInt(2, pageNum);
+			// 쿼리문(SELECT구문, 역순, 5개씩 pageNum에 맞춰서);
+			String sql;  
+			if (rRate != 0) { // 일반 페이징
+				sql = "SELECT * FROM review WHERE mId = ? ORDER BY rnum DESC LIMIT ?, 10";
+				con = ds.getConnection();
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, mId);
+				pstmt.setDouble(2,pageNum);
+				
+			} else { // 별점별 페이징
+				sql = "SELECT * FROM review WHERE mId = ? AND rRate = ? ORDER BY rnum DESC LIMIT ?, 10";
+				con = ds.getConnection();
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, mId);
+				pstmt.setDouble(2,rRate);
+				pstmt.setInt(3, pageNum);
+			}
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -470,18 +481,27 @@ public class ReviewDAO {
 	}// end selectOne()
 
 	// 페이징 처리를 위해 DB내 전체 데이터 개수 알아오기
-	public int getMidReviewCount(String mId) {
+	public int getMidReviewCount(String mId,int rRate,String reviewPagingType) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int countNum = 0;
 
-		String sql = "SELECT COUNT(*) FROM review WHERE mid=?";
-
 		try {
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, mId);
+			String sql;  
+			if (rRate != 0) { // 일반 페이징
+				sql = "SELECT COUNT(*) FROM review WHERE mid=?";
+				con = ds.getConnection();
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, mId);
+			} else { // 별점별 페이징
+				sql = "SELECT COUNT(*) FROM review WHERE mid=? AND rrate = ?";
+				con = ds.getConnection();
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, mId);
+				pstmt.setDouble(2,rRate);
+			}
+
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				countNum = rs.getInt(1);

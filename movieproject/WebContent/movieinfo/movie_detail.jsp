@@ -300,14 +300,16 @@
 	
 	function showMovieReviewInsertMsg () {
 		// insert 처리후 MovieWriteReviewService에서 반환 되는 모델 
-		var resultMessage = '${resultMessage}';
+		var resultMessage = '${resultMessage}'; // 처리결과 메세지
+		var resultCode = '${resultCode}'; // 처리결과 코드
+		var mId = '${movie.mid }';
 		
 		if(resultMessage != ''){ // 모델의 반환값이 없을 때 
 			alert(resultMessage);
-			if (resultMessage != 1) {	// 에러 반환시 뒤로가기
+			if (resultCode != 1) {	// 에러 반환시 뒤로가기
 				window.history.back();
 			} else { 
-				location.reload(true); // 리뷰 등록 성공시 새로고침 
+				location.href = '/MovieProject/moviedetail.do?mId='+mId; // 리뷰 등록 성공시 새로고침 
 			}
 		}
 		
