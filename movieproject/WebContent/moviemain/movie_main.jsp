@@ -11,7 +11,7 @@
 <title>메인 화면</title>
 <style>
 	.main-body {
-		height : 150vh;
+		height : 170vh;
 	}
 	h2 { 
 		font-size: 50px;
@@ -19,8 +19,10 @@
 		padding:50px;
 	}
 	 .carousel-fade .carousel-item, .carousel-item img {
-     max-height: 100vh;
-     min-height: 100vh;
+     max-height: 120vh;
+     min-height: 120vh;
+     max-width: 100vh;
+     min-width: 100vh
      display:flex;
       } 
 </style>
