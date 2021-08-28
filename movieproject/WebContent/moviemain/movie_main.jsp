@@ -100,13 +100,13 @@
 	                 <!-- Carousel items -->
 	             <div class="carousel-inner">
 	                <div class="carousel-item active">
-	                   <a href="/MovieProject/moviedetail.do?mId=1"><img class="image" src="../movieui/css/screen/images/movie001.jpg" alt="First slide"></a>
+	                   <a href="/MovieProject/moviedetail.do?mId=1"><img class="image" src="https://movie-phinf.pstatic.net/20111223_21/1324628831674hTrFY_JPEG/movie_image.jpg" alt="First slide"></a>
 	                </div>
 	                <div class="carousel-item">
-	                   <a href="/MovieProject/moviedetail.do?mId=2"><img class="image" src="../movieui/css/screen/images/movie002.jpg" alt="Second slide"></a>
+	                   <a href="/MovieProject/moviedetail.do?mId=2"><img class="image" src="https://movie-phinf.pstatic.net/20180518_218/1526609377997LxLgL_JPEG/movie_image.jpg" alt="Second slide"></a>
 	                </div>
 	                <div class="carousel-item">
-	                   <a href="/MovieProject/moviedetail.do?mId=3"><img class="image" src="../movieui/css/screen/images/movie003.jpg" alt="Third slide"></a>
+	                   <a href="/MovieProject/moviedetail.do?mId=3"><img class="image" src="https://movie-phinf.pstatic.net/20111222_81/1324541324870BNbuJ_JPEG/movie_image.jpg" alt="Third slide"></a>
 	                </div>
 	             </div>
 	            <!-- Controls -->
@@ -135,13 +135,13 @@
 	                 <!-- Carousel items -->
 	             <div class="carousel-inner">
 	                <div class="carousel-item active">
-	                   <a href="/MovieProject/moviedetail.do?mId=1"><img class="image" src="../movieui/css/screen/images/movie001.jpg" alt="First slide"></a>
+	                   <a href="/MovieProject/moviedetail.do?mId=1"><img class="image" src="https://movie-phinf.pstatic.net/20190128_22/1548638810964Go9Wy_JPEG/movie_image.jpg" alt="First slide"></a>
 	                </div>
 	                <div class="carousel-item">
-	                   <a href="/MovieProject/moviedetail.do?mId=2"><img class="image" src="../movieui/css/screen/images/movie002.jpg" alt="Second slide"></a>
+	                   <a href="/MovieProject/moviedetail.do?mId=2"><img class="image" src="https://movie-phinf.pstatic.net/20111221_75/1324477552832sDC6E_JPEG/movie_image.jpg" alt="Second slide"></a>
 	                </div>
 	                <div class="carousel-item">
-	                   <a href="/MovieProject/moviedetail.do?mId=3"><img class="image" src="../movieui/css/screen/images/movie003.jpg" alt="Third slide"></a>
+	                   <a href="/MovieProject/moviedetail.do?mId=3"><img class="image" src="https://movie-phinf.pstatic.net/20200114_147/1578963901287frmdl_JPEG/movie_image.jpg" alt="Third slide"></a>
 	                </div>
 	             </div>
 	            <!-- Controls -->
