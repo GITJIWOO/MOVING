@@ -232,32 +232,38 @@
               </c:forEach>
             </tbody>
           </table>
-		
-		<form class="movie-review__btn" action="/MovieProject/movieselect.do" method="post">
-			<input type="hidden" name="movielist">
-			<input type="submit" value="영화 리스트로" class="btn btn-dark">
-		</form>
-		<form class="movie-review__btn" action="/MovieProject/favoritemovieinsert.do" method="post">
-			<input type="hidden" name="mid" value="${movie.mid }" />
-			<input type="hidden" name="uid" value="${session_id }" />
-			<input type="submit" value="찜하기" class="btn btn-dark">
-		</form>
-		<c:if test="${session_admin == 1}">
-		<form class="movie-review__btn" action="/MovieProject/movieupdate.do?mId=${movie.mid }" method="post">
-			<input type="hidden" name="movieupdate">
-			<input type="submit" value="영화 수정" class="btn btn-dark">
-		</form>
-		</c:if>
-		<c:if test="${favorite_result == 1 }">
-			<script>alert("찜목록에 저장되었습니다."); history.back();</script>
-		</c:if>
-		<c:if test="${favorite_result == 0 }">
-			<script>alert("저장에 실패했습니다."); history.back();</script>
-		</c:if>
-		
+			<!-- 찜 버튼 -->
+			<c:if test="${session_id != null }">
+				<c:if test="${favoritemovie == 0}">
+					<form class="movie-review__btn" action="/MovieProject/favoritemovieinsert.do" method="post">
+						<input type="hidden" name="mid" value="${movie.mid }" />
+						<input type="hidden" name="uid" value="${session_id }" />
+						<input type="submit" value="찜하기" class="btn btn-dark">
+					</form>
+				</c:if>
+				<c:if test="${favoritemovie == 1}">
+					<form class="movie-review__btn" action="/MovieProject/favoritemoviedelete.do" method="post">
+						<input type="hidden" name="mid" value="${movie.mid }" />
+						<input type="hidden" name="uid" value="${session_id }" />
+						<input type="submit" value="찜 취소" class="btn btn-dark">
+					</form>
+				</c:if>
+				<c:if test="${favorite_result == 1 }">
+					<script>alert("찜목록에 저장되었습니다."); history.back();</script>
+				</c:if>
+				<c:if test="${favorite_result == 0 }">
+					<script>alert("저장에 실패했습니다."); history.back();</script>
+				</c:if>
+			</c:if>
+			<!-- 찜 버튼 끝 -->
+			<c:if test="${session_admin == 1}">
+			<form class="movie-review__btn" action="/MovieProject/movieupdate.do?mId=${movie.mid }" method="post">
+				<input type="hidden" name="movieupdate">
+				<input type="submit" value="영화 수정" class="btn btn-dark">
+			</form>
+			</c:if>
 			</div>
 		</div>
-
       <div class="main-sidebar"></div>
     </div>
 	<!-- BODY END -->
