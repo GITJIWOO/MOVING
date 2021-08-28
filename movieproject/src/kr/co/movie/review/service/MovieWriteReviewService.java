@@ -36,7 +36,7 @@ public class MovieWriteReviewService implements IMovieReviewService {
 			
 			int rRate = 0 ;
 			// rRate numberFormatException 방지
-			if(!strrRate.equals("")) {
+			if(!strrRate.equals("평점")) {
 				rRate = Integer.parseInt(strrRate);
 			}
 			String strMId = request.getParameter("mId");
@@ -79,6 +79,7 @@ public class MovieWriteReviewService implements IMovieReviewService {
 				System.out.println("리뷰 내용 입력 필요");
 			}
 			request.setAttribute("resultMessage", resultMessage);
+			request.setAttribute("resultCode", resultCode);
 
 		} catch (Exception e) {
 			e.printStackTrace();

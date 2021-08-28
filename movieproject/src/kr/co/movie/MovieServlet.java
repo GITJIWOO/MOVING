@@ -253,8 +253,14 @@ public class MovieServlet extends HttpServlet {
 			mrs.execute(request, response);
 			ui = "/moviereview/movie_review_detail.jsp";
 			
-			// 영화 리뷰 수정 완료 서비스
-		} else if (uri.equals("/MovieProject/moviereviewupdateok.do")) {
+			// 리뷰 별점별 페이징 처리 
+		} else if (uri.equals("/MovieProject/moviereviewdetailbyrate.do")) {
+			mrs = new MoviePagingReviewService();
+			mrs.execute(request, response);
+			ui = "/moviereview/movie_review_detail.jsp";
+		} 
+		  // 영화 리뷰 수정 완료 서비스
+		  else if (uri.equals("/MovieProject/moviereviewupdateok.do")) {
 			mrs = new MovieUpdateReviewFormService();
 			mrs.execute(request, response);
 			ui = "/moviereview/movie_review_update.jsp";

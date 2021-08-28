@@ -16,6 +16,7 @@ import kr.co.movie.user.model.UserDAO;
 import kr.co.movie.user.model.UserVO;
 
 public class MoviePagingReviewService implements IMovieReviewService {
+	
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
@@ -54,6 +55,8 @@ public class MoviePagingReviewService implements IMovieReviewService {
 		String strPage = request.getParameter("page");
 		String mId = request.getParameter("mId");
 		String uid = request.getParameter("uId");
+		String strrRate = request.getParameter("rRate");
+		int rRate = Integer.parseInt(strrRate);
 
 		// null이 저장된 상황에는 int로 바꿔줄 수 없음
 		// 파라미터가 없을때 들어갈 기본 페이지는 1페이지임
@@ -71,9 +74,9 @@ public class MoviePagingReviewService implements IMovieReviewService {
 		UserVO user = udao.getUser(uid);
 		// 현재 보고 있는 페이지의 전체 글 가져오기
 		// 페이지를 그냥 넘기지 않고, 시작번호를 계산해서 넘김.
-		List<ReviewVO> reviewList = rdao.getPageList((page - 1) * 10, mId);
+		List<ReviewVO> reviewList = rdao.getPageList((page - 1) * 10, mId,rRate);
 		// 얻어온 글 전체 개수와 현재 조회중인 페이지 정보를 DTO에 넘겨줌.
-		int countNum = rdao.getMidReviewCount(mId);
+		int countNum = rdao.getMidReviewCount(mId,rRate);
 		
 		// DTO의 역할은 페이지 하단에 링크만들 정보를 계산하는것.
 		ReviewPageDTO pageDTO = new ReviewPageDTO(countNum, page, reviewList);
@@ -85,4 +88,7 @@ public class MoviePagingReviewService implements IMovieReviewService {
 		request.setAttribute("uId", uId);
 		request.setAttribute("mId", mId);
 	}
+
+
+	
 }
