@@ -254,10 +254,10 @@
 					</form>
 				</c:if>
 				<c:if test="${favorite_result == 1 }">
-					<script>alert("찜목록에 저장되었습니다."); history.back();</script>
+					<script>alert("찜목록에 저장되었습니다.");</script>
 				</c:if>
 				<c:if test="${favorite_result == 0 }">
-					<script>alert("저장에 실패했습니다."); history.back();</script>
+					<script>alert("저장에 실패했습니다.");</script>
 				</c:if>
 			</c:if>
 			<!-- 찜 버튼 끝 -->
