@@ -200,7 +200,7 @@ public class MovieServlet extends HttpServlet {
 		} else if (uri.equals("/MovieProject/movieupdateok.do")) {
 			mis = new MovieUpdateOkService();
 			mis.execute(request, response);
-			ui = "/movieselect.do";
+			ui = "/moviedetail.do";
 
 			// 영화 디테일 정보
 		} else if (uri.equals("/MovieProject/moviedetail.do")) {

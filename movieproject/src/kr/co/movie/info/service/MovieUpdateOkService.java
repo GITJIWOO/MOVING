@@ -83,6 +83,7 @@ public class MovieUpdateOkService implements IMovieInfoService{
 			int resultCode = dao.movieUpdate(movie);
 			int result = dao.updateMovieVideo(mId, mPaddress);
 			
+			request.setAttribute("mId", strmId);
 			if(resultCode == 0 && result == 0) {
 				System.out.println("수정 실패");
 			} else if(resultCode == 1 && result == 1) {

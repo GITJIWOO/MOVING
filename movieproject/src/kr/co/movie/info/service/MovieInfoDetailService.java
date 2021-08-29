@@ -31,9 +31,12 @@ public class MovieInfoDetailService implements IMovieInfoService {
 			MovieDAO dao = MovieDAO.getInstance();
 
 			MovieVO movie = dao.MovieDetail(mId);
-			int favoritemovie = dao.selectUserFavoritemovie(mId, uId);
+			if(uId != null) {
+				int favoritemovie = dao.selectUserFavoritemovie(mId, uId);
+				request.setAttribute("favoritemovie", favoritemovie);
+			}
 			// 티저 주소 추가
-			String mPaddress = dao.getMovieVideo(Integer.parseInt(mId));
+			String mPaddress = dao.getMovieVideo(intmId);
 			request.setAttribute("mPaddress", mPaddress);
 			ReviewDAO rdao = ReviewDAO.getInstance();
 			List<ReviewVO> reviewList = rdao.getReviewList(mId);
@@ -43,7 +46,6 @@ public class MovieInfoDetailService implements IMovieInfoService {
 			request.setAttribute("reviewList", reviewList);
 			request.setAttribute("uId", uId);
 			request.setAttribute("mPaddress", mPaddress);
-			request.setAttribute("favoritemovie", favoritemovie);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

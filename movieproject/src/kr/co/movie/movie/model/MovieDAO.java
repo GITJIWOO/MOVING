@@ -560,7 +560,7 @@ public class MovieDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String mPaddress = "";
+		String mPaddress = null;
 		try {
 			con = ds.getConnection();
 			String sql = "SELECT mpaddress FROM moviepreview WHERE mid = ?";
@@ -569,8 +569,8 @@ public class MovieDAO {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				mPaddress = rs.getString(1);
+				return mPaddress;
 			}
-			return mPaddress;
 		}catch(SQLException e) {
 			System.out.println("에러: " + e);
 		}finally {

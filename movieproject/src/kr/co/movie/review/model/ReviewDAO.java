@@ -575,7 +575,6 @@ public class ReviewDAO {
 			if (rs.next()) {
 				review.setrRate(rs.getDouble("AVG(rrate)"));
 				review.setmId(rs.getInt("mid"));
-				System.out.println(review);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

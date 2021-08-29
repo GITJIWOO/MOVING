@@ -11,7 +11,6 @@
 <title>영화 상세 정보</title>
 <style>
 .main-body {
-  height: 285vh;
   position: relative;
 }
 .main-contents {
@@ -76,7 +75,8 @@
   margin: 20px 0;
 }
 .movie-review__btn {
-  display: inline;
+  	display: inline;
+  	float:right;
 }
 .mtitle{
 	float:left;
@@ -159,6 +159,31 @@
 		                <span class="movie__detail-head">개요&nbsp;</span>|
 		                &nbsp;${movie.mgenre } &nbsp;|&nbsp; ${movie.mcountry } &nbsp;|&nbsp; 
 		                ${movie.mtime } &nbsp;|&nbsp; ${movie.mpremiere }
+		                
+						<!-- 찜 버튼 -->
+						<c:if test="${session_id != null }">
+							<c:if test="${favoritemovie == 0}">
+								<form class="movie-review__btn" action="/MovieProject/favoritemovieinsert.do" method="post">
+									<input type="hidden" name="mid" value="${movie.mid }" />
+									<input type="hidden" name="uid" value="${session_id }" />
+									<input type="submit" value="찜하기" class="btn btn-dark">
+								</form>
+							</c:if>
+							<c:if test="${favoritemovie == 1}">
+								<form class="movie-review__btn" action="/MovieProject/favoritemoviedelete.do" method="post">
+									<input type="hidden" name="mid" value="${movie.mid }" />
+									<input type="hidden" name="uid" value="${session_id }" />
+									<input type="submit" value="찜 취소" class="btn btn-dark">
+								</form>
+							</c:if>
+							<c:if test="${favorite_result == 1 }">
+								<script>alert("찜목록에 저장되었습니다.");</script>
+							</c:if>
+							<c:if test="${favorite_result == 0 }">
+								<script>alert("저장에 실패했습니다.");</script>
+							</c:if>
+						</c:if>
+						<!-- 찜 버튼 끝 -->
 		              </div>	
 				
 		              <div class="movie__detail-each">
@@ -177,6 +202,11 @@
 		              </div>
             		</div>
             	</div>
+			<c:if test="${session_admin == 1}">
+			<form class="movie-review__btn" action="/MovieProject/movieupdate.do?mId=${movie.mid }" method="post">
+				<input type="submit" value="영화 수정" class="btn btn-dark">
+			</form>
+			</c:if>
             <div class = "movie-info__lower lower">
 	            <div class="movie__detail-each">
 	              <span class="movie__detail-head head">줄거리</span>
@@ -237,36 +267,6 @@
               </c:forEach>
             </tbody>
           </table>
-			<!-- 찜 버튼 -->
-			<c:if test="${session_id != null }">
-				<c:if test="${favoritemovie == 0}">
-					<form class="movie-review__btn" action="/MovieProject/favoritemovieinsert.do" method="post">
-						<input type="hidden" name="mid" value="${movie.mid }" />
-						<input type="hidden" name="uid" value="${session_id }" />
-						<input type="submit" value="찜하기" class="btn btn-dark">
-					</form>
-				</c:if>
-				<c:if test="${favoritemovie == 1}">
-					<form class="movie-review__btn" action="/MovieProject/favoritemoviedelete.do" method="post">
-						<input type="hidden" name="mid" value="${movie.mid }" />
-						<input type="hidden" name="uid" value="${session_id }" />
-						<input type="submit" value="찜 취소" class="btn btn-dark">
-					</form>
-				</c:if>
-				<c:if test="${favorite_result == 1 }">
-					<script>alert("찜목록에 저장되었습니다.");</script>
-				</c:if>
-				<c:if test="${favorite_result == 0 }">
-					<script>alert("저장에 실패했습니다.");</script>
-				</c:if>
-			</c:if>
-			<!-- 찜 버튼 끝 -->
-			<c:if test="${session_admin == 1}">
-			<form class="movie-review__btn" action="/MovieProject/movieupdate.do?mId=${movie.mid }" method="post">
-				<input type="hidden" name="movieupdate">
-				<input type="submit" value="영화 수정" class="btn btn-dark">
-			</form>
-			</c:if>
 			</div>
 		</div>
       <div class="main-sidebar"></div>

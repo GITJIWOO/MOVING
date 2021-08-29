@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="../movieui/css/mstyles.css" />
     <link rel="stylesheet" href="../MovieProject/movieui/css/mstyles.css" />
 <meta charset="UTF-8">
+<style>
+	h1 {
+		font-size: 150%;
+		padding: 15px 5px;
+	}
+</style>
 <title>영화 정보 기입</title>
 </head>
 <body>

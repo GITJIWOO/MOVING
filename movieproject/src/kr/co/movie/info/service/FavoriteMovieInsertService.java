@@ -33,7 +33,6 @@ public class FavoriteMovieInsertService implements IMovieInfoService {
 			int insertmovie = dao.favoriteMovieInsert(mId, uId);
 			if(insertmovie == 1) {
 				int favoritemovie = dao.selectUserFavoritemovie(mId, uId);
-				System.out.println("찜하기 성공 후 : " + favoritemovie);
 				request.setAttribute("favoritemovie", favoritemovie);
 				request.setAttribute("favorite_result", favoritemovie);
 			}

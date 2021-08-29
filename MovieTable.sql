@@ -49,6 +49,10 @@ CREATE TABLE movie(
 );
 SELECT * FROM movie;
 
+INSERT INTO movie (mposter, mtitle, mgrade, mcountry, mgenre, mtime, mpremiere, mdirector, mactor, mplot)
+					VALUES ('https://ifh.cc/g/SCuCpi.jpg', '인터스텔라', 12, '미국, 영국', 'SF', '169분', '2014-11-04', '크리스토퍼 놀란', '매튜', '우주');
+
+DELETE FROM movie WHERE mid=2;
 
 DROP TABLE movie;
 
@@ -87,6 +91,9 @@ CREATE TABLE moviepreview (
     mpaddress VARCHAR(1000) NOT NULL,
     FOREIGN KEY (mid) REFERENCES movie(mid)
 );
+SELECT * FROM moviepreview;
+
+INSERT INTO moviepreview (mid, mpaddress) VALUES (2, 'https://youtu.be/d2VN6NNa9BE');
 
 DROP TABLE moviepreview;
 
@@ -96,7 +103,7 @@ DROP TABLE moviepreview;
 */
 CREATE TABLE userfavoritemovie (
 	rftid INT PRIMARY KEY AUTO_INCREMENT,
-	mid INT UNIQUE,
+	mid INT,
     uid VARCHAR(20) NOT NULL,
     FOREIGN KEY (mid) REFERENCES movie(mid),
     FOREIGN KEY (uid) REFERENCES user(uid)

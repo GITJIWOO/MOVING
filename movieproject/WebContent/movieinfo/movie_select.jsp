@@ -145,7 +145,7 @@
 		<div class="movie">
 			<div class="adminbutton">
 				<c:if test="${session_admin == 1}">
-					<form action="/MovieProject/movieinfo/movie_insert_form.jsp">
+					<form action="/MovieProject/movieadditional.do">
 						<button type="submit" class="btn btn-dark">영화 등록</button>
 					</form>
 				</c:if>
