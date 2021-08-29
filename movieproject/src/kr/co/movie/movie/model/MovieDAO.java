@@ -428,9 +428,9 @@ public class MovieDAO {
 			
 			pstmt.executeUpdate();
 			
+			return SUCCESS;
 		} catch(Exception e) {
 			e.printStackTrace();
-			return FAIL;
 		} finally {
 	 		try {
 	 			if(con != null && !con.isClosed()) {
@@ -443,7 +443,7 @@ public class MovieDAO {
 	 			e.printStackTrace();
 	 		}
 		}
-		return SUCCESS;
+		return FAIL;
 	} // favoriteMovieInsert END
 	
 	//찜한 영화들 가져오기
@@ -620,18 +620,17 @@ public class MovieDAO {
 	}// updateMovieVideo END
 	
 	// 찜목록 삭제
-	public int deleteUserFavoritemovie(String uId) {
+	public int deleteUserFavoritemovie(String mId) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		int resultCode;
 
-		String sql = "DELETE FROM userfavoritemovie WHERE uId = ?";
+		String sql = "DELETE FROM userfavoritemovie WHERE mid = ?";
 
 		try {
-
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, uId);
+			pstmt.setString(1, mId);
 			pstmt.executeUpdate();
 
 			resultCode = 1;
@@ -640,6 +639,45 @@ public class MovieDAO {
 			e.printStackTrace();
 			resultCode = 0;
 
+		} finally {
+			try {
+				if (con != null && !con.isClosed()) {
+					con.close();
+				}
+				if (pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+		return resultCode;
+	}// end deleteUserFavoritemovie()
+	
+
+	// 찜한 영화 조회
+	public int selectUserFavoritemovie(String uId) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int resultCode = 0;
+
+		String sql = "SELECT * FROM userfavoritemovie WHERE uid=?";
+
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, uId);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				resultCode = 1;
+			}
+		} catch (Exception e) {
+			System.out.println("에러: " + e);
+			e.printStackTrace();
+			return resultCode;
 		} finally {
 			try {
 				if (con != null && !con.isClosed()) {
