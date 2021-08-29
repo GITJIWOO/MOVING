@@ -31,8 +31,33 @@
 	  margin: 15px 0;
 	  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 	}
-	.table{
+	.info-btn{
+		display: flex;
+		flex-direction: row;
+	}
+	.info-btn button{
+		margin: 15px;
+		border-style: none;
+  		border-radius: 3px;
+		background-color: black;
+		color: white;
+		font-size: 15px;
+		font-weight: 600;
+		cursor: pointer;
+		width: 150px;
+		height: 30px;
+		font-size: 15px;
+	}
+	.info-btn button:hover{
+		color: black;
+		background-color: #e0dfdf;
+	}
+	.onUser, 
+	.onAdmin{
 		width: 80%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 	.info-form_each:first-child,
 	.info-form_each:nth-child(2),
@@ -54,6 +79,16 @@
 		height: 100vh;
 	}
 </style>
+<script>
+	function onUser(){
+		document.getElementById("onUser").style.display = "block";
+    	document.getElementById("onAdmin").style.display = "none";
+	}
+	function onAdmin() {
+		document.getElementById("onAdmin").style.display = "block";
+		document.getElementById("onUser").style.display = "none";
+	}
+</script>
 <title>사용자 정보 조회</title>
 </head>
 <body>
@@ -85,7 +120,14 @@
       <div class="main-contents">
         <div class="info-header">
           <h1 class="info-header__title">사용자 정보 조회</h1>
-
+          <div class="info-btn">
+          
+          <!-- 회원 -->
+          <button onclick="onUser()">회원 정보 조회</button>
+          <button onclick="onAdmin()">관리자 정보 조회</button>
+          </div>
+			<div id="onUser" class = "onUser">
+			
             <table class="table table-hover">
               <thead class="info-form__content">
                 <tr>
@@ -141,7 +183,66 @@
 		</c:if>
 
 		<%-- 페이징 끝 --%>
+		</div>
+		
+		<!-- 관리자 -->
+		<div id="onAdmin" class = "onAdmin" style="display:none">
+            <table class="table table-hover">
+              <thead class="info-form__content">
+                <tr>
+					<th class="info-form_each">ID</th>
+					<th class="info-form_each">Password</th>
+					<th class="info-form_each">Name</th>
+					<th class="info-form_each">Email</th>
+					<th class="info-form_each">Age</th>
+				</tr>
+			</thead>
+              <tbody class="info-form__content">
+				<c:forEach var = "admin" items = "${adminList }">
+					<tr>
+						<td class="info-form_each">${admin.uId }</td>
+						<td class="info-form_each">${admin.uPw }</td>
+						<td class="info-form_each">${admin.uName }</td>
+						<td class="info-form_each">${admin.uEmail }</td>
+						<td class="info-form_each">${admin.uAge }</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<%-- 페이징 시작 --%>
 
+		<c:if test = "${adminDTO.hasUser() }">
+		<ul class = "pagination justify-content-center">
+			<c:if test = "${adminDTO.startPage > 10 }">
+			<li class = "page-item">
+				<a class="page-link" href = "/MovieProject/userselect.do?page=${adminDTO.startPage - 10 }">«</a>
+			</li>
+			</c:if>
+			
+			<c:forEach var = "pageNum" begin = "${adminDTO.startPage }" end = "${adminDTO.endPage }">
+				<c:if test = "${adminDTO.currentPage == pageNum }">
+				<li class = "page-item active">			
+					<a class="page-link" href = "/MovieProject/userselect.do?page=${pageNum }">${pageNum }</a>
+				</li>
+				</c:if>
+				
+				<c:if test = "${adminDTO.currentPage != pageNum }">			
+				<li class = "page-item">			
+					<a class="page-link" href = "/MovieProject/userselect.do?page=${pageNum }">${pageNum }</a>
+				</li>	
+				</c:if>		
+			</c:forEach>
+			
+			<c:if test = "${adminDTO.endPage < adminDTO.totalPages }">
+			<li class = "page-item">			
+				<a class="page-link" href = "/MovieProject/userselect.do?page=${adminDTO.startPage + 10 }">»</a>
+			</li>
+			</c:if>
+		</ul>
+		</c:if>
+
+		<%-- 페이징 끝 --%>
+</div>
 	</div>
       </div>
       <div class="main-sidebar"></div>

@@ -46,12 +46,21 @@ public class UserSelectService implements IMovieUserService{
 		}
 		System.out.println("현재 페이지: " + currentPage);
 		UserDAO dao = UserDAO.getInstance();
+		// 회원 
 		List<UserVO> userList = dao.getUserList(currentPage);
 		int total = dao.getUserCount();
 		
 		UserDTO userDTO = new UserDTO(currentPage, total, userList);
 		request.setAttribute("userList", userList);
 		request.setAttribute("userDTO", userDTO);
+		
+		// 관리자 
+		List<UserVO> adminList = dao.getAdminList(currentPage);
+		int total2 = dao.getAdminCount();
+		
+		UserDTO adminDTO = new UserDTO(currentPage, total2, adminList);
+		request.setAttribute("adminList", adminList);
+		request.setAttribute("adminDTO", adminDTO);
 		
 		System.out.println(userList);
 		System.out.println(userDTO);
