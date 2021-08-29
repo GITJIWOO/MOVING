@@ -222,8 +222,9 @@
 
 						<%-- 페이지 번호 10개 묶음을 깔아주는 부분 --%>
 						<c:forEach var="pNo" begin="${pageDTO.startPage}" end="${pageDTO.endPage}">
-							<form action="/MovieProject/moviereviewdetail.do?page=${pNo}" method="post">
+							<form action="/MovieProject/moviereviewdetail.do?page=${pNo}&rRate=${rRate}" method="post">
 								<input type="hidden" name="mId" value="${movie.mid }"> 
+								<input type="hidden" name="rRate" value="${rRate }"> 
 								<input type="submit" class="btn btn-gray" id="pNo${pNo}" value="${pNo }">
 							</form>
 						</c:forEach>

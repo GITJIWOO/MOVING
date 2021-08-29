@@ -26,7 +26,7 @@ public class ReviewVO {
 		this.rContent = rContent;
 		this.rDate = rDate;
 		this.mId = mId;
-		
+
 	}
 
 	public int getrNum() {

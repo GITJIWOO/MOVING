@@ -24,24 +24,12 @@ public class MovieDeleteReviewService implements IMovieReviewService {
 		System.out.println("UID : " + uId);
 		// 영자 세션
 		int session_admin = (int) session.getAttribute("session_admin");
-//		if (session_admin == 0) {
-//			try {
-//				String ui = "/moviemain/movie_main.jsp";
-//				RequestDispatcher dp = request.getRequestDispatcher(ui);
-//				dp.forward(request, response);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
 
-		// rnum 파라미터
 		String strrNum = request.getParameter("rNum");
 		int rNum = Integer.parseInt(strrNum);
 		String mId = request.getParameter("mId");
-		// DAO 생성
+		
 		ReviewDAO dao = ReviewDAO.getInstance();
-
-		System.out.println("삭제 리뷰 번호: " + rNum);
 
 		// mId 파라미터 넣기
 		List<ReviewVO> reviewList = dao.getReviewList(mId);
@@ -52,11 +40,9 @@ public class MovieDeleteReviewService implements IMovieReviewService {
 
 		request.setAttribute("reviewList", reviewList);
 		request.setAttribute("movieList", movieList);
-		System.out.println("service 게시물 데이터: " + reviewList);
-		//
+		
 		request.setAttribute("adminId", session_admin);
 		request.setAttribute("mId", mId);
-		// delete 로적에 rNum 넣어서 삭제
 		int resultCode = dao.delete(rNum);
 		if (resultCode == 1) {
 			System.out.println("db review 테이블의 리뷰가 삭제되었습니다");

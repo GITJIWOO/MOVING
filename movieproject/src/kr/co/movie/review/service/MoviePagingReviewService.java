@@ -27,31 +27,8 @@ public class MoviePagingReviewService implements IMovieReviewService {
 		String uId = (String) uIdObj;
 		System.out.println("UID : " + uId);
 		// 영자 세션
-//		int session_admin = (int) session.getAttribute("session_admin");
-//		if (session_admin == 0) {
-//			try {
-//				String ui = "/moviemain/movie_main.jsp";
-//				RequestDispatcher dp = request.getRequestDispatcher(ui);
-//				dp.forward(request, response);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
+		int session_admin = (int) session.getAttribute("session_admin");
 
-//		if (uId == null) {
-//			try {
-//				String ui = "/movieuser/movie_user_login_form.jsp";
-//				RequestDispatcher dp = request.getRequestDispatcher(ui);
-//				dp.forward(request, response);
-//
-//				// 여기서 포워드를 할수 없어
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
-		// page 파라미터에 있던 값을 가져옵니다.
-		// hint : ?page=페이지번호
-		// page파라미터가 없다면 strPage에 null이 저장됨
 		String strPage = request.getParameter("page");
 		String mId = request.getParameter("mId");
 		String uid = request.getParameter("uId");
@@ -77,15 +54,10 @@ public class MoviePagingReviewService implements IMovieReviewService {
 		UserDAO udao = UserDAO.getInstance();
 
 		MovieVO movie = mdao.MovieDetail(mId);
-		UserVO user = udao.getUser(uid);
-		// 현재 보고 있는 페이지의 전체 글 가져오기
-		// 페이지를 그냥 넘기지 않고, 시작번호를 계산해서 넘김.
+		
 		List<ReviewVO> reviewList = rdao.getPageList((page - 1) * 10, mId,rRate);
-		// 얻어온 글 전체 개수와 현재 조회중인 페이지 정보를 DTO에 넘겨줌.
 		int countNum = rdao.getMidReviewCount(mId,rRate);
 		
-		
-		// DTO의 역할은 페이지 하단에 링크만들 정보를 계산하는것.
 		ReviewPageDTO pageDTO = new ReviewPageDTO(countNum, page, reviewList);
 
 		// 포워딩하기위해 적재하기.
@@ -95,6 +67,7 @@ public class MoviePagingReviewService implements IMovieReviewService {
 		request.setAttribute("uId", uId);
 		request.setAttribute("mId", mId);
 		request.setAttribute("currentPage", page);
+		request.setAttribute("rRate", rRate);
 	}
 
 

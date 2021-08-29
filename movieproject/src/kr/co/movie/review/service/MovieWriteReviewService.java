@@ -24,8 +24,6 @@ public class MovieWriteReviewService implements IMovieReviewService {
 		System.out.println("UID : " + uid);
 
 		try {
-
-			/// post방식 한글깨짐 방지 인코딩
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
 
@@ -40,7 +38,6 @@ public class MovieWriteReviewService implements IMovieReviewService {
 				rRate = Integer.parseInt(strrRate);
 			}
 			String strMId = request.getParameter("mId");
-			// dao 생성
 			ReviewDAO dao = ReviewDAO.getInstance();
 			MovieDAO mdao = MovieDAO.getInstance();
 
@@ -48,7 +45,6 @@ public class MovieWriteReviewService implements IMovieReviewService {
 
 			MovieVO movie = mdao.MovieDetail(strMId);
 
-			// VO 생성
 			ReviewVO review = new ReviewVO();
 			review.setuId(uId);
 			review.setrContent(rContent);
@@ -67,7 +63,7 @@ public class MovieWriteReviewService implements IMovieReviewService {
 			
 			if (resultCode == 1) {
 				resultMessage = "등록에 성공했습니다."; 
-				System.out.println("DB테이블에 리뷰이 입력되었습니다");
+				System.out.println("DB테이블에 리뷰가 입력되었습니다");
 			} else if (resultCode == 0) {
 				resultMessage = "등록에 실패하였습니다. ";
 				System.out.println("에러 발생으로 리뷰가 입력되지 않았습니다");

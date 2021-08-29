@@ -16,13 +16,12 @@ public class ReviewDAO {
 	private DataSource ds;
 	/** 리뷰 등록 성공시 반환 */
 	private static final int REVIEW_WRITE_SUCCESS = 1;
-	/** 단순 리뷰 등록 에러시 반환  */
+	/** 단순 리뷰 등록 에러시 반환 */
 	private static final int REVIEW_WRITE_FAIL = 0;
-	/** 리뷰 등록시  uid 중복 될 경우 반환  */
+	/** 리뷰 등록시 uid 중복 될 경우 반환 */
 	private static final int REVIEW_OVERLAP_ERROR = -1;
-	/** 리뷰 등록시 입력값 없을 경우 반환  */ 
+	/** 리뷰 등록시 입력값 없을 경우 반환 */
 	private static final int REVIEW_CONTENT_NULL_ERROR = -2;
-	
 
 	private ReviewDAO() {
 		try {
@@ -45,45 +44,44 @@ public class ReviewDAO {
 	public int write(ReviewVO review) {
 		// connection, preparedStatement 객체 선언
 		Connection con = null;
-		PreparedStatement pstmt = null; // uid 중복 체크 pstmt 
-		PreparedStatement pstmt2 = null; // insert문 실행 pstmt 
+		PreparedStatement pstmt = null; // uid 중복 체크 pstmt
+		PreparedStatement pstmt2 = null; // insert문 실행 pstmt
 		ResultSet rs = null;
-		
+
 		String uId = review.getuId();
-		double rRate =  review.getrRate();
+		double rRate = review.getrRate();
 		String rContent = review.getrContent();
 		String mTitle = review.getmTitle();
 		int mId = review.getmId();
-		
+
 		// 리뷰 insert시 중복방지를 위한 쿼리
 		String distinctionSql = "SELECT uId FROM review WHERE uId = ? AND mId = ?";
 		String sql = "INSERT INTO review (uId, rRate, rContent,rDate, mTitle,mId) VALUES(?, ?, ?, now(), ?,?)";
 
 		try {
-			// 유저 아이디 중복체크 쿼리 실행 스타트 
+			// 유저 아이디 중복체크 쿼리 실행 스타트
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(distinctionSql);
 			pstmt.setString(1, review.getuId());
 			pstmt.setInt(2, review.getmId());
 			rs = pstmt.executeQuery();
-			// 유저 아이디 중복체크 쿼리 실행 엔드 
-			
-			if( rRate == 0 || mId == 0 || rContent.equals("")) { // 파라미터 값이 Null 일때 
-				
-				return REVIEW_CONTENT_NULL_ERROR ; 
-			} 
-			else if (!rs.next()) {	// select의 uId 반환값이 없을 경우 insert문 실행
+			// 유저 아이디 중복체크 쿼리 실행 엔드
+
+			if (rRate == 0 || mId == 0 || rContent.equals("")) { // 파라미터 값이 Null 일때
+
+				return REVIEW_CONTENT_NULL_ERROR;
+			} else if (!rs.next()) { // select의 uId 반환값이 없을 경우 insert문 실행
 				pstmt2 = con.prepareStatement(sql);
-				pstmt2.setString(1, uId );
+				pstmt2.setString(1, uId);
 				pstmt2.setDouble(2, rRate);
-				pstmt2.setString(3,rContent);
+				pstmt2.setString(3, rContent);
 				pstmt2.setString(4, mTitle);
 				pstmt2.setInt(5, mId);
 
 				pstmt2.executeUpdate();
 				return REVIEW_WRITE_SUCCESS;
 			} else {
-				// uid 중복시 반환 
+				// uid 중복시 반환
 				return REVIEW_OVERLAP_ERROR;
 			}
 
@@ -116,7 +114,6 @@ public class ReviewDAO {
 		PreparedStatement pstmt = null;
 		int resultCode;
 
-		// 커넥션 연결 및 쿼리문 실행
 		String sql = "DELETE FROM review WHERE rnum = ?";
 
 		try {
@@ -127,7 +124,6 @@ public class ReviewDAO {
 
 			pstmt.executeUpdate();
 
-			System.out.println("삭제 리뷰번호: " + rNum);
 			resultCode = 1;
 
 		} catch (Exception e) {
@@ -157,7 +153,6 @@ public class ReviewDAO {
 		PreparedStatement pstmt = null;
 		int resultCode;
 
-		// 커넥션 연결 및 쿼리문 실행
 		String sql = "DELETE FROM review WHERE uId = ?";
 
 		try {
@@ -168,7 +163,6 @@ public class ReviewDAO {
 
 			pstmt.executeUpdate();
 
-			System.out.println("탈퇴한 회원(리뷰): " + uId);
 			resultCode = 1;
 
 		} catch (Exception e) {
@@ -202,8 +196,6 @@ public class ReviewDAO {
 		String sql = "UPDATE review SET rContent = ?, rRate = ? WHERE rNum = ?";
 
 		try {
-			// 커넥션 생성 및 pstmt에 쿼리문 넣고 완성시켜서 실행까지 하고
-			// close()로 메모리회수까지 해주세욘
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
@@ -213,13 +205,11 @@ public class ReviewDAO {
 
 			pstmt.executeUpdate();
 			result = 1;
-			System.out.println("정보 변경결과: " + result);
 
 		} catch (Exception e) {
 			System.out.println("에러: " + e);
 			e.printStackTrace();
 			result = 0;
-			System.out.println("정보 변경결과: " + result);
 		} finally {
 			try {
 				if (con != null && !con.isClosed()) {
@@ -238,16 +228,13 @@ public class ReviewDAO {
 
 	// 페이지 번호에 맞는 게시물 가져오기
 	public List<ReviewVO> getReviewList(String mId) {
-		// 내부에서 사용할 변수 선언
 		List<ReviewVO> reviewList = new ArrayList<ReviewVO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		// 쿼리문(SELECT구문, 역순)
 		String sql = "SELECT * FROM review where mId = ? ORDER BY rnum DESC LIMIT 5";
 		try {
-			// 연결구문을 다 작성해주세요. 리턴구문까지.
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mId);
@@ -267,7 +254,6 @@ public class ReviewDAO {
 				reviewList.add(review);
 
 			}
-			System.out.println("db 데이터: " + reviewList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -289,33 +275,29 @@ public class ReviewDAO {
 	} // end getReviewList()
 
 	public List<ReviewVO> getPageList(int pageNum, String mId, int rRate) {
-		
-		System.out.println("MoviePagingReviewService - getPageList - rRate : "+rRate);
-		
-		// 내부에서 사용할 변수 선언
+
+		System.out.println("MoviePagingReviewService - getPageList - rRate : " + rRate);
+
 		List<ReviewVO> reviewList = new ArrayList<>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
 
-		
 		try {
-			// 쿼리문(SELECT구문, 역순, 5개씩 pageNum에 맞춰서);
-			String sql;  
+			String sql;
 			if (rRate == 0) { // 일반 페이징
 				sql = "SELECT * FROM review WHERE mId = ? ORDER BY rnum DESC LIMIT ?, 10";
 				con = ds.getConnection();
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, mId);
-				pstmt.setInt(2,pageNum);
-				
+				pstmt.setInt(2, pageNum);
+
 			} else { // 별점별 페이징
 				sql = "SELECT * FROM review WHERE mId = ? AND rRate = ? ORDER BY rnum DESC LIMIT ?, 10";
 				con = ds.getConnection();
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, mId);
-				pstmt.setDouble(2,rRate);
+				pstmt.setDouble(2, rRate);
 				pstmt.setInt(3, pageNum);
 			}
 			rs = pstmt.executeQuery();
@@ -332,7 +314,6 @@ public class ReviewDAO {
 				review.setrDate(rs.getTimestamp("rDate"));
 				reviewList.add(review);
 			}
-			System.out.println("페이징" + reviewList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -391,6 +372,7 @@ public class ReviewDAO {
 		return countNum;
 	} // end getReviewCount()
 
+	// 영화 리뷰 평균
 	public double getAvgReview(int mId) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -436,7 +418,6 @@ public class ReviewDAO {
 
 		ReviewVO review = new ReviewVO();
 
-		// 커넥션 연결 및 쿼리문 실행
 		String sql = "SELECT * FROM review WHERE rnum = ?";
 
 		try {
@@ -484,14 +465,14 @@ public class ReviewDAO {
 	}// end selectOne()
 
 	// 페이징 처리를 위해 DB내 전체 데이터 개수 알아오기
-	public int getMidReviewCount(String mId,int rRate) {
+	public int getMidReviewCount(String mId, int rRate) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int countNum = 0;
 
 		try {
-			String sql;  
+			String sql;
 			if (rRate == 0) { // 일반 페이징
 				sql = "SELECT COUNT(*) FROM review WHERE mid=?";
 				con = ds.getConnection();
@@ -502,7 +483,7 @@ public class ReviewDAO {
 				con = ds.getConnection();
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, mId);
-				pstmt.setDouble(2,rRate);
+				pstmt.setDouble(2, rRate);
 			}
 
 			rs = pstmt.executeQuery();
@@ -532,16 +513,13 @@ public class ReviewDAO {
 
 	// 페이지 번호에 맞는 게시물 가져오기
 	public List<ReviewVO> getUserReviewList(String uId) {
-		// 내부에서 사용할 변수 선언
 		List<ReviewVO> reviewList = new ArrayList<ReviewVO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		// 쿼리문(SELECT구문, 역순)
 		String sql = "SELECT * FROM review where uid = ? ORDER BY rdate DESC";
 		try {
-			// 연결구문을 다 작성해주세요. 리턴구문까지.
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, uId);
