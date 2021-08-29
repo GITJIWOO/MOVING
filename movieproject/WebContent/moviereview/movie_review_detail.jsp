@@ -13,7 +13,6 @@
 <link rel="stylesheet" href="../MovieProject/movieui/css/mstyles.css" />
 <style>
 #contents {
-	/* 	 	display: flex;  */
 	justify-content: center;
 	text-align: center;
 	margin: 20px auto 20px auto;
@@ -108,19 +107,10 @@
 					</table>
 				</form>
 
-
 				<!-- 리뷰 디테일 목록 -->
-				<!-- 			<form action="/MovieProject/moviereviewwrite.do" method="post"> -->
-				<%-- 				<input type="hidden" name="mId" value="${movie.mid }"> --%>
-				<%-- 				<input type="hidden" name="uId" value="${uId }"> --%>
-				<!-- 				 <input  -->
-				<!-- 					type="submit" value="리뷰작성"> -->
-				<!-- 			</form> -->
-
-
-				<%-- 				<a href="/MovieProject/moviedetail.do?mId=${movie.mid }"> <input --%>
-				<!-- 					type="button" class="btn btn-light" value="영화정보"> -->
-				<!-- 				</a> -->
+				<a href="/MovieProject/moviedetail.do?mId=${movie.mid }"> <input
+					type="button" class="btn btn-light" value="영화정보">
+				</a>
 				<c:set var="review" value="${reviewDetail }"></c:set>
 				<table class="table table-striped table-hover">
 					<thead>
@@ -162,29 +152,18 @@
 						<c:forEach var="review" items="${reviewList }">
 							<tr>
 								<td>${review.uId }</td>
-								<td>
-								<c:set var="selectedRate" value="${selectedRate }" />
-								<c:choose>
+								<td><c:set var="selectedRate" value="${selectedRate }" />
+									<c:choose>
 										<c:when test="${1 eq review.rRate }">★</c:when>
 										<c:when test="${2 eq review.rRate }">★★</c:when>
 										<c:when test="${3 eq review.rRate }">★★★</c:when>
 										<c:when test="${4 eq review.rRate }">★★★★</c:when>
 										<c:when test="${5 eq review.rRate }">★★★★★</c:when>
-									</c:choose>
-									</td>
+									</c:choose></td>
 								<td>${review.rContent }</td>
 								<td>${review.rDate }</td>
 								<c:if test="${review.uId == uId || session_admin == 1}">
 									<td>
-										<!-- 
-										<form action="/MovieProject/moviereviewupdate.do" method="post">
-											<input type="hidden" name="rNum" value="${review.rNum }]">
-											<input type="hidden" name="uId" value="${uId }">
-											<input type="hidden" name="rRate" value="${review.rRate }">
-											<input type="hidden" name="rContent" value="${review.rContent }">
-											<input type="submit" value="수정">
-										</form>
-										 -->
 										<form id="deleteForm"
 											action="/MovieProject/moviereviewdelete.do" method="post">
 											<input type="hidden" name="rNum" value="${review.rNum }">
@@ -201,47 +180,39 @@
 
 				</table>
 
-				<%-- 페이징 버튼 만들기 
-	표현할 글이 있는 경우에만 버튼을 표시함--%>
-
+				<%-- 페이징 버튼 만들기 표현할 글이 있는 경우에만 버튼을 표시함--%>
 				<c:if test="${pageDTO.hasBoard()}">
 					<ul class="pagination justify-content-center pagination-sm">
-						<%-- 						
-
 						<%-- 뒤로가기 버튼을 표시할지 말지 결정하는 부분 --%>
 						<c:if test="${pageDTO.startPage > 10}">
 							<form
 								action="/MovieProject/moviereviewdetail.do?page=${pageDTO.startPage - 10}"
 								method="post">
 								<input type="hidden" name="mId" value="${movie.mid }"> <input
-									type="submit" class="btn btn-gray" value="<<">
+									type="submit" class="btn btn-gray" value="«">
 							</form>
-							<!-- 							<li class="page-item"><a class="page-link" -->
-							<%-- 								href="/MovieProject/moviereviewdetail.do?page=${pageDTO.startPage - 10}">«</a></li> --%>
 						</c:if>
-
 						<%-- 페이지 번호 10개 묶음을 깔아주는 부분 --%>
-						<c:forEach var="pNo" begin="${pageDTO.startPage}" end="${pageDTO.endPage}">
-							<form action="/MovieProject/moviereviewdetail.do?page=${pNo}&rRate=${rRate}" method="post">
-								<input type="hidden" name="mId" value="${movie.mid }"> 
-								<input type="hidden" name="rRate" value="${rRate }"> 
-								<input type="submit" class="btn btn-gray" id="pNo${pNo}" value="${pNo }">
+						<c:forEach var="pNo" begin="${pageDTO.startPage}"
+							end="${pageDTO.endPage}">
+							<form
+								action="/MovieProject/moviereviewdetail.do?page=${pNo}&rRate=${rRate}"
+								method="post">
+								<input type="hidden" name="mId" value="${movie.mid }"> <input
+									type="hidden" name="rRate" value="${rRate }"> <input
+									type="submit" class="btn btn-gray" id="pNo${pNo}"
+									value="${pNo }">
 							</form>
 						</c:forEach>
-
 						<%-- 다음으로 가기 버튼을 표시할지 말지 결정하는 부분 --%>
 						<c:if test="${pageDTO.endPage < pageDTO.totalPages}">
 							<form
 								action="/MovieProject/moviereviewdetail.do?page=${pageDTO.startPage + 10}"
 								method="post">
 								<input type="hidden" name="mId" value="${movie.mid }"> <input
-									type="submit" class="btn btn-gray" value=">>">
+									type="submit" class="btn btn-gray" value="»">
 							</form>
-							<!-- 							<li class="page-item"><a class="page-link" -->
-							<%-- 								href="/MovieProject/moviereviewdetail.do?page=${pageDTO.startPage + 10}"> --%>
-							<!-- 									» </a> -->
 						</c:if>
-
 					</ul>
 				</c:if>
 			</div>
@@ -268,10 +239,6 @@
 	<!-- footer end -->
 
 	<script type="text/javascript">
-		// 		function ddd(locationParam, rnum) {
-		// 			location.href = locationParam + "?rNum=" + rnum;
-		// 		}
-
 		function confirm_delete() {
 
 			var deleteForm = document.getElementById('deleteForm');
@@ -300,18 +267,16 @@
 					+ mId + '&rRate=' + rRate;
 
 		}
-		
+
 		function activateCrtPageColor() {
-			
+
 			var currentPageNmb = "${currentPage}";
-			var targetBtn = document.getElementById("pNo"+currentPageNmb);
-			
+			var targetBtn = document.getElementById("pNo" + currentPageNmb);
+
 			targetBtn.style.color = "pink";
-			
+
 		}
 		activateCrtPageColor();
-		
-		
 	</script>
 
 </body>

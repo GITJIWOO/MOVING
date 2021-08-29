@@ -26,8 +26,6 @@ public class MoviePagingReviewService implements IMovieReviewService {
 		Object uIdObj = session.getAttribute("session_id");
 		String uId = (String) uIdObj;
 		System.out.println("UID : " + uId);
-		// 영자 세션
-		int session_admin = (int) session.getAttribute("session_admin");
 
 		String strPage = request.getParameter("page");
 		String mId = request.getParameter("mId");
@@ -48,19 +46,17 @@ public class MoviePagingReviewService implements IMovieReviewService {
 			page = Integer.parseInt(strPage);
 		}
 
-		// DAO생성
 		ReviewDAO rdao = ReviewDAO.getInstance();
 		MovieDAO mdao = MovieDAO.getInstance();
 		UserDAO udao = UserDAO.getInstance();
 
 		MovieVO movie = mdao.MovieDetail(mId);
-		
+		UserVO user = udao.getUser(uid);
 		List<ReviewVO> reviewList = rdao.getPageList((page - 1) * 10, mId,rRate);
 		int countNum = rdao.getMidReviewCount(mId,rRate);
 		
 		ReviewPageDTO pageDTO = new ReviewPageDTO(countNum, page, reviewList);
 
-		// 포워딩하기위해 적재하기.
 		request.setAttribute("reviewList", reviewList);
 		request.setAttribute("pageDTO", pageDTO);
 		request.setAttribute("movie", movie);
