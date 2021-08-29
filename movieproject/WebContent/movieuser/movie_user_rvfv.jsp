@@ -63,8 +63,8 @@
       </div>
       <div class="main-bar__column">
         <span>
+          <a class="main-bar__movie" href="/MovieProject/moviemain.do">홈</a>
           <a class="main-bar__movie" href="/MovieProject/movieselect.do">영화정보</a>
-          <a class="main-bar__movie" href="#">다운로드</a>
         </span>
       </div>
       <c:if test="${session_id == null }">
@@ -79,7 +79,7 @@
         <span><a class="main-bar__btn">${session_id } 님 환영합니다!</a></span>
         <span>|</span>
         <c:if test="${session_admin == 1 }">
-        <span><a class="main-bar__btn" href="/MovieProject/userselect.do">관리자페이지</a></span>
+        <span><a class="main-bar__btn" href="/MovieProject/movieadminmain.do">관리자페이지</a></span>
         </c:if>
         <c:if test="${session_admin == 0 }">
         <form class="main-bar__btn"  action = "/MovieProject/userdetail.do" method = "post">
@@ -111,16 +111,15 @@
 	   				<c:forEach var="review" items="${reviewList }">
 	   					<li>제목 | <a href="/MovieProject/moviedetail.do?mId=${review.mId}">${review.mTitle }</a>
 							<form id="deleteForm"
-								action="/MovieProject/moviereviewdelete.do" method="post" class="button">
+								action="/MovieProject/rvfvreviewdelete.do" method="post" class="button">
 								<input type="hidden" name="rNum" value="${review.rNum }">
-								<input type="hidden" name="mId" value="${movie.mid }">
-								<input type="button" value="삭제"
-									onclick="Javascript:confirm_delete();"
+								<input type="hidden" name="mid" value="${movie.mid }">
+								<input type="submit" value="삭제"
 									class="btn btn-outline-secondary btn-sm">
 							</form>
 						</li>
-	   					<li>평점 | ${review.rRate }</li>
 	   					<li>날짜 | ${review.rDate }</li>
+	   					<li>평점 | ${review.rRate }</li>
 	   					<li>내용 | ${review.rContent }</li>
 	   					<hr>
 	   				</c:forEach>
@@ -131,7 +130,13 @@
       			<hr>
       			<ul>
       				<c:forEach var="movie" items="${faMovies }">
-	      				<li>제목 | <a href="/MovieProject/moviedetail.do?mId=${movie.mid}">${movie.mtitle }</a></li>
+	      				<li>제목 | <a href="/MovieProject/moviedetail.do?mId=${movie.mid}">${movie.mtitle }</a>
+							<form class="button" action="/MovieProject/rvfvfavoritemoviedelete.do" method="post">
+								<input type="hidden" name="mid" value="${movie.mid }" />
+								<input type="hidden" name="uid" value="${session_id }" />
+								<input type="submit" value="찜 취소" class="btn btn-outline-secondary btn-sm">
+							</form>
+	      				</li>
 	      				<li>장르 | ${movie.mgenre }</li>
 	      				<li>개봉일 | ${movie.mpremiere }</li>
 	      				<hr>

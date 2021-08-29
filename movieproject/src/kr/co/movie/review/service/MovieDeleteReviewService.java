@@ -55,6 +55,7 @@ public class MovieDeleteReviewService implements IMovieReviewService {
 		System.out.println("service 게시물 데이터: " + reviewList);
 		//
 		request.setAttribute("adminId", session_admin);
+		request.setAttribute("mId", mId);
 		// delete 로적에 rNum 넣어서 삭제
 		int resultCode = dao.delete(rNum);
 		if (resultCode == 1) {

@@ -248,6 +248,12 @@ public class MovieServlet extends HttpServlet {
 			mrs.execute(request, response);
 			ui = "/moviedetail.do";
 			
+			// RvFv에서 리뷰 삭제 서비스
+		} else if (uri.equals("/MovieProject/rvfvreviewdelete.do")) {
+			mrs = new MovieDeleteReviewService();
+			mrs.execute(request, response);
+			ui = "/userrvfv.do";
+			
 			// 영화 리뷰 페이징 서비스
 		} else if (uri.equals("/MovieProject/moviereviewdetail.do")) {
 			mrs = new MoviePagingReviewService();
@@ -277,6 +283,12 @@ public class MovieServlet extends HttpServlet {
 			mis = new FavoriteMovieDeleteService();
 			mis.execute(request, response);
 			ui = "/movieinfo/movie_detail.jsp";
+			
+			// RvFv에서 찜한 영화 삭제
+		} else if(uri.equals("/MovieProject/rvfvfavoritemoviedelete.do")) {
+			mis = new FavoriteMovieDeleteService();
+			mis.execute(request, response);
+			ui = "/userrvfv.do";
 			
 			// 그 외
 		} else {

@@ -467,7 +467,7 @@ public class MovieDAO {
 			while(rs.next()) {
 				MovieVO movie = new MovieVO();
 				
-				movie = MovieDetail(rs.getString(1));
+				movie = MovieDetail(rs.getString("mid"));
 				
 				movieList.add(movie);
 			}
