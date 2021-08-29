@@ -95,8 +95,9 @@ DROP TABLE moviepreview;
     uid = 유저 아이디
 */
 CREATE TABLE userfavoritemovie (
-	mid INT PRIMARY KEY,
-    uid VARCHAR(20) NOT NULL,
+	rftid INT PRIMARY KEY AUTO_INCREMENT,
+	mid INT,
+    uid VARCHAR(20) NOT NULL UNIQUE,
     FOREIGN KEY (mid) REFERENCES movie(mid),
     FOREIGN KEY (uid) REFERENCES user(uid)
 );

@@ -32,7 +32,7 @@ public class FavoriteMovieDeleteService implements IMovieInfoService{
 			MovieVO movie = dao.MovieDetail(mId);
 			int deletemovie = dao.deleteUserFavoritemovie(mId);
 			if(deletemovie == 1) {
-				int favoritemovie = dao.selectUserFavoritemovie(uId);
+				int favoritemovie = dao.selectUserFavoritemovie(mId, uId);
 				System.out.println("삭제 성공 후 : " + favoritemovie);
 				request.setAttribute("favoritemovie", favoritemovie);
 			}

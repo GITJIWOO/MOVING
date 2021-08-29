@@ -417,7 +417,7 @@ public class MovieDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
-		String sql = "INSERT INTO userfavoritemovie VALUES (?, ?)";
+		String sql = "INSERT INTO userfavoritemovie(mid, uid) VALUES (?, ?)";
 		
 		try {
 			con = ds.getConnection();
@@ -657,19 +657,20 @@ public class MovieDAO {
 	
 
 	// 찜한 영화 조회
-	public int selectUserFavoritemovie(String uId) {
+	public int selectUserFavoritemovie(String mId, String uId) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		int resultCode = 0;
 
-		String sql = "SELECT * FROM userfavoritemovie WHERE uid=?";
+		String sql = "SELECT * FROM userfavoritemovie WHERE mid=? AND uid=?";
 
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, uId);
+			pstmt.setString(1, mId);
+			pstmt.setString(2, uId);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				resultCode = 1;
