@@ -43,6 +43,10 @@
 	.info-form_each:last-child{
 		width: 8%;
 	}
+	.page-item.active .page-link{
+		background-color: black;
+		border-color: black;
+	}
 	.page-link{
 		color: black;
 	}

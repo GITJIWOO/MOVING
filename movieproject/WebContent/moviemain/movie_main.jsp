@@ -1,4 +1,4 @@
-=<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -22,7 +22,7 @@
      max-height: 120vh;
      min-height: 120vh;
      max-width: 100vh;
-     min-width: 100vh
+     min-width: 100vh;
      display:flex;
       } 
 </style>
