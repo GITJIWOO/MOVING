@@ -189,7 +189,7 @@ public class UserDAO {
 		int result = 0;
 		try {
 			con = ds.getConnection();
-			String sql = "SELECT count(*) FROM user";
+			String sql = "SELECT count(*) FROM user WHERE uadmin = 0";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -223,7 +223,7 @@ public class UserDAO {
 		ResultSet rs = null;
 		try {
 			con = ds.getConnection();
-			String sql = "SELECT * FROM user LIMIT ?, 10";
+			String sql = "SELECT * FROM user WHERE uadmin = 0 LIMIT ?, 10";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, (pageNum - 1) * 10);
 			rs = pstmt.executeQuery();
@@ -257,6 +257,83 @@ public class UserDAO {
 		return userList;
 	}
 	
+	// 관리자 목록 조회
+	// 1. 전체 관리자 명수 조회
+	public int getAdminCount() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		try {
+			con = ds.getConnection();
+			String sql = "SELECT count(*) FROM user WHERE uadmin = 1";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(con != null && !con.isClosed()) {
+					con.close();
+				}
+				if(pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+				if(rs != null && !rs.isClosed()) {
+					rs.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}// getUserCount END
+	
+	// 2. 관리자 전체 리스트(10명씩)
+	public List<UserVO> getAdminList(int pageNum){
+		List<UserVO> userList = new ArrayList<>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = ds.getConnection();
+			String sql = "SELECT * FROM user WHERE uadmin = 1 LIMIT ?, 10";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, (pageNum - 1) * 10);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				String uId = rs.getString("uId");
+				String uPw = rs.getString("uPw");
+				String uName = rs.getString("uName");
+				String uEmail = rs.getString("uEmail");
+				int uAge = rs.getInt("uAge");
+				int uAdmin = rs.getInt("uAdmin");
+				UserVO user = new UserVO(uId, uPw, uName, uEmail, uAge, uAdmin);
+				userList.add(user);
+			}
+		}catch(SQLException e) {
+			System.out.println("에러: " + e);
+		}finally {
+			try {
+				if(con != null && !con.isClosed()) {
+					con.close();
+				}
+				if(pstmt != null && !pstmt.isClosed()) {
+					pstmt.close();
+				}
+				if(rs != null && !rs.isClosed()) {
+					rs.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return userList;
+	}
+
 	// 회원 정보 조회(개인 - 회원정보 수정 시 사용)
 	public UserVO getUser(String uid) {
 		Connection con = null;
