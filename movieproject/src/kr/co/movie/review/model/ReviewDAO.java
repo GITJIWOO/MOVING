@@ -276,8 +276,6 @@ public class ReviewDAO {
 
 	public List<ReviewVO> getPageList(int pageNum, String mId, int rRate) {
 
-		System.out.println("MoviePagingReviewService - getPageList - rRate : " + rRate);
-
 		List<ReviewVO> reviewList = new ArrayList<>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -411,7 +409,6 @@ public class ReviewDAO {
 	} // end getAvgReview()
 
 	public ReviewVO selectOne(int rNum) {
-		System.out.println("rNum: " + rNum);
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

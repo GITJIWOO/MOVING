@@ -294,21 +294,6 @@
 	<script type="text/javascript">
 	
 // 	// 즉시 실행함수 정의
-// 	(function() {
-		
-// 		// insert 처리후 MovieWriteReviewService에서 반환 되는 모델 
-// 		var resultMessage = '${resultMessage}';
-		
-// 		if(resultMessage != ''){ // 모델의 반환값이 없을 때 
-		
-// 			alert(resultMessage);
-// 			if (resultMessage != 1) {	// 에러 반환시 뒤로가기
-// 				window.history.back();
-// 			}
-			
-// 		}
-// 	})();
-	
 	function showMovieReviewInsertMsg () {
 		// insert 처리후 MovieWriteReviewService에서 반환 되는 모델 
 		var resultMessage = '${resultMessage}'; // 처리결과 메세지
