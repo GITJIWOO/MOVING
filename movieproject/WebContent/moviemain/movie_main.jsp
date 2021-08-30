@@ -4,30 +4,100 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 <meta charset="UTF-8">
 <link rel="stylesheet" href="../movieui/css/mstyles.css" />
 <link rel="stylesheet" href="../MovieProject/movieui/css/mstyles.css" />
 <title>메인 화면</title>
 <style>
-	.main-body {
-		height : 170vh;
-	}
-	h2 { 
-		font-size: 40px;
-		text-align:center;
-		padding:50px;
-	}
-	 .carousel-fade .carousel-item, .carousel-item img {
-     max-height: 120vh;
-     min-height: 120vh;
-     max-width: 100vh;
-     min-width: 100vh;
-     display:flex;
-      } 
+.main-body {
+  height: 700px;
+}
+.main-contents {
+  background-color: #2b2b2b;
+}
+.main-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.main-contents__title {
+  top: 0;
+  width: 98%;
+  padding: 15px;
+  font-size: 25px;
+  font-weight: 600;
+  color: white;
+  background-color: black;
+}
+.main-image {
+  transition: all 0.5s;
+}
+.img-btn {
+  position: absolute;
+  z-index: 100;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 45px;
+  font-weight: 100;
+}
+.img-btn:first-child {
+  left: 2%;
+}
+.img-btn:last-child {
+  right: 2%;
+}
+.img-btn:hover {
+  color: rgba(255, 255, 255, 1);
+}
+.move-moviedetail {
+  position: absolute;
+  z-index: 100;
+  background-color: transparent;
+  color: white;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 4px;
+  cursor: pointer;
+  width: 95px;
+  height: 35px;
+  bottom: 10%;
+  left: 47%;
+}
+.move-moviedetail:hover {
+  border: 1px solid rgba(255, 255, 255, 1);
+  font-weight: 600;
+}
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script
+  src="https://kit.fontawesome.com/62b1f47417.js"
+  crossorigin="anonymous"
+></script>
+<script>
+  var num = 1;
+  // 다음 버튼
+  function nextPic() {
+    num++;
+    if (num > 3) {
+      num = 1;
+    }
+    document.getElementById("poster").src =
+      "<%=request.getContextPath() %>/movieui/css/screen/images/main" + num + ".jpg";
+    return false;
+  }
+  function prevPic() {
+    num--;
+    if (num < 1) {
+      num = 3;
+    }
+    document.getElementById("poster").src =
+      "<%=request.getContextPath() %>/movieui/css/screen/images/main" + num + ".jpg";
+    return false;
+  }
+  function movieDetail() {
+    document.getElementById("posterbtn").href =
+      "/MovieProject/moviedetail.do?mId=" + num;
+  }
+</script>
 </head>
 <body>
 	<!--main 화면 header start-->
@@ -76,9 +146,7 @@
 	<c:if test="${update_status == 0 }">
 		<script>alert('업데이트에 실패하였습니다.'); history.back();</script>
 	</c:if>
-    <div class="main-body">
-      <div class="main-sidebar"></div>
-      <div class="main-contents">	
+	
 	<c:if test="${session_id != null && login_fail == null && session_admin == 0}">
 	</c:if>
 	<c:if test="${login_fail == 0 }">
@@ -87,78 +155,32 @@
 	<c:if test="${login_fail == -1 }">
 		<script>alert('비밀번호가 일치하지 않습니다.'); history.back(); </script>
 	</c:if>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6">
-	<!-- ------------- -->
-			<h2>상영 중인 영화</h2>
-	        <div id="carousel-example-generic" class="carousel slide">
-	            <!-- Indicators -->
-	            <ol class="carousel-indicators">
-	              <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-	              <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-	              <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-	            </ol>
-	                 <!-- Carousel items -->
-	             <div class="carousel-inner">
-	                <div class="carousel-item active">
-	                   <a href="/MovieProject/moviedetail.do?mId=1"><img class="image" src="https://movie-phinf.pstatic.net/20111223_21/1324628831674hTrFY_JPEG/movie_image.jpg" alt="First slide"></a>
-	                </div>
-	                <div class="carousel-item">
-	                   <a href="/MovieProject/moviedetail.do?mId=2"><img class="image" src="https://movie-phinf.pstatic.net/20180518_218/1526609377997LxLgL_JPEG/movie_image.jpg" alt="Second slide"></a>
-	                </div>
-	                <div class="carousel-item">
-	                   <a href="/MovieProject/moviedetail.do?mId=3"><img class="image" src="https://movie-phinf.pstatic.net/20111222_81/1324541324870BNbuJ_JPEG/movie_image.jpg" alt="Third slide"></a>
-	                </div>
-	             </div>
-	            <!-- Controls -->
-	              <a class="carousel-control-prev" href="#carousel-example-generic" data-slide="prev">
-	                <span class="carousel-control-prev-icon"></span>
-	              </a>
-	              <a class="carousel-control-next" href="#carousel-example-generic" data-slide="next">
-	                <span class="carousel-control-next-icon"></span>
-	              </a>
-	          </div>
-			
-			
-	<!-- ------------- -->		
-			</div>
-			<div class="col-md-6">
-			<!-- ----------------- -->
-			
-			<h2>MOVING 추천영화</h2>
-	        <div id="carousel-example-generic2" class="carousel slide">
-	            <!-- Indicators -->
-	            <ol class="carousel-indicators">
-	              <li data-target="#carousel-example-generic2" data-slide-to="0" class="active"></li>
-	              <li data-target="#carousel-example-generic2" data-slide-to="1"></li>
-	              <li data-target="#carousel-example-generic2" data-slide-to="2"></li>
-	            </ol>
-	                 <!-- Carousel items -->
-	             <div class="carousel-inner">
-	                <div class="carousel-item active">
-	                   <a href="/MovieProject/moviedetail.do?mId=1"><img class="image" src="https://movie-phinf.pstatic.net/20190128_22/1548638810964Go9Wy_JPEG/movie_image.jpg" alt="First slide"></a>
-	                </div>
-	                <div class="carousel-item">
-	                   <a href="/MovieProject/moviedetail.do?mId=2"><img class="image" src="https://movie-phinf.pstatic.net/20111221_75/1324477552832sDC6E_JPEG/movie_image.jpg" alt="Second slide"></a>
-	                </div>
-	                <div class="carousel-item">
-	                   <a href="/MovieProject/moviedetail.do?mId=3"><img class="image" src="https://movie-phinf.pstatic.net/20200114_147/1578963901287frmdl_JPEG/movie_image.jpg" alt="Third slide"></a>
-	                </div>
-	             </div>
-	            <!-- Controls -->
-	              <a class="carousel-control-prev" href="#carousel-example-generic2" data-slide="prev">
-	                <span class="carousel-control-prev-icon"></span>
-	              </a>
-	              <a class="carousel-control-next" href="#carousel-example-generic2" data-slide="next">
-	                <span class="carousel-control-next-icon"></span>
-	              </a>
-	          </div>
-			
-			<!-- ------------------ -->
-			</div>
-		</div>
-	</div>
+    <!-- main 화면 body start-->
+
+    <div class="main-body">
+      <div class="main-sidebar"></div>
+      <div class="main-contents">
+        <div class="main-image">
+          <a class="img-btn" href="#" onclick="return prevPic()">
+            <i class="fas fa-chevron-left i-btn"></i>
+          </a>
+          <img
+            width="1400px"
+            height="700px"
+            src="<%=request.getContextPath() %>/movieui/css/screen/images/main1.jpg"
+            id="poster"
+          />
+          <a id="posterbtn" href="#">
+            <button class="move-moviedetail" onclick="return movieDetail()">
+              	자세히 보기
+            </button>
+          </a>
+          <a class="img-btn" href="#" onclick="return nextPic()">
+            <i class="fas fa-chevron-right i-btn"></i>
+          </a>
+        </div>
+	
+
 	
 	
 	</div>

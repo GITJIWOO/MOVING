@@ -83,6 +83,7 @@
 	function onUser(){
 		document.getElementById("onUser").style.display = "block";
     	document.getElementById("onAdmin").style.display = "none";
+    	console.log(document.getElementById("onAdmin").style.display);
 	}
 	function onAdmin() {
 		document.getElementById("onAdmin").style.display = "block";
@@ -108,12 +109,12 @@
 		b.style.backgroundColor="black";
 		b.style.color="white";
 	}
-	/*
+
 	function pageLink(){
 		var a = document.getElementById("pageLink");
 		a.href="/MovieProject/userselect.do?page=1";
 	}
-	*/
+
 </script>
 <title>사용자 정보 조회</title>
 </head>
@@ -149,8 +150,8 @@
           <div class="info-btn">
           
           <!-- 회원 -->
-          <button id="userBtn" onclick="onUser(); userBtn(); pageLink()" onload = "userBtn()">회원 정보 조회</button>
-          <button id="adminBtn" onclick="onAdmin(); adminBtn(); pageLink()" onload = "adminBtn()">관리자 정보 조회</button>
+          <button id="userBtn" onclick="onUser(); userBtn(); pageLink()">회원 정보 조회</button>
+          <button id="adminBtn" onclick="onAdmin(); adminBtn(); pageLink()">관리자 정보 조회</button>
           </div>
 			<div id="onUser" class = "onUser">
 			
