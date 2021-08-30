@@ -88,6 +88,32 @@
 		document.getElementById("onAdmin").style.display = "block";
 		document.getElementById("onUser").style.display = "none";
 	}
+	function userBtn(){
+		document.getElementById("userBtn").style.display = "block";
+		
+	}
+	function userBtn(){
+		var a = document.getElementById("userBtn");
+		a.style.backgroundColor="#e0dfdf";
+		a.style.color="black";
+		var b = document.getElementById("adminBtn");
+		b.style.backgroundColor="black";
+		b.style.color="white";
+	}
+	function adminBtn(){
+		var a = document.getElementById("adminBtn");
+		a.style.backgroundColor="#e0dfdf";
+		a.style.color="black";
+		var b = document.getElementById("userBtn");
+		b.style.backgroundColor="black";
+		b.style.color="white";
+	}
+	/*
+	function pageLink(){
+		var a = document.getElementById("pageLink");
+		a.href="/MovieProject/userselect.do?page=1";
+	}
+	*/
 </script>
 <title>사용자 정보 조회</title>
 </head>
@@ -123,8 +149,8 @@
           <div class="info-btn">
           
           <!-- 회원 -->
-          <button onclick="onUser()">회원 정보 조회</button>
-          <button onclick="onAdmin()">관리자 정보 조회</button>
+          <button id="userBtn" onclick="onUser(); userBtn(); pageLink()" onload = "userBtn()">회원 정보 조회</button>
+          <button id="adminBtn" onclick="onAdmin(); adminBtn(); pageLink()" onload = "adminBtn()">관리자 정보 조회</button>
           </div>
 			<div id="onUser" class = "onUser">
 			
@@ -163,7 +189,7 @@
 			<c:forEach var = "pageNum" begin = "${userDTO.startPage }" end = "${userDTO.endPage }">
 				<c:if test = "${userDTO.currentPage == pageNum }">
 				<li class = "page-item active">			
-					<a class="page-link" href = "/MovieProject/userselect.do?page=${pageNum }">${pageNum }</a>
+					<a id="pageLink" class="page-link" href = "/MovieProject/userselect.do?page=${pageNum }">${pageNum }</a>
 				</li>
 				</c:if>
 				
@@ -222,7 +248,7 @@
 			<c:forEach var = "pageNum" begin = "${adminDTO.startPage }" end = "${adminDTO.endPage }">
 				<c:if test = "${adminDTO.currentPage == pageNum }">
 				<li class = "page-item active">			
-					<a class="page-link" href = "/MovieProject/userselect.do?page=${pageNum }">${pageNum }</a>
+					<a id="pageLink" class="page-link" href = "/MovieProject/userselect.do?page=${pageNum }">${pageNum }</a>
 				</li>
 				</c:if>
 				
