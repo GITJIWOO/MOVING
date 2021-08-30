@@ -119,7 +119,15 @@
 							</form>
 						</li>
 	   					<li>날짜 | ${review.rDate }</li>
-	   					<li>평점 | ${review.rRate }</li>
+	   					<li>평점 | 
+							<c:choose>
+								<c:when test="${1 eq review.rRate }">★☆☆☆☆</c:when>
+								<c:when test="${2 eq review.rRate }">★★☆☆☆</c:when>
+								<c:when test="${3 eq review.rRate }">★★★☆☆</c:when>
+								<c:when test="${4 eq review.rRate }">★★★★☆</c:when>
+								<c:when test="${5 eq review.rRate }">★★★★★</c:when>
+							</c:choose>
+	   					</li>
 	   					<li>내용 | ${review.rContent }</li>
 	   					<hr>
 	   				</c:forEach>
