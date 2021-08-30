@@ -21,7 +21,6 @@ public class MovieWriteReviewService implements IMovieReviewService {
 		// 유저 세션
 		Object uIdObj = session.getAttribute("session_id");
 		String uid = (String) uIdObj;
-		System.out.println("UID : " + uid);
 
 		try {
 			request.setCharacterEncoding("utf-8");
@@ -55,7 +54,6 @@ public class MovieWriteReviewService implements IMovieReviewService {
 			request.setAttribute("mId", movie);
 			request.setAttribute("uId", uid);
 
-			System.out.println("유저 아이디: " + uid);
 			int resultCode = dao.write(review);
 			
 			// insert 수행 후 리턴 메세지

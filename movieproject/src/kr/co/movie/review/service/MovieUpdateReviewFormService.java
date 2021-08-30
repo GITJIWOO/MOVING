@@ -17,14 +17,9 @@ public class MovieUpdateReviewFormService implements IMovieReviewService {
 		// 유저 세션
 		Object uIdObj = session.getAttribute("session_id");
 		String uId = (String) uIdObj;
-		System.out.println("UID : " + uId);
 		// 영자 세션
 		Object adminIdObj = session.getAttribute("session_admin");
 		String adminId = (String) adminIdObj;
-		System.out.println("adminSession_Id: " + adminId);
-
-		System.out.println(request.getParameter("rNum"));
-		System.out.println(request.getParameter("mId"));
 
 		try {
 			request.setCharacterEncoding("utf-8");
@@ -39,7 +34,6 @@ public class MovieUpdateReviewFormService implements IMovieReviewService {
 
 			request.setAttribute("review", review);
 			request.setAttribute("uId", uId);
-			System.out.println("유저 아이디: " + uId);
 		} catch (Exception e) {
 			System.out.println("ddasda");
 		}

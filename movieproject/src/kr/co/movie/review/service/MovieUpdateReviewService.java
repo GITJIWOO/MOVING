@@ -20,8 +20,6 @@ public class MovieUpdateReviewService implements IMovieReviewService {
 		// 유저 세션
 		Object uIdObj = session.getAttribute("session_id");
 		String session_id = (String) uIdObj;
-		System.out.println("UID : " + session_id);
-
 	
 		String strrNum = request.getParameter("rNum");
 		int rNum = Integer.parseInt(strrNum);

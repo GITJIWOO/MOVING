@@ -21,7 +21,6 @@ public class MovieDeleteReviewService implements IMovieReviewService {
 		// 유저 세션
 		Object uIdObj = session.getAttribute("session_id");
 		String uId = (String) uIdObj;
-		System.out.println("UID : " + uId);
 		// 영자 세션
 		int session_admin = (int) session.getAttribute("session_admin");
 
