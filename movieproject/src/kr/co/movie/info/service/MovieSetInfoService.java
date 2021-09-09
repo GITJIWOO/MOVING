@@ -15,7 +15,6 @@ public class MovieSetInfoService implements IMovieInfoService{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		/*
 		HttpSession session = null;
 		session = request.getSession();
 		String uId = (String)session.getAttribute("session_id");
@@ -29,7 +28,7 @@ public class MovieSetInfoService implements IMovieInfoService{
 			}
 		}
 		int session_admin = (int)session.getAttribute("session_admin");
-		if(session_admin == null) {
+		if(session_admin == 0) {
 			try {
 				String ui = "/moviemain/movie_main.jsp";
 				RequestDispatcher dp = request.getRequestDispatcher(ui);
@@ -38,7 +37,6 @@ public class MovieSetInfoService implements IMovieInfoService{
 				e.printStackTrace();
 			}
 		}
-		*/
 		try {
 			
 			request.setCharacterEncoding("utf-8");

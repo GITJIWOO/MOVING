@@ -25,7 +25,6 @@ public class MoviePagingReviewService implements IMovieReviewService {
 		// 유저 세션
 		Object uIdObj = session.getAttribute("session_id");
 		String uId = (String) uIdObj;
-		System.out.println("UID : " + uId);
 
 		String strPage = request.getParameter("page");
 		String mId = request.getParameter("mId");
