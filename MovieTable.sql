@@ -18,6 +18,7 @@ CREATE TABLE user (
 /* 관리자 계정 생성 */
 INSERT INTO user VALUES('adminid', 'adminpw', 'admin', 'admin@admin.com', 30, 1);
 
+INSERT INTO user VALUES('a13', 'b13', 'c13', 'a4@naver.com', 30, 0);
 SELECT * FROM user;
 
 
@@ -76,6 +77,10 @@ CREATE TABLE review(
 );
 
 SELECT * FROM review where uid='qwer123' ORDER BY rdate DESC;
+
+INSERT INTO review(uid, mtitle, rrate, rcontent, rdate, mid) VALUES('a59', '모가디슈', 3, '그냥 그래요', now(), 3);
+
+
 
 DROP TABLE review;
 
